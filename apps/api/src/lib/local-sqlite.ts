@@ -14,7 +14,7 @@ import {
   resolveCanonicalLocalDbPath,
 } from "./local-db-path.js";
 
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3;
 
 const dbByPath = new Map<string, Database.Database>();
 
@@ -50,9 +50,6 @@ function ensureSchema(database: Database.Database) {
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );
-
-    CREATE INDEX IF NOT EXISTS idx_workspaces_specialist
-      ON workspaces (subagent_id, updated_at DESC);
 
     CREATE TABLE IF NOT EXISTS threads (
       key TEXT PRIMARY KEY,
@@ -95,17 +92,51 @@ function ensureSchema(database: Database.Database) {
     );
   `);
 
+  migrateWorkspacesSubagentColumn(database);
+
+  database.exec(`
+    CREATE INDEX IF NOT EXISTS idx_workspaces_subagent
+      ON workspaces (subagent_id, updated_at DESC);
+  `);
+
   const versionRow = database
     .prepare("SELECT value FROM meta WHERE key = 'schema_version'")
     .get() as { value: string } | undefined;
+
+  const storedVersion = versionRow ? Number(versionRow.value) : 0;
 
   if (!versionRow) {
     database
       .prepare("INSERT INTO meta (key, value) VALUES ('schema_version', ?)")
       .run(String(SCHEMA_VERSION));
+  } else if (storedVersion < SCHEMA_VERSION) {
+    database
+      .prepare(
+        "UPDATE meta SET value = ? WHERE key = 'schema_version'",
+      )
+      .run(String(SCHEMA_VERSION));
   }
 
   database.exec("DROP TABLE IF EXISTS organizations");
+}
+
+/** Rename legacy specialist_id column after subagents terminology migration. */
+function migrateWorkspacesSubagentColumn(database: Database.Database) {
+  const columns = database
+    .prepare("PRAGMA table_info(workspaces)")
+    .all() as Array<{ name: string }>;
+
+  const hasLegacy = columns.some((c) => c.name === "specialist_id");
+  const hasSubagent = columns.some((c) => c.name === "subagent_id");
+
+  if (!hasLegacy || hasSubagent) return;
+
+  database.exec(`
+    ALTER TABLE workspaces RENAME COLUMN specialist_id TO subagent_id;
+    DROP INDEX IF EXISTS idx_workspaces_specialist;
+    CREATE INDEX IF NOT EXISTS idx_workspaces_subagent
+      ON workspaces (subagent_id, updated_at DESC);
+  `);
 }
 
 export function getLocalDb(): Database.Database {
@@ -339,6 +370,12 @@ export interface LocalAssistantConfig {
   approval_mode: "auto" | "draft" | "per-step";
   model: string | null;
   provider: string | null;
+  /** Synced from client Settings → AI Runners (agentRunner). */
+  agent_runner: string | null;
+  /** Synced from client Settings → API & Models / AI Runners. */
+  harness_credentials: Record<string, unknown> | null;
+  /** Synced from client runnerConfigs (Cursor key, Pi limits, etc.). */
+  harness_runner_settings: Record<string, unknown> | null;
   updated_at: string;
 }
 
@@ -350,6 +387,9 @@ const DEFAULT_ASSISTANT_CONFIG: Omit<LocalAssistantConfig, "updated_at"> = {
   approval_mode: "auto",
   model: null,
   provider: null,
+  agent_runner: null,
+  harness_credentials: null,
+  harness_runner_settings: null,
 };
 
 export function getAssistantConfig(): LocalAssistantConfig {

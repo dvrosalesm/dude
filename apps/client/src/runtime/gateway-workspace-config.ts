@@ -1,6 +1,9 @@
 "use client";
 
 import { gatewayRequest, canUseGateway } from "./gateway-desktop";
+import { mergeGatewayConfigurationsFromInternal } from "./gateway-workspace-config-merge";
+
+export { mergeGatewayConfigurationsFromInternal } from "./gateway-workspace-config-merge";
 
 type CollectionResponse = Record<string, unknown>;
 
@@ -18,10 +21,6 @@ async function readInternalCollection(
   }
 }
 
-/**
- * Merge presentation artifacts from the same SQLite row agent tools write to.
- * Client local state can lag behind internal API saves (especially in browser dev).
- */
 export async function hydrateWorkspaceConfigurationsFromGateway(
   workspaceId: string,
   existing: Record<string, unknown>,
@@ -34,35 +33,9 @@ export async function hydrateWorkspaceConfigurationsFromGateway(
     readInternalCollection(workspaceId, "designDoc"),
   ]);
 
-  const documentContent = documentContentRes?.documentContent;
-  const documentEdits = documentEditsRes?.documentEdits;
-  const designDoc = designDocRes?.designDoc;
-
-  const hasSlides =
-    documentContent &&
-    typeof documentContent === "object" &&
-    Array.isArray((documentContent as { slides?: unknown[] }).slides) &&
-    ((documentContent as { slides: unknown[] }).slides.length > 0);
-
-  if (!hasSlides && !documentEdits && !designDoc) {
-    return existing;
-  }
-
-  return {
-    ...existing,
-    ...(hasSlides
-      ? {
-          documentContent,
-          hasDocument: true,
-          documentType:
-            (existing.documentType as string | undefined) ?? "pptx",
-          documentName:
-            (existing.documentName as string | undefined) ?? "Presentation",
-        }
-      : {}),
-    ...(documentEdits !== undefined && documentEdits !== null
-      ? { documentEdits }
-      : {}),
-    ...(designDoc !== undefined && designDoc !== null ? { designDoc } : {}),
-  };
+  return mergeGatewayConfigurationsFromInternal(existing, {
+    documentContent: documentContentRes?.documentContent,
+    documentEdits: documentEditsRes?.documentEdits,
+    designDoc: designDocRes?.designDoc,
+  });
 }

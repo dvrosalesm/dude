@@ -4,15 +4,13 @@
  */
 
 import {
-  DEFAULT_AGENT_RUNNER_ID,
   MAIN_ASSISTANT_KIND,
   buildMainAssistantInstanceId,
   buildSubagentInstanceId,
   canonicalAgentKind,
-  isKnownAgentRunnerId,
-  isValidAgentRunnerSlug,
   type AgentRunnerId,
 } from "@dude/sdk/runner";
+import { resolveConfiguredAgentRunner } from "./configured-agent-runner.js";
 import { createSubagentRegistry, getDelegableSubagents } from "@dude/sdk";
 import type { AgentConfig } from "./types.js";
 import { getSubagentHostConfig } from "./subagent-host-config.js";
@@ -39,14 +37,10 @@ function getRegistry() {
   return registry;
 }
 
-export function resolveDefaultRunner(): AgentRunnerId {
-  const fromEnv = (process.env.AGENT_RUNNER || process.env.DEFAULT_AGENT_RUNNER || "").trim();
-  if (!fromEnv) return DEFAULT_AGENT_RUNNER_ID;
-  if (isKnownAgentRunnerId(fromEnv) || isValidAgentRunnerSlug(fromEnv)) {
-    return fromEnv;
-  }
-  return DEFAULT_AGENT_RUNNER_ID;
-}
+export {
+  resolveConfiguredAgentRunner,
+  resolveDefaultRunner,
+} from "./configured-agent-runner.js";
 
 export function listDelegableAgentKinds() {
   return getDelegableSubagents(getRegistry()).map((subagent) => ({
@@ -108,6 +102,8 @@ export interface BuildAgentConfigInput {
   systemPrompt: string;
   runner?: AgentRunnerId;
   provider?: AgentConfig["provider"];
+  credentials?: AgentConfig["credentials"];
+  runnerSettings?: AgentConfig["runnerSettings"];
   maxIterations?: number;
   approvalMode?: AgentConfig["approvalMode"];
   /** Override delegable list; defaults to all delegable subagents for main assistant only. */
@@ -118,7 +114,7 @@ export function buildAgentConfig(input: BuildAgentConfigInput): AgentConfig {
   const isMain = input.agentKind === MAIN_ASSISTANT_KIND;
 
   return {
-    runner: input.runner ?? resolveDefaultRunner(),
+    runner: input.runner ?? resolveConfiguredAgentRunner(),
     provider: input.provider ?? {
       kind: "openrouter",
       model: process.env.DEFAULT_MODEL_ID || "deepseek/deepseek-v4-pro",
@@ -130,6 +126,8 @@ export function buildAgentConfig(input: BuildAgentConfigInput): AgentConfig {
     enabledSpecialists: isMain
       ? (input.enabledSpecialists ?? listDelegableAgentKinds())
       : [],
+    ...(input.credentials ? { credentials: input.credentials } : {}),
+    ...(input.runnerSettings ? { runnerSettings: input.runnerSettings } : {}),
   };
 }
 

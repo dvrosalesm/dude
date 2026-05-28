@@ -42,6 +42,8 @@ import {
   turnPreviewText,
   type MessageTurn,
 } from "./main-assistant-workspace";
+import { collectGeneratedImageUrls } from "./collect-message-images";
+import { GeneratedImageGallery } from "./generated-image-card";
 import { HtmlInCanvasShell } from "../components/chat/html-in-canvas-shell";
 import {
   DreamAnswerStage,
@@ -202,45 +204,16 @@ function TurnStageCanvas({
       continue;
     }
 
-    if (message.role === "image") {
+    const generatedImages = collectGeneratedImageUrls(message);
+    if (generatedImages.length > 0) {
       hasImages = true;
       richBlocks.push(
-        <div key={`img-${index}`} className="flex justify-center">
-          <img
-            src={message.message}
-            alt="Attachment"
-            className={cn(
-              "max-w-full rounded-2xl object-contain",
-              isStage ? "max-h-[min(65vh,560px)]" : "max-h-48",
-            )}
-          />
-        </div>,
-      );
-      continue;
-    }
-
-    if (Array.isArray(message.images) && message.images.length > 0) {
-      hasImages = true;
-      richBlocks.push(
-        <div key={`imgs-${index}`} className="flex flex-wrap justify-center gap-3">
-          {message.images.map((src, imageIndex) => (
-            <button
-              key={`${index}-${imageIndex}`}
-              type="button"
-              onClick={() => onImageClick?.(src)}
-              className="overflow-hidden rounded-2xl transition-opacity hover:opacity-90"
-            >
-              <img
-                src={src}
-                alt={`Attachment ${imageIndex + 1}`}
-                className={cn(
-                  "max-w-full object-contain",
-                  isStage ? "max-h-[min(55vh,480px)]" : "max-h-40",
-                )}
-              />
-            </button>
-          ))}
-        </div>,
+        <GeneratedImageGallery
+          key={`imgs-${index}`}
+          urls={generatedImages}
+          onClick={onImageClick}
+          size={isStage ? "stage" : "inline"}
+        />,
       );
     }
 
@@ -613,8 +586,8 @@ export function MainAssistantStage({
             <TurnStageCanvas
               turn={currentTurn!}
               isLive={isLive}
-              sending={false}
-              executionTraces={undefined}
+              sending={sending}
+              executionTraces={executionTraces}
               onImageClick={onImageClick}
               onSaveReport={onSaveReport}
               onPinMessage={onPinMessage}

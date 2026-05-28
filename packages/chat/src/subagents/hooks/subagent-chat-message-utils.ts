@@ -1,6 +1,18 @@
+import {
+  collectImageUrlsFromToolExecutions,
+  mergeImageUrlLists,
+} from "@dude/gateway-shared/generated-image-urls";
 import type { UiMessage } from "@dude/workspaces";
 import type { SubagentMessage } from "../types";
 import type { AssistantTurnPayload } from "./subagent-chat-types";
+
+function imagesForAssistantTurn(data: AssistantTurnPayload): string[] | undefined {
+  const fromPayload = data.images?.map((img) => img.url).filter(Boolean) ?? [];
+  const fromTrace = collectImageUrlsFromToolExecutions(
+    data.executionTrace?.toolExecutions,
+  );
+  return mergeImageUrlLists(fromPayload, fromTrace);
+}
 
 export function uiMessageToSubagentMessage(message: UiMessage): SubagentMessage {
   return {
@@ -18,24 +30,28 @@ export function appendAssistantMessage(
   data: AssistantTurnPayload,
 ): void {
   const nextMessage = data.answer || data.question || "";
-  if (!nextMessage) return;
-  const imageUrls = data.images?.map((img) => img.url).filter(Boolean);
+  const imageUrls = imagesForAssistantTurn(data);
+  if (!nextMessage && !imageUrls?.length) return;
   setMessages((prev) => {
     const last = prev[prev.length - 1];
-    if (last?.role === "assistant" && last.message === nextMessage) {
+    if (
+      last?.role === "assistant" &&
+      last.message === nextMessage &&
+      !imageUrls?.length
+    ) {
       return prev;
     }
     return [
       ...prev,
       {
-        message: nextMessage,
+        message: nextMessage || "",
         answer: data.answer,
         role: "assistant",
         date: new Date().toISOString(),
         steps: data.steps,
         executionTrace: data.executionTrace,
         suggestions: data.suggestions,
-        images: imageUrls?.length ? imageUrls : undefined,
+        images: imageUrls,
       },
     ];
   });

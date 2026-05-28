@@ -28,3 +28,44 @@ export function buildDocumentWriterSystemPromptAppendix(): string {
     "The canvas only updates from edit_document — not from assistant chat text alone."
   );
 }
+
+/** Inline editor autocomplete — finish_turn only; never edit the document. */
+export function buildDocumentWriterAutocompleteAppendix(): string {
+  return (
+    "\n\n<dude_document_writer_autocomplete>\n" +
+    "INLINE AUTOCOMPLETE MODE: The user is typing manually in the document editor.\n" +
+    "Your ONLY job is to suggest the next few words or one short sentence to continue their text.\n\n" +
+    "Rules:\n" +
+    "- Call **finish_turn** with plain continuation text only (no markdown, no quotes wrapping the whole reply).\n" +
+    "- Do NOT call edit_document or any other tool.\n" +
+    "- Do NOT repeat text that already appears before the cursor.\n" +
+    "- Match the document tone and language.\n" +
+    "- Keep the suggestion brief (roughly one phrase to two sentences).\n" +
+    "</dude_document_writer_autocomplete>"
+  );
+}
+
+export function buildDocumentWriterAutocompleteUserMessage(input: {
+  prefix: string;
+  suffix?: string;
+  title?: string;
+  documentExcerpt?: string;
+}): string {
+  const titleLine = input.title?.trim()
+    ? `Document title: ${input.title.trim()}\n`
+    : "";
+  const excerpt = (input.documentExcerpt ?? "").trim();
+  const excerptBlock = excerpt
+    ? `Recent document text:\n${excerpt.slice(-2500)}\n\n`
+    : "";
+  const suffixLine = input.suffix?.trim()
+    ? `Text after cursor: ${input.suffix.trim()}\n`
+    : "";
+
+  return (
+    `${titleLine}${excerptBlock}` +
+    `Text before cursor (continue from the end):\n${input.prefix}\n` +
+    suffixLine +
+    "\nReply via finish_turn with ONLY the continuation."
+  );
+}

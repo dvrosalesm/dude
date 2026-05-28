@@ -15,7 +15,6 @@ const SPECIALIST_PATHS = new Set<string>([
   "data-analyst",
   "presentation-editor",
   "document-writer",
-  "prospect",
   "design-branding",
 ]);
 

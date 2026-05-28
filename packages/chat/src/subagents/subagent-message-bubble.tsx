@@ -10,6 +10,7 @@ import {
   chatAssistantBubbleClassName,
   cn,
 } from "@dude/ui/design-system";
+import { GeneratedImageGallery } from "./generated-image-card";
 import {
   SUBAGENT_META,
   extractImageUrl,
@@ -93,17 +94,11 @@ export function SubagentMessageBubble({
             {status === "completed" && (
               <>
                 {imageUrl && (
-                  <button
-                    type="button"
-                    onClick={() => onImageClick?.(imageUrl)}
-                    className="block overflow-hidden rounded-xl hover:opacity-90 transition-opacity cursor-zoom-in"
-                  >
-                    <img
-                      src={imageUrl}
-                      alt=""
-                      className="max-h-64 w-auto object-contain rounded-xl"
-                    />
-                  </button>
+                  <GeneratedImageGallery
+                    urls={[imageUrl]}
+                    onClick={onImageClick}
+                    size="inline"
+                  />
                 )}
                 {answer ? (
                   <div className="prose prose-sm max-w-none text-foreground/90 leading-relaxed">
@@ -192,20 +187,14 @@ export function SubagentMessageBubble({
 
                 {imageUrl && (
                   <div className="mb-4">
-                    <button
-                      type="button"
-                      onClick={() => {
+                    <GeneratedImageGallery
+                      urls={[imageUrl]}
+                      onClick={(src) => {
                         setExpanded(false);
-                        onImageClick?.(imageUrl);
+                        onImageClick?.(src);
                       }}
-                      className="block overflow-hidden rounded-xl hover:opacity-90 transition-opacity cursor-zoom-in"
-                    >
-                      <img
-                        src={imageUrl}
-                        alt=""
-                        className="max-h-72 w-auto object-contain"
-                      />
-                    </button>
+                      size="inline"
+                    />
                   </div>
                 )}
 

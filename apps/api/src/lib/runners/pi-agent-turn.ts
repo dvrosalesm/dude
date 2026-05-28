@@ -16,6 +16,7 @@ import { getModel } from "@mariozechner/pi-ai";
 import { config } from "@dude/sdk/gateway-runtime";
 import sandboxExtension from "./pi/sandbox/index.js";
 import { getSubagentForGateway as getSubagent } from "../tool-host/index.js";
+import { TOOL_HOST_SESSION_ENV_KEYS } from "../tool-host/session.js";
 import {
   beginActiveTurn,
   endActiveTurn,
@@ -31,52 +32,6 @@ export type PiAgentTurnInput = {
   images?: string[];
   sendEvent: (event: string, data: unknown) => void;
 };
-
-function extractPartialHtml(partialJson: string): string | null {
-  const marker = '"html":"';
-  const idx = partialJson.indexOf(marker);
-  if (idx === -1) return null;
-
-  const raw = partialJson.slice(idx + marker.length);
-  let result = "";
-  let i = 0;
-  while (i < raw.length) {
-    if (raw[i] === "\\" && i + 1 < raw.length) {
-      const next = raw[i + 1];
-      if (next === "n") result += "\n";
-      else if (next === "t") result += "\t";
-      else if (next === '"') result += '"';
-      else if (next === "\\") result += "\\";
-      else if (next === "/") result += "/";
-      else result += next;
-      i += 2;
-    } else if (raw[i] === '"') {
-      break;
-    } else {
-      result += raw[i];
-      i++;
-    }
-  }
-  return result || null;
-}
-
-let draftSaveInFlight = false;
-
-function saveDraftLocally(html: string) {
-  if (draftSaveInFlight || !config.workspaceId) return;
-  draftSaveInFlight = true;
-  const url = `http://127.0.0.1:${config.gatewayInternalPort}/v1/internal/workspace/${config.workspaceId}/landing-page-draft`;
-  fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ html }),
-    signal: AbortSignal.timeout(10_000),
-  })
-    .catch(() => {})
-    .finally(() => {
-      draftSaveInFlight = false;
-    });
-}
 
 async function buildPromptImages(imageUrls?: string[]) {
   if (!imageUrls?.length) return undefined;
@@ -126,11 +81,18 @@ const SAFE_ENV_KEYS = new Set([
   "HOME",
   "LANG",
   "NODE_ENV",
+  "NODE_PATH",
   "GATEWAY_PORT",
   "HOSTNAME",
   "PUPPETEER_EXECUTABLE_PATH",
   "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD",
   "DUDE_SESSION_MANIFEST_PATH",
+  "DUDE_API_LIB_DIR",
+  "DUDE_DISPATCH_CLI_PATH",
+  "DUDE_DISPATCH_CMD",
+  "DUDE_API_PORT",
+  "SYSTEM_PROMPT",
+  ...TOOL_HOST_SESSION_ENV_KEYS,
 ]);
 
 function scrubProcessEnv() {
@@ -152,6 +114,7 @@ async function getPiSession(): Promise<PiSession> {
 
 async function initPiSession(): Promise<PiSession> {
   const workDir = process.cwd();
+  const agentDir = join(workDir, ".pi-agent");
   const authStorage = AuthStorage.create(join(workDir, ".pi-auth.json"));
   if (config.apiKey) {
     authStorage.setRuntimeApiKey(config.modelProvider, config.apiKey);
@@ -189,7 +152,15 @@ async function initPiSession(): Promise<PiSession> {
     );
   }
 
+  const settingsManager = SettingsManager.inMemory({
+    compaction: { enabled: true },
+    retry: { enabled: true, maxRetries: 2 },
+  });
+
   const resourceLoader = new DefaultResourceLoader({
+    cwd: workDir,
+    agentDir,
+    settingsManager,
     systemPromptOverride: () => config.systemPrompt,
     appendSystemPromptOverride: () => [],
     additionalExtensionPaths: [],
@@ -205,20 +176,16 @@ async function initPiSession(): Promise<PiSession> {
   });
   await resourceLoader.reload();
 
-  const settingsManager = SettingsManager.inMemory({
-    compaction: { enabled: true },
-    retry: { enabled: true, maxRetries: 2 },
-  });
-
   const { session } = await createAgentSession({
     cwd: workDir,
-    agentDir: join(workDir, ".pi-agent"),
+    agentDir,
     model,
     thinkingLevel: "off",
     authStorage,
     modelRegistry,
     resourceLoader,
-    tools: [],
+    // Keep subagent-registered tools; disable default read/bash/edit/write.
+    noTools: "builtin",
     sessionManager: SessionManager.inMemory(),
     settingsManager,
   });
@@ -241,7 +208,11 @@ function parseImagesFromResponse(
       alt: img.alt ? String(img.alt) : undefined,
       caption: img.caption ? String(img.caption) : undefined,
     }))
-    .filter((img) => img.url && /^https?:\/\//.test(img.url));
+    .filter(
+      (img) =>
+        img.url &&
+        (/^https?:\/\//.test(img.url) || /^data:/.test(img.url)),
+    );
   return valid.length > 0 ? valid : undefined;
 }
 
@@ -360,17 +331,6 @@ export async function runPiAgentTurn(
             console.log(
               `[agent]   ⏳ ${currentToolName}: ${(currentToolArgsLen / 1024).toFixed(1)}KB generated...`,
             );
-          }
-          if (
-            currentToolName === "update_landing_page" &&
-            currentToolArgsLen > 1024 &&
-            currentToolArgsLen % 4096 < (evt.delta.length || 1)
-          ) {
-            const partial = extractPartialHtml(currentToolArgs);
-            if (partial && partial.length > 200) {
-              saveDraftLocally(partial);
-              sendEvent("preview_draft", { size: partial.length });
-            }
           }
         }
         break;

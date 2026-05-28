@@ -307,6 +307,7 @@ export function PresentationChatPanel({
     <SubagentChat
       {...chat.chatProps}
       inputLayout="docked"
+      historyLayout="workspace"
       messagesCollapsed={messagesCollapsed}
       extraInputControls={extraControls}
       onInterceptFiles={handleInterceptFiles}

@@ -23,6 +23,8 @@ import {
   createWorkspace,
   listWorkspaces,
   probeHealth,
+  getRuntimeSettings,
+  putRuntimeSettings,
   runSubagentChat,
 } from "./lib/api.mjs";
 
@@ -97,21 +99,39 @@ async function probeClient() {
 }
 
 async function cmdStatus(flags) {
-  const [client, apiChecks] = await Promise.all([
+  const [client, apiChecks, runtime] = await Promise.all([
     probeClient(),
     probeHealth(),
+    getRuntimeSettings().catch(() => null),
   ]);
 
   const apiOk = apiChecks.some((c) => c.ok);
   const payload = {
     client,
     api: apiChecks,
+    configuredRunner: runtime?.agentRunner ?? null,
+    runtimeSettingsUpdatedAt: runtime?.updatedAt ?? null,
+    hasCursorApiKey: runtime?.hasCursorApiKey ?? false,
     ready: client.ok && apiOk,
     hint: !client.ok || !apiOk ? "Run: npm run dev" : undefined,
+    runnerHint: !runtime?.agentRunner
+      ? "Open the app once (or: npm run agent -- sync-runner --runner cursor) so harness uses Settings → AI Runners"
+      : runtime?.agentRunner === "cursor" && !runtime?.hasCursorApiKey
+        ? "Cursor runner selected but no API key synced — open Settings → AI Runners and save, or add CURSOR_API_KEY to .env.local"
+        : undefined,
   };
 
   print(payload, flags.json);
   if (!payload.ready) process.exit(1);
+}
+
+async function cmdSyncRunner(flags) {
+  const runner = flags.runner?.trim();
+  if (!runner) {
+    throw new Error("--runner is required (pi, cursor, codex, hermes)");
+  }
+  const result = await putRuntimeSettings(runner);
+  print(result, flags.json);
 }
 
 function cmdUrl(flags) {
@@ -172,11 +192,18 @@ async function cmdChat(flags) {
     ? Number(flags.timeout) * 1000
     : undefined;
 
+  if (flags.runner?.trim()) {
+    await putRuntimeSettings(flags.runner.trim());
+  }
+
+  const runtime = await getRuntimeSettings().catch(() => null);
+
   print(
     {
       status: "running",
       subagentId: subagent,
       workspaceId: workspaceId || null,
+      configuredRunner: runtime?.agentRunner ?? null,
       message,
     },
     false,
@@ -202,12 +229,16 @@ async function cmdChat(flags) {
 }
 
 async function cmdProbe(name, flags) {
-  if (name === "document-writer") {
+  const probeScripts = {
+    "document-writer": "../ui-harness/document-writer-probe.mjs",
+    "presentation-editor": "../ui-harness/presentation-editor-probe.mjs",
+  };
+
+  const rel = probeScripts[name];
+  if (rel) {
     const { spawn } = await import("node:child_process");
     const { fileURLToPath } = await import("node:url");
-    const script = fileURLToPath(
-      new URL("../ui-harness/document-writer-probe.mjs", import.meta.url),
-    );
+    const script = fileURLToPath(new URL(rel, import.meta.url));
     const args = [script];
     if (flags.workspace) {
       args.push(`--workspace-id=${flags.workspace}`);
@@ -226,7 +257,7 @@ async function cmdProbe(name, flags) {
   }
 
   throw new Error(
-    `Unknown probe "${name}". Available: document-writer`,
+    `Unknown probe "${name}". Available: ${Object.keys(probeScripts).join(", ")}`,
   );
 }
 
@@ -247,11 +278,13 @@ function cmdBrowserHints(flags) {
     cdp: {
       agentSnapshot: "window.__DUDE_AGENT__?.snapshot()",
       documentWriter: "window.__DUDE_DW_DEBUG__?.snapshot()",
-      navigate: 'window.__DUDE_AGENT__?.navigate("/chat/subagents/document-writer/<id>")',
+      presentationEditor: "window.__DUDE_PE_DEBUG__?.snapshot()",
+      navigate: 'window.__DUDE_AGENT__?.navigate("/chat/subagents/<subagent>/<id>")',
     },
     selectors: {
       chatInput: 'textarea, [contenteditable="true"]',
       documentWriterCanvas: '[data-testid="dw-writer-canvas"]',
+      presentationAddSlide: 'button',
     },
     cli: {
       status: "npm run agent:status",
@@ -273,6 +306,7 @@ Commands:
   url [--subagent] [--workspace]
   workspaces list|create         SQLite workspaces (localhost internal API)
   chat --subagent --message    Run subagent agent to completion (API)
+  sync-runner --runner <id>    Push runner to API (matches Settings → AI Runners)
   probe document-writer          Health + CDP snippets for Document Writer
   browser-hints                  MCP workflow cheat sheet
 
@@ -310,6 +344,9 @@ async function main() {
         break;
       case "chat":
         await cmdChat(flags);
+        break;
+      case "sync-runner":
+        await cmdSyncRunner(flags);
         break;
       case "probe":
         await cmdProbe(sub, flags);

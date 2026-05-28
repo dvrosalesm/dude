@@ -88,6 +88,7 @@ export function ChatPanel({
     <SubagentChat
       {...chat.chatProps}
       inputLayout="docked"
+      historyLayout="workspace"
       messagesCollapsed={collapsed}
     />
   );

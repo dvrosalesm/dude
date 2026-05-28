@@ -13,15 +13,21 @@ import type { DocumentWorkspace, DocumentRevision, EditorMode } from "./types";
 import type { DocumentContent, DocumentType, PptxContent } from "@dude/presentation-editor/types";
 import { DEFAULT_DESIGN_STYLE } from "@dude/presentation-editor/lib/design-styles";
 import { DEFAULT_FONT_PAIR } from "@dude/presentation-editor/lib/font-pairs";
-import { createPresentation, patchWorkspaceById } from "@dude/workspaces";
+import {
+  createPresentation,
+  patchWorkspaceById,
+  syncWorkspaceToGateway,
+} from "@dude/workspaces";
 import {
   applyPresentationConfig,
+  countSlidesInConfig,
   generateRevisionId,
   normalizeHtmlShaderContent,
   stripForSave,
   stripRevisionsForStorage,
   trimRevisions,
 } from "./lib/presentation-workspace";
+import { attachPresentationEditorDebugHooks } from "../dev-debug";
 
 function normalizeChatMessages(raw: unknown[]): SubagentMessage[] {
   return raw
@@ -85,7 +91,7 @@ export default function DocumentEditorWorkspacePage() {
   );
 
   const applyConfig = useCallback(
-    (config: Record<string, unknown>, meta: { workspace: Record<string, unknown> }) => {
+    (config: Record<string, unknown>, meta: { workspaceId: string; workspace: Record<string, unknown> }) => {
       setWorkspace(meta.workspace as DocumentWorkspace);
 
       if (typeof config.designStyle === "string") {
@@ -95,6 +101,12 @@ export default function DocumentEditorWorkspacePage() {
         setFontPair(config.fontPair);
       }
 
+      const currentContent = useDocumentEditorStore.getState().document
+        ?.content as PptxContent | undefined;
+      const beforeSlides = Array.isArray(currentContent?.slides)
+        ? currentContent.slides.length
+        : 0;
+
       applyPresentationConfig(config, {
         loadDocument,
         setReference,
@@ -102,10 +114,25 @@ export default function DocumentEditorWorkspacePage() {
         updateRevisions: (revisions) => {
           revisionsRef.current = revisions;
         },
-        setDocMeta: (meta) => {
-          docMetaRef.current = meta;
+        setDocMeta: (docMeta) => {
+          docMetaRef.current = docMeta;
         },
       });
+
+      const afterSlides = countSlidesInConfig(config);
+      if (afterSlides !== beforeSlides && meta.workspaceId) {
+        void patchWorkspaceById(meta.workspaceId, { configurations: config }).catch((err) => {
+          console.warn("[PPTX-EDITOR] Failed to persist hydrated config:", err);
+        });
+        const ws = meta.workspace as DocumentWorkspace;
+        void syncWorkspaceToGateway("presentation-editor", {
+          id: meta.workspaceId,
+          subagentId: ws.subagentId ?? "presentation-editor",
+          name: ws.name,
+          status: ws.status,
+          configurations: config,
+        });
+      }
     },
     [loadDocument, setReference],
   );
@@ -133,6 +160,10 @@ export default function DocumentEditorWorkspacePage() {
   });
 
   chatMessagesRef.current = chatMessages;
+
+  useEffect(() => {
+    if (import.meta.env.DEV) attachPresentationEditorDebugHooks();
+  }, []);
 
   useEffect(() => {
     if (!chatSending) return;
@@ -280,7 +311,7 @@ export default function DocumentEditorWorkspacePage() {
       };
       updateRevisions([initialRevision]);
 
-      await saveConfigurations({
+      const savedConfig = {
         hasDocument: true,
         documentName: docName,
         documentType: docType,
@@ -290,7 +321,18 @@ export default function DocumentEditorWorkspacePage() {
         revisions: stripRevisionsForStorage([initialRevision]),
         designStyle,
         fontPair,
-      });
+      };
+      await saveConfigurations(savedConfig);
+
+      if (workspaceId) {
+        void syncWorkspaceToGateway("presentation-editor", {
+          id: workspaceId,
+          subagentId: "presentation-editor",
+          name: workspace?.name,
+          status: workspace?.status,
+          configurations: savedConfig,
+        });
+      }
 
       setMode("editor");
 

@@ -2,6 +2,7 @@
 
 import { getDelegableSubagents } from "@dude/sdk";
 import { buildDocumentWriterSystemPromptAppendix } from "@dude/subagent-document-writer/gateway/document-authoring-guidelines";
+import { buildPresentationEditorSystemPromptAppendix } from "@dude/subagent-document-editor/gateway/slide-authoring-guidelines";
 import {
   normalizeRunnerSettings,
   resolvePiRunnerSettings,
@@ -97,7 +98,8 @@ function buildSystemPrompt(subagentId: SubagentId, appConfigurations: ReturnType
     return [
       "You are Dude, the local assistant inside Dude.",
       "The assistant's default display name is Dude, but the user may rename it in preferences.",
-      "You help the user perform local-first work and route tasks to subagent workspaces.",
+      "You help the user perform local-first work, handle quick tasks yourself (including images via generate_image), and route specialized work to subagent workspaces.",
+      "Use generate_image directly for simple visuals in chat; delegate to design-branding only for canvas brand systems, palettes, and multi-asset brand work.",
       "Be concise, practical, and clear. Mention when a task needs a specific subagent or API key.",
       "Do not claim to access cloud services unless the user configured a provider key.",
       buildAgenticAppSetupPrompt(),
@@ -107,10 +109,13 @@ function buildSystemPrompt(subagentId: SubagentId, appConfigurations: ReturnType
 
   const subagent = SUBAGENTS.find((item) => item.id === subagentId);
   return [
-    `You are the ${specialist?.name ?? "subagent"} inside Dude.`,
-    specialist?.scope ? `Your scope: ${subagent.scope}.` : "",
+    `You are the ${subagent?.name ?? "subagent"} inside Dude.`,
+    subagent?.scope ? `Your scope: ${subagent.scope}.` : "",
     "Run locally where possible, ask for missing inputs, and keep responses action-oriented.",
     subagentId === "document-writer" ? buildDocumentWriterSystemPromptAppendix() : "",
+    subagentId === "presentation-editor"
+      ? buildPresentationEditorSystemPromptAppendix()
+      : "",
     buildAppConfigurationsPrompt(appConfigurations),
     DUDE_UI_MODE_INSTRUCTIONS,
   ]

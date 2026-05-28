@@ -57,7 +57,6 @@
     "@dude/subagent-document-editor": "*",
     "@dude/subagent-document-writer": "*",
     "@dude/subagent-params": "*",
-    "@dude/subagent-prospect": "*",
     "@dude/subagent-utils": "*",
     "@dude/ui": "*",
     "@dude/workspaces": "*",

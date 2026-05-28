@@ -18,7 +18,6 @@ const SUBAGENT_IDS = new Set([
   "document-writer",
   "presentation-editor",
   "design-branding",
-  "prospect",
 ]);
 
 export function isHashRouting() {

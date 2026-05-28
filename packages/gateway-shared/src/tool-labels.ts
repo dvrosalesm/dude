@@ -40,12 +40,6 @@ const STATIC_LABELS: Record<string, ToolLabel> = {
     active: "Reviewing subagent work…",
     past: "Reviewed subagent work",
   },
-  publish_landing_page: {
-    active: "Publishing the landing page…",
-    past: "Published the landing page",
-  },
-  edit_landing_page: { active: "Editing the landing page…", past: "Edited the landing page" },
-  update_landing_page: { active: "Updating the landing page…", past: "Updated the landing page" },
   edit_presentation: { active: "Editing the presentation…", past: "Edited the presentation" },
   edit_document: { active: "Editing the document…", past: "Edited the document" },
 };

@@ -150,7 +150,6 @@ export const gatewayManifest = {
 | `specialist-data-analyst` | yes | SQL/Python tools |
 | `specialist-document-editor` | yes | path `presentation-editor`, id `document-editor` |
 | `specialist-document-writer` | yes | TipTap canvas |
-| `specialist-prospect` | yes | Landing pages |
 | `specialist-design-branding` | yes | React Flow canvas |
 
 ## Local dev

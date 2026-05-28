@@ -44,8 +44,6 @@ export function buildDefaultWorkspaceConfigurations(
         slides: [],
         revisions: [],
       };
-    case "prospect":
-      return { ...base, landingPages: [] };
     default:
       return base;
   }

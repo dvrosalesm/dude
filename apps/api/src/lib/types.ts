@@ -105,6 +105,7 @@ export interface AgentConfig {
   sourceTools?: unknown[];
   skills?: unknown[];
   credentials?: import('@dude/sdk/runner').AgentHarnessCredentials;
+  runnerSettings?: import('@dude/sdk/runner').AgentRunnerSettings;
 }
 
 export interface AgentToolDef {

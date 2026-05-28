@@ -30,7 +30,7 @@ export function createReadSubagentArtifactTool(): ToolDefinition {
       "Provide a `collection` to read just one slice (cheaper) or omit it " +
       "to read the whole workspace config.\n\n" +
       "Common collection names: brandBook, palettes, typography, logos, " +
-      "canvasSnapshot (design-branding) · landingPages, leads (prospect) " +
+      "canvasSnapshot (design-branding) · documentContent (document-writer) " +
       "· documentEdits, designDoc (document-editor).",
     parameters: Type.Object({
       workspaceId: Type.String({

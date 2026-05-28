@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
+import { useWorkspaceId } from "@dude/subagent-params";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import { Table } from "@tiptap/extension-table";
@@ -22,14 +23,23 @@ import {
   blocksToTiptapDoc,
   tiptapDocToBlocks,
 } from "../lib/tiptap-converters";
+import { AgentWriterAutocompleteExtension } from "../lib/agent-autocomplete-extension";
+import { canReachWriterAutocompleteGateway } from "../lib/fetch-writer-autocomplete";
 
 type WriterCanvasProps = {
   processing: boolean;
+  agentBusy?: boolean;
   showChat: boolean;
   onToggleChat: () => void;
 };
 
-export function WriterCanvas({ processing, showChat, onToggleChat }: WriterCanvasProps) {
+export function WriterCanvas({
+  processing,
+  agentBusy = false,
+  showChat,
+  onToggleChat,
+}: WriterCanvasProps) {
+  const workspaceId = useWorkspaceId() ?? "";
   const blocks = useDocumentWriterStore((s) => s.blocks);
   const title = useDocumentWriterStore((s) => s.title);
   const setTitle = useDocumentWriterStore((s) => s.setTitle);
@@ -39,10 +49,11 @@ export function WriterCanvas({ processing, showChat, onToggleChat }: WriterCanva
   const updatingRef = useRef(false);
   // Tracks whether the latest blocks change came from user typing in the editor
   const userEditRef = useRef(false);
+  const agentBusyRef = useRef(agentBusy);
+  agentBusyRef.current = agentBusy || processing;
 
-  const editor = useEditor({
-    immediatelyRender: false,
-    extensions: [
+  const extensions = useMemo(
+    () => [
       StarterKit.configure({
         heading: { levels: [1, 2, 3] },
         codeBlock: true,
@@ -69,7 +80,20 @@ export function WriterCanvas({ processing, showChat, onToggleChat }: WriterCanva
         HTMLAttributes: { class: "text-primary underline" },
       }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
+      AgentWriterAutocompleteExtension.configure({
+        workspaceId,
+        title,
+        enabled: () => Boolean(workspaceId) && !agentBusyRef.current,
+        debounceMs: 500,
+        minPrefixLength: 8,
+      }),
     ],
+    [workspaceId, title],
+  );
+
+  const editor = useEditor({
+    immediatelyRender: false,
+    extensions,
     content: blocksToTiptapDoc(blocks, title),
     onUpdate: ({ editor: ed }) => {
       if (updatingRef.current) return;
@@ -140,6 +164,15 @@ export function WriterCanvas({ processing, showChat, onToggleChat }: WriterCanva
         {/* Tiptap editor */}
         <div className={aiHighlight ? "writer-ai-highlight" : ""}>
           <EditorContent editor={editor} />
+          {editor &&
+            workspaceId &&
+            !agentBusy &&
+            canReachWriterAutocompleteGateway() && (
+            <p className="writer-autocomplete-hint print:hidden">
+              Inline suggestions use your configured agent runner — keep typing, then Tab to
+              accept or Esc to dismiss.
+            </p>
+          )}
         </div>
 
         <style>{`
@@ -181,6 +214,16 @@ export function WriterCanvas({ processing, showChat, onToggleChat }: WriterCanva
           .tiptap mark {
             border-radius: 2px;
             padding: 1px 3px;
+          }
+          .writer-autocomplete-ghost {
+            color: hsl(var(--muted-foreground) / 0.55);
+            pointer-events: none;
+            white-space: pre-wrap;
+          }
+          .writer-autocomplete-hint {
+            font-size: 11px;
+            color: hsl(var(--muted-foreground) / 0.7);
+            margin-top: 6px;
           }
         `}</style>
 

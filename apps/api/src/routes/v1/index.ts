@@ -10,7 +10,6 @@ import {
   withInternalRequestDb,
 } from "./middleware.js";
 import * as internal from "./internal-handlers.js";
-import * as prospectLanding from "./internal/prospect-landing.js";
 import * as assistantInternal from "./assistant-internal-handlers.js";
 import * as toolHost from "./tool-host-handlers.js";
 import * as agentDispatch from "./agent-dispatch-handlers.js";
@@ -120,89 +119,6 @@ export const v1Routes = new Elysia({ prefix: "/v1" })
           }
         },
       )
-      .post("/workspace/:workspaceId/landing-page-draft", async ({ params, body, set }) => {
-        try {
-          return await wrap(
-            prospectLanding.saveDraft,
-            params.workspaceId,
-            body as Record<string, unknown>,
-          );
-        } catch (error) {
-          return handleRouteError(error, set);
-        }
-      })
-      .post("/workspace/:workspaceId/landing-page", async ({ params, body, set }) => {
-        try {
-          return await wrap(
-            prospectLanding.saveLandingPage,
-            params.workspaceId,
-            body as Record<string, unknown>,
-          );
-        } catch (error) {
-          return handleRouteError(error, set);
-        }
-      })
-      .post("/workspace/:workspaceId/landing-page-fields", async ({ params, body, set }) => {
-        try {
-          return await wrap(
-            prospectLanding.saveLandingPageFields,
-            params.workspaceId,
-            body as Record<string, unknown>,
-          );
-        } catch (error) {
-          return handleRouteError(error, set);
-        }
-      })
-      .post(
-        "/workspace/:workspaceId/landing-page-attributions",
-        async ({ params, body, set }) => {
-          try {
-            return await wrap(
-              prospectLanding.saveLandingPageAttributions,
-              params.workspaceId,
-              body as Record<string, unknown>,
-            );
-          } catch (error) {
-            return handleRouteError(error, set);
-          }
-        },
-      )
-      .post("/workspace/:workspaceId/landing-page-publish", async ({ params, body, set }) => {
-        try {
-          return await wrap(
-            prospectLanding.publishLandingPage,
-            params.workspaceId,
-            body as Record<string, unknown>,
-          );
-        } catch (error) {
-          return handleRouteError(error, set);
-        }
-      })
-      .get(
-        "/workspace/:workspaceId/landing-page-html/:pageId",
-        async ({ params, set }) => {
-          try {
-            return await wrap(
-              prospectLanding.getLandingPageHtml,
-              params.workspaceId,
-              params.pageId,
-            );
-          } catch (error) {
-            return handleRouteError(error, set);
-          }
-        },
-      )
-      .post("/workspace/:workspaceId/landing-page-edit", async ({ params, body, set }) => {
-        try {
-          return await wrap(
-            prospectLanding.editLandingPage,
-            params.workspaceId,
-            body as Record<string, unknown>,
-          );
-        } catch (error) {
-          return handleRouteError(error, set);
-        }
-      })
       .post("/workspace/:workspaceId/ui-input/wait", async ({ params, body, set }) => {
         try {
           return await wrap(
@@ -257,6 +173,23 @@ export const v1Routes = new Elysia({ prefix: "/v1" })
             try {
               return await wrap(
                 assistantInternal.runSubagent,
+                body as Record<string, unknown>,
+              );
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          })
+          .get("/runtime-settings", async ({ set }) => {
+            try {
+              return await wrap(assistantInternal.getRuntimeSettings);
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          })
+          .post("/runtime-settings", async ({ body, set }) => {
+            try {
+              return await wrap(
+                assistantInternal.putRuntimeSettings,
                 body as Record<string, unknown>,
               );
             } catch (error) {

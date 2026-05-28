@@ -89,7 +89,12 @@ export function EditorLayout({
 
         {/* Center: Document editor */}
         <div className="relative flex-1 flex flex-col min-w-0">
-          <WriterCanvas processing={processing} showChat={showChat} onToggleChat={() => setShowChat((v) => !v)} />
+          <WriterCanvas
+            processing={processing}
+            agentBusy={chatSending}
+            showChat={showChat}
+            onToggleChat={() => setShowChat((v) => !v)}
+          />
           <AIGenerationOverlay active={chatSending || processing} />
         </div>
 

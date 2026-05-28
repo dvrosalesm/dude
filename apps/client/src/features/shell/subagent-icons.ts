@@ -4,7 +4,6 @@ import {
   FileText,
   Palette,
   Presentation,
-  Search,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
@@ -18,7 +17,6 @@ export const SPECIALIST_ICONS: Record<SubagentId, LucideIcon> = {
   "document-writer": FileText,
   "presentation-editor": Presentation,
   "design-branding": Palette,
-  prospect: Search,
   sales: BriefcaseBusiness,
 };
 

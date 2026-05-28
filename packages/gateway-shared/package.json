@@ -18,6 +18,11 @@
       "types": "./src/user-facing-message.ts",
       "import": "./src/user-facing-message.ts",
       "default": "./src/user-facing-message.ts"
+    },
+    "./generated-image-urls": {
+      "types": "./src/generated-image-urls.ts",
+      "import": "./src/generated-image-urls.ts",
+      "default": "./src/generated-image-urls.ts"
     }
   },
   "dependencies": {

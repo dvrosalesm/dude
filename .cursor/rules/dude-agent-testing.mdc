@@ -53,7 +53,9 @@ Document Writer canvas: `window.__DUDE_DW_DEBUG__?.snapshot()` — expect `block
 
 ## 5. Subagent IDs
 
-`main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`, `prospect`
+`main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`
+
+Presentation Editor CDP: `window.__DUDE_PE_DEBUG__?.snapshot()` — expect `slideCount >= 1` after `edit_presentation`.
 
 ## 6. Routes
 

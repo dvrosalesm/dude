@@ -14,7 +14,8 @@ export interface ToolHostSession {
   runner: AgentRunnerId;
 }
 
-const SESSION_ENV_KEYS = [
+/** Env vars Pi/Codex adapters must keep after `scrubProcessEnv` in pi-agent-turn. */
+export const TOOL_HOST_SESSION_ENV_KEYS = [
   "WORKSPACE_ID",
   "SPECIALIST_ID",
   "ORGANIZATION_ID",
@@ -33,11 +34,13 @@ const SESSION_ENV_KEYS = [
   "GATEWAY_INTERNAL_PORT",
 ] as const;
 
-type EnvSnapshot = Partial<Record<(typeof SESSION_ENV_KEYS)[number], string>>;
+type EnvSnapshot = Partial<
+  Record<(typeof TOOL_HOST_SESSION_ENV_KEYS)[number], string>
+>;
 
 export function snapshotToolHostEnv(): EnvSnapshot {
   const snap: EnvSnapshot = {};
-  for (const key of SESSION_ENV_KEYS) {
+  for (const key of TOOL_HOST_SESSION_ENV_KEYS) {
     if (process.env[key] !== undefined) {
       snap[key] = process.env[key];
     }
@@ -63,7 +66,7 @@ export function applyToolHostSession(
 }
 
 export function restoreToolHostEnv(snapshot: EnvSnapshot) {
-  for (const key of SESSION_ENV_KEYS) {
+  for (const key of TOOL_HOST_SESSION_ENV_KEYS) {
     const value = snapshot[key];
     if (value === undefined) delete process.env[key];
     else process.env[key] = value;

@@ -11,7 +11,7 @@ export function createWorkspaceSaveTool(): ToolDefinition {
     description:
       "Save, update, or delete data in the workspace database. " +
       "Specify the collection name and the data object.\n\n" +
-      "For array collections (campaigns, plans, researchRuns, landingPages, leads):\n" +
+      "For array collections (campaigns, plans, researchRuns, leads):\n" +
       "  - Default mode 'upsert': include an 'id' to update an existing item, or omit it to create a new one.\n" +
       "  - Mode 'delete': pass {id} and mode='delete' to remove an item by id (use this to fix duplicates — never 'tag' a row as deleted).\n\n" +
       "For singleton collections (brandResearch, icp): the data replaces the entire value. Delete mode is not supported on singletons.\n\n" +
@@ -20,7 +20,7 @@ export function createWorkspaceSaveTool(): ToolDefinition {
     parameters: Type.Object({
       collection: Type.String({
         description:
-          "Collection name to write to (e.g. 'researchRuns', 'campaigns', 'plans', 'brandResearch', 'landingPages', 'leads')",
+          "Collection name to write to (e.g. 'researchRuns', 'campaigns', 'plans', 'brandResearch', 'leads')",
       }),
       data: Type.Record(Type.String(), Type.Unknown(), {
         description:

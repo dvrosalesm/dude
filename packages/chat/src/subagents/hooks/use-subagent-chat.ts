@@ -278,9 +278,6 @@ export function useSubagentChat(config: UseSubagentChatConfig) {
       attachments.length > 0 ||
       (!usesDirectSend && fileReferences.length > 0);
     if ((!usesDirectSend && !workspaceId) || !hasContent || sending) {
-      // #region agent log
-      fetch('http://127.0.0.1:7884/ingest/44760fdd-2433-4958-be9a-fbf49e3e279f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'099559'},body:JSON.stringify({sessionId:'099559',location:'use-subagent-chat.ts:send:blocked',message:'send blocked',data:{hasWorkspace:Boolean(workspaceId),hasContent,sending,usesDirectSend},timestamp:Date.now(),hypothesisId:'F'})}).catch(()=>{});
-      // #endregion
       return;
     }
 
@@ -304,9 +301,6 @@ export function useSubagentChat(config: UseSubagentChatConfig) {
     setSending(true);
     setSendError(null);
     abortRef.current?.abort();
-    // #region agent log
-    fetch('http://127.0.0.1:7884/ingest/44760fdd-2433-4958-be9a-fbf49e3e279f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'099559'},body:JSON.stringify({sessionId:'099559',location:'use-subagent-chat.ts:send:start',message:'send started',data:{subagentId,workspaceId,textLen:text.trim().length},timestamp:Date.now(),hypothesisId:'F'})}).catch(()=>{});
-    // #endregion
 
     const attachedRefs = fileReferences.map((r) => ({ label: r.name }));
     const attachedFiles = fileAttachments.map((a) => ({
@@ -377,9 +371,6 @@ export function useSubagentChat(config: UseSubagentChatConfig) {
     }
     setSending(false);
     setWakingUp(false);
-    // #region agent log
-    fetch('http://127.0.0.1:7884/ingest/44760fdd-2433-4958-be9a-fbf49e3e279f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'099559'},body:JSON.stringify({sessionId:'099559',location:'use-subagent-chat.ts:stop',message:'user stopped turn',data:{subagentId,workspaceId},timestamp:Date.now(),hypothesisId:'F'})}).catch(()=>{});
-    // #endregion
   }
 
   async function handleAttachImages(

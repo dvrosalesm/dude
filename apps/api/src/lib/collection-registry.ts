@@ -38,20 +38,13 @@ export const COLLECTION_REGISTRY: Record<string, CollectionSpec> = {
     description: 'Social media post plans/drafts',
   },
 
-  // Prospect subagent
-  landingPages: {
-    type: 'array',
-    maxItems: 50,
-    description: 'Landing page metadata (HTML stored separately on disk)',
-  },
+  // Sales subagent (reuses `researchRuns` from marketing when needed —
+  // collection names are workspace-scoped, so sharing keys across subagents is fine)
   leads: {
     type: 'array',
     maxItems: 500,
-    description: 'Captured leads from landing pages',
+    description: 'Captured leads',
   },
-
-  // Sales subagent (also reuses `leads` above and `researchRuns` from marketing —
-  // collection names are workspace-scoped, so sharing keys across subagents is fine)
   icp: {
     type: 'singleton',
     description:
@@ -90,6 +83,36 @@ export const COLLECTION_REGISTRY: Record<string, CollectionSpec> = {
   canvasSnapshot: {
     type: 'singleton',
     description: 'React Flow canvas snapshot ({ nodes, edges, viewport }) — the sole render source for the design subagent.',
+  },
+  brandBook: {
+    type: 'array',
+    maxItems: 50,
+    description: 'Brand book sections (title, content markdown, tags)',
+  },
+  palettes: {
+    type: 'array',
+    maxItems: 50,
+    description: 'Brand color palettes ({ name, colors: [{ hex, name?, role? }] })',
+  },
+  typography: {
+    type: 'array',
+    maxItems: 50,
+    description: 'Typography pairings (display + body faces, sample text)',
+  },
+  logos: {
+    type: 'array',
+    maxItems: 50,
+    description: 'Logo concept artifacts (name, brief, imageUrl, rationale)',
+  },
+  reviews: {
+    type: 'array',
+    maxItems: 50,
+    description: 'Design review notes and feedback',
+  },
+  tokensExports: {
+    type: 'array',
+    maxItems: 50,
+    description: 'Design token export bundles (CSS, JSON, etc.)',
   },
 
   // Shared / generic

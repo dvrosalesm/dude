@@ -43,6 +43,14 @@ npm run agent -- chat --subagent document-writer \
 
 Uses `POST /v1/internal/assistant/subagent-run` (localhost-only).
 
+**Runner:** Harness and `subagent-run` use the same runner as **Settings → AI Runners** (synced to local SQLite when the app saves preferences). Check with `npm run agent:status` (`configuredRunner`). If unset, open the app once or run:
+
+```bash
+npm run agent -- sync-runner --runner cursor
+```
+
+Optional override for a single chat: `npm run agent -- chat ... --runner cursor`
+
 ### Browser MCP (full UI)
 
 1. `npm run agent -- browser-hints --subagent document-writer --workspace <id>`
@@ -60,7 +68,7 @@ Global hooks attach in **dev** only (`import.meta.env.DEV`).
 
 ## Subagent IDs
 
-`main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`, `prospect`
+`main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`
 
 ## Cursor rule
 

@@ -57,7 +57,6 @@ export interface ProjectHubSnapshot {
 const SPECIALIST_ARTIFACT_HINTS: Record<string, string[]> = {
   "data-analyst": [],
   "design-branding": ["canvasSnapshot", "brandBook", "palettes"],
-  prospect: ["landingPages", "leads"],
   "document-editor": ["documentEdits", "designDoc"],
   "document-writer": ["documentContent", "documentWriterEdits"],
 };

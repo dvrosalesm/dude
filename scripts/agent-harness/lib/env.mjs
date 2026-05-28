@@ -10,7 +10,6 @@ export const SUBAGENT_IDS = [
   "document-writer",
   "presentation-editor",
   "design-branding",
-  "prospect",
 ];
 
 export function subagentWorkspacePath(subagentId, workspaceId) {

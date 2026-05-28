@@ -34,7 +34,7 @@ export function bootMessage(): LocalChatMessage {
     subagentId: "main-assistant",
     createdAt: new Date().toISOString(),
     content:
-      `Hey, I'm Dude. Bring me a task and I can route it to the right local subagent: data, decks, writing, design, prospecting, sales, or HR.`,
+      `Hey, I'm Dude. Bring me a task and I can route it to the right local subagent: data, decks, writing, design, sales, or HR.`,
   };
 }
 
@@ -70,22 +70,7 @@ export function normalizeWorkspaceConfig(
   subagentId: SubagentId,
   config: Record<string, unknown>,
 ) {
-  if (subagentId !== "prospect") return config;
-
-  const legacyLandingPage = config.landingPage;
-  const landingPages = Array.isArray(config.landingPages)
-    ? config.landingPages
-    : legacyLandingPage && typeof legacyLandingPage === "object"
-      ? [legacyLandingPage]
-      : [];
-
-  return {
-    ...config,
-    landingPages,
-    leads: Array.isArray(config.leads) ? config.leads : [],
-    pageViews: Array.isArray(config.pageViews) ? config.pageViews : [],
-    landingPage: undefined,
-  };
+  return config;
 }
 
 export async function readState(): Promise<StoredState> {
@@ -175,8 +160,6 @@ export function defaultWorkspaceName(subagentId: SubagentId) {
       return "Untitled canvas";
     case "data-analyst":
       return "Untitled analysis";
-    case "prospect":
-      return "Untitled prospect run";
     default:
       return "Untitled workspace";
   }
@@ -209,12 +192,6 @@ export function defaultWorkspaceConfig(subagentId: SubagentId) {
         datasets: [],
         reports: [],
       };
-    case "prospect":
-      return {
-        leads: [],
-        landingPages: [],
-        pageViews: [],
-      };
     default:
       return {};
   }
@@ -240,9 +217,6 @@ export function inferSubagent(message: string): SubagentSummary | undefined {
   }
   if (/\b(brand|logo|visual|design|identity)\b/.test(text)) {
     return SUBAGENTS.find((subagent) => subagent.id === "design-branding");
-  }
-  if (/\b(lead|prospect|research|company list)\b/.test(text)) {
-    return SUBAGENTS.find((subagent) => subagent.id === "prospect");
   }
   return undefined;
 }

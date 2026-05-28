@@ -15,6 +15,7 @@ import {
 } from "./features/shell/subagent-routes";
 import { ChatSurface } from "./features/chat/chat-surface";
 import { attachAgentDebugHooks } from "./agent-debug";
+import { syncRuntimeSettingsToApi } from "./runtime/sync-runtime-settings";
 
 export function LocalChatApp() {
   const path = useRoutePath();
@@ -33,6 +34,7 @@ export function LocalChatApp() {
       DUDE_PREFERENCES_KEY,
       JSON.stringify(preferences),
     );
+    void syncRuntimeSettingsToApi(preferences);
   }, [preferences]);
 
   useEffect(() => {

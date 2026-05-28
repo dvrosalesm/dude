@@ -39,6 +39,20 @@ export {
 } from "./actions";
 
 export {
+  bindWriterAutocomplete,
+  canReachWriterAutocomplete,
+  fetchWriterAutocomplete,
+  type WriterAutocompleteRequest,
+  type WriterAutocompleteResponse,
+} from "./writer-autocomplete-binding";
+
+export {
+  bindGatewayWorkspaceSync,
+  syncWorkspaceToGateway,
+  type GatewayWorkspaceSnapshot,
+} from "./gateway-sync-binding";
+
+export {
   uploadPresentationImage,
   createPresentation,
   extractTextFromFile,

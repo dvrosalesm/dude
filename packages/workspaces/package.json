@@ -23,6 +23,16 @@
       "types": "./src/config-hydrator-binding.ts",
       "import": "./src/config-hydrator-binding.ts",
       "default": "./src/config-hydrator-binding.ts"
+    },
+    "./writer-autocomplete-binding": {
+      "types": "./src/writer-autocomplete-binding.ts",
+      "import": "./src/writer-autocomplete-binding.ts",
+      "default": "./src/writer-autocomplete-binding.ts"
+    },
+    "./gateway-sync-binding": {
+      "types": "./src/gateway-sync-binding.ts",
+      "import": "./src/gateway-sync-binding.ts",
+      "default": "./src/gateway-sync-binding.ts"
     }
   },
   "dependencies": {

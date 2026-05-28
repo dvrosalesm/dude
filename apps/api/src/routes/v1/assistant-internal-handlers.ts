@@ -1,6 +1,9 @@
 import { httpError } from "../http-error.js";
 import { getOrStartInstance } from '../../lib/instance-manager';
-import { getAssistantConfig } from '../../lib/assistant-store';
+import {
+  getAssistantConfig,
+  putAssistantConfig,
+} from '../../lib/assistant-store';
 import { composeSystemPrompt } from '../../lib/assistant-prompt';
 import {
   createWorkspaceRecord,
@@ -11,9 +14,14 @@ import { listMemories, upsertMemory } from '../../lib/memory-store';
 import {
   buildSubagentInstanceId,
   buildAgentConfig,
-  resolveDefaultRunner,
+  resolveConfiguredAgentRunner,
   canonicalAgentKind,
 } from '../../lib/agent-spawn.js';
+import {
+  normalizeRunnerSettings,
+  normalizeStoredAgentRunnerId,
+  type AgentHarnessCredentials,
+} from '@dude/sdk/runner';
 import { buildProjectHub } from '../../lib/project-hub.js';
 import { executeChatTurnAndWait } from '../../lib/instances/chat-turn-orchestrator.js';
 import { buildDefaultWorkspaceConfigurations } from '../../lib/workspace-tool-host-sync.js';
@@ -126,14 +134,27 @@ export async function runSubagent(body: Record<string, unknown>) {
     : `ephemeral:${gatewayKind}`;
   const workspaceKey = buildSubagentInstanceId(gatewayKind, scopeId);
 
+  const harnessCredentials = config.harness_credentials as
+    | AgentHarnessCredentials
+    | null
+    | undefined;
+  const harnessRunnerSettings = config.harness_runner_settings
+    ? normalizeRunnerSettings(config.harness_runner_settings)
+    : undefined;
+
   const agentConfig = buildAgentConfig({
     agentKind: gatewayKind,
     systemPrompt,
-    runner: resolveDefaultRunner(),
+    runner: resolveConfiguredAgentRunner(),
     provider: {
       kind: (config.provider as 'openrouter' | 'openai' | 'groq' | 'ollama') || 'openrouter',
-      model: config.model || 'minimax/minimax-m2.7',
+      model:
+        config.model ||
+        process.env.DEFAULT_MODEL_ID ||
+        'deepseek/deepseek-v4-pro',
     },
+    ...(harnessCredentials ? { credentials: harnessCredentials } : {}),
+    ...(harnessRunnerSettings ? { runnerSettings: harnessRunnerSettings } : {}),
   });
 
   await getOrStartInstance(
@@ -182,4 +203,76 @@ export async function runSubagent(body: Record<string, unknown>) {
     const msg = error instanceof Error ? error.message : String(error);
     throw httpError(msg, 500);
   }
+}
+
+/**
+ * GET /v1/internal/assistant/runtime-settings
+ * Runner synced from client Settings → AI Runners.
+ */
+export async function getRuntimeSettings() {
+  const config = await getAssistantConfig();
+  const agentRunner = config.agent_runner
+    ? normalizeStoredAgentRunnerId(config.agent_runner)
+    : null;
+  const creds = (config.harness_credentials ?? {}) as AgentHarnessCredentials;
+  return {
+    agentRunner,
+    updatedAt: config.updated_at,
+    hasCursorApiKey: Boolean(
+      creds.cursor?.trim() ||
+        (config.harness_runner_settings as { cursor?: { apiKey?: string } })
+          ?.cursor?.apiKey?.trim(),
+    ),
+    hasOpenRouterKey: Boolean(creds.openrouter?.trim()),
+  };
+}
+
+/**
+ * POST /v1/internal/assistant/runtime-settings
+ * Body: { agentRunner?, credentials?, runnerSettings? }
+ */
+export async function putRuntimeSettings(body: Record<string, unknown>) {
+  const patch: Parameters<typeof putAssistantConfig>[0] = {};
+
+  const runnerRaw =
+    (typeof body.agentRunner === "string" ? body.agentRunner : "") ||
+    (typeof body.agent_runner === "string" ? body.agent_runner : "");
+  if (runnerRaw.trim()) {
+    patch.agent_runner = normalizeStoredAgentRunnerId(runnerRaw);
+  }
+
+  const credentials = body.credentials;
+  if (credentials && typeof credentials === "object" && !Array.isArray(credentials)) {
+    patch.harness_credentials = credentials as Record<string, unknown>;
+  }
+
+  const runnerSettings = body.runnerSettings ?? body.runner_settings;
+  if (
+    runnerSettings &&
+    typeof runnerSettings === "object" &&
+    !Array.isArray(runnerSettings)
+  ) {
+    patch.harness_runner_settings = runnerSettings as Record<string, unknown>;
+  }
+
+  if (Object.keys(patch).length === 0) {
+    throw httpError(
+      "Provide agentRunner, credentials, and/or runnerSettings",
+      400,
+    );
+  }
+
+  const config = await putAssistantConfig(patch);
+  const creds = (config.harness_credentials ?? {}) as AgentHarnessCredentials;
+  return {
+    agentRunner: config.agent_runner
+      ? normalizeStoredAgentRunnerId(config.agent_runner)
+      : null,
+    updatedAt: config.updated_at,
+    hasCursorApiKey: Boolean(
+      creds.cursor?.trim() ||
+        (config.harness_runner_settings as { cursor?: { apiKey?: string } })
+          ?.cursor?.apiKey?.trim(),
+    ),
+  };
 }

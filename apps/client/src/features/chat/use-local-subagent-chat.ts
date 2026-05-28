@@ -49,6 +49,7 @@ export function useLocalSubagentChat({
         answer: result.assistantMessage.content,
         suggestions: result.assistantMessage.suggestions,
         executionTrace: result.assistantMessage.executionTrace,
+        images: result.assistantMessage.images?.map((url) => ({ url })),
         messages: [
           toSubagentMessage(result.userMessage),
           toSubagentMessage(result.assistantMessage),

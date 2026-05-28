@@ -3,8 +3,7 @@ export type SubagentId =
   | "data-analyst"
   | "document-writer"
   | "presentation-editor"
-  | "design-branding"
-  | "prospect";
+  | "design-branding";
 
 export type LocalChatRole = "assistant" | "user";
 

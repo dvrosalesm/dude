@@ -20,7 +20,6 @@
     "@dude/subagent-design-branding": "*",
     "@dude/subagent-document-editor": "*",
     "@dude/subagent-document-writer": "*",
-    "@dude/subagent-prospect": "*",
     "@elysiajs/cors": "^1.4.2",
     "@elysiajs/node": "^1.4.5",
     "@mariozechner/pi-ai": "^0.73.1",

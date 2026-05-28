@@ -80,9 +80,6 @@ export function ChatSurface({
     setProjectHubLoading(true);
     try {
       const hub = await browserChatRuntime.fetchProjectHub("main-assistant");
-      // #region agent log
-      fetch('http://127.0.0.1:7884/ingest/44760fdd-2433-4958-be9a-fbf49e3e279f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'099559'},body:JSON.stringify({sessionId:'099559',location:'chat-surface.tsx:refreshProjectHub',message:'project hub refreshed',data:{agentCount:hub?.agents?.length??0,subagentIds:hub?.agents?.map((a)=>a.subagentId)??[]},timestamp:Date.now(),hypothesisId:'E'})}).catch(()=>{});
-      // #endregion
       setProjectHub(hub);
     } finally {
       setProjectHubLoading(false);

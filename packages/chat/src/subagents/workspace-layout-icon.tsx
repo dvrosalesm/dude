@@ -12,7 +12,6 @@ export const SPECIALIST_COLORS: Record<string, string> = {
   "document-editor": "var(--dude-accent)",
   "design-branding": "var(--dude-accent)",
   "prospect-pipeline": "var(--dude-accent)",
-  prospect: "var(--dude-accent)",
 };
 
 export function getSubagentColor(subagentId?: string) {
@@ -128,32 +127,6 @@ function DataDashboard() {
   );
 }
 
-function ProspectLanding() {
-  return (
-    <svg
-      viewBox="0 0 96 64"
-      fill="none"
-      stroke={STROKE}
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* Three webpage thumbnails */}
-      <rect x="6" y="14" width="22" height="28" rx="2" />
-      <rect x="37" y="14" width="22" height="28" rx="2" />
-      <rect x="68" y="14" width="22" height="28" rx="2" />
-      {/* Cursor pointing at middle square */}
-      <path
-        d="M 50 24 L 50 40 L 54 37 L 57 43 L 59 42 L 56 36 L 60 36 Z"
-        fill={STROKE}
-        stroke="white"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function DesignPalette() {
   return (
     <svg
@@ -255,9 +228,6 @@ export function WorkspaceLayoutIcon({ subagentId, className, style }: Props) {
       break;
     case "data-analyst":
       body = <DataDashboard />;
-      break;
-    case "prospect":
-      body = <ProspectLanding />;
       break;
     case "design-branding":
       body = <DesignPalette />;

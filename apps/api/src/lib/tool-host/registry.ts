@@ -30,6 +30,9 @@ import { loadGatewaySubagents } from "@dude/sdk/gateway";
 import { getSubagentHostConfig } from "../subagent-host-config.js";
 import { resolveGatewaySubagentId } from "./resolve-subagent-id.js";
 import { filterToolsForRunner } from "./runner-tool-filter.js";
+import type { AgentRunnerId } from "@dude/sdk/runner";
+import { loadRunnerSessionManifestFromEnv } from "../runner-session-manifest.js";
+import { withToolHostSession, type ToolHostSession } from "./session.js";
 
 const BASE_TOOL_FACTORIES: Record<BaseToolId, () => ToolDefinition> = {
   web_search: createWebSearchTool,
@@ -144,11 +147,35 @@ export function getSubagentMeta(subagentId: string) {
   };
 }
 
+function wrapPiToolExecute(tool: ToolDefinition): ToolDefinition {
+  const execute = tool.execute;
+  return {
+    ...tool,
+    execute: async (toolCallId, params) => {
+      const manifest = loadRunnerSessionManifestFromEnv();
+      if (!manifest) {
+        return execute(toolCallId, params);
+      }
+      const session: ToolHostSession = {
+        workspaceId: manifest.workspaceId,
+        subagentId: manifest.subagentId,
+        organizationId: manifest.organizationId,
+        runner: manifest.runner as AgentRunnerId,
+      };
+      return withToolHostSession(
+        session,
+        { DB_LOCAL_PATH: manifest.internalApi.dbPath },
+        () => execute(toolCallId, params),
+      );
+    },
+  };
+}
+
 /** Pi gateway setup — registers tools from the central registry. */
 export function buildSubagentSetup(subagentId: string): SubagentSetup {
   return (pi) => {
     for (const tool of buildToolsForSubagent(subagentId)) {
-      pi.registerTool(tool);
+      pi.registerTool(wrapPiToolExecute(tool));
     }
   };
 }

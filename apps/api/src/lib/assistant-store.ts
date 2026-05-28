@@ -18,6 +18,9 @@ export interface AssistantConfig {
   approval_mode: ApprovalMode;
   model: string | null;
   provider: string | null;
+  agent_runner: string | null;
+  harness_credentials: Record<string, unknown> | null;
+  harness_runner_settings: Record<string, unknown> | null;
   updated_at: string;
 }
 
@@ -29,6 +32,9 @@ export interface AssistantConfigPatch {
   approval_mode?: ApprovalMode;
   model?: string | null;
   provider?: string | null;
+  agent_runner?: string | null;
+  harness_credentials?: Record<string, unknown> | null;
+  harness_runner_settings?: Record<string, unknown> | null;
 }
 
 function mapConfig(row: LocalAssistantConfig): AssistantConfig {
@@ -40,6 +46,9 @@ function mapConfig(row: LocalAssistantConfig): AssistantConfig {
     approval_mode: row.approval_mode,
     model: row.model,
     provider: row.provider,
+    agent_runner: row.agent_runner,
+    harness_credentials: row.harness_credentials,
+    harness_runner_settings: row.harness_runner_settings,
     updated_at: row.updated_at,
   };
 }

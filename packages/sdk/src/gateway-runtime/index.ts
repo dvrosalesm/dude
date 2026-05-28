@@ -12,3 +12,7 @@ export {
   type ToolResult,
 } from "./shared.js";
 export { resolveGatewaySkillPaths } from "./skill-paths.js";
+export {
+  createGenerateImageTool,
+  type GenerateImageAudience,
+} from "./generate-image.js";

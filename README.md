@@ -1,116 +1,103 @@
-# Dude
+<div align="center">
+  <img src="public/assets/logo.png" alt="Dude" width="128" />
+</div>
 
-![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
-![Elysia](https://img.shields.io/badge/Elysia-1-3B82F6)
-![Electron](https://img.shields.io/badge/Electron-42-47848F?logo=electron&logoColor=white)
-![License](https://img.shields.io/badge/License-Proprietary-FBB76B)
+<h1 align="center">Dude</h1>
 
-Local-first AI workspace. **Dude** is the main assistant orchestrator; each domain agent is an installable `@dude/subagent-*` package with its own UI and gateway tools.
+<p align="center">
+  Your local-first AI workspace — everything stays on your machine, and you're in control.
+</p>
 
-More docs: [docs/](./docs/README.md) — architecture, subagent authoring, [design system](./docs/design.md).
+**Dude** is your main assistant. Need help with data, docs, or design? Specialized helpers (we call them subagents) plug in when you need them, each with their own UI and tools.
 
-## Prerequisites
+Want to go deeper? Check out [docs/](./docs/README.md) for architecture notes, how to build your own subagent, and our [design system](./docs/design.md).
 
-- **Node.js** `>=22.12.0` (see `engines` in root `package.json`)
-- macOS/Linux recommended for desktop dev (`better-sqlite3` is rebuilt for Electron on `postinstall`)
+## Before you start
 
-## Quick start
+You'll need **Node.js 22.12+** (see `engines` in the root `package.json`).
+
+macOS or Linux works best for desktop dev — if you're on Electron, `better-sqlite3` gets rebuilt automatically on install.
+
+## Get up and running
 
 ```bash
 npm install
 
-# Vite client + unified Elysia API (API runs under Electron's Node for SQLite parity)
+# Web app + backend (runs together — nice and easy)
 npm run dev
 
-# Desktop shell (client + API + Electron)
+# Full desktop app (web + backend + Electron window)
 npm run desktop:dev
 
-# After upgrading Electron or better-sqlite3:
+# If you upgraded Electron or hit SQLite weirdness:
 npm run rebuild:electron
 
-# Production build (SDK + client + API)
+# Build everything for production
 npm run build
 ```
 
-| Surface | URL |
-|---------|-----|
-| Client | http://127.0.0.1:5173 |
-| API | http://127.0.0.1:8787 |
+Once things are running:
 
-Health checks: `/healthz`, `/v1/health`, `/api/health` — or `npm run agent:status`.
+| What | Where |
+|------|-------|
+| App in the browser | http://127.0.0.1:5173 |
+| Backend | http://127.0.0.1:8787 |
 
-## Agent spawn model
+Not sure if it's alive? Hit `/healthz`, `/v1/health`, or `/api/health` — or run `npm run agent:status` for a quick check.
 
-One **background runner** (Pi, Codex, Hermes, or Cursor) per agent identity:
+## How Dude works with helpers
 
-| Agent | Instance id | Scope |
-|-------|-------------|-------|
-| **Dude** (main assistant) | `{org}:main-assistant:{userId}` | One runner per user thread |
-| **Subagent** | `{org}:{subagentKind}:{workspaceId}` | One runner per workspace |
-| **Custom** | `{org}:{yourKind}:{scopeId}` | Same pattern |
+Think of **Dude** as the friendly front desk. You talk to Dude; Dude brings in the right specialist when a job needs it.
 
-Dude delegates to subagents via tools — each delegation spawns or reuses that subagent's runner. Tools are served by the **Tool Host** (`/v1/internal/tool-host/*`).
+Each helper runs in the background (powered by Pi, Codex, Hermes, or Cursor — your choice):
+
+| Who | One runner per… |
+|-----|-----------------|
+| **Dude** (main assistant) | Your conversation |
+| **Subagent** (data, docs, design, etc.) | Workspace |
+| **Custom** | Whatever scope you define |
+
+When Dude delegates work, the right helper spins up (or picks up where it left off):
 
 ```
-User → Dude runner (main-assistant)
-         ├─ tool: data-analyst → subagent runner (workspace A)
-         ├─ tool: document-writer → subagent runner (workspace B)
-         └─ direct chat in workspace → that workspace's subagent runner
+You → Dude
+        ├─ need charts? → data analyst
+        ├─ need a doc? → document writer
+        └─ chatting in a workspace → that workspace's helper
 ```
 
-Helpers: `@dude/sdk/runner` — `buildMainAssistantInstanceId`, `buildSubagentInstanceId`, `MAIN_ASSISTANT_KIND`.
-
-## Monorepo layout
+## What's in the repo
 
 ```
 dude/
   apps/
-    client/              # Vite + React SPA (web + Electron renderer)
-    api/                 # Unified Elysia server (REST + AI gateway)
+    client/              # The UI you see (web + desktop)
+    api/                 # Backend — chat, workspaces, AI gateway
   packages/
-    sdk/                 # @dude/sdk — defineSubagent, registry, gateway types
-    ui/                  # Design system (shadcn)
-    chat/                # Shared subagent chat shell
-    workspaces/          # Workspace CRUD, assistant, uploads
-    data-analyst-core/   # Reports, json-render, SQL UI
-    presentation-editor/ # PPTX editor domain
-    gateway-shared/      # html-preview, tool labels
-    subagent-*/          # Installable subagents (UI + gateway)
-    …                    # client-types, app-navigation, subagent-params, …
-  electron/              # Desktop shell
-  scripts/               # Agent harness, icon generation, probes
-  subagents.config.ts         # Server host (API, tool-host, spawn)
-  subagents.config.client.ts  # Browser-safe host (UI only)
+    sdk/                 # Build your own subagent here
+    ui/                  # Shared design system
+    chat/                # Chat shell for subagents
+    workspaces/          # Workspaces, uploads, assistant stuff
+    subagent-*/          # Plug-in helpers (each does one thing well)
+    …                    # Lots of shared bits and pieces
+  electron/              # Desktop app wrapper
+  scripts/               # Handy dev tools
 ```
 
-### Registered subagents
+### Helpers that ship today
 
-| Package | Role |
-|---------|------|
-| `@dude/subagent-data-analyst` | Data analysis, charts, SQL workspaces |
-| `@dude/subagent-document-editor` | Rich document editing |
-| `@dude/subagent-document-writer` | Structured document / canvas writing |
-| `@dude/subagent-prospect` | Prospect research workflows |
-| `@dude/subagent-design-branding` | Brand and design tasks |
+| Package | Good for |
+|---------|----------|
+| `@dude/subagent-data-analyst` | Charts, SQL, digging into data |
+| `@dude/subagent-document-editor` | Editing rich documents |
+| `@dude/subagent-document-writer` | Writing structured docs and canvases |
+| `@dude/subagent-design-branding` | Brand and design work |
 
-Register new subagents in both `subagents.config.ts` and `subagents.config.client.ts`. See [CREATING-A-SUBAGENT.md](./docs/CREATING-A-SUBAGENT.md).
+Want to add your own? Register it in `subagents.config.ts` and `subagents.config.client.ts`. Step-by-step guide: [CREATING-A-SUBAGENT.md](./docs/CREATING-A-SUBAGENT.md).
 
-### API surfaces
+## Try it from the command line
 
-One Elysia process on port **8787**:
-
-| Prefix | Purpose |
-|--------|---------|
-| `/api/*` | Minimal app REST (`GET /api`, `GET /api/health`) |
-| `/v1/*` | Gateway — instances, workspaces, chat, `/v1/internal/tool-host/*` |
-
-Workspace CRUD, chat turns, and subagent actions go through `/v1/*`, not `/api/*`.
-
-## Testing with the agent harness
-
-For Cursor agents and local smoke tests without Playwright:
+Great for quick smoke tests or when you're working with Cursor agents:
 
 ```bash
 npm run dev
@@ -120,48 +107,51 @@ npm run agent -- workspaces create --subagent document-writer --name "Smoke test
 npm run agent -- chat --subagent document-writer --workspace <id> --message "Hello"
 ```
 
-Full CLI reference: [scripts/agent-harness/README.md](./scripts/agent-harness/README.md). Agents in this repo should follow [.cursor/rules/dude-agent-testing.mdc](./.cursor/rules/dude-agent-testing.mdc).
+Full CLI cheat sheet: [scripts/agent-harness/README.md](./scripts/agent-harness/README.md)
 
-Subagent IDs used by the harness include: `main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`, `prospect`.
+Subagent IDs you'll see: `main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`.
 
-## Adding a subagent
+## Build your own helper (subagent)
 
-1. Create `packages/subagent-my-agent/` exporting `defineSubagent(...)` from `@dude/sdk`
+1. Create `packages/subagent-my-agent/` using `defineSubagent(...)` from `@dude/sdk`
 2. Add the package to root `package.json` workspace dependencies
-3. Register in `subagents.config.ts` and `subagents.config.client.ts`
-4. Put gateway tools in your package's `gateway/` folder; shared base tools in `apps/api/src/lib/tool-host/tools/`
+3. Register it in both config files (`subagents.config.ts` + `subagents.config.client.ts`)
+4. Put your tools in the package's `gateway/` folder
 
-## Environment (desktop / packaged)
+That's it — welcome to the club.
 
-Optional runtime secrets for packaged desktop: copy [desktop.env.example](./desktop.env.example) to `dude.env` (next to app resources or in Electron userData). Do not commit real keys. Local dev typically uses `.env.local` at the repo root (gitignored).
+## Secrets & env (desktop)
 
-## Scripts
+For packaged desktop builds, copy [desktop.env.example](./desktop.env.example) to `dude.env` (next to app resources or in Electron userData). Keep real keys out of git!
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Client + API (`dev:api:desktop`) |
-| `npm run dev:client` | Vite only |
-| `npm run dev:api` | Elysia via `tsx` (Node SQLite — run `rebuild:sqlite:node` if native module errors) |
-| `npm run desktop:dev` | Client + API + Electron |
-| `npm run desktop:local` | Built client served from Electron (offline) |
-| `npm run desktop:pack` / `desktop:dist` | electron-builder output |
-| `npm run rebuild:electron` | Rebuild `better-sqlite3` for Electron |
-| `npm run rebuild:sqlite:node` | Rebuild `better-sqlite3` for plain Node |
-| `npm run build` | SDK + client + API |
-| `npm run test` | Jest |
-| `npm run lint` | ESLint (`packages/`) |
-| `npm run generate:subagents` | Regenerate subagent scaffolds |
-| `npm run generate:icons` | App icons for desktop |
-| `npm run agent -- <cmd>` | Local agent/CLI harness |
-| `npm run agent:status` | Check client + API reachability |
+For local dev, `.env.local` at the repo root works fine (it's gitignored).
 
-## Tech stack
+## Handy commands
 
-| Layer | Technology |
-|-------|------------|
-| Client | Vite 5, React 19, React Router 7, Tailwind CSS |
-| API + gateway | Elysia 1 on Node (`@elysiajs/node`), SQLite (`better-sqlite3`) |
-| Desktop | Electron 42, local persistence |
-| AI runtime | Swappable harness adapters (`pi`, `codex`, `hermes`, `cursor`) via `@dude/sdk/runner` |
-| Tool Host | `GET/POST /v1/internal/tool-host/*` — runners fetch and execute tools remotely |
-| UI | `@dude/ui` (shadcn), Framer Motion, Zustand, TipTap, Vega/Recharts |
+| Command | What it does |
+|---------|--------------|
+| `npm run dev` | Start the web app + backend |
+| `npm run dev:client` | Just the UI |
+| `npm run desktop:dev` | Full desktop app |
+| `npm run desktop:local` | Desktop app, offline-style |
+| `npm run desktop:pack` / `desktop:dist` | Package the desktop app |
+| `npm run rebuild:electron` | Fix SQLite for Electron |
+| `npm run build` | Build everything |
+| `npm run test` | Run tests |
+| `npm run lint` | Lint the packages |
+| `npm run agent -- <cmd>` | CLI harness for agents |
+| `npm run agent:status` | Is everything reachable? |
+
+## Under the hood (if you're curious)
+
+| Layer | What's there |
+|-------|--------------|
+| UI | Vite, React, Tailwind — fast and familiar |
+| Backend | Elysia + SQLite — local and snappy |
+| Desktop | Electron — same app, native window |
+| AI | Swappable runners (Pi, Codex, Hermes, Cursor) |
+| Design | `@dude/ui` — shared components so everything feels cohesive |
+
+---
+
+Questions? Start with [docs/](./docs/README.md) or just run `npm run dev` and poke around — that's the fun part.

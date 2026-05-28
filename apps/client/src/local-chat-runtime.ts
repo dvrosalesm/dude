@@ -14,6 +14,13 @@ import { bindWorkspaceChatRuntime } from "@dude/workspaces/runtime-binding";
 import { bindWorkspaceConfigHydrator } from "@dude/workspaces/config-hydrator-binding";
 import { hydrateWorkspaceConfigurationsFromGateway } from "./runtime/gateway-workspace-config";
 import {
+  requestWriterAutocompleteViaRunner,
+} from "./runtime/gateway-writer-autocomplete";
+import { canUseGateway } from "./runtime/gateway-desktop";
+import { bindWriterAutocomplete } from "@dude/workspaces/writer-autocomplete-binding";
+import { bindGatewayWorkspaceSync } from "@dude/workspaces/gateway-sync-binding";
+import { syncWorkspaceSnapshotToGateway } from "./runtime/gateway-workspace-sync";
+import {
   appendMessagePair,
   createSuggestions,
   fetchProjectHubSnapshot,
@@ -226,6 +233,8 @@ export const browserChatRuntime: LocalChatRuntime = {
 
 bindWorkspaceChatRuntime(browserChatRuntime);
 bindWorkspaceConfigHydrator(hydrateWorkspaceConfigurationsFromGateway);
+bindWriterAutocomplete(requestWriterAutocompleteViaRunner, canUseGateway);
+bindGatewayWorkspaceSync(syncWorkspaceSnapshotToGateway);
 
 export {
   clearGatewaySessionId,

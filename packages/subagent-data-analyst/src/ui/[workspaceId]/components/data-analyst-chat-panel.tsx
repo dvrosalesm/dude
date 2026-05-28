@@ -84,6 +84,7 @@ export function DataAnalystChatPanel({
         toolIcons={TOOL_ICONS}
         argPreview={toolArgPreview}
         inputLayout="floating"
+        historyLayout="workspace"
         onSaveReport={onSaveReport}
       />
     </QueryProvider>

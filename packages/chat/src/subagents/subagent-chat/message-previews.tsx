@@ -16,6 +16,8 @@ import {
   formatMessageContent,
   isImageAttachment,
 } from "./helpers";
+import { collectGeneratedImageUrls } from "../collect-message-images";
+import { GeneratedImageGallery } from "../generated-image-card";
 import { liveStepLabel } from "./trace-labels";
 
 export function ChatImageThumb({
@@ -93,33 +95,30 @@ export function LastMessagePreview({
 
   const lastIsUser = last?.role === "user";
   const lastImages = Array.isArray(last?.images) ? last!.images! : [];
+  const lastGeneratedImages = last && !lastIsUser ? collectGeneratedImageUrls(last) : [];
 
   return (
     <>
       {last && (
-        <div className={`pointer-events-auto flex flex-col gap-1.5 ${lastIsUser ? "items-end" : "items-start"}`}>
+        <div
+          className={`pointer-events-auto flex flex-col gap-1.5 ${lastIsUser ? "items-end" : "items-center w-full"}`}
+        >
+          {!lastIsUser && lastGeneratedImages.length > 0 && (
+            <GeneratedImageGallery
+              urls={lastGeneratedImages}
+              onClick={onImageClick}
+              size="inline"
+            />
+          )}
           <div
             className={cn(
               "overflow-y-auto shadow-none",
               lastIsUser ? chatUserBubbleClassName() : chatAssistantBubbleClassName(),
+              !lastIsUser && "w-full max-w-2xl",
             )}
             style={{ maxHeight: "35vh" }}
           >
             <ChatMarkdown content={formatMessageContent(last.answer ?? last.message)} />
-            {!lastIsUser && lastImages.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {lastImages.map((image, imageIndex) => (
-                  <button
-                    key={`preview-img-${imageIndex}`}
-                    type="button"
-                    onClick={() => onImageClick?.(image)}
-                    className="block overflow-hidden rounded-lg hover:opacity-80 transition-opacity"
-                  >
-                    <img src={image} alt={`Attachment ${imageIndex + 1}`} className="h-20 w-20 object-cover" />
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
           {lastIsUser && lastImages.length > 0 && (
             <div className="flex flex-wrap justify-end gap-1.5">

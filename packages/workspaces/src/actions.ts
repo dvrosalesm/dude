@@ -156,39 +156,8 @@ async function handleSubagentWorkspaceAction(
     );
   }
 
-  if (actionPath.startsWith("leads/") && actionPath.endsWith("/enrich")) {
-    const leadId = actionPath.split("/")[1];
-    const leads = Array.isArray(workspace.configurations.leads)
-      ? (workspace.configurations.leads as Array<{ id?: string }>)
-      : [];
-    const lead = leads.find((entry) => entry?.id === leadId);
-    if (!lead) {
-      throw new LocalWorkspaceApiError("Lead not found", 404);
-    }
-    return { lead };
-  }
-
   if (action === "ingest" || action === "ingest-file") {
     throw new LocalWorkspaceApiError("Use streamWorkspaceIngest for file ingestion", 400);
-  }
-
-  if (action === "landing-pages") {
-    if (normalizedMethod === "GET") {
-      return { landingPages: workspace.configurations.landingPages ?? [] };
-    }
-    const current = Array.isArray(workspace.configurations.landingPages)
-      ? workspace.configurations.landingPages
-      : [];
-    const landingPage = {
-      id: `landing-${Date.now()}`,
-      name: typeof body.name === "string" ? body.name : "Landing page",
-      html: typeof body.html === "string" ? body.html : "",
-      createdAt: new Date().toISOString(),
-    };
-    const next = await patchWorkspaceConfig(workspace, {
-      landingPages: [...current, landingPage],
-    });
-    return { workspace: next, landingPage };
   }
 
   if (action === "upload") {

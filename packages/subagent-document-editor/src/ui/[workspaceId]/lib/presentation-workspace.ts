@@ -84,6 +84,13 @@ export function shouldUseSetupMode(config: Record<string, unknown>): boolean {
   return !documentContentFromConfig(config);
 }
 
+export function countSlidesInConfig(config: Record<string, unknown>): number {
+  const content = documentContentFromConfig(config);
+  if (!content) return 0;
+  const slides = (content as PptxContent).slides;
+  return Array.isArray(slides) ? slides.length : 0;
+}
+
 export function applyPresentationConfig(
   config: Record<string, unknown>,
   actions: {
@@ -93,7 +100,7 @@ export function applyPresentationConfig(
     updateRevisions: (revisions: DocumentRevision[]) => void;
     setDocMeta: (meta: { name: string; type: DocumentType }) => void;
   },
-): void {
+): boolean {
   if (shouldUseSetupMode(config)) {
     const referenceText = config.referenceText;
     if (typeof referenceText === "string" && referenceText.length > 0) {
@@ -103,7 +110,7 @@ export function applyPresentationConfig(
       );
     }
     actions.setMode("setup");
-    return;
+    return false;
   }
 
   actions.setMode("editor");
@@ -117,7 +124,7 @@ export function applyPresentationConfig(
   }
 
   if (!loadDocumentFromConfig(config, actions.loadDocument)) {
-    return;
+    return false;
   }
 
   actions.setDocMeta({
@@ -125,4 +132,5 @@ export function applyPresentationConfig(
     type: (config.documentType as DocumentType) || "pptx",
   });
   actions.updateRevisions(restoreRevisionsFromConfig(config));
+  return true;
 }

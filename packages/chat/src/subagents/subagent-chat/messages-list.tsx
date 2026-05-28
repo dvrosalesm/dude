@@ -49,6 +49,8 @@ import {
   isImageAttachment,
   tryExtractRenderSpec,
 } from "./helpers";
+import { collectGeneratedImageUrls } from "../collect-message-images";
+import { GeneratedImageGallery } from "../generated-image-card";
 import { ChatImageThumb } from "./message-previews";
 
 const InlineRenderSpec = lazy(() => import("../inline-render-spec"));
@@ -233,18 +235,19 @@ export function MessagesList({
           return (
             <div
               key={`${message.role}-${index}`}
-              className={cn(item.turnGap && "mt-12", isWorkspace && "flex justify-center")}
+              className={cn(item.turnGap && "mt-12", "flex justify-center")}
             >
-              <ChatImageThumb
-                src={message.message}
-                alt="Attached image"
-                variant="standalone"
+              <GeneratedImageGallery
+                urls={[message.message]}
                 onClick={onImageClick}
-                onEdit={onEditImage}
+                size={isWorkspace ? "stage" : "inline"}
               />
             </div>
           );
         }
+
+        const generatedImages = !isUser ? collectGeneratedImageUrls(message) : [];
+        const imageCardSize = isWorkspace ? "stage" : "inline";
 
         return (
           <div
@@ -256,40 +259,40 @@ export function MessagesList({
                 {formatMessageContent(rawContent)}
               </p>
             ) : (
-              <div className={`flex ${isWorkspace ? "justify-center" : isUser ? "justify-end" : "justify-start"}`}>
-                <div
-                  className={
-                    isUser
-                      ? isWorkspace
-                        ? cn(chatUserBubbleClassName(!!renderSpec), "mx-auto")
-                        : chatUserBubbleClassName(!!renderSpec)
-                      : isWorkspace
-                        ? chatWorkspaceResponseClassName(!!message.pinned)
-                        : chatAssistantBubbleClassName(!!renderSpec, !!message.pinned)
-                  }
-                >
-                  {renderSpec ? (
-                    <Suspense fallback={<div className="text-xs text-muted-foreground">Loading visualization...</div>}>
-                      <InlineRenderSpec spec={renderSpec} />
-                    </Suspense>
-                  ) : (
-                    <ChatMarkdown content={formatMessageContent(rawContent)} />
-                  )}
-                  {!isUser && Array.isArray(message.images) && message.images.length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {message.images.map((image, imageIndex) => (
-                        <ChatImageThumb
-                          key={`${index}-image-${imageIndex}`}
-                          src={image}
-                          alt={`Attachment ${imageIndex + 1}`}
-                          onClick={onImageClick}
-                          onEdit={onEditImage}
-                        />
-                      ))}
+              <>
+                {!isUser && generatedImages.length > 0 && (
+                  <GeneratedImageGallery
+                    urls={generatedImages}
+                    onClick={onImageClick}
+                    size={imageCardSize}
+                  />
+                )}
+                {(isUser || formatMessageContent(rawContent).trim() || renderSpec) && (
+                  <div
+                    className={`flex ${isWorkspace ? "justify-center" : isUser ? "justify-end" : "justify-start"}`}
+                  >
+                    <div
+                      className={
+                        isUser
+                          ? isWorkspace
+                            ? cn(chatUserBubbleClassName(!!renderSpec), "mx-auto")
+                            : chatUserBubbleClassName(!!renderSpec)
+                          : isWorkspace
+                            ? chatWorkspaceResponseClassName(!!message.pinned)
+                            : chatAssistantBubbleClassName(!!renderSpec, !!message.pinned)
+                      }
+                    >
+                      {renderSpec ? (
+                        <Suspense fallback={<div className="text-xs text-muted-foreground">Loading visualization...</div>}>
+                          <InlineRenderSpec spec={renderSpec} />
+                        </Suspense>
+                      ) : (
+                        <ChatMarkdown content={formatMessageContent(rawContent)} />
+                      )}
                     </div>
-                  )}
-                </div>
-              </div>
+                  </div>
+                )}
+              </>
             )}
 
             {isUser && Array.isArray(message.images) && message.images.length > 0 && (

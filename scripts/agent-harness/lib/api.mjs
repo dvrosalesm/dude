@@ -79,6 +79,21 @@ export async function createWorkspace(subagentId, name) {
   });
 }
 
+export async function getRuntimeSettings() {
+  return fetchJson("/v1/internal/assistant/runtime-settings", {
+    method: "GET",
+    timeoutMs: 10_000,
+  });
+}
+
+export async function putRuntimeSettings(agentRunner) {
+  return fetchJson("/v1/internal/assistant/runtime-settings", {
+    method: "POST",
+    body: JSON.stringify({ agentRunner }),
+    timeoutMs: 10_000,
+  });
+}
+
 export async function runSubagentChat({
   subagentId,
   message,

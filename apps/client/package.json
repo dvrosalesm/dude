@@ -19,7 +19,6 @@
     "@dude/subagent-design-branding": "*",
     "@dude/subagent-document-editor": "*",
     "@dude/subagent-document-writer": "*",
-    "@dude/subagent-prospect": "*",
     "lucide-react": "^0.474.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

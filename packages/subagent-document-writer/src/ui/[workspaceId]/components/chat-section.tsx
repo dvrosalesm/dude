@@ -135,6 +135,7 @@ export function ChatSection({
   return (
     <SubagentChat
       {...chat.chatProps}
+      historyLayout="workspace"
       extraInputControls={extraControls}
       onInterceptFiles={handleInterceptFiles}
     />

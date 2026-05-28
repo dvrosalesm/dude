@@ -18,6 +18,7 @@ import { createListWorkspacesTool } from "../tools/list-subagent-workspaces.js";
 import { createCreateWorkspaceTool } from "../tools/create-subagent-workspace.js";
 import { createListProjectWorkspacesTool } from "../tools/list-project-workspaces.js";
 import { createReviewSubagentWorkTool } from "../tools/review-subagent-work.js";
+import { createGenerateImageTool } from "../tools/generate-image.js";
 
 function parseEnabledSubagents(): Array<{
   id: string;
@@ -60,7 +61,7 @@ export const declaration: SubagentDeclaration = {
     "save_memory",
     "list_memories",
   ],
-  customTools: [],
+  customTools: [() => createGenerateImageTool({ audience: "main-assistant" })],
   collections: ["gtSession"],
 };
 

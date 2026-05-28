@@ -53,6 +53,18 @@ export function isDocumentEditorSpecialist(subagentId: string): boolean {
 }
 
 /** Instructions for Codex/Cursor/Hermes — agent writes HTML, tools only persist/read. */
+/** Client gateway spawn — same rules as native runner, for browser/desktop chat. */
+export function buildPresentationEditorSystemPromptAppendix(): string {
+  return (
+    "\n\nWhen the user asks you to create or change slides, you MUST call **edit_presentation**. " +
+    "The deck canvas only updates from edit_presentation — not from assistant chat text alone. " +
+    "To add a slide: insertSlide (afterSlideIndex = last index), then addHtmlContent on the new slideIndex. " +
+    "To edit a slide: addHtmlContent on that slideIndex only. " +
+    "You may call generate_slide on Pi only; on other runners write HTML yourself. " +
+    "Use manage_design and read_slide when you need the design system or current deck state."
+  );
+}
+
 export function buildPresentationNativeRunnerAppendix(toolNames: string): string {
   return (
     `\n\n<dude_presentation_workflow>\n` +

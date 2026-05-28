@@ -122,31 +122,7 @@ export function parseActionSuggestion(raw: string): ParsedActionSuggestion | nul
   return { action: key, args, label };
 }
 
-export function extractImageUrl(result: unknown): string | null {
-  if (!result) return null;
-  let obj = result;
-  if (typeof obj === "string") {
-    try { obj = JSON.parse(obj); } catch { return null; }
-  }
-  if (typeof obj === "string") {
-    try { obj = JSON.parse(obj); } catch { return null; }
-  }
-  if (obj && typeof obj === "object" && !Array.isArray(obj) && "imageUrl" in (obj as Record<string, unknown>)) {
-    return (obj as Record<string, unknown>).imageUrl as string;
-  }
-  if (Array.isArray(obj)) {
-    for (const item of obj) {
-      if (item?.text) {
-        try {
-          const parsed = JSON.parse(item.text);
-          if (parsed?.imageUrl) return parsed.imageUrl;
-        } catch { /* ignore */ }
-      }
-      if (item?.imageUrl) return item.imageUrl;
-    }
-  }
-  return null;
-}
+export { extractImageUrlFromUnknown as extractImageUrl } from "@dude/gateway-shared/generated-image-urls";
 
 export function extractSubagentAnswer(result: unknown): string | null {
   if (!result) return null;

@@ -21,6 +21,8 @@ import {
   setUiInputRequestListener,
 } from "../ui-input-store.js";
 import { httpError } from "../../routes/http-error.js";
+import { mergeImageUrlLists } from "@dude/gateway-shared/generated-image-urls";
+import { collectImageUrlsFromTraces } from "../generated-image-urls.js";
 import {
   applyGatewayEventToMessage,
   failAssistantMessage,
@@ -217,7 +219,10 @@ async function finishChatTurn(
   finalizeAssistantMessage(assistantMsg, {
     answer: result.response.answer,
     question: result.response.question,
-    images: result.response.images,
+    images: mergeImageUrlLists(
+      result.response.images,
+      collectImageUrlsFromTraces(assistantMsg.traces),
+    ),
     response: result.response,
     usage: result.usage,
   });
