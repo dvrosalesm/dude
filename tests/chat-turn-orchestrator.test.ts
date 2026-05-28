@@ -36,7 +36,7 @@ describe("executeChatTurnAndWait", () => {
     jest.clearAllMocks();
     mockGetInstance.mockReturnValue({
       id: "ws-1",
-      specialistId: "data-analyst",
+      subagentId: "data-analyst",
       organizationId: "org-1",
       runner: "pi",
       gatewayPort: 8080,

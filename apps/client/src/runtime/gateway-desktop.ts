@@ -1,10 +1,10 @@
 "use client";
 
-import type { LocalChatMessage, SendLocalMessageInput, SpecialistId } from "../types";
+import type { LocalChatMessage, SendLocalMessageInput, SubagentId } from "../types";
 import {
   MAIN_ASSISTANT_KIND,
   buildMainAssistantInstanceId,
-  buildSpecialistInstanceId,
+  buildSubagentInstanceId,
   canonicalAgentKind,
 } from "@dude/sdk/runner";
 import { GATEWAY_USER_ID } from "@dude/chat/lib/gateway-session";
@@ -78,22 +78,22 @@ export function canUseGateway() {
   return Boolean(import.meta.env.VITE_GATEWAY_API_KEY);
 }
 
-export function gatewaySpecialistId(specialistId: SpecialistId) {
-  return canonicalAgentKind(specialistId);
+export function gatewaySubagentId(subagentId: SubagentId) {
+  return canonicalAgentKind(subagentId);
 }
 
 export function gatewayWorkspaceId(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ) {
-  const kind = gatewaySpecialistId(specialistId);
+  const kind = gatewaySubagentId(subagentId);
   const scopeId = workspaceId ?? GATEWAY_USER_ID;
 
   if (kind === MAIN_ASSISTANT_KIND) {
     return buildMainAssistantInstanceId(scopeId);
   }
 
-  return buildSpecialistInstanceId(kind, scopeId);
+  return buildSubagentInstanceId(kind, scopeId);
 }
 
 export async function gatewayRequest<T>(
@@ -244,7 +244,7 @@ export async function appendUserMessageToThread(
   const state = await readState();
   const messages = getThread(
     state,
-    input.specialistId,
+    input.subagentId,
     input.workspaceId,
   );
   if (!messages.some((message) => message.id === userMessage.id)) {
@@ -262,7 +262,7 @@ export async function appendMessagePair(
   const state = await readState();
   const messages = getThread(
     state,
-    input.specialistId,
+    input.subagentId,
     input.workspaceId,
   );
   const existingIds = new Set(messages.map((message) => message.id));

@@ -4,12 +4,12 @@ import {
 } from "../runtime-secrets-store.js";
 import { resolveMainApiPort } from "../runner-session-manifest.js";
 import { getLocalDbPath } from "../local-sqlite.js";
-import { resolveGatewaySpecialistId } from "./resolve-specialist-id.js";
+import { resolveGatewaySubagentId } from "./resolve-subagent-id.js";
 import { withRequestDbPath } from "../request-db-context.js";
 
 export interface ToolHostSession {
   workspaceId: string;
-  specialistId: string;
+  subagentId: string;
   organizationId: string;
   runner: AgentRunnerId;
 }
@@ -19,7 +19,7 @@ const SESSION_ENV_KEYS = [
   "SPECIALIST_ID",
   "ORGANIZATION_ID",
   "RUNNER_ID",
-  "ENABLED_SPECIALISTS",
+  "ENABLED_SUBAGENTS",
   "APPROVAL_MODE",
   "MAX_ITERATIONS",
   "API_KEY",
@@ -50,7 +50,7 @@ export function applyToolHostSession(
   extras?: Record<string, string | undefined>,
 ) {
   process.env.WORKSPACE_ID = session.workspaceId;
-  process.env.SPECIALIST_ID = resolveGatewaySpecialistId(session.specialistId);
+  process.env.SPECIALIST_ID = resolveGatewaySubagentId(session.subagentId);
   process.env.ORGANIZATION_ID = session.organizationId;
   process.env.RUNNER_ID = session.runner;
 
@@ -90,20 +90,20 @@ export function parseToolHostSessionFromHeaders(
   headers: Headers,
 ): ToolHostSession | null {
   const workspaceId = headers.get("x-workspace-id")?.trim();
-  const specialistId = headers.get("x-specialist-id")?.trim();
+  const subagentId = headers.get("x-subagent-id")?.trim();
   const organizationId =
     headers.get("x-scope-id")?.trim() ||
     headers.get("x-organization-id")?.trim() ||
     "local";
   const runner = (headers.get("x-runner-id")?.trim() || "pi") as AgentRunnerId;
 
-  if (!workspaceId || !specialistId) {
+  if (!workspaceId || !subagentId) {
     return null;
   }
 
   return {
     workspaceId,
-    specialistId: resolveGatewaySpecialistId(specialistId),
+    subagentId: resolveGatewaySubagentId(subagentId),
     organizationId,
     runner,
   };
@@ -148,7 +148,7 @@ export function toolHostEnvExtrasFromHeaders(
   headers: Headers,
 ): Record<string, string | undefined> {
   const workspaceId = headers.get("x-workspace-id")?.trim();
-  const enabledSpecialists = headers.get("x-enabled-specialists");
+  const enabledSpecialists = headers.get("x-enabled-subagents");
   const dbLocalPath = headers.get("x-db-local-path");
   const base = workspaceId
     ? toolHostEnvExtrasForWorkspace(workspaceId)
@@ -159,7 +159,7 @@ export function toolHostEnvExtrasFromHeaders(
 
   return {
     ...base,
-    ...(enabledSpecialists ? { ENABLED_SPECIALISTS: enabledSpecialists } : {}),
+    ...(enabledSpecialists ? { ENABLED_SUBAGENTS: enabledSpecialists } : {}),
     ...(dbLocalPath
       ? { DB_LOCAL_PATH: dbLocalPath, DUDE_DB_PATH: dbLocalPath }
       : {}),

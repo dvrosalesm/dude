@@ -1,14 +1,14 @@
 /**
- * Central tool registry — single source of truth for specialist tools.
+ * Central tool registry — single source of truth for subagent tools.
  * Used by Pi (in-process registration) and the Tool Host / Agent Dispatch HTTP API.
  *
- * Custom actions are declared by each specialist package in gateway/declaration-source.ts.
+ * Custom actions are declared by each subagent package in gateway/declaration-source.ts.
  */
 
 import type {
   BaseToolId,
-  SpecialistDeclaration,
-  SpecialistSetup,
+  SubagentDeclaration,
+  SubagentSetup,
   ToolDefinition,
 } from "./types.js";
 import { createWebSearchTool } from "./tools/web-search.js";
@@ -17,7 +17,7 @@ import { createSearchInWebsiteTool } from "./tools/search-in-website.js";
 import { createExaSearchTool } from "./tools/exa-search.js";
 import { createWorkspaceReadTool } from "./tools/workspace-read.js";
 import { createWorkspaceSaveTool } from "./tools/workspace-save.js";
-import { createReadSpecialistArtifactTool } from "./tools/read-specialist-artifact.js";
+import { createReadSubagentArtifactTool } from "./tools/read-subagent-artifact.js";
 import { createSaveMemoryTool, createListMemoriesTool } from "./tools/memories.js";
 import { createUiRequestInputTool } from "./tools/ui-request-input.js";
 import { createSendProgressTool } from "./tools/send-progress.js";
@@ -25,10 +25,10 @@ import { createFinishTurnTool } from "./tools/finish-turn.js";
 import {
   declaration as mainAssistant,
   setupMainAssistant,
-} from "./builtin-specialists/main-assistant.js";
-import { loadGatewaySpecialists } from "@dude/sdk/gateway";
-import { getSpecialistHostConfig } from "../specialist-host-config.js";
-import { resolveGatewaySpecialistId } from "./resolve-specialist-id.js";
+} from "./builtin-subagents/main-assistant.js";
+import { loadGatewaySubagents } from "@dude/sdk/gateway";
+import { getSubagentHostConfig } from "../subagent-host-config.js";
+import { resolveGatewaySubagentId } from "./resolve-subagent-id.js";
 import { filterToolsForRunner } from "./runner-tool-filter.js";
 
 const BASE_TOOL_FACTORIES: Record<BaseToolId, () => ToolDefinition> = {
@@ -38,31 +38,31 @@ const BASE_TOOL_FACTORIES: Record<BaseToolId, () => ToolDefinition> = {
   exa_search: createExaSearchTool,
   workspace_read: createWorkspaceReadTool,
   workspace_save: createWorkspaceSaveTool,
-  read_specialist_artifact: createReadSpecialistArtifactTool,
+  read_subagent_artifact: createReadSubagentArtifactTool,
   save_memory: createSaveMemoryTool,
   list_memories: createListMemoriesTool,
 };
 
-let specialists: Record<string, SpecialistDeclaration> | null = null;
+let subagents: Record<string, SubagentDeclaration> | null = null;
 
-function ensureSpecialistsLoaded(): Record<string, SpecialistDeclaration> {
-  if (specialists) return specialists;
+function ensureSubagentsLoaded(): Record<string, SubagentDeclaration> {
+  if (subagents) return subagents;
 
-  const hostConfig = getSpecialistHostConfig();
-  const { specialists: pluginDeclarations } = loadGatewaySpecialists(hostConfig);
+  const hostConfig = getSubagentHostConfig();
+  const { subagents: pluginDeclarations } = loadGatewaySubagents(hostConfig);
 
-  specialists = {
+  subagents = {
     ...pluginDeclarations,
     "main-assistant": mainAssistant,
   };
-  return specialists;
+  return subagents;
 }
 
-const EXTRA_SETUPS: Record<string, () => SpecialistSetup> = {
+const EXTRA_SETUPS: Record<string, () => SubagentSetup> = {
   "main-assistant": setupMainAssistant,
 };
 
-const DEFAULT_SPECIALIST = "data-analyst";
+const DEFAULT_SUBAGENT = "data-analyst";
 
 function dedupeToolsByName(tools: ToolDefinition[]): ToolDefinition[] {
   const seen = new Set<string>();
@@ -71,7 +71,7 @@ function dedupeToolsByName(tools: ToolDefinition[]): ToolDefinition[] {
   for (const tool of tools) {
     if (seen.has(tool.name)) {
       console.warn(
-        `[tool-host] Skipping duplicate tool "${tool.name}" in specialist setup`,
+        `[tool-host] Skipping duplicate tool "${tool.name}" in subagent setup`,
       );
       continue;
     }
@@ -82,27 +82,27 @@ function dedupeToolsByName(tools: ToolDefinition[]): ToolDefinition[] {
   return unique;
 }
 
-export function resolveSpecialistDeclaration(
-  specialistId: string,
-): SpecialistDeclaration {
-  const id = resolveGatewaySpecialistId(specialistId || DEFAULT_SPECIALIST);
-  const decl = ensureSpecialistsLoaded()[id];
+export function resolveSubagentDeclaration(
+  subagentId: string,
+): SubagentDeclaration {
+  const id = resolveGatewaySubagentId(subagentId || DEFAULT_SUBAGENT);
+  const decl = ensureSubagentsLoaded()[id];
   if (!decl) {
     console.warn(
-      `[tool-host] Unknown specialist "${id}", falling back to "${DEFAULT_SPECIALIST}"`,
+      `[tool-host] Unknown subagent "${id}", falling back to "${DEFAULT_SUBAGENT}"`,
     );
-    return ensureSpecialistsLoaded()[DEFAULT_SPECIALIST];
+    return ensureSubagentsLoaded()[DEFAULT_SUBAGENT];
   }
   return decl;
 }
 
-/** Instantiate all ToolDefinition objects for a specialist (including dynamic main-assistant tools). */
-export function buildToolsForSpecialist(
-  specialistId: string,
+/** Instantiate all ToolDefinition objects for a subagent (including dynamic main-assistant tools). */
+export function buildToolsForSubagent(
+  subagentId: string,
   options?: { runner?: string | null },
 ): ToolDefinition[] {
-  const id = resolveGatewaySpecialistId(specialistId || DEFAULT_SPECIALIST);
-  const decl = resolveSpecialistDeclaration(id);
+  const id = resolveGatewaySubagentId(subagentId || DEFAULT_SUBAGENT);
+  const decl = resolveSubagentDeclaration(id);
   const tools: ToolDefinition[] = [];
 
   for (const toolId of decl.baseTools) {
@@ -125,7 +125,7 @@ export function buildToolsForSpecialist(
     tools.push(...collected);
   }
 
-  // Available to every specialist while running inside Dude UI.
+  // Available to every subagent while running inside Dude UI.
   tools.push(createUiRequestInputTool());
   tools.push(createSendProgressTool());
   tools.push(createFinishTurnTool());
@@ -133,31 +133,31 @@ export function buildToolsForSpecialist(
   return filterToolsForRunner(dedupeToolsByName(tools), options?.runner);
 }
 
-export function getSpecialistMeta(specialistId: string) {
-  const id = resolveGatewaySpecialistId(specialistId || DEFAULT_SPECIALIST);
-  const decl = resolveSpecialistDeclaration(id);
-  const loaded = ensureSpecialistsLoaded();
+export function getSubagentMeta(subagentId: string) {
+  const id = resolveGatewaySubagentId(subagentId || DEFAULT_SUBAGENT);
+  const decl = resolveSubagentDeclaration(id);
+  const loaded = ensureSubagentsLoaded();
   return {
-    specialistId: id in loaded ? id : DEFAULT_SPECIALIST,
+    subagentId: id in loaded ? id : DEFAULT_SUBAGENT,
     collections: decl.collections,
     skillPaths: decl.skillPaths ?? [],
   };
 }
 
 /** Pi gateway setup — registers tools from the central registry. */
-export function buildSpecialistSetup(specialistId: string): SpecialistSetup {
+export function buildSubagentSetup(subagentId: string): SubagentSetup {
   return (pi) => {
-    for (const tool of buildToolsForSpecialist(specialistId)) {
+    for (const tool of buildToolsForSubagent(subagentId)) {
       pi.registerTool(tool);
     }
   };
 }
 
-export function getSpecialistForGateway(specialistId: string) {
-  const meta = getSpecialistMeta(specialistId);
+export function getSubagentForGateway(subagentId: string) {
+  const meta = getSubagentMeta(subagentId);
   return {
-    name: meta.specialistId,
-    setup: buildSpecialistSetup(meta.specialistId),
+    name: meta.subagentId,
+    setup: buildSubagentSetup(meta.subagentId),
     collections: meta.collections,
     skillPaths: meta.skillPaths,
   };

@@ -1,11 +1,11 @@
 import type {
   ChatImageAttachment,
   ExecutionTrace,
-  SpecialistMessage,
-} from "@dude/chat/specialists/types";
+  SubagentMessage,
+} from "@dude/chat/subagents/types";
 import type { LocalChatMessage } from "../../types";
 
-export function toSpecialistMessage(message: LocalChatMessage): SpecialistMessage {
+export function toSubagentMessage(message: LocalChatMessage): SubagentMessage {
   return {
     id: message.id,
     role: message.role,

@@ -247,7 +247,7 @@ function releaseChatTurn(workspaceId: string): void {
 
 /**
  * Run a chat turn to completion on an already-running instance.
- * Shared by `POST /instances/:id/chat` (async) and internal specialist-run.
+ * Shared by `POST /instances/:id/chat` (async) and internal subagent-run.
  */
 export async function executeChatTurnAndWait(
   workspaceId: string,

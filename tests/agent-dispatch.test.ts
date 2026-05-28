@@ -21,7 +21,7 @@ import type { ToolHostSession } from "../apps/api/src/lib/tool-host/session";
 
 const session: ToolHostSession = {
   workspaceId: "org:user",
-  specialistId: "document-editor",
+  subagentId: "document-editor",
   organizationId: "org",
   runner: "codex",
 };
@@ -75,7 +75,7 @@ describe("dispatchAgentRemote client", () => {
     const result = await dispatchAgentRemote(
       {
         workspaceId: "ws-1",
-        specialistId: "document-editor",
+        subagentId: "document-editor",
         organizationId: "org-1",
         runner: "hermes",
         baseUrl: "http://127.0.0.1:8787",

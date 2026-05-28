@@ -1,23 +1,23 @@
 import type {
   LocalChatMessage,
-  LocalSpecialistWorkspace,
+  LocalSubagentWorkspace,
   LocalStoredFile,
   SendLocalMessageInput,
-  SpecialistId,
-  SpecialistSummary,
+  SubagentId,
+  SubagentSummary,
 } from "../types";
-import { SPECIALISTS } from "./specialist-list";
+import { SUBAGENTS } from "./subagent-list";
 
 export interface StoredState {
   threads: Record<string, LocalChatMessage[]>;
-  workspaces: Record<string, LocalSpecialistWorkspace>;
+  workspaces: Record<string, LocalSubagentWorkspace>;
   files: Record<string, LocalStoredFile>;
 }
 
 export const STORAGE_KEY = "dude.local-chat.v1";
 
-export function threadKey(specialistId: SpecialistId, workspaceId?: string) {
-  return `${specialistId}:${workspaceId ?? "default"}`;
+export function threadKey(subagentId: SubagentId, workspaceId?: string) {
+  return `${subagentId}:${workspaceId ?? "default"}`;
 }
 
 export function createId(prefix: string) {
@@ -31,10 +31,10 @@ export function bootMessage(): LocalChatMessage {
   return {
     id: createId("msg"),
     role: "assistant",
-    specialistId: "main-assistant",
+    subagentId: "main-assistant",
     createdAt: new Date().toISOString(),
     content:
-      `Hey, I'm Dude. Bring me a task and I can route it to the right local specialist: data, decks, writing, design, prospecting, sales, or HR.`,
+      `Hey, I'm Dude. Bring me a task and I can route it to the right local subagent: data, decks, writing, design, prospecting, sales, or HR.`,
   };
 }
 
@@ -54,12 +54,12 @@ export function normalizeStoredState(state: Partial<StoredState> | null | undefi
   };
   normalized.workspaces = Object.fromEntries(
     Object.entries(normalized.workspaces).filter(
-      ([, workspace]) => String(workspace.specialistId) !== "canvas",
+      ([, workspace]) => String(workspace.subagentId) !== "canvas",
     ),
   );
   for (const workspace of Object.values(normalized.workspaces)) {
     workspace.configurations = normalizeWorkspaceConfig(
-      workspace.specialistId,
+      workspace.subagentId,
       workspace.configurations ?? {},
     );
   }
@@ -67,10 +67,10 @@ export function normalizeStoredState(state: Partial<StoredState> | null | undefi
 }
 
 export function normalizeWorkspaceConfig(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   config: Record<string, unknown>,
 ) {
-  if (specialistId !== "prospect") return config;
+  if (subagentId !== "prospect") return config;
 
   const legacyLandingPage = config.landingPage;
   const landingPages = Array.isArray(config.landingPages)
@@ -141,32 +141,32 @@ export async function writeState(state: StoredState) {
 
 export function getThread(
   state: StoredState,
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ) {
-  const key = threadKey(specialistId, workspaceId);
+  const key = threadKey(subagentId, workspaceId);
   if (!state.threads[key]) {
     state.threads[key] =
-      specialistId === "main-assistant"
+      subagentId === "main-assistant"
         ? [bootMessage()]
         : [
             {
               ...bootMessage(),
-              specialistId,
-              content: `${specialistName(specialistId)} is ready in the local workspace.`,
+              subagentId,
+              content: `${subagentName(subagentId)} is ready in the local workspace.`,
             },
           ];
   }
   return state.threads[key];
 }
 
-export function specialistName(specialistId: SpecialistId) {
-  if (specialistId === "main-assistant") return "Dude";
-  return SPECIALISTS.find((specialist) => specialist.id === specialistId)?.name ?? "Specialist";
+export function subagentName(subagentId: SubagentId) {
+  if (subagentId === "main-assistant") return "Dude";
+  return SUBAGENTS.find((subagent) => subagent.id === subagentId)?.name ?? "Subagent";
 }
 
-export function defaultWorkspaceName(specialistId: SpecialistId) {
-  switch (specialistId) {
+export function defaultWorkspaceName(subagentId: SubagentId) {
+  switch (subagentId) {
     case "presentation-editor":
       return "Untitled deck";
     case "document-writer":
@@ -182,8 +182,8 @@ export function defaultWorkspaceName(specialistId: SpecialistId) {
   }
 }
 
-export function defaultWorkspaceConfig(specialistId: SpecialistId) {
-  switch (specialistId) {
+export function defaultWorkspaceConfig(subagentId: SubagentId) {
+  switch (subagentId) {
     case "presentation-editor":
       return {
         documentType: "pptx",
@@ -221,45 +221,45 @@ export function defaultWorkspaceConfig(specialistId: SpecialistId) {
 }
 
 export function workspaceSort(
-  a: LocalSpecialistWorkspace,
-  b: LocalSpecialistWorkspace,
+  a: LocalSubagentWorkspace,
+  b: LocalSubagentWorkspace,
 ) {
   return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
 }
 
-export function inferSpecialist(message: string): SpecialistSummary | undefined {
+export function inferSubagent(message: string): SubagentSummary | undefined {
   const text = message.toLowerCase();
   if (/\b(csv|spreadsheet|chart|dashboard|sql|dataset|report)\b/.test(text)) {
-    return SPECIALISTS.find((specialist) => specialist.id === "data-analyst");
+    return SUBAGENTS.find((subagent) => subagent.id === "data-analyst");
   }
   if (/\b(deck|slide|presentation|keynote|ppt)\b/.test(text)) {
-    return SPECIALISTS.find((specialist) => specialist.id === "presentation-editor");
+    return SUBAGENTS.find((subagent) => subagent.id === "presentation-editor");
   }
   if (/\b(copy|doc|document|memo|brief|draft|write)\b/.test(text)) {
-    return SPECIALISTS.find((specialist) => specialist.id === "document-writer");
+    return SUBAGENTS.find((subagent) => subagent.id === "document-writer");
   }
   if (/\b(brand|logo|visual|design|identity)\b/.test(text)) {
-    return SPECIALISTS.find((specialist) => specialist.id === "design-branding");
+    return SUBAGENTS.find((subagent) => subagent.id === "design-branding");
   }
   if (/\b(lead|prospect|research|company list)\b/.test(text)) {
-    return SPECIALISTS.find((specialist) => specialist.id === "prospect");
+    return SUBAGENTS.find((subagent) => subagent.id === "prospect");
   }
   return undefined;
 }
 
 export function createAssistantReply(input: SendLocalMessageInput): string {
   const selected =
-    input.specialistId === "main-assistant"
-      ? inferSpecialist(input.content)
-      : SPECIALISTS.find((specialist) => specialist.id === input.specialistId);
+    input.subagentId === "main-assistant"
+      ? inferSubagent(input.content)
+      : SUBAGENTS.find((subagent) => subagent.id === input.subagentId);
 
-  if (input.specialistId !== "main-assistant") {
-    return `${specialistName(input.specialistId)} received it. I will keep this workspace local and prepare the next action around: "${input.content.slice(0, 120)}"`;
+  if (input.subagentId !== "main-assistant") {
+    return `${subagentName(input.subagentId)} received it. I will keep this workspace local and prepare the next action around: "${input.content.slice(0, 120)}"`;
   }
 
   if (selected) {
     return `I can route this to ${selected.name}. In the local app, that means opening a ${selected.handle} workspace, keeping the source files on-device, and only asking for the API key needed for that run.`;
   }
 
-  return "Got it. I can turn that into a local specialist run, save the transcript here, and keep the cloud boundary limited to whatever model provider you choose.";
+  return "Got it. I can turn that into a local subagent run, save the transcript here, and keep the cloud boundary limited to whatever model provider you choose.";
 }

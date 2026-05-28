@@ -1,7 +1,7 @@
 import type {
   LocalChatMessage,
-  LocalSpecialistWorkspace,
-  SpecialistId,
+  LocalSubagentWorkspace,
+  SubagentId,
   UiInputResponsePayload,
 } from "@dude/client-types";
 
@@ -80,13 +80,13 @@ function executionTraceFromAssistantMessage(
 }
 
 async function sendAssistantMessage(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
   body: Record<string, unknown> = {},
   options?: AssistantRunOptions,
 ) {
-  const workspace = await requireMatchingWorkspace(specialistId, workspaceId);
-  const sendInput = buildSendMessageInput(workspace.specialistId, workspace.id, body);
+  const workspace = await requireMatchingWorkspace(subagentId, workspaceId);
+  const sendInput = buildSendMessageInput(workspace.subagentId, workspace.id, body);
   sendInput.onProgress = options?.onProgress;
   const result = await chatRuntime.sendMessage(sendInput);
   const durationMs = Date.now();
@@ -113,32 +113,32 @@ async function sendAssistantMessage(
 }
 
 export async function resumeAssistantIfActive(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
 ) {
   if (!chatRuntime.resumeActiveTurn) {
     return { active: false as const, reattaching: false as const };
   }
-  return chatRuntime.resumeActiveTurn(specialistId, workspaceId);
+  return chatRuntime.resumeActiveTurn(subagentId, workspaceId);
 }
 
 export function abandonAssistantTurn(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
 ) {
-  chatRuntime.abandonActiveTurn?.(specialistId, workspaceId);
+  chatRuntime.abandonActiveTurn?.(subagentId, workspaceId);
 }
 
 export async function reloadAssistantMessages(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
 ) {
-  const messages = await chatRuntime.listMessages(specialistId, workspaceId);
+  const messages = await chatRuntime.listMessages(subagentId, workspaceId);
   return messages.map(toUiMessage);
 }
 
-export async function clearAssistant(specialistId: SpecialistId, workspaceId: string) {
-  await chatRuntime.clearThread(specialistId, workspaceId);
+export async function clearAssistant(subagentId: SubagentId, workspaceId: string) {
+  await chatRuntime.clearThread(subagentId, workspaceId);
   return { ok: true as const };
 }
 
@@ -151,14 +151,14 @@ export async function respondAssistantUiInput(
 }
 
 export async function runAssistantMessage(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
   body: Record<string, unknown> = {},
   options?: AssistantRunOptions,
 ) {
   const startTime = Date.now();
   const { jobResult, messages, assistantMessage, sessionId, executionTrace } =
-    await sendAssistantMessage(specialistId, workspaceId, body, options);
+    await sendAssistantMessage(subagentId, workspaceId, body, options);
   const durationMs = Date.now() - startTime;
   const trace: AssistantExecutionTrace = {
     ...executionTrace,

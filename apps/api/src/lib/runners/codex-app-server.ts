@@ -19,7 +19,7 @@ type JsonRecord = Record<string, unknown>;
 export type CodexSandboxPolicy = Record<string, unknown>;
 
 /**
- * Codex `workspace-write` blocks network by default. Dynamic specialist tools
+ * Codex `workspace-write` blocks network by default. Dynamic subagent tools
  * dispatch in-process (no shell/curl), but network may still be needed for
  * web search and other Codex capabilities — default to workspace write + network.
  *
@@ -153,12 +153,12 @@ export class CodexAppServer {
     dynamicTools = await buildCodexDynamicToolsForThread();
     if (shouldLogCodexRun() && dynamicTools.length > 0) {
       logCodexLine(
-        `registering ${dynamicTools.length} dynamic specialist tools`,
+        `registering ${dynamicTools.length} dynamic subagent tools`,
       );
     }
     if (dynamicTools.length === 0) {
       console.warn(
-        "[codex-app-server] Specialist catalog returned no dynamic tools",
+        "[codex-app-server] Subagent catalog returned no dynamic tools",
       );
     }
 

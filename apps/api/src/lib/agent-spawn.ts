@@ -1,5 +1,5 @@
 /**
- * Unified agent spawn helpers — every agent (Dude + specialists) gets its own
+ * Unified agent spawn helpers — every agent (Dude + subagents) gets its own
  * background runner process (pi / codex / hermes).
  */
 
@@ -7,34 +7,34 @@ import {
   DEFAULT_AGENT_RUNNER_ID,
   MAIN_ASSISTANT_KIND,
   buildMainAssistantInstanceId,
-  buildSpecialistInstanceId,
+  buildSubagentInstanceId,
   canonicalAgentKind,
   isKnownAgentRunnerId,
   isValidAgentRunnerSlug,
   type AgentRunnerId,
 } from "@dude/sdk/runner";
-import { createSpecialistRegistry, getDelegableSpecialists } from "@dude/sdk";
+import { createSubagentRegistry, getDelegableSubagents } from "@dude/sdk";
 import type { AgentConfig } from "./types.js";
-import { getSpecialistHostConfig } from "./specialist-host-config.js";
+import { getSubagentHostConfig } from "./subagent-host-config.js";
 import { getAssistantConfig } from "./assistant-store.js";
 import {
   composeSystemPrompt,
   type SpecialistRosterEntry,
 } from "./assistant-prompt.js";
-import { getSpecialistMeta } from "./tool-host/registry.js";
+import { getSubagentMeta } from "./tool-host/registry.js";
 
 export {
   MAIN_ASSISTANT_KIND,
   buildMainAssistantInstanceId,
-  buildSpecialistInstanceId,
+  buildSubagentInstanceId,
   canonicalAgentKind,
 };
 
-let registry: ReturnType<typeof createSpecialistRegistry> | null = null;
+let registry: ReturnType<typeof createSubagentRegistry> | null = null;
 
 function getRegistry() {
   if (!registry) {
-    registry = createSpecialistRegistry(getSpecialistHostConfig());
+    registry = createSubagentRegistry(getSubagentHostConfig());
   }
   return registry;
 }
@@ -49,10 +49,10 @@ export function resolveDefaultRunner(): AgentRunnerId {
 }
 
 export function listDelegableAgentKinds() {
-  return getDelegableSpecialists(getRegistry()).map((specialist) => ({
-    id: specialist.id,
-    label: specialist.gatewayLabel,
-    description: specialist.gatewayDescription,
+  return getDelegableSubagents(getRegistry()).map((subagent) => ({
+    id: subagent.id,
+    label: subagent.gatewayLabel,
+    description: subagent.gatewayDescription,
   }));
 }
 
@@ -61,7 +61,7 @@ function buildSpecialistRoster(
 ): SpecialistRosterEntry[] {
   return enabled.map((entry) => {
     const plugin = getRegistry().getById(entry.id);
-    const meta = getSpecialistMeta(entry.id);
+    const meta = getSubagentMeta(entry.id);
     return {
       id: entry.id,
       label: entry.label ?? plugin?.manifest.gatewayLabel,
@@ -73,7 +73,7 @@ function buildSpecialistRoster(
   });
 }
 
-/** Compose GT system prompt + specialist roster for main-assistant spawns. */
+/** Compose GT system prompt + subagent roster for main-assistant spawns. */
 export async function enrichMainAssistantConfig(
   config: AgentConfig,
 ): Promise<AgentConfig> {
@@ -88,7 +88,7 @@ export async function enrichMainAssistantConfig(
   const systemPrompt = await composeSystemPrompt({
     config: assistantConfig,
     isMainAssistant: true,
-    specialist: null,
+    subagent: null,
     extraPrompt: localPrompt,
     enabledSpecialists: buildSpecialistRoster(enabled),
   });
@@ -110,7 +110,7 @@ export interface BuildAgentConfigInput {
   provider?: AgentConfig["provider"];
   maxIterations?: number;
   approvalMode?: AgentConfig["approvalMode"];
-  /** Override delegable list; defaults to all delegable specialists for main assistant only. */
+  /** Override delegable list; defaults to all delegable subagents for main assistant only. */
   enabledSpecialists?: AgentConfig["enabledSpecialists"];
 }
 
@@ -154,7 +154,7 @@ export function prepareAgentSpawn(params: SpawnAgentParams): {
   const instanceId =
     agentKind === MAIN_ASSISTANT_KIND
       ? buildMainAssistantInstanceId(params.scopeId)
-      : buildSpecialistInstanceId(agentKind, params.scopeId);
+      : buildSubagentInstanceId(agentKind, params.scopeId);
 
   return {
     instanceId,

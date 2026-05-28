@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { BrailleSpinner } from "@dude/ui/components/braille-spinner";
-import hostConfig from "../../../specialists.config.client";
-import { createSpecialistRegistry } from "@dude/sdk";
+import hostConfig from "../../../subagents.config.client";
+import { createSubagentRegistry } from "@dude/sdk";
 import { DesktopAppShell } from "./desktop-app-shell";
 import { LocalChatApp } from "./local-chat-app";
 
-const registry = createSpecialistRegistry(hostConfig);
+const registry = createSubagentRegistry(hostConfig);
 
 function SpecialistRoute({
   component: Component,
@@ -38,14 +38,14 @@ export function AppRouter() {
         {registry.list().map((plugin) => (
           <Route
             key={`${plugin.id}-list`}
-            path={`/chat/specialists/${plugin.path}`}
+            path={`/chat/subagents/${plugin.path}`}
             element={<SpecialistRoute component={plugin.ui.ListPage} />}
           />
         ))}
         {registry.list().map((plugin) => (
           <Route
             key={`${plugin.id}-workspace`}
-            path={`/chat/specialists/${plugin.path}/:workspaceId/*`}
+            path={`/chat/subagents/${plugin.path}/:workspaceId/*`}
             element={<SpecialistRoute component={plugin.ui.WorkspacePage} />}
           />
         ))}

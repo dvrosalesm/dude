@@ -29,8 +29,8 @@ async function probeUrl(url) {
 
 function printCdpSnippets() {
   const basePath = workspaceId
-    ? `/chat/specialists/document-writer/${workspaceId}`
-    : "/chat/specialists/document-writer";
+    ? `/chat/subagents/document-writer/${workspaceId}`
+    : "/chat/subagents/document-writer";
 
   console.log("\n--- Browser MCP ---\n");
   console.log(`Navigate: ${CLIENT_URL}${basePath}`);

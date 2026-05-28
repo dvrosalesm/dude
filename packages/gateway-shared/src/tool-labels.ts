@@ -36,9 +36,9 @@ const STATIC_LABELS: Record<string, ToolLabel> = {
     active: "Checking project workspaces…",
     past: "Checked project workspaces",
   },
-  review_specialist_work: {
-    active: "Reviewing specialist work…",
-    past: "Reviewed specialist work",
+  review_subagent_work: {
+    active: "Reviewing subagent work…",
+    past: "Reviewed subagent work",
   },
   publish_landing_page: {
     active: "Publishing the landing page…",

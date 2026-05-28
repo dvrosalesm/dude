@@ -18,7 +18,7 @@ export type BaseToolId =
   | "exa_search"
   | "workspace_read"
   | "workspace_save"
-  | "read_specialist_artifact"
+  | "read_subagent_artifact"
   | "save_memory"
   | "list_memories";
 
@@ -36,14 +36,14 @@ export interface ToolDefinition {
   }>;
 }
 
-export interface SpecialistDeclaration {
+export interface SubagentDeclaration {
   baseTools: BaseToolId[];
   customTools: (() => ToolDefinition)[];
   collections: string[];
   skillPaths?: string[];
 }
 
-export interface SpecialistSummary {
+export interface SubagentSummary {
   id: string;
   name: string;
   handle: string;
@@ -58,46 +58,46 @@ export type LocalRouteHandler = (
 
 export type LocalRouteTable = Record<string, LocalRouteHandler>;
 
-export interface SpecialistManifest {
+export interface SubagentManifest {
   gatewayLabel: string;
   gatewayDescription: string;
   delegable?: boolean;
   badges?: string[];
 }
 
-export interface SpecialistUi {
+export interface SubagentUi {
   icon: ComponentType<{ className?: string }>;
   ListPage: ComponentType;
   WorkspacePage: ComponentType;
   nestedRoutes?: Record<string, ComponentType>;
 }
 
-export interface SpecialistLocalConfig {
-  summary: SpecialistSummary;
+export interface SubagentLocalConfig {
+  summary: SubagentSummary;
   defaultWorkspaceConfig?: (config: JsonValue) => JsonValue;
 }
 
-export interface SpecialistGatewayConfig {
-  declaration: SpecialistDeclaration;
+export interface SubagentGatewayConfig {
+  declaration: SubagentDeclaration;
   skillPaths?: string[];
 }
 
-export interface SpecialistPlugin {
+export interface SubagentPlugin {
   id: string;
   path: string;
-  manifest: SpecialistManifest;
-  ui: SpecialistUi;
+  manifest: SubagentManifest;
+  ui: SubagentUi;
   api: (app: AnyElysia) => void;
   localHandlers?: LocalRouteTable;
-  gateway?: SpecialistGatewayConfig;
-  local?: SpecialistLocalConfig;
+  gateway?: SubagentGatewayConfig;
+  local?: SubagentLocalConfig;
 }
 
-export interface SpecialistHostConfig {
-  specialists: SpecialistPlugin[];
+export interface SubagentHostConfig {
+  subagents: SubagentPlugin[];
 }
 
-export interface ManageableSpecialist {
+export interface ManageableSubagent {
   id: string;
   path: string;
   gatewayLabel: string;
@@ -107,7 +107,7 @@ export interface ManageableSpecialist {
 
 export interface ClientRouteDescriptor {
   path: string;
-  specialistId: string;
+  subagentId: string;
   kind: "list" | "workspace" | "nested";
   nestedKey?: string;
   component: ComponentType;
@@ -121,7 +121,7 @@ export interface HomeGridDef {
   badges: string[];
 }
 
-export interface SpecialistMeta {
+export interface SubagentMeta {
   icon: ComponentType<{ className?: string }>;
   label: string;
   path: string;

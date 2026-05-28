@@ -80,7 +80,7 @@ export function RunnerSettingsPanel({
         AI Runners
       </h2>
       <p className="mb-8 max-w-2xl text-sm leading-relaxed text-[var(--dude-muted)]">
-        Choose the background harness that executes specialist work. Each runner has its
+        Choose the background harness that executes subagent work. Each runner has its
         own setup — Pi uses your LLM provider from API &amp; Models; Cursor SDK uses its
         own API key and model below.
       </p>

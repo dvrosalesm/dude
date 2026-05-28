@@ -3,7 +3,7 @@ import type {
   AgentToolHostCatalogResponse,
 } from "@dude/sdk/runner";
 import type { ToolDefinition } from "./types.js";
-import { buildToolsForSpecialist, getSpecialistMeta } from "./registry.js";
+import { buildToolsForSubagent, getSubagentMeta } from "./registry.js";
 import {
   type ToolHostSession,
   withToolHostSession,
@@ -23,15 +23,15 @@ export async function buildToolHostCatalog(
   envExtras?: Record<string, string | undefined>,
 ): Promise<AgentToolHostCatalogResponse> {
   return withToolHostSession(session, envExtras, async () => {
-    const meta = getSpecialistMeta(session.specialistId);
-    const tools = buildToolsForSpecialist(meta.specialistId, {
+    const meta = getSubagentMeta(session.subagentId);
+    const tools = buildToolsForSubagent(meta.subagentId, {
       runner: session.runner,
     }).map(toolToCatalogEntry);
 
     return {
       session: {
         workspaceId: session.workspaceId,
-        specialistId: meta.specialistId,
+        subagentId: meta.subagentId,
         organizationId: session.organizationId,
         runner: session.runner,
       },

@@ -1,7 +1,7 @@
 import {
   liveTraceLabel,
   normalizeTraceSteps,
-} from "../packages/chat/src/specialists/specialist-chat/trace-steps";
+} from "../packages/chat/src/subagents/subagent-chat/trace-steps";
 
 describe("trace-steps", () => {
   it("collapses duplicate generic thinking steps", () => {

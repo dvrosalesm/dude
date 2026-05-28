@@ -8,9 +8,9 @@ import {
   AGENT_TOOL_HOST_ROUTES,
 } from "@dude/sdk/runner";
 import {
-  resolveGatewaySpecialistId,
+  resolveGatewaySubagentId,
   resolveToolHostWorkspaceId,
-} from "../tool-host/resolve-specialist-id.js";
+} from "../tool-host/resolve-subagent-id.js";
 import {
   dispatchViaManifest,
   loadRunnerSessionManifestFromEnv,
@@ -22,7 +22,7 @@ import {
 export interface ToolHostClientConfig {
   baseUrl?: string;
   workspaceId: string;
-  specialistId: string;
+  subagentId: string;
   organizationId: string;
   runner: string;
 }
@@ -49,13 +49,13 @@ function sessionHeaders(config: ToolHostClientConfig): Record<string, string> {
 
   const headers: Record<string, string> = {
     "x-workspace-id": config.workspaceId,
-    "x-specialist-id": config.specialistId,
+    "x-subagent-id": config.subagentId,
     "x-organization-id": config.organizationId,
     "x-runner-id": config.runner,
   };
 
-  if (process.env.ENABLED_SPECIALISTS) {
-    headers["x-enabled-specialists"] = process.env.ENABLED_SPECIALISTS;
+  if (process.env.ENABLED_SUBAGENTS) {
+    headers["x-enabled-subagents"] = process.env.ENABLED_SUBAGENTS;
   }
   if (process.env.DB_LOCAL_PATH) {
     headers["x-db-local-path"] = process.env.DB_LOCAL_PATH;
@@ -70,7 +70,7 @@ export function toolHostConfigFromEnv(): ToolHostClientConfig {
     return {
       baseUrl: manifest.internalApi.baseUrl,
       workspaceId: manifest.workspaceId,
-      specialistId: manifest.specialistId,
+      subagentId: manifest.subagentId,
       organizationId: manifest.organizationId,
       runner: manifest.runner,
     };
@@ -78,7 +78,7 @@ export function toolHostConfigFromEnv(): ToolHostClientConfig {
 
   return {
     workspaceId: resolveToolHostWorkspaceId(process.env.WORKSPACE_ID || ""),
-    specialistId: resolveGatewaySpecialistId(process.env.SPECIALIST_ID || ""),
+    subagentId: resolveGatewaySubagentId(process.env.SPECIALIST_ID || ""),
     organizationId: process.env.ORGANIZATION_ID || "",
     runner: process.env.RUNNER_ID || "pi",
   };

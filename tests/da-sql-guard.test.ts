@@ -1,4 +1,4 @@
-import { guardDataAnalystSql, workspaceTablePrefix } from "../packages/specialist-data-analyst/src/gateway/da-sql-guard.js";
+import { guardDataAnalystSql, workspaceTablePrefix } from "../packages/subagent-data-analyst/src/gateway/da-sql-guard.js";
 
 describe("da-sql-guard", () => {
   const workspaceId = "a1b2c3d4-e5f6-7890-abcd-ef1234567890";

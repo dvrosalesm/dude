@@ -57,7 +57,7 @@ export async function openRouterChat(opts: OpenRouterOptions): Promise<string> {
   const apiKey = config.apiKey;
   if (!apiKey) {
     throw new Error(
-      "No API key configured for OpenRouter. Specialist tools like generate_slide need an " +
+      "No API key configured for OpenRouter. Subagent tools like generate_slide need an " +
         "OpenRouter key in Settings → API & Models (or OPEN_ROUTER_API_KEY in .env.local). " +
         "This is separate from Codex CLI login.",
     );

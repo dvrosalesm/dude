@@ -13,7 +13,7 @@ describe("codex dynamic tools", () => {
     const tools = catalogToDynamicTools({
       session: {
         workspaceId: "ws-1",
-        specialistId: "document-editor",
+        subagentId: "document-editor",
         organizationId: "local",
         runner: "codex",
       },
@@ -50,7 +50,7 @@ describe("codex dynamic tools", () => {
     const appendix = buildCodexDynamicToolsPromptAppendix({
       session: {
         workspaceId: "ws-1",
-        specialistId: "document-editor",
+        subagentId: "document-editor",
         organizationId: "local",
         runner: "codex",
       },

@@ -9,7 +9,7 @@ describe("hosted agent loop helpers", () => {
   const catalog = {
     session: {
       workspaceId: "ws-1",
-      specialistId: "document-editor",
+      subagentId: "document-editor",
       organizationId: "org-1",
       runner: "codex",
     },

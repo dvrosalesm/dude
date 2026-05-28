@@ -28,13 +28,13 @@ import { getLocalDbPath } from "../local-sqlite.js";
 import { resolveMainApiPort } from "../runner-session-manifest.js";
 import { DUDE_UI_MODE_ENV } from "../ui-input-mode.js";
 import {
-  resolveGatewaySpecialistId,
+  resolveGatewaySubagentId,
   resolveToolHostWorkspaceId,
-} from "../tool-host/resolve-specialist-id.js";
+} from "../tool-host/resolve-subagent-id.js";
 
 export interface RunnerSpawnContext {
   workspaceId: string;
-  specialistId: string;
+  subagentId: string;
   organizationId: string;
   port: number;
   workDir: string;
@@ -74,13 +74,13 @@ function baseEnv(ctx: RunnerSpawnContext): Record<string, string> {
     DUDE_DB_PATH: dbPath,
     PYTHONPATH: ctx.pythonDir,
     WORKSPACE_ID: resolveToolHostWorkspaceId(ctx.workspaceId),
-    SPECIALIST_ID: resolveGatewaySpecialistId(ctx.specialistId),
+    SPECIALIST_ID: resolveGatewaySubagentId(ctx.subagentId),
     ORGANIZATION_ID: ctx.organizationId,
     GATEWAY_INTERNAL_PORT: gatewayInternalPort(),
     RUNNER_ID: ctx.config.runner || DEFAULT_AGENT_RUNNER_ID,
     [DUDE_UI_MODE_ENV]: "1",
     ...(ctx.config.enabledSpecialists?.length
-      ? { ENABLED_SPECIALISTS: JSON.stringify(ctx.config.enabledSpecialists) }
+      ? { ENABLED_SUBAGENTS: JSON.stringify(ctx.config.enabledSpecialists) }
       : {}),
     ...(ctx.config.approvalMode ? { APPROVAL_MODE: ctx.config.approvalMode } : {}),
     ...(ctx.config.maxIterations

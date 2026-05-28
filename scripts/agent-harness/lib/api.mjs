@@ -63,34 +63,34 @@ export async function probeHealth() {
   return results;
 }
 
-export async function listWorkspaces(specialistId) {
-  const q = new URLSearchParams({ specialistId });
+export async function listWorkspaces(subagentId) {
+  const q = new URLSearchParams({ subagentId });
   return fetchJson(
-    `/v1/internal/assistant/specialist-workspaces?${q}`,
+    `/v1/internal/assistant/subagent-workspaces?${q}`,
     { method: "GET", timeoutMs: 15_000 },
   );
 }
 
-export async function createWorkspace(specialistId, name) {
-  return fetchJson("/v1/internal/assistant/specialist-workspaces", {
+export async function createWorkspace(subagentId, name) {
+  return fetchJson("/v1/internal/assistant/subagent-workspaces", {
     method: "POST",
-    body: JSON.stringify({ specialistId, name }),
+    body: JSON.stringify({ subagentId, name }),
     timeoutMs: 15_000,
   });
 }
 
-export async function runSpecialistChat({
-  specialistId,
+export async function runSubagentChat({
+  subagentId,
   message,
   workspaceId,
   context,
   timeoutMs,
 }) {
-  const body = { specialistId, message };
+  const body = { subagentId, message };
   if (workspaceId) body.workspaceId = workspaceId;
   if (context) body.context = context;
 
-  return fetchJson("/v1/internal/assistant/specialist-run", {
+  return fetchJson("/v1/internal/assistant/subagent-run", {
     method: "POST",
     body: JSON.stringify(body),
     timeoutMs: timeoutMs ?? DEFAULT_TIMEOUT_MS,

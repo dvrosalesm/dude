@@ -86,7 +86,7 @@ export async function retrieve(
   const memories = await retrieveMemories({
     orgId,
     userId: body?.userId ?? null,
-    specialist: body?.specialist ?? null,
+    subagent: body?.subagent ?? null,
     query: body?.query,
     limit: body?.limit,
   });

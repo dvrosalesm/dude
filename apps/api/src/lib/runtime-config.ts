@@ -47,7 +47,7 @@ function resolveEnvProviderApiKey(kind: LlmProviderKind): string {
 }
 
 /**
- * API key for specialist tools (generate_slide, design doc, etc.).
+ * API key for subagent tools (generate_slide, design doc, etc.).
  * These run on the Dude API and call OpenRouter — independent of Codex CLI auth.
  */
 export function resolveToolHostApiKey(

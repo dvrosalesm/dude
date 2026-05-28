@@ -1,5 +1,5 @@
 /**
- * Codex app-server dynamic tools — registers specialist actions on thread/start
+ * Codex app-server dynamic tools — registers subagent actions on thread/start
  * and executes them in-process via RunnerSessionManifest (no curl/shell).
  */
 
@@ -7,11 +7,11 @@ import type { AgentToolHostCatalogResponse } from "@dude/sdk/runner";
 import {
   buildPresentationNativeRunnerAppendix,
   isDocumentEditorSpecialist,
-} from "@dude/specialist-document-editor/gateway/slide-authoring-guidelines";
+} from "@dude/subagent-document-editor/gateway/slide-authoring-guidelines";
 import {
   buildDocumentWriterNativeRunnerAppendix,
   isDocumentWriterSpecialist,
-} from "@dude/specialist-document-writer/gateway/document-authoring-guidelines";
+} from "@dude/subagent-document-writer/gateway/document-authoring-guidelines";
 import {
   dispatchViaManifest,
   loadRunnerSessionManifestFromEnv,
@@ -39,7 +39,7 @@ function toolHostConfigFromManifest(
   return {
     baseUrl: manifest.internalApi.baseUrl,
     workspaceId: manifest.workspaceId,
-    specialistId: manifest.specialistId,
+    subagentId: manifest.subagentId,
     organizationId: manifest.organizationId,
     runner: manifest.runner,
   };
@@ -187,16 +187,16 @@ export function buildCodexDynamicToolsPromptAppendix(
   const names = catalog.tools.map((tool) => tool.name).join(", ");
   let appendix =
     `\n\n<dude_specialist_tools>\n` +
-    `Specialist tools are registered as native Codex dynamic tools (namespace: dude).\n` +
+    `Subagent tools are registered as native Codex dynamic tools (namespace: dude).\n` +
     `Call them directly — do NOT use curl, shell, or HTTP clients for workspace actions.\n` +
     `Available: ${names}\n` +
     `Call finish_turn when the task is complete.\n` +
     `</dude_specialist_tools>`;
 
-  if (isDocumentEditorSpecialist(catalog.session.specialistId)) {
+  if (isDocumentEditorSpecialist(catalog.session.subagentId)) {
     appendix += buildPresentationNativeRunnerAppendix(names);
   }
-  if (isDocumentWriterSpecialist(catalog.session.specialistId)) {
+  if (isDocumentWriterSpecialist(catalog.session.subagentId)) {
     appendix += buildDocumentWriterNativeRunnerAppendix(names);
   }
 

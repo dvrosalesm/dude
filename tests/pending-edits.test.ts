@@ -1,4 +1,4 @@
-import { extractPendingEditsFromTraces } from "../packages/chat/src/specialists/hooks/pending-edits";
+import { extractPendingEditsFromTraces } from "../packages/chat/src/subagents/hooks/pending-edits";
 
 describe("extractPendingEditsFromTraces", () => {
   it("pulls edits from edit_document tool arguments", () => {

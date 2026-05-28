@@ -2,7 +2,7 @@ import type {
   AgentToolHostExecuteRequest,
   AgentToolHostExecuteResponse,
 } from "@dude/sdk/runner";
-import { buildToolsForSpecialist, getSpecialistMeta } from "./registry.js";
+import { buildToolsForSubagent, getSubagentMeta } from "./registry.js";
 import {
   type ToolHostSession,
   withToolHostSession,
@@ -21,15 +21,15 @@ export async function executeHostedTool(
     throw new Error("toolCallId is required");
   }
 
-  const meta = getSpecialistMeta(session.specialistId);
+  const meta = getSubagentMeta(session.subagentId);
 
   return withToolHostSession(session, envExtras, async () => {
-    const tools = buildToolsForSpecialist(meta.specialistId, {
+    const tools = buildToolsForSubagent(meta.subagentId, {
       runner: session.runner,
     });
     const definition = tools.find((entry) => entry.name === tool);
     if (!definition) {
-      throw new Error(`Unknown tool "${tool}" for specialist "${meta.specialistId}"`);
+      throw new Error(`Unknown tool "${tool}" for subagent "${meta.subagentId}"`);
     }
 
     return definition.execute(toolCallId, args ?? {});

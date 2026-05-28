@@ -1,4 +1,4 @@
-import type { LocalSpecialistWorkspace } from "@dude/client-types";
+import type { LocalSubagentWorkspace } from "@dude/client-types";
 
 function unquoteSqlIdentifier(value: string) {
   return value.replace(/^["'`]|["'`]$/g, "");
@@ -13,14 +13,14 @@ function filterRows(rows: Array<Record<string, string>>, query: string) {
   );
 }
 
-export function getLocalTables(workspace: LocalSpecialistWorkspace) {
+export function getLocalTables(workspace: LocalSubagentWorkspace) {
   const tables = workspace.configurations.localTables;
   return tables && typeof tables === "object"
     ? (tables as Record<string, Array<Record<string, string>>>)
     : {};
 }
 
-export function getSchemaTables(workspace: LocalSpecialistWorkspace) {
+export function getSchemaTables(workspace: LocalSubagentWorkspace) {
   const schema = workspace.configurations.schema;
   if (!schema || typeof schema !== "object") return {};
   const tables = (schema as Record<string, unknown>).tables;
@@ -29,7 +29,7 @@ export function getSchemaTables(workspace: LocalSpecialistWorkspace) {
     : {};
 }
 
-export function queryLocalTables(workspace: LocalSpecialistWorkspace, query: string) {
+export function queryLocalTables(workspace: LocalSubagentWorkspace, query: string) {
   const trimmed = query.trim();
   const tables = getLocalTables(workspace);
   const schemaTables = getSchemaTables(workspace);

@@ -6,7 +6,7 @@ export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-/** Floating top-right chrome button (settings, specialists). */
+/** Floating top-right chrome button (settings, subagents). */
 export function chromeButtonClassName(active = false) {
   return cn(
     "inline-flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-xl transition-colors",

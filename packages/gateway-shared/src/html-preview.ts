@@ -1,7 +1,7 @@
 /**
  * Shared headless-browser rendering for tool-side visual feedback.
  *
- * Each agent process runs a single specialist, so a single lazy puppeteer
+ * Each agent process runs a single subagent, so a single lazy puppeteer
  * instance per process is reused across renders (slides, landing pages, etc).
  * Specialist-specific review prompts live in the calling tools.
  */

@@ -5,7 +5,7 @@
 import { startAdapterServer } from "../../lib/runners/adapter-http.js";
 import { runPiAgentTurnQueued } from "../../lib/runners/pi-agent-turn.js";
 import { config } from "@dude/sdk/gateway-runtime";
-import { executeSql } from "@dude/specialist-data-analyst/gateway/sql";
+import { executeSql } from "@dude/subagent-data-analyst/gateway/sql";
 
 const port = parseInt(process.env.GATEWAY_PORT || "8080", 10);
 

@@ -1,5 +1,5 @@
 /**
- * Cursor SDK runner adapter — native Agent.create loop + Dude dispatch API for specialist actions.
+ * Cursor SDK runner adapter — native Agent.create loop + Dude dispatch API for subagent actions.
  */
 
 import { startAdapterServer } from "../../lib/runners/adapter-http.js";

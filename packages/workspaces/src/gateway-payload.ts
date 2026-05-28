@@ -1,4 +1,4 @@
-import type { SendLocalMessageInput, SpecialistId } from "@dude/client-types";
+import type { SendLocalMessageInput, SubagentId } from "@dude/client-types";
 import {
   extractUserFacingMessage,
   USER_MESSAGE_MARKER,
@@ -106,7 +106,7 @@ function formatContextBlock(context: Record<string, unknown>) {
 }
 
 export function buildSendMessageInput(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
   body: Record<string, unknown>,
 ): SendLocalMessageInput {
@@ -120,7 +120,7 @@ export function buildSendMessageInput(
     : message;
 
   return {
-    specialistId,
+    subagentId,
     workspaceId,
     content,
     displayContent: message,

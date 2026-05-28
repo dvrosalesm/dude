@@ -1,6 +1,6 @@
 /**
  * Gateway tool runtime config — reads session env vars set by the Tool Host
- * or runner adapter before dispatching specialist actions.
+ * or runner adapter before dispatching subagent actions.
  */
 
 function env(key: string, fallback = ""): string {
@@ -52,7 +52,7 @@ export const config = {
   get organizationId() {
     return env("ORGANIZATION_ID", "");
   },
-  get specialistId() {
+  get subagentId() {
     return env("SPECIALIST_ID", "");
   },
   get gatewayInternalPort() {

@@ -42,8 +42,8 @@ export type InstanceStatus =
 export interface AgentInstance {
   /** Unique instance id — `{org}:{agentKind}:{scopeId}`. */
   id: string;
-  /** Agent kind: `main-assistant` or a specialist id (e.g. `data-analyst`). */
-  specialistId: string;
+  /** Agent kind: `main-assistant` or a subagent id (e.g. `data-analyst`). */
+  subagentId: string;
   /** Organization that owns the workspace. */
   organizationId: string;
   /** Agent harness adapter (pi, codex, hermes, …). */
@@ -93,7 +93,7 @@ export interface AgentConfig {
    */
   approvalMode?: 'auto' | 'draft' | 'per-step';
   /**
-   * Specialists exposed as delegation tools (used only by main-assistant).
+   * Subagents exposed as delegation tools (used only by main-assistant).
    * Each entry becomes a tool callable by the main assistant's ReAct loop.
    */
   enabledSpecialists?: Array<{
@@ -145,12 +145,12 @@ export interface GatewayResult {
 
 export interface SpawnInstanceDto {
   workspaceId: string;
-  specialistId: string;
+  subagentId: string;
   config: AgentConfig;
   /** Client workspace snapshot so agent tools can read/write the same SQLite row as the UI. */
   workspaceSnapshot?: {
     id: string;
-    specialistId: string;
+    subagentId: string;
     name?: string;
     status?: "draft" | "active";
     configurations?: Record<string, unknown>;

@@ -1,17 +1,17 @@
 "use client";
 
-import { getDelegableSpecialists } from "@dude/sdk";
-import { buildDocumentWriterSystemPromptAppendix } from "@dude/specialist-document-writer/gateway/document-authoring-guidelines";
+import { getDelegableSubagents } from "@dude/sdk";
+import { buildDocumentWriterSystemPromptAppendix } from "@dude/subagent-document-writer/gateway/document-authoring-guidelines";
 import {
   normalizeRunnerSettings,
   resolvePiRunnerSettings,
 } from "@dude/sdk/runner";
-import type { SpecialistId } from "../types";
+import type { SubagentId } from "../types";
 import {
   parseLocalAppConfigurations,
   readStoredPreferences,
 } from "../preferences";
-import { SPECIALISTS, getSpecialistRegistry } from "./specialist-list";
+import { SUBAGENTS, getSubagentRegistry } from "./subagent-list";
 
 export function buildAppConfigurationsPrompt(appConfigurations: ReturnType<typeof parseLocalAppConfigurations>) {
   const enabledServers = appConfigurations.mcpServers.filter(
@@ -92,25 +92,25 @@ All confirmations, approval prompts, clarifying questions, and choices MUST go t
 
 Use kind \`confirm\` for yes/no, \`question\` for free text, and \`choice\` for multiple options. Wait for the tool result before continuing.`;
 
-function buildSystemPrompt(specialistId: SpecialistId, appConfigurations: ReturnType<typeof parseLocalAppConfigurations>) {
-  if (specialistId === "main-assistant") {
+function buildSystemPrompt(subagentId: SubagentId, appConfigurations: ReturnType<typeof parseLocalAppConfigurations>) {
+  if (subagentId === "main-assistant") {
     return [
       "You are Dude, the local assistant inside Dude.",
       "The assistant's default display name is Dude, but the user may rename it in preferences.",
-      "You help the user perform local-first work and route tasks to specialist workspaces.",
-      "Be concise, practical, and clear. Mention when a task needs a specific specialist or API key.",
+      "You help the user perform local-first work and route tasks to subagent workspaces.",
+      "Be concise, practical, and clear. Mention when a task needs a specific subagent or API key.",
       "Do not claim to access cloud services unless the user configured a provider key.",
       buildAgenticAppSetupPrompt(),
       buildAppConfigurationsPrompt(appConfigurations),
     ].join("\n");
   }
 
-  const specialist = SPECIALISTS.find((item) => item.id === specialistId);
+  const subagent = SUBAGENTS.find((item) => item.id === subagentId);
   return [
-    `You are the ${specialist?.name ?? "specialist"} inside Dude.`,
-    specialist?.scope ? `Your scope: ${specialist.scope}.` : "",
+    `You are the ${specialist?.name ?? "subagent"} inside Dude.`,
+    specialist?.scope ? `Your scope: ${subagent.scope}.` : "",
     "Run locally where possible, ask for missing inputs, and keep responses action-oriented.",
-    specialistId === "document-writer" ? buildDocumentWriterSystemPromptAppendix() : "",
+    subagentId === "document-writer" ? buildDocumentWriterSystemPromptAppendix() : "",
     buildAppConfigurationsPrompt(appConfigurations),
     DUDE_UI_MODE_INSTRUCTIONS,
   ]
@@ -118,7 +118,7 @@ function buildSystemPrompt(specialistId: SpecialistId, appConfigurations: Return
     .join("\n");
 }
 
-export function buildGatewayConfig(specialistId: SpecialistId) {
+export function buildGatewayConfig(subagentId: SubagentId) {
   const preferences = readStoredPreferences();
   const appConfigurations = parseLocalAppConfigurations(
     preferences.appConfigurations,
@@ -133,15 +133,15 @@ export function buildGatewayConfig(specialistId: SpecialistId) {
     (skill) => skill.enabled !== false,
   );
 
-  const isMainAssistant = specialistId === "main-assistant";
-  const delegableSpecialists = getDelegableSpecialists(getSpecialistRegistry()).map(
-    (specialist) => {
-      const plugin = getSpecialistRegistry().getById(specialist.id);
+  const isMainAssistant = subagentId === "main-assistant";
+  const delegableSpecialists = getDelegableSubagents(getSubagentRegistry()).map(
+    (subagent) => {
+      const plugin = getSubagentRegistry().getById(subagent.id);
       const scope = plugin?.local?.summary.scope?.trim();
       return {
-        id: specialist.id,
-        label: specialist.gatewayLabel,
-        description: [specialist.gatewayDescription, scope]
+        id: subagent.id,
+        label: subagent.gatewayLabel,
+        description: [subagent.gatewayDescription, scope]
           .filter(Boolean)
           .join(scope ? " — " : ""),
       };
@@ -172,7 +172,7 @@ export function buildGatewayConfig(specialistId: SpecialistId) {
     },
     credentials: preferences.runtime.credentials,
     runnerSettings,
-    systemPrompt: buildSystemPrompt(specialistId, appConfigurations),
+    systemPrompt: buildSystemPrompt(subagentId, appConfigurations),
     tools: [],
     ...(enabledMcpServers.length > 0 ? { mcpServers: enabledMcpServers } : {}),
     ...(enabledSourceTools.length > 0 ? { sourceTools: enabledSourceTools } : {}),

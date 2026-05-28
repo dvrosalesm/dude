@@ -42,7 +42,7 @@ function ensureSchema(database: Database.Database) {
 
     CREATE TABLE IF NOT EXISTS workspaces (
       id TEXT PRIMARY KEY,
-      specialist_id TEXT NOT NULL,
+      subagent_id TEXT NOT NULL,
       name TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'draft',
       configurations TEXT NOT NULL DEFAULT '{}',
@@ -52,7 +52,7 @@ function ensureSchema(database: Database.Database) {
     );
 
     CREATE INDEX IF NOT EXISTS idx_workspaces_specialist
-      ON workspaces (specialist_id, updated_at DESC);
+      ON workspaces (subagent_id, updated_at DESC);
 
     CREATE TABLE IF NOT EXISTS threads (
       key TEXT PRIMARY KEY,
@@ -212,17 +212,17 @@ export function setWorkspaceConfigurations(
     .run(settingsKey, configJson, now);
 }
 
-export function listWorkspacesBySpecialist(specialistId: string) {
+export function listWorkspacesBySubagent(subagentId: string) {
   const database = getLocalDb();
   const rows = database
     .prepare(
       `SELECT id, name, updated_at AS date
        FROM workspaces
-       WHERE specialist_id = ?
+       WHERE subagent_id = ?
        ORDER BY updated_at DESC
        LIMIT 50`,
     )
-    .all(specialistId) as Array<{ id: string; name: string; date: string }>;
+    .all(subagentId) as Array<{ id: string; name: string; date: string }>;
 
   return rows.map((row) => ({
     id: row.id,
@@ -233,7 +233,7 @@ export function listWorkspacesBySpecialist(specialistId: string) {
 
 export function createWorkspaceRecord(input: {
   id: string;
-  specialistId: string;
+  subagentId: string;
   name: string;
   status?: string;
   configurations?: Record<string, unknown>;
@@ -244,7 +244,7 @@ export function createWorkspaceRecord(input: {
 
   const workspaceData = {
     id: input.id,
-    specialistId: input.specialistId,
+    subagentId: input.subagentId,
     name: input.name,
     status: input.status ?? "draft",
     createdAt: now,
@@ -255,12 +255,12 @@ export function createWorkspaceRecord(input: {
   database
     .prepare(
       `INSERT INTO workspaces (
-        id, specialist_id, name, status, configurations, data, created_at, updated_at
+        id, subagent_id, name, status, configurations, data, created_at, updated_at
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     )
     .run(
       input.id,
-      input.specialistId,
+      input.subagentId,
       input.name,
       input.status ?? "draft",
       JSON.stringify(configurations),
@@ -334,7 +334,7 @@ function setAppSetting(key: string, value: unknown): void {
 export interface LocalAssistantConfig {
   system_prompt: string;
   enabled: boolean;
-  enabled_specialists: string[];
+  enabled_subagents: string[];
   max_iterations: number;
   approval_mode: "auto" | "draft" | "per-step";
   model: string | null;
@@ -345,7 +345,7 @@ export interface LocalAssistantConfig {
 const DEFAULT_ASSISTANT_CONFIG: Omit<LocalAssistantConfig, "updated_at"> = {
   system_prompt: "",
   enabled: true,
-  enabled_specialists: [],
+  enabled_subagents: [],
   max_iterations: 25,
   approval_mode: "auto",
   model: null,
@@ -477,13 +477,13 @@ export function getWorkspaceRecord(workspaceId: string) {
   const database = getLocalDb();
   const row = database
     .prepare(
-      `SELECT id, specialist_id, name, status, configurations, data, updated_at
+      `SELECT id, subagent_id, name, status, configurations, data, updated_at
        FROM workspaces WHERE id = ? LIMIT 1`,
     )
     .get(workspaceId) as
     | {
         id: string;
-        specialist_id: string;
+        subagent_id: string;
         name: string;
         status: string;
         configurations: string;
@@ -496,7 +496,7 @@ export function getWorkspaceRecord(workspaceId: string) {
 
   return {
     id: row.id,
-    specialistId: row.specialist_id,
+    subagentId: row.subagent_id,
     name: row.name,
     status: row.status,
     configurations: readJson<Record<string, unknown>>(row.configurations, {}),

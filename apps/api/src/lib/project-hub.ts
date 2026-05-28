@@ -1,5 +1,5 @@
 /**
- * Project hub — aggregates gtSession-linked specialist workspaces with
+ * Project hub — aggregates gtSession-linked subagent workspaces with
  * recent messages and artifact summaries for GT management + UI review.
  */
 
@@ -20,7 +20,7 @@ export interface GtSessionEntry {
 
 export interface GtSessionShape {
   projectName?: string;
-  specialists?: Record<string, GtSessionEntry>;
+  subagents?: Record<string, GtSessionEntry>;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -34,7 +34,7 @@ export interface ProjectArtifactSummary {
 }
 
 export interface ProjectAgentCard {
-  specialistId: string;
+  subagentId: string;
   workspaceId: string;
   workspaceName: string;
   lastInvokedAt?: string;
@@ -70,10 +70,10 @@ function readGtSession(gtWorkspaceId: string): GtSessionShape | null {
 }
 
 function summarizeArtifacts(
-  specialistId: string,
+  subagentId: string,
   configurations: Record<string, unknown>,
 ): ProjectArtifactSummary[] {
-  const preferred = SPECIALIST_ARTIFACT_HINTS[specialistId] ?? [];
+  const preferred = SPECIALIST_ARTIFACT_HINTS[subagentId] ?? [];
   const keys = preferred.length
     ? preferred
     : Object.keys(COLLECTION_REGISTRY).filter((k) => k !== "gtSession");
@@ -124,23 +124,23 @@ function summarizeArtifacts(
 }
 
 function buildAgentSuggestions(
-  specialistId: string,
+  subagentId: string,
   workspaceId: string,
   workspaceName: string,
 ): string[] {
   return [
-    `action:instruct-agent:${specialistId}:${workspaceId}:Instruct ${workspaceName}`,
-    `action:review-agent:${specialistId}:${workspaceId}:Review ${workspaceName}`,
-    `action:open-specialist:${specialistId}:${workspaceId}:Open ${workspaceName}`,
+    `action:instruct-agent:${subagentId}:${workspaceId}:Instruct ${workspaceName}`,
+    `action:review-agent:${subagentId}:${workspaceId}:Review ${workspaceName}`,
+    `action:open-subagent:${subagentId}:${workspaceId}:Open ${workspaceName}`,
   ];
 }
 
 export function buildProjectHub(gtWorkspaceId: string): ProjectHubSnapshot {
   const session = readGtSession(gtWorkspaceId);
-  const specialists = session?.specialists ?? {};
+  const subagents = session?.subagents ?? {};
   const agents: ProjectAgentCard[] = [];
 
-  for (const [specialistId, entry] of Object.entries(specialists)) {
+  for (const [subagentId, entry] of Object.entries(subagents)) {
     if (!entry?.workspaceId) continue;
 
     const record = getWorkspaceRecord(entry.workspaceId);
@@ -151,10 +151,10 @@ export function buildProjectHub(gtWorkspaceId: string): ProjectHubSnapshot {
       entry.workspaceName || record?.name || `Workspace ${entry.workspaceId.slice(0, 8)}`;
 
     const recentMessages = listWorkspaceMessages(entry.workspaceId, 6);
-    const artifacts = summarizeArtifacts(specialistId, configurations);
+    const artifacts = summarizeArtifacts(subagentId, configurations);
 
     agents.push({
-      specialistId,
+      subagentId,
       workspaceId: entry.workspaceId,
       workspaceName,
       lastInvokedAt: entry.lastInvokedAt,
@@ -168,7 +168,7 @@ export function buildProjectHub(gtWorkspaceId: string): ProjectHubSnapshot {
       })),
       artifacts,
       suggestions: buildAgentSuggestions(
-        specialistId,
+        subagentId,
         entry.workspaceId,
         workspaceName,
       ),
@@ -183,7 +183,7 @@ export function buildProjectHub(gtWorkspaceId: string): ProjectHubSnapshot {
 
   const suggestions: string[] = [];
   if (agents.length === 0) {
-    suggestions.push("Start a project by asking me to delegate to a specialist");
+    suggestions.push("Start a project by asking me to delegate to a subagent");
   } else {
     for (const agent of agents.slice(0, 4)) {
       suggestions.push(...agent.suggestions);

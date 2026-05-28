@@ -8,7 +8,7 @@ import {
   enrichMainAssistantConfig,
   MAIN_ASSISTANT_KIND,
 } from "../agent-spawn.js";
-import { resolveGatewaySpecialistId, resolveToolHostWorkspaceId } from "../tool-host/resolve-specialist-id.js";
+import { resolveGatewaySubagentId, resolveToolHostWorkspaceId } from "../tool-host/resolve-subagent-id.js";
 import {
   ensureWorkspaceForToolHost,
   type WorkspaceSnapshot,
@@ -18,14 +18,14 @@ import { httpError } from "../../routes/http-error.js";
 import { deleteSessionsForWorkspace } from "./session-store.js";
 
 export async function spawnInstance(dto: SpawnInstanceDto) {
-  if (!dto.workspaceId || !dto.specialistId || !dto.config) {
+  if (!dto.workspaceId || !dto.subagentId || !dto.config) {
     throw httpError(
-      "Missing required fields: workspaceId, specialistId, config",
+      "Missing required fields: workspaceId, subagentId, config",
       400,
     );
   }
 
-  const gatewaySpecialistId = resolveGatewaySpecialistId(dto.specialistId);
+  const gatewaySubagentId = resolveGatewaySubagentId(dto.subagentId);
 
   const scopeWorkspaceId = resolveToolHostWorkspaceId(dto.workspaceId);
   const snapshot =
@@ -37,24 +37,24 @@ export async function spawnInstance(dto: SpawnInstanceDto) {
 
   ensureWorkspaceForToolHost({
     scopeWorkspaceId,
-    gatewaySpecialistId,
+    gatewaySubagentId,
     snapshot,
   });
 
   const config =
-    gatewaySpecialistId === MAIN_ASSISTANT_KIND
+    gatewaySubagentId === MAIN_ASSISTANT_KIND
       ? await enrichMainAssistantConfig(dto.config)
       : dto.config;
 
   const instance = await getOrStartInstance(
     dto.workspaceId,
-    gatewaySpecialistId,
+    gatewaySubagentId,
     config,
   );
 
   return {
     id: instance.id,
-    specialistId: instance.specialistId,
+    subagentId: instance.subagentId,
     organizationId: instance.organizationId,
     runner: instance.runner,
     gatewayHost: instance.gatewayHost,

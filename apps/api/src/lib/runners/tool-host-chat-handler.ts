@@ -1,5 +1,5 @@
 /**
- * Shared adapter chat handler — all non-Pi runners load specialist tools from
+ * Shared adapter chat handler — all non-Pi runners load subagent tools from
  * the central Tool Host (same catalog Pi registers in-process).
  */
 

@@ -1,5 +1,5 @@
-import { applyDocumentEdits } from "@dude/specialist-document-writer/lib/apply-document-edits";
-import type { WriterDocumentContent } from "@dude/specialist-document-writer/types";
+import { applyDocumentEdits } from "@dude/subagent-document-writer/lib/apply-document-edits";
+import type { WriterDocumentContent } from "@dude/subagent-document-writer/types";
 
 type EditBatch = { edits?: unknown[] };
 

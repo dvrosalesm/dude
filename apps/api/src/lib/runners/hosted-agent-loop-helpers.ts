@@ -41,7 +41,7 @@ export function buildSkillPackHint(skillPaths: string[]): string {
   return (
     `\n\nSpecialist skill packs: ${names.join(", ")}. ` +
     "Use the registered tools to read and update the workspace; " +
-    "follow these workflows for multi-step specialist tasks."
+    "follow these workflows for multi-step subagent tasks."
   );
 }
 
@@ -57,7 +57,7 @@ export function buildHostedSystemPrompt(
   const toolNames = catalog.tools.map((tool) => tool.name).join(", ");
   const toolHint = toolNames
     ? `\n\nYou have ${catalog.tools.length} tools: ${toolNames}. ` +
-      "Use them to complete specialist work. Call finish_turn when done."
+      "Use them to complete subagent work. Call finish_turn when done."
     : "";
 
   return `${base}${buildSkillPackHint(catalog.skillPaths)}${toolHint}`;

@@ -1,8 +1,8 @@
-import type { SpecialistRegistry } from "./registry.js";
-import type { ClientRouteDescriptor, HomeGridDef, SpecialistMeta } from "./types.js";
+import type { SubagentRegistry } from "./registry.js";
+import type { ClientRouteDescriptor, HomeGridDef, SubagentMeta } from "./types.js";
 
-export function getSpecialistMeta(registry: SpecialistRegistry): Record<string, SpecialistMeta> {
-  const meta: Record<string, SpecialistMeta> = {};
+export function getSubagentMeta(registry: SubagentRegistry): Record<string, SubagentMeta> {
+  const meta: Record<string, SubagentMeta> = {};
 
   for (const plugin of registry.list()) {
     meta[plugin.id] = {
@@ -15,7 +15,7 @@ export function getSpecialistMeta(registry: SpecialistRegistry): Record<string, 
   return meta;
 }
 
-export function getHomeGridDefs(registry: SpecialistRegistry): HomeGridDef[] {
+export function getHomeGridDefs(registry: SubagentRegistry): HomeGridDef[] {
   return registry.list().map((plugin) => ({
     id: plugin.id,
     path: plugin.path,
@@ -25,19 +25,19 @@ export function getHomeGridDefs(registry: SpecialistRegistry): HomeGridDef[] {
   }));
 }
 
-export function getClientRoutes(registry: SpecialistRegistry): ClientRouteDescriptor[] {
+export function getClientRoutes(registry: SubagentRegistry): ClientRouteDescriptor[] {
   const routes: ClientRouteDescriptor[] = [];
 
   for (const plugin of registry.list()) {
     routes.push({
-      path: `/chat/specialists/${plugin.path}`,
-      specialistId: plugin.id,
+      path: `/chat/subagents/${plugin.path}`,
+      subagentId: plugin.id,
       kind: "list",
       component: plugin.ui.ListPage,
     });
     routes.push({
-      path: `/chat/specialists/${plugin.path}/:workspaceId`,
-      specialistId: plugin.id,
+      path: `/chat/subagents/${plugin.path}/:workspaceId`,
+      subagentId: plugin.id,
       kind: "workspace",
       component: plugin.ui.WorkspacePage,
     });
@@ -45,8 +45,8 @@ export function getClientRoutes(registry: SpecialistRegistry): ClientRouteDescri
     if (plugin.ui.nestedRoutes) {
       for (const [nestedKey, component] of Object.entries(plugin.ui.nestedRoutes)) {
         routes.push({
-          path: `/chat/specialists/${plugin.path}/:workspaceId/${nestedKey}`,
-          specialistId: plugin.id,
+          path: `/chat/subagents/${plugin.path}/:workspaceId/${nestedKey}`,
+          subagentId: plugin.id,
           kind: "nested",
           nestedKey,
           component,
@@ -58,11 +58,11 @@ export function getClientRoutes(registry: SpecialistRegistry): ClientRouteDescri
   return routes;
 }
 
-export function getSpecialistSummaries(registry: SpecialistRegistry) {
+export function getSubagentSummaries(registry: SubagentRegistry) {
   return registry
     .list()
     .map((plugin) => plugin.local?.summary)
     .filter(Boolean);
 }
 
-export type { ClientRouteDescriptor, HomeGridDef, SpecialistMeta };
+export type { ClientRouteDescriptor, HomeGridDef, SubagentMeta };

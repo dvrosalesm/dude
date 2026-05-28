@@ -16,9 +16,9 @@ export interface ToolDefinition {
 }
 
 /**
- * A specialist setup function — receives the pi context and registers its tools.
+ * A subagent setup function — receives the pi context and registers its tools.
  */
-export type SpecialistSetup = (pi: PiContext) => void;
+export type SubagentSetup = (pi: PiContext) => void;
 
 /**
  * Minimal interface for the pi extension context.
@@ -28,10 +28,10 @@ export interface PiContext {
 }
 
 // ---------------------------------------------------------------------------
-// Declarative specialist configuration
+// Declarative subagent configuration
 // ---------------------------------------------------------------------------
 
-/** Base tool IDs available to all specialists. */
+/** Base tool IDs available to all subagents. */
 export type BaseToolId =
   | "web_search"
   | "web_scrape"
@@ -39,30 +39,30 @@ export type BaseToolId =
   | "exa_search"
   | "workspace_read"
   | "workspace_save"
-  | "read_specialist_artifact"
+  | "read_subagent_artifact"
   | "save_memory"
   | "list_memories";
 
 /**
- * Declarative specialist configuration.
- * Instead of imperative setup(pi) functions, specialists declare what they need.
+ * Declarative subagent configuration.
+ * Instead of imperative setup(pi) functions, subagents declare what they need.
  */
-export interface SpecialistDeclaration {
-  /** Which shared base tools this specialist gets. */
+export interface SubagentDeclaration {
+  /** Which shared base tools this subagent gets. */
   baseTools: BaseToolId[];
   /** Custom tool factory functions for specialist-specific behavior. */
   customTools: (() => ToolDefinition)[];
-  /** Which workspace collections this specialist can write to (for documentation). */
+  /** Which workspace collections this subagent can write to (for documentation). */
   collections: string[];
   /**
    * Absolute filesystem paths to skill directories Pi SDK should load for this
-   * specialist. Each entry is a directory that either contains a SKILL.md
+   * subagent. Each entry is a directory that either contains a SKILL.md
    * (treated as one skill) or has subdirectories with SKILL.md files. Pi
    * appends a discovery XML block to the system prompt; the agent expands
    * each skill's body into context only when it invokes it.
    *
    * Resolve paths with `resolveGatewaySkillPaths` from `@dude/sdk/gateway-runtime`
-   * relative to each specialist's `gateway/` directory — never hard-code absolutes.
+   * relative to each subagent's `gateway/` directory — never hard-code absolutes.
    */
   skillPaths?: string[];
 }

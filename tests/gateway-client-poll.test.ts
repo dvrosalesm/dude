@@ -25,7 +25,7 @@ describe("chat state buffer snapshot cursor", () => {
 describe("liveTraceLabel", () => {
   it("prefers the latest non-generic step over Thinking", async () => {
     const { liveTraceLabel } = await import(
-      "../packages/chat/src/specialists/specialist-chat/trace-steps.ts"
+      "../packages/chat/src/subagents/subagent-chat/trace-steps.ts"
     );
 
     expect(

@@ -1,43 +1,43 @@
 import type {
-  SpecialistHostConfig,
-  SpecialistPlugin,
+  SubagentHostConfig,
+  SubagentPlugin,
 } from "./types.js";
 
-export function defineSpecialist(plugin: SpecialistPlugin): SpecialistPlugin {
+export function defineSubagent(plugin: SubagentPlugin): SubagentPlugin {
   return plugin;
 }
 
-export function defineSpecialistHost(config: SpecialistHostConfig): SpecialistHostConfig {
+export function defineSubagentHost(config: SubagentHostConfig): SubagentHostConfig {
   const seenIds = new Set<string>();
   const seenPaths = new Set<string>();
 
-  for (const specialist of config.specialists) {
-    if (seenIds.has(specialist.id)) {
-      throw new Error(`Duplicate specialist id: ${specialist.id}`);
+  for (const subagent of config.subagents) {
+    if (seenIds.has(subagent.id)) {
+      throw new Error(`Duplicate subagent id: ${subagent.id}`);
     }
-    if (seenPaths.has(specialist.path)) {
-      throw new Error(`Duplicate specialist path: ${specialist.path}`);
+    if (seenPaths.has(subagent.path)) {
+      throw new Error(`Duplicate subagent path: ${subagent.path}`);
     }
-    seenIds.add(specialist.id);
-    seenPaths.add(specialist.path);
+    seenIds.add(subagent.id);
+    seenPaths.add(subagent.path);
   }
 
   return config;
 }
 
-export function createSpecialistRegistry(config: SpecialistHostConfig) {
-  const specialists = [...config.specialists];
-  const byId = new Map(specialists.map((s) => [s.id, s]));
-  const byPath = new Map(specialists.map((s) => [s.path, s]));
+export function createSubagentRegistry(config: SubagentHostConfig) {
+  const subagents = [...config.subagents];
+  const byId = new Map(subagents.map((s) => [s.id, s]));
+  const byPath = new Map(subagents.map((s) => [s.path, s]));
 
   return {
-    list(): SpecialistPlugin[] {
-      return specialists;
+    list(): SubagentPlugin[] {
+      return subagents;
     },
-    getById(id: string): SpecialistPlugin | undefined {
+    getById(id: string): SubagentPlugin | undefined {
       return byId.get(id);
     },
-    getByPath(path: string): SpecialistPlugin | undefined {
+    getByPath(path: string): SubagentPlugin | undefined {
       return byPath.get(path) ?? byId.get(path);
     },
     resolveId(input: string): string | null {
@@ -47,9 +47,9 @@ export function createSpecialistRegistry(config: SpecialistHostConfig) {
   };
 }
 
-export type SpecialistRegistry = ReturnType<typeof createSpecialistRegistry>;
+export type SubagentRegistry = ReturnType<typeof createSubagentRegistry>;
 
-export function getManageableSpecialists(registry: SpecialistRegistry) {
+export function getManageableSubagents(registry: SubagentRegistry) {
   return registry.list().map((s) => ({
     id: s.id,
     path: s.path,
@@ -59,16 +59,16 @@ export function getManageableSpecialists(registry: SpecialistRegistry) {
   }));
 }
 
-export function getDelegableSpecialists(registry: SpecialistRegistry) {
-  return getManageableSpecialists(registry).filter((s) => s.delegable !== false);
+export function getDelegableSubagents(registry: SubagentRegistry) {
+  return getManageableSubagents(registry).filter((s) => s.delegable !== false);
 }
 
-export function isManageableSpecialist(registry: SpecialistRegistry, id: string) {
+export function isManageableSubagent(registry: SubagentRegistry, id: string) {
   return registry.getById(id) != null;
 }
 
-export function resolveManageableSpecialistId(registry: SpecialistRegistry, input: string) {
+export function resolveManageableSubagentId(registry: SubagentRegistry, input: string) {
   return registry.resolveId(input);
 }
 
-export type { ManageableSpecialist, SpecialistPlugin, SpecialistHostConfig } from "./types.js";
+export type { ManageableSubagent, SubagentPlugin, SubagentHostConfig } from "./types.js";

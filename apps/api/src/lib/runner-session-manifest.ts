@@ -19,9 +19,9 @@ import {
 } from "@dude/sdk/runner";
 import { join } from "node:path";
 import {
-  resolveGatewaySpecialistId,
+  resolveGatewaySubagentId,
   resolveToolHostWorkspaceId,
-} from "./tool-host/resolve-specialist-id.js";
+} from "./tool-host/resolve-subagent-id.js";
 import { getLocalDbPath } from "./local-sqlite.js";
 
 export {
@@ -64,7 +64,7 @@ export function buildDispatchCliCommand(manifestPath: string): string {
 
 export interface BuildRunnerSessionManifestInput {
   workspaceId: string;
-  specialistId: string;
+  subagentId: string;
   organizationId: string;
   runner: string;
   gatewayPort: number;
@@ -76,11 +76,11 @@ export function buildRunnerSessionManifest(
   input: BuildRunnerSessionManifestInput,
 ): RunnerSessionManifest {
   const workspaceId = resolveToolHostWorkspaceId(input.workspaceId);
-  const specialistId = resolveGatewaySpecialistId(input.specialistId);
+  const subagentId = resolveGatewaySubagentId(input.subagentId);
   const dbPath = input.dbPath?.trim() || getLocalDbPath();
   const internalBaseUrl = resolveInternalApiBaseUrl();
   const sessionId = createHash("sha256")
-    .update(`${workspaceId}:${specialistId}:${input.runner}:${randomUUID()}`)
+    .update(`${workspaceId}:${subagentId}:${input.runner}:${randomUUID()}`)
     .digest("hex")
     .slice(0, 16);
 
@@ -88,7 +88,7 @@ export function buildRunnerSessionManifest(
     version: RUNNER_SESSION_MANIFEST_VERSION,
     sessionId,
     workspaceId,
-    specialistId,
+    subagentId,
     organizationId: input.organizationId,
     runner: input.runner,
     gatewayPort: input.gatewayPort,
@@ -150,7 +150,7 @@ export function applyRunnerSessionManifestToEnv(
 ): void {
   process.env.DUDE_SESSION_MANIFEST_PATH = manifestPath;
   process.env.WORKSPACE_ID = manifest.workspaceId;
-  process.env.SPECIALIST_ID = manifest.specialistId;
+  process.env.SPECIALIST_ID = manifest.subagentId;
   process.env.ORGANIZATION_ID = manifest.organizationId;
   process.env.RUNNER_ID = manifest.runner;
   process.env.GATEWAY_PORT = String(manifest.gatewayPort);
@@ -170,7 +170,7 @@ export function sessionHeadersFromManifest(
     [RUNNER_SESSION_HEADERS.manifestVersion]: String(manifest.version),
     [RUNNER_SESSION_HEADERS.sessionId]: manifest.sessionId,
     [AGENT_TOOL_HOST_HEADERS.workspaceId]: manifest.workspaceId,
-    [AGENT_TOOL_HOST_HEADERS.specialistId]: manifest.specialistId,
+    [AGENT_TOOL_HOST_HEADERS.subagentId]: manifest.subagentId,
     [AGENT_TOOL_HOST_HEADERS.organizationId]: manifest.organizationId,
     [AGENT_TOOL_HOST_HEADERS.runnerId]: manifest.runner,
     [RUNNER_SESSION_HEADERS.dbLocalPath]: manifest.internalApi.dbPath,

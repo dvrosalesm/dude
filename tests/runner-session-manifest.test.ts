@@ -39,7 +39,7 @@ describe("runner session manifest", () => {
 
     const manifest = buildRunnerSessionManifest({
       workspaceId: "ws-test",
-      specialistId: "document-editor",
+      subagentId: "document-editor",
       organizationId: "local",
       runner: "codex",
       gatewayPort: 42722,
@@ -63,7 +63,7 @@ describe("runner session manifest", () => {
 
     const manifest = buildRunnerSessionManifest({
       workspaceId: "ws-presentation-editor-abc",
-      specialistId: "document-editor",
+      subagentId: "document-editor",
       organizationId: "local",
       runner: "codex",
       gatewayPort: 42722,
@@ -72,7 +72,7 @@ describe("runner session manifest", () => {
 
     expect(manifest.version).toBe(RUNNER_SESSION_MANIFEST_VERSION);
     expect(manifest.workspaceId).toBe("ws-presentation-editor-abc");
-    expect(manifest.specialistId).toBe("document-editor");
+    expect(manifest.subagentId).toBe("document-editor");
     expect(manifest.gatewayPort).toBe(42722);
     expect(manifest.internalApi.baseUrl).toBe("http://127.0.0.1:8787");
     expect(manifest.internalApi.dbPath).toBe("/tmp/electron/dude-local.sqlite");
@@ -83,7 +83,7 @@ describe("runner session manifest", () => {
 
     expect(sessionHeadersFromManifest(manifest)).toMatchObject({
       "x-workspace-id": "ws-presentation-editor-abc",
-      "x-specialist-id": "document-editor",
+      "x-subagent-id": "document-editor",
       "x-organization-id": "local",
       "x-runner-id": "codex",
       "x-db-local-path": "/tmp/electron/dude-local.sqlite",

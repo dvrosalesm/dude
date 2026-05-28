@@ -85,18 +85,18 @@ const eslintConfig = tseslint.config(
                 "Next.js shims were removed. Use @dude/app-navigation, react-router-dom, or plain React.",
             },
             {
-              group: ["@dude/specialist-*/server", "@dude/specialist-*/server.js"],
+              group: ["@dude/subagent-*/server", "@dude/subagent-*/server.js"],
               message:
-                "Client code must not import specialist server entrypoints. Register plugins via specialists.config.client.ts (index exports only).",
+                "Client code must not import subagent server entrypoints. Register plugins via subagents.config.client.ts (index exports only).",
             },
             {
               group: [
-                "**/specialists.config.ts",
-                "../../specialists.config",
-                "../../../specialists.config",
+                "**/subagents.config.ts",
+                "../../subagents.config",
+                "../../../subagents.config",
               ],
               message:
-                "Client code must import specialists.config.client.ts, not the server host config.",
+                "Client code must import subagents.config.client.ts, not the server host config.",
             },
           ],
         },

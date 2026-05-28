@@ -13,7 +13,7 @@ export type ApprovalMode = "auto" | "draft" | "per-step";
 export interface AssistantConfig {
   system_prompt: string;
   enabled: boolean;
-  enabled_specialists: string[];
+  enabled_subagents: string[];
   max_iterations: number;
   approval_mode: ApprovalMode;
   model: string | null;
@@ -24,7 +24,7 @@ export interface AssistantConfig {
 export interface AssistantConfigPatch {
   system_prompt?: string;
   enabled?: boolean;
-  enabled_specialists?: string[];
+  enabled_subagents?: string[];
   max_iterations?: number;
   approval_mode?: ApprovalMode;
   model?: string | null;
@@ -35,7 +35,7 @@ function mapConfig(row: LocalAssistantConfig): AssistantConfig {
   return {
     system_prompt: row.system_prompt,
     enabled: row.enabled,
-    enabled_specialists: row.enabled_specialists,
+    enabled_subagents: row.enabled_subagents,
     max_iterations: row.max_iterations,
     approval_mode: row.approval_mode,
     model: row.model,

@@ -50,7 +50,7 @@ export async function getAgentCatalog(request: Request) {
     return Response.json(
       {
         error:
-          "Missing session headers: x-workspace-id, x-specialist-id, x-organization-id",
+          "Missing session headers: x-workspace-id, x-subagent-id, x-organization-id",
       },
       { status: 400 },
     );
@@ -77,7 +77,7 @@ export async function postAgentDispatch(request: Request) {
     return Response.json(
       {
         error:
-          "Missing session headers: x-workspace-id, x-specialist-id, x-organization-id",
+          "Missing session headers: x-workspace-id, x-subagent-id, x-organization-id",
       },
       { status: 400 },
     );

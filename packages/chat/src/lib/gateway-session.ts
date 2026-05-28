@@ -1,60 +1,60 @@
-import type { SpecialistId } from "@dude/client-types";
+import type { SubagentId } from "@dude/client-types";
 import {
   MAIN_ASSISTANT_KIND,
   buildMainAssistantInstanceId,
-  buildSpecialistInstanceId,
+  buildSubagentInstanceId,
   canonicalAgentKind,
 } from "@dude/sdk/runner";
 
 export const GATEWAY_SESSION_PREFIX = "dude.gateway-session.v1";
 export const GATEWAY_USER_ID = "local-user";
 
-function gatewaySpecialistId(specialistId: SpecialistId) {
-  return canonicalAgentKind(specialistId);
+function gatewaySubagentId(subagentId: SubagentId) {
+  return canonicalAgentKind(subagentId);
 }
 
 function gatewayWorkspaceId(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ) {
-  const kind = gatewaySpecialistId(specialistId);
+  const kind = gatewaySubagentId(subagentId);
   const scopeId = workspaceId ?? GATEWAY_USER_ID;
 
   if (kind === MAIN_ASSISTANT_KIND) {
     return buildMainAssistantInstanceId(scopeId);
   }
 
-  return buildSpecialistInstanceId(kind, scopeId);
+  return buildSubagentInstanceId(kind, scopeId);
 }
 
 export function gatewaySessionKey(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ) {
-  return `${GATEWAY_SESSION_PREFIX}:${gatewayWorkspaceId(specialistId, workspaceId)}`;
+  return `${GATEWAY_SESSION_PREFIX}:${gatewayWorkspaceId(subagentId, workspaceId)}`;
 }
 
 export function readGatewaySessionId(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ) {
   if (typeof window === "undefined") return undefined;
-  return window.localStorage.getItem(gatewaySessionKey(specialistId, workspaceId)) || undefined;
+  return window.localStorage.getItem(gatewaySessionKey(subagentId, workspaceId)) || undefined;
 }
 
 export function writeGatewaySessionId(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   sessionId: string,
   workspaceId?: string,
 ) {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(gatewaySessionKey(specialistId, workspaceId), sessionId);
+  window.localStorage.setItem(gatewaySessionKey(subagentId, workspaceId), sessionId);
 }
 
 export function clearGatewaySessionId(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ) {
   if (typeof window === "undefined") return;
-  window.localStorage.removeItem(gatewaySessionKey(specialistId, workspaceId));
+  window.localStorage.removeItem(gatewaySessionKey(subagentId, workspaceId));
 }

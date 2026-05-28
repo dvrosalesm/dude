@@ -1,5 +1,5 @@
 /**
- * Keep specialist workspace rows in local SQLite aligned with agent tool-host reads/writes.
+ * Keep subagent workspace rows in local SQLite aligned with agent tool-host reads/writes.
  *
  * The UI stores workspaces in the same SQLite file (desktop) or in browser local state (dev).
  * Agent tools call /v1/internal/workspace/:id/* which requires a workspace row with
@@ -12,17 +12,17 @@ import {
   setWorkspaceConfigurations,
 } from "./local-sqlite.js";
 
-export function uiSpecialistIdFromGateway(gatewayKind: string): string {
+export function uiSubagentIdFromGateway(gatewayKind: string): string {
   if (gatewayKind === "document-editor") return "presentation-editor";
   return gatewayKind;
 }
 
 export function buildDefaultWorkspaceConfigurations(
-  specialistId: string,
+  subagentId: string,
   workspaceId: string,
 ): Record<string, unknown> {
-  const base = { specialist: specialistId, version: 1, workspaceId };
-  switch (specialistId) {
+  const base = { subagent: subagentId, version: 1, workspaceId };
+  switch (subagentId) {
     case "document-writer":
       return {
         ...base,
@@ -53,7 +53,7 @@ export function buildDefaultWorkspaceConfigurations(
 
 export interface WorkspaceSnapshot {
   id: string;
-  specialistId: string;
+  subagentId: string;
   name?: string;
   status?: "draft" | "active";
   configurations?: Record<string, unknown>;
@@ -72,15 +72,15 @@ function mergeConfigurations(
  */
 export function ensureWorkspaceForToolHost(input: {
   scopeWorkspaceId: string;
-  gatewaySpecialistId: string;
+  gatewaySubagentId: string;
   snapshot?: WorkspaceSnapshot | null;
 }): void {
   const scopeWorkspaceId = input.scopeWorkspaceId.trim();
   if (!scopeWorkspaceId) return;
 
-  const uiSpecialistId = uiSpecialistIdFromGateway(input.gatewaySpecialistId);
+  const uiSubagentId = uiSubagentIdFromGateway(input.gatewaySubagentId);
   const defaults = buildDefaultWorkspaceConfigurations(
-    uiSpecialistId,
+    uiSubagentId,
     scopeWorkspaceId,
   );
 
@@ -96,14 +96,14 @@ export function ensureWorkspaceForToolHost(input: {
     const configurations = mergeConfigurations(defaults, snapshotConfig);
     createWorkspaceRecord({
       id: scopeWorkspaceId,
-      specialistId:
-        snapshot?.specialistId?.trim() || uiSpecialistId,
+      subagentId:
+        snapshot?.subagentId?.trim() || uiSubagentId,
       name: snapshot?.name?.trim() || "Untitled workspace",
       status: snapshot?.status === "active" ? "active" : "draft",
       configurations,
     });
     console.log(
-      `[workspace-sync] Created SQLite workspace ${scopeWorkspaceId} for ${uiSpecialistId}`,
+      `[workspace-sync] Created SQLite workspace ${scopeWorkspaceId} for ${uiSubagentId}`,
     );
     return;
   }

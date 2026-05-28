@@ -127,7 +127,7 @@ export async function runHostedAgentLoop(
 
   input.sendEvent?.("thinking_start", {});
   steps.push(
-    `Loaded ${catalog.tools.length} tools from Tool Host (${config.specialistId})`,
+    `Loaded ${catalog.tools.length} tools from Tool Host (${config.subagentId})`,
   );
 
   beginActiveTurn({

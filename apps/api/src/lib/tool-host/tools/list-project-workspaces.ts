@@ -1,5 +1,5 @@
 /**
- * list_project_workspaces — returns all specialist workspaces linked in
+ * list_project_workspaces — returns all subagent workspaces linked in
  * the active GT project session (gtSession), enriched with recent activity.
  */
 
@@ -14,9 +14,9 @@ export function createListProjectWorkspacesTool(): ToolDefinition {
     name: "list_project_workspaces",
     label: "List Project Workspaces",
     description:
-      "List every specialist workspace linked to the current GT project session. " +
+      "List every subagent workspace linked to the current GT project session. " +
       "Use this when the user asks what workspaces are active, wants to manage " +
-      "the project, review specialist output, or send follow-up instructions to " +
+      "the project, review subagent output, or send follow-up instructions to " +
       "an internal agent. Returns agent cards with recent messages and artifact summaries.",
     parameters: Type.Object({}),
     execute: async () => {
@@ -34,7 +34,7 @@ export function createListProjectWorkspacesTool(): ToolDefinition {
       }
 
       const hub = result as {
-        agents?: Array<{ specialistId: string; workspaceName: string }>;
+        agents?: Array<{ subagentId: string; workspaceName: string }>;
         suggestions?: string[];
       };
 
@@ -44,9 +44,9 @@ export function createListProjectWorkspacesTool(): ToolDefinition {
           hub.agents?.length
             ? "Summarize the active project workspaces for the user. " +
               "Include the suggestions array as clickable action buttons when present. " +
-              "To instruct or review an agent, call the specialist tool or review_specialist_work."
-            : "No specialist workspaces are linked yet. Ask which specialist the user wants, " +
-              "then call list-specialist-workspaces and create or pick a workspace before delegating.",
+              "To instruct or review an agent, call the subagent tool or review_subagent_work."
+            : "No subagent workspaces are linked yet. Ask which subagent the user wants, " +
+              "then call list-subagent-workspaces and create or pick a workspace before delegating.",
       });
     },
   };

@@ -1,4 +1,4 @@
-export type SpecialistId =
+export type SubagentId =
   | "main-assistant"
   | "data-analyst"
   | "document-writer"
@@ -27,7 +27,7 @@ export interface LocalChatMessage {
   /** User-visible text when `content` includes hidden workspace context. */
   displayContent?: string;
   createdAt: string;
-  specialistId: SpecialistId;
+  subagentId: SubagentId;
   pinned?: boolean;
   images?: string[];
   files?: Array<{ name: string; mimeType: string }>;
@@ -67,7 +67,7 @@ export interface ProjectArtifactSummary {
 }
 
 export interface ProjectAgentCard {
-  specialistId: string;
+  subagentId: string;
   workspaceId: string;
   workspaceName: string;
   lastInvokedAt?: string;
@@ -87,17 +87,17 @@ export interface ProjectHubSnapshot {
   suggestions: string[];
 }
 
-export interface SpecialistSummary {
-  id: SpecialistId;
+export interface SubagentSummary {
+  id: SubagentId;
   name: string;
   handle: string;
   scope: string;
   status: "ready" | "draft";
 }
 
-export interface LocalSpecialistWorkspace {
+export interface LocalSubagentWorkspace {
   id: string;
-  specialistId: SpecialistId;
+  subagentId: SubagentId;
   name: string;
   createdAt: string;
   updatedAt: string;
@@ -124,7 +124,7 @@ export interface GatewayHistoryMessage {
 }
 
 export interface SendLocalMessageInput {
-  specialistId: SpecialistId;
+  subagentId: SubagentId;
   workspaceId?: string;
   content: string;
   /** User-visible chat text — omit when identical to `content`. */
@@ -159,23 +159,23 @@ export interface SendLocalMessageResult {
 
 export interface LocalChatRuntime {
   listWorkspaces(
-    specialistId: SpecialistId,
-  ): Promise<LocalSpecialistWorkspace[]>;
-  getWorkspace(workspaceId: string): Promise<LocalSpecialistWorkspace | null>;
+    subagentId: SubagentId,
+  ): Promise<LocalSubagentWorkspace[]>;
+  getWorkspace(workspaceId: string): Promise<LocalSubagentWorkspace | null>;
   createWorkspace(input: {
-    specialistId: SpecialistId;
+    subagentId: SubagentId;
     name?: string;
     configurations?: Record<string, unknown>;
-  }): Promise<LocalSpecialistWorkspace>;
+  }): Promise<LocalSubagentWorkspace>;
   updateWorkspace(
     workspaceId: string,
     updates: Partial<
-      Pick<LocalSpecialistWorkspace, "name" | "status" | "configurations">
+      Pick<LocalSubagentWorkspace, "name" | "status" | "configurations">
     >,
-  ): Promise<LocalSpecialistWorkspace | null>;
+  ): Promise<LocalSubagentWorkspace | null>;
   deleteWorkspace(workspaceId: string): Promise<boolean>;
   listMessages(
-    specialistId: SpecialistId,
+    subagentId: SubagentId,
     workspaceId?: string,
   ): Promise<LocalChatMessage[]>;
   sendMessage(input: SendLocalMessageInput): Promise<SendLocalMessageResult>;
@@ -185,7 +185,7 @@ export interface LocalChatRuntime {
     response: UiInputResponsePayload,
   ): Promise<void>;
   clearThread(
-    specialistId: SpecialistId,
+    subagentId: SubagentId,
     workspaceId?: string,
   ): Promise<LocalChatMessage[]>;
   saveFile(
@@ -195,12 +195,12 @@ export interface LocalChatRuntime {
   getFile(fileId: string): Promise<LocalStoredFile | null>;
   deleteFile(fileId: string): Promise<boolean>;
   fetchProjectHub?(
-    specialistId: SpecialistId,
+    subagentId: SubagentId,
     workspaceId?: string,
   ): Promise<ProjectHubSnapshot | null>;
   /** Re-attach to an in-flight gateway turn after navigating away. */
   resumeActiveTurn?(
-    specialistId: SpecialistId,
+    subagentId: SubagentId,
     workspaceId: string,
   ): Promise<{
     active: boolean;
@@ -209,7 +209,7 @@ export interface LocalChatRuntime {
   }>;
   /** Drop client-side gateway stream state after the user stops a turn. */
   abandonActiveTurn?(
-    specialistId: SpecialistId,
+    subagentId: SubagentId,
     workspaceId?: string,
   ): void;
 }

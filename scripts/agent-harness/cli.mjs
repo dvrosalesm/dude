@@ -4,26 +4,26 @@
  *
  * Usage:
  *   node scripts/agent-harness/cli.mjs status
- *   node scripts/agent-harness/cli.mjs url --specialist document-writer [--workspace <id>]
- *   node scripts/agent-harness/cli.mjs workspaces list --specialist document-writer
- *   node scripts/agent-harness/cli.mjs workspaces create --specialist document-writer --name "Agent test"
- *   node scripts/agent-harness/cli.mjs chat --specialist document-writer --message "Hello" [--workspace <id>]
+ *   node scripts/agent-harness/cli.mjs url --subagent document-writer [--workspace <id>]
+ *   node scripts/agent-harness/cli.mjs workspaces list --subagent document-writer
+ *   node scripts/agent-harness/cli.mjs workspaces create --subagent document-writer --name "Agent test"
+ *   node scripts/agent-harness/cli.mjs chat --subagent document-writer --message "Hello" [--workspace <id>]
  *   node scripts/agent-harness/cli.mjs probe document-writer [--workspace <id>]
- *   node scripts/agent-harness/cli.mjs browser-hints [--specialist document-writer] [--workspace <id>]
+ *   node scripts/agent-harness/cli.mjs browser-hints [--subagent document-writer] [--workspace <id>]
  */
 
 import {
   API_URL,
   CLIENT_URL,
-  SPECIALIST_IDS,
+  SUBAGENT_IDS,
   clientUrlForPath,
-  specialistWorkspacePath,
+  subagentWorkspacePath,
 } from "./lib/env.mjs";
 import {
   createWorkspace,
   listWorkspaces,
   probeHealth,
-  runSpecialistChat,
+  runSubagentChat,
 } from "./lib/api.mjs";
 
 function parseArgs(argv) {
@@ -65,19 +65,19 @@ function print(data, asJson) {
   console.log(JSON.stringify(data, null, 2));
 }
 
-function requireSpecialist(flags) {
-  const specialist = flags.specialist?.trim();
-  if (!specialist) {
+function requireSubagent(flags) {
+  const subagent = flags.subagent?.trim();
+  if (!subagent) {
     throw new Error(
-      `--specialist is required (${SPECIALIST_IDS.join(", ")})`,
+      `--subagent is required (${SUBAGENT_IDS.join(", ")})`,
     );
   }
-  if (!SPECIALIST_IDS.includes(specialist)) {
+  if (!SUBAGENT_IDS.includes(subagent)) {
     throw new Error(
-      `Unknown specialist "${specialist}". Use: ${SPECIALIST_IDS.join(", ")}`,
+      `Unknown subagent "${subagent}". Use: ${SUBAGENT_IDS.join(", ")}`,
     );
   }
-  return specialist;
+  return subagent;
 }
 
 async function probeClient() {
@@ -115,17 +115,17 @@ async function cmdStatus(flags) {
 }
 
 function cmdUrl(flags) {
-  const specialist = flags.specialist?.trim();
+  const subagent = flags.subagent?.trim();
   const workspaceId = flags.workspace?.trim();
-  const path = specialist
-    ? specialistWorkspacePath(specialist, workspaceId)
+  const path = subagent
+    ? subagentWorkspacePath(subagent, workspaceId)
     : "/chat";
   const url = clientUrlForPath(path);
   print(
     {
       url,
       path,
-      specialistId: specialist || null,
+      subagentId: subagent || null,
       workspaceId: workspaceId || null,
     },
     flags.json,
@@ -133,23 +133,23 @@ function cmdUrl(flags) {
 }
 
 async function cmdWorkspaces(sub, flags) {
-  const specialist = requireSpecialist(flags);
+  const subagent = requireSubagent(flags);
 
   if (sub === "list") {
-    const result = await listWorkspaces(specialist);
+    const result = await listWorkspaces(subagent);
     print(result, flags.json);
     return;
   }
 
   if (sub === "create") {
     const name = flags.name?.trim() || `Agent test ${new Date().toISOString()}`;
-    const result = await createWorkspace(specialist, name);
+    const result = await createWorkspace(subagent, name);
     const workspaceId = result?.workspace?.id;
     print(
       {
         ...result,
         openUrl: workspaceId
-          ? clientUrlForPath(specialistWorkspacePath(specialist, workspaceId))
+          ? clientUrlForPath(subagentWorkspacePath(subagent, workspaceId))
           : undefined,
       },
       flags.json,
@@ -161,7 +161,7 @@ async function cmdWorkspaces(sub, flags) {
 }
 
 async function cmdChat(flags) {
-  const specialist = requireSpecialist(flags);
+  const subagent = requireSubagent(flags);
   const message = flags.message?.trim();
   if (!message) {
     throw new Error("--message is required");
@@ -175,15 +175,15 @@ async function cmdChat(flags) {
   print(
     {
       status: "running",
-      specialistId: specialist,
+      subagentId: subagent,
       workspaceId: workspaceId || null,
       message,
     },
     false,
   );
 
-  const result = await runSpecialistChat({
-    specialistId: specialist,
+  const result = await runSubagentChat({
+    subagentId: subagent,
     message,
     workspaceId,
     context: flags.context?.trim(),
@@ -194,7 +194,7 @@ async function cmdChat(flags) {
     {
       ...result,
       openUrl: workspaceId
-        ? clientUrlForPath(specialistWorkspacePath(specialist, workspaceId))
+        ? clientUrlForPath(subagentWorkspacePath(subagent, workspaceId))
         : undefined,
     },
     flags.json,
@@ -231,9 +231,9 @@ async function cmdProbe(name, flags) {
 }
 
 function cmdBrowserHints(flags) {
-  const specialist = flags.specialist?.trim() || "document-writer";
+  const subagent = flags.subagent?.trim() || "document-writer";
   const workspaceId = flags.workspace?.trim();
-  const path = specialistWorkspacePath(specialist, workspaceId);
+  const path = subagentWorkspacePath(subagent, workspaceId);
   const url = clientUrlForPath(path);
 
   const hints = {
@@ -247,7 +247,7 @@ function cmdBrowserHints(flags) {
     cdp: {
       agentSnapshot: "window.__DUDE_AGENT__?.snapshot()",
       documentWriter: "window.__DUDE_DW_DEBUG__?.snapshot()",
-      navigate: 'window.__DUDE_AGENT__?.navigate("/chat/specialists/document-writer/<id>")',
+      navigate: 'window.__DUDE_AGENT__?.navigate("/chat/subagents/document-writer/<id>")',
     },
     selectors: {
       chatInput: 'textarea, [contenteditable="true"]',
@@ -256,9 +256,9 @@ function cmdBrowserHints(flags) {
     cli: {
       status: "npm run agent:status",
       createWorkspace:
-        "npm run agent -- workspaces create --specialist document-writer --name \"Test\"",
+        "npm run agent -- workspaces create --subagent document-writer --name \"Test\"",
       apiChat:
-        "npm run agent -- chat --specialist document-writer --workspace <id> --message \"...\"",
+        "npm run agent -- chat --subagent document-writer --workspace <id> --message \"...\"",
     },
   };
 
@@ -270,9 +270,9 @@ function usage() {
 
 Commands:
   status                         Client + API health
-  url [--specialist] [--workspace]
+  url [--subagent] [--workspace]
   workspaces list|create         SQLite workspaces (localhost internal API)
-  chat --specialist --message    Run specialist agent to completion (API)
+  chat --subagent --message    Run subagent agent to completion (API)
   probe document-writer          Health + CDP snippets for Document Writer
   browser-hints                  MCP workflow cheat sheet
 
@@ -282,9 +282,9 @@ Env:
 
 Examples:
   npm run agent:status
-  npm run agent -- workspaces create --specialist document-writer --name "Smoke"
-  npm run agent -- chat --specialist document-writer --workspace <id> --message "Add a title"
-  npm run agent -- browser-hints --specialist document-writer --workspace <id>
+  npm run agent -- workspaces create --subagent document-writer --name "Smoke"
+  npm run agent -- chat --subagent document-writer --workspace <id> --message "Add a title"
+  npm run agent -- browser-hints --subagent document-writer --workspace <id>
 `);
 }
 

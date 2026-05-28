@@ -1,16 +1,16 @@
 import { Elysia } from "elysia";
-import type { SpecialistHostConfig } from "@dude/sdk/api";
-import { createSpecialistRegistry } from "@dude/sdk";
+import type { SubagentHostConfig } from "@dude/sdk/api";
+import { createSubagentRegistry } from "@dude/sdk";
 
-export function createApiRoutes(hostConfig: SpecialistHostConfig) {
+export function createApiRoutes(hostConfig: SubagentHostConfig) {
   const app = new Elysia();
-  const registry = createSpecialistRegistry(hostConfig);
+  const registry = createSubagentRegistry(hostConfig);
 
   app.get("/api/health", () => ({ status: "ok", service: "dude-server" }));
 
   app.get("/api", () => ({
     name: "dude-server",
-    specialists: registry.list().map((s) => ({ id: s.id, path: s.path })),
+    subagents: registry.list().map((s) => ({ id: s.id, path: s.path })),
   }));
 
   return { app, registry };

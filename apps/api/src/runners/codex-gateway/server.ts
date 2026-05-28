@@ -1,5 +1,5 @@
 /**
- * Codex runner adapter — native Codex app-server loop + Dude dispatch API for specialist actions.
+ * Codex runner adapter — native Codex app-server loop + Dude dispatch API for subagent actions.
  */
 
 import { startAdapterServer } from "../../lib/runners/adapter-http.js";

@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
 import { cors } from "@elysiajs/cors";
 import { node } from "@elysiajs/node";
-import { getSpecialistHostConfig } from "./lib/specialist-host-config.js";
+import { getSubagentHostConfig } from "./lib/subagent-host-config.js";
 import { createApiRoutes } from "./routes/api/index.js";
 import { v1Routes } from "./routes/v1/index.js";
 import { getLocalDb, getLocalDbPath } from "./lib/local-sqlite.js";
@@ -10,7 +10,7 @@ import { recoverStaleProcessingTurns } from "./lib/instances/turn-store.js";
 import { loadCustomRunners } from "./lib/runners/bootstrap.js";
 
 export function createApp() {
-  const { app: apiRoutes, registry } = createApiRoutes(getSpecialistHostConfig());
+  const { app: apiRoutes, registry } = createApiRoutes(getSubagentHostConfig());
 
   const app = new Elysia({ adapter: node() })
     .use(

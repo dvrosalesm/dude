@@ -1,12 +1,12 @@
-import type { SpecialistId } from "@dude/client-types";
+import type { SubagentId } from "@dude/client-types";
 
-export function specialistListPath(specialistId: SpecialistId | string) {
-  return `/chat/specialists/${specialistId}`;
+export function subagentListPath(subagentId: SubagentId | string) {
+  return `/chat/subagents/${subagentId}`;
 }
 
-export function specialistWorkspacePath(
-  specialistId: SpecialistId | string,
+export function subagentWorkspacePath(
+  subagentId: SubagentId | string,
   workspaceId: string,
 ) {
-  return `/chat/specialists/${specialistId}/${workspaceId}`;
+  return `/chat/subagents/${subagentId}/${workspaceId}`;
 }

@@ -15,7 +15,7 @@ import {
 import { getModel } from "@mariozechner/pi-ai";
 import { config } from "@dude/sdk/gateway-runtime";
 import sandboxExtension from "./pi/sandbox/index.js";
-import { getSpecialistForGateway as getSpecialist } from "../tool-host/index.js";
+import { getSubagentForGateway as getSubagent } from "../tool-host/index.js";
 import {
   beginActiveTurn,
   endActiveTurn,
@@ -181,11 +181,11 @@ async function initPiSession(): Promise<PiSession> {
     `[pi-agent] Model resolved: ${model.provider}/${model.id} (maxTokens=${model.maxTokens})`,
   );
 
-  const specialist = getSpecialist(config.specialistId);
-  console.log(`[pi-agent] Specialist: ${specialist.name}`);
-  if (specialist.skillPaths.length) {
+  const subagent = getSubagent(config.subagentId);
+  console.log(`[pi-agent] Subagent: ${subagent.name}`);
+  if (subagent.skillPaths.length) {
     console.log(
-      `[pi-agent] Skill packs: ${specialist.skillPaths.length} (${specialist.skillPaths.join(", ")})`,
+      `[pi-agent] Skill packs: ${subagent.skillPaths.length} (${subagent.skillPaths.join(", ")})`,
     );
   }
 
@@ -193,13 +193,13 @@ async function initPiSession(): Promise<PiSession> {
     systemPromptOverride: () => config.systemPrompt,
     appendSystemPromptOverride: () => [],
     additionalExtensionPaths: [],
-    additionalSkillPaths: specialist.skillPaths,
+    additionalSkillPaths: subagent.skillPaths,
     extensionFactories: [
       (pi) => {
         sandboxExtension(pi);
       },
       (pi) => {
-        specialist.setup(pi);
+        subagent.setup(pi);
       },
     ],
   });

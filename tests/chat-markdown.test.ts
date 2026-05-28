@@ -39,9 +39,9 @@ describe("shouldShowDreamSummary", () => {
 describe("flattenStageMarkdown", () => {
   it("strips CRLF bullet lines", () => {
     const input =
-      "Available specialists:\r\n\r\n- **Browser**: open/test\r\n- **Documents**: create docs";
+      "Available subagents:\r\n\r\n- **Browser**: open/test\r\n- **Documents**: create docs";
     expect(flattenStageMarkdown(input)).toBe(
-      "Available specialists:\n\n**Browser**: open/test\n\n**Documents**: create docs",
+      "Available subagents:\n\n**Browser**: open/test\n\n**Documents**: create docs",
     );
   });
 });

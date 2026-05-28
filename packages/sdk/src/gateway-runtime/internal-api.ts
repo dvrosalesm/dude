@@ -14,8 +14,8 @@ function internalSessionHeaders(): Record<string, string> {
   if (config.workspaceId) {
     headers["x-workspace-id"] = config.workspaceId;
   }
-  if (config.specialistId) {
-    headers["x-specialist-id"] = config.specialistId;
+  if (config.subagentId) {
+    headers["x-subagent-id"] = config.subagentId;
   }
   if (config.organizationId) {
     headers["x-organization-id"] = config.organizationId;

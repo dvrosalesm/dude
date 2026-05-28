@@ -1,36 +1,36 @@
-import type { SpecialistId } from "@dude/client-types";
+import type { SubagentId } from "@dude/client-types";
 
 import { LocalWorkspaceApiError } from "./errors";
 import { hydrateWorkspaceConfigurations } from "./config-hydrator-binding.js";
 import {
   chatRuntime,
   requireWorkspace,
-  specialistFromPath,
+  subagentFromPath,
   toUiMessage,
   type WorkspaceRecord,
 } from "./shared";
 
-export async function listSpecialistWorkspaces(
-  specialistId: SpecialistId,
+export async function listSubagentWorkspaces(
+  subagentId: SubagentId,
 ): Promise<WorkspaceRecord[]> {
-  if (!specialistFromPath(specialistId)) {
-    throw new LocalWorkspaceApiError("Unknown specialist", 404);
+  if (!subagentFromPath(subagentId)) {
+    throw new LocalWorkspaceApiError("Unknown subagent", 404);
   }
-  return chatRuntime.listWorkspaces(specialistId);
+  return chatRuntime.listWorkspaces(subagentId);
 }
 
-export async function createSpecialistWorkspace(
-  specialistId: SpecialistId,
+export async function createSubagentWorkspace(
+  subagentId: SubagentId,
   input: {
     name?: string;
     configurations?: Record<string, unknown>;
   } = {},
 ) {
-  if (!specialistFromPath(specialistId)) {
-    throw new LocalWorkspaceApiError("Unknown specialist", 404);
+  if (!subagentFromPath(subagentId)) {
+    throw new LocalWorkspaceApiError("Unknown subagent", 404);
   }
   return chatRuntime.createWorkspace({
-    specialistId,
+    subagentId,
     name: input.name,
     configurations: input.configurations,
   });
@@ -48,7 +48,7 @@ export async function getWorkspaceById(workspaceId: string) {
       : { ...workspace, configurations };
 
   const messages = await chatRuntime.listMessages(
-    hydratedWorkspace.specialistId,
+    hydratedWorkspace.subagentId,
     hydratedWorkspace.id,
   );
   return {

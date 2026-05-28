@@ -37,7 +37,7 @@ export function useIsDesktopApp() {
 
 /**
  * Frameless Electron window controls (macOS-style traffic lights).
- * Portaled to `document.body` so specialist overlays/modals cannot cover it.
+ * Portaled to `document.body` so subagent overlays/modals cannot cover it.
  */
 export function DesktopWindowChrome() {
   const isDesktop = useIsDesktopApp();

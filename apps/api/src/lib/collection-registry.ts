@@ -3,7 +3,7 @@
  *
  * Adding a new collection:
  * 1. Add an entry here
- * 2. Update the specialist's system prompt to describe the collection schema
+ * 2. Update the subagent's system prompt to describe the collection schema
  * That's it — no new tools, no new endpoints.
  */
 
@@ -17,7 +17,7 @@ export interface CollectionSpec {
 }
 
 export const COLLECTION_REGISTRY: Record<string, CollectionSpec> = {
-  // Marketing specialist
+  // Marketing subagent
   brandResearch: {
     type: 'singleton',
     description: 'Brand identity analysis (summary, tone, audience, competitors)',
@@ -38,7 +38,7 @@ export const COLLECTION_REGISTRY: Record<string, CollectionSpec> = {
     description: 'Social media post plans/drafts',
   },
 
-  // Prospect specialist
+  // Prospect subagent
   landingPages: {
     type: 'array',
     maxItems: 50,
@@ -50,8 +50,8 @@ export const COLLECTION_REGISTRY: Record<string, CollectionSpec> = {
     description: 'Captured leads from landing pages',
   },
 
-  // Sales specialist (also reuses `leads` above and `researchRuns` from marketing —
-  // collection names are workspace-scoped, so sharing keys across specialists is fine)
+  // Sales subagent (also reuses `leads` above and `researchRuns` from marketing —
+  // collection names are workspace-scoped, so sharing keys across subagents is fine)
   icp: {
     type: 'singleton',
     description:
@@ -86,10 +86,10 @@ export const COLLECTION_REGISTRY: Record<string, CollectionSpec> = {
     description: "Presentation-wide design system (markdown). Stored as { markdown: '...', updatedAt }.",
   },
 
-  // Design specialist (canvas-first)
+  // Design subagent (canvas-first)
   canvasSnapshot: {
     type: 'singleton',
-    description: 'React Flow canvas snapshot ({ nodes, edges, viewport }) — the sole render source for the design specialist.',
+    description: 'React Flow canvas snapshot ({ nodes, edges, viewport }) — the sole render source for the design subagent.',
   },
 
   // Shared / generic
@@ -99,10 +99,10 @@ export const COLLECTION_REGISTRY: Record<string, CollectionSpec> = {
     description: 'Connected social accounts',
   },
 
-  // Main assistant (GT) — per-user project session linking specialist workspaces
+  // Main assistant (GT) — per-user project session linking subagent workspaces
   gtSession: {
     type: 'singleton',
     description:
-      'Active GT project session. Maps specialistId → { workspaceId, workspaceName, lastInvokedAt } so the GT agent remembers which workspaces belong to the current multi-specialist project.',
+      'Active GT project session. Maps subagentId → { workspaceId, workspaceName, lastInvokedAt } so the GT agent remembers which workspaces belong to the current multi-subagent project.',
   },
 };

@@ -1,16 +1,16 @@
 "use client";
 
-import type { LocalChatMessage, ProjectHubSnapshot, SendLocalMessageInput, SpecialistId } from "../types";
+import type { LocalChatMessage, ProjectHubSnapshot, SendLocalMessageInput, SubagentId } from "../types";
 import {
   clearGatewaySessionId,
   readGatewaySessionId,
   writeGatewaySessionId,
 } from "@dude/chat/lib/gateway-session";
-import { createId, specialistName, threadKey } from "./local-chat-storage";
+import { createId, subagentName, threadKey } from "./local-chat-storage";
 import { resolveChatScopeId } from "./chat-scope";
 import {
   gatewayRequest,
-  gatewaySpecialistId,
+  gatewaySubagentId,
   gatewayStreamRequest,
   gatewayWorkspaceId,
   canUseGateway,
@@ -23,8 +23,8 @@ import {
 import type { GatewayChatResponse, GatewayConversationMessage } from "./gateway-types";
 import { AGENT_CHAT_TURN_TIMEOUT_MS } from "@dude/sdk/runner";
 import { extractUserFacingMessage } from "@dude/gateway-shared/user-facing-message";
-import { getThread, inferSpecialist, readState } from "./local-chat-storage";
-import { SPECIALISTS } from "./specialist-list";
+import { getThread, inferSubagent, readState } from "./local-chat-storage";
+import { SUBAGENTS } from "./subagent-list";
 import type { LocalChatExecutionTrace, LocalChatMessage } from "../types";
 import {
   appendGatewayUserMessage,
@@ -47,12 +47,12 @@ function executionTraceFromGatewayMessage(
 
 export function mapGatewayMessage(
   message: GatewayConversationMessage,
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
 ): LocalChatMessage {
   return {
     id: message.id,
     role: message.role,
-    specialistId,
+    subagentId,
     createdAt: message.createdAt,
     content:
       message.status === "error"
@@ -89,11 +89,11 @@ export async function respondGatewayUiInput(
 }
 
 async function ensureGatewayInstance(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceIdOverride?: string,
 ) {
   const workspaceId = gatewayWorkspaceId(
-    specialistId,
+    subagentId,
     workspaceIdOverride,
   );
   const scopeId = workspaceIdOverride?.trim();
@@ -102,7 +102,7 @@ async function ensureGatewayInstance(
     scopeId && state?.workspaces[scopeId]
       ? {
           id: state.workspaces[scopeId].id,
-          specialistId: state.workspaces[scopeId].specialistId,
+          subagentId: state.workspaces[scopeId].subagentId,
           name: state.workspaces[scopeId].name,
           status: state.workspaces[scopeId].status,
           configurations: state.workspaces[scopeId].configurations,
@@ -114,8 +114,8 @@ async function ensureGatewayInstance(
     timeoutMs: 120_000,
     body: {
       workspaceId,
-      specialistId: gatewaySpecialistId(specialistId),
-      config: buildGatewayConfig(specialistId),
+      subagentId: gatewaySubagentId(subagentId),
+      config: buildGatewayConfig(subagentId),
       ...(snapshot ? { workspaceSnapshot: snapshot } : {}),
     },
   });
@@ -190,7 +190,7 @@ export async function streamGatewayChatTurn(
   workspaceId: string,
   sessionId: string,
   assistantMessageId: string,
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   onProgress?: SendLocalMessageInput["onProgress"],
 ): Promise<GatewayConversationMessage[]> {
   const path = `/instances/${encodeURIComponent(workspaceId)}/chat/stream?sessionId=${encodeURIComponent(sessionId)}&messageId=${encodeURIComponent(assistantMessageId)}`;
@@ -272,14 +272,14 @@ export async function sendGatewayMessage(
   gatewaySessionId: string;
 }> {
   const workspaceId = await ensureGatewayInstance(
-    input.specialistId,
+    input.subagentId,
     input.workspaceId,
   );
   const existingSessionId =
     input.gatewaySessionId ??
-    readGatewaySessionId(input.specialistId, input.workspaceId);
+    readGatewaySessionId(input.subagentId, input.workspaceId);
   const previousGtSession =
-    input.specialistId === "main-assistant"
+    input.subagentId === "main-assistant"
       ? await readLocalGtSession(workspaceId)
       : null;
 
@@ -301,7 +301,7 @@ export async function sendGatewayMessage(
     },
   );
   writeGatewaySessionId(
-    input.specialistId,
+    input.subagentId,
     data.sessionId,
     input.workspaceId,
   );
@@ -327,7 +327,7 @@ export async function sendGatewayMessage(
   }
 
   const scopedWorkspaceId = resolveChatScopeId(
-    input.specialistId,
+    input.subagentId,
     input.workspaceId,
   );
 
@@ -342,7 +342,7 @@ export async function sendGatewayMessage(
   );
 
   const pendingTurn: PendingGatewayTurn = {
-    specialistId: input.specialistId,
+    subagentId: input.subagentId,
     workspaceId: scopedWorkspaceId,
     gtWorkspaceId: workspaceId,
     sessionId: data.sessionId,
@@ -355,7 +355,7 @@ export async function sendGatewayMessage(
   });
 
   const state = await readState();
-  const thread = getThread(state, input.specialistId, input.workspaceId);
+  const thread = getThread(state, input.subagentId, input.workspaceId);
   const assistantMessage =
     [...thread]
       .reverse()
@@ -363,13 +363,13 @@ export async function sendGatewayMessage(
     ({
       id: assistantMessageId,
       role: "assistant" as const,
-      specialistId: input.specialistId,
+      subagentId: input.subagentId,
       createdAt: new Date().toISOString(),
       content: "",
     } satisfies LocalChatMessage);
 
   const setupSummary =
-    input.specialistId === "main-assistant"
+    input.subagentId === "main-assistant"
       ? await applyLocalAppConfigurationRequests(workspaceId, previousGtSession)
       : null;
 
@@ -384,20 +384,20 @@ export async function sendGatewayMessage(
 }
 
 export function createSuggestions(input: SendLocalMessageInput): string[] | undefined {
-  if (input.specialistId !== "main-assistant") return undefined;
-  const selected = inferSpecialist(input.content);
+  if (input.subagentId !== "main-assistant") return undefined;
+  const selected = inferSubagent(input.content);
   if (!selected) {
-    return ["Show specialist options", "Set up local API keys"];
+    return ["Show subagent options", "Set up local API keys"];
   }
   return [`Open ${selected.name}`, "Set up local API keys"];
 }
 
 export async function fetchProjectHubSnapshot(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ): Promise<ProjectHubSnapshot | null> {
   if (!canUseGateway()) return null;
-  const gtWorkspaceId = gatewayWorkspaceId(specialistId, workspaceId);
+  const gtWorkspaceId = gatewayWorkspaceId(subagentId, workspaceId);
   try {
     return await gatewayRequest<ProjectHubSnapshot>(
       "/internal/assistant/project-hub",

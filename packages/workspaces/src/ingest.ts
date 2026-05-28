@@ -1,4 +1,4 @@
-import type { LocalSpecialistWorkspace } from "@dude/client-types";
+import type { LocalSubagentWorkspace } from "@dude/client-types";
 
 import {
   ensureUniqueIdentifiers,
@@ -15,7 +15,7 @@ import {
 } from "./uploads";
 
 export async function* ingestWorkspaceFile(
-  workspace: LocalSpecialistWorkspace,
+  workspace: LocalSubagentWorkspace,
   body: Record<string, unknown>,
 ): AsyncGenerator<Record<string, unknown>, void, unknown> {
   const uploadKey = typeof body.uploadKey === "string" ? body.uploadKey : "";

@@ -29,7 +29,7 @@ export interface RunnerSessionManifest {
   /** Stable id for this spawn (workspace + runner + timestamp hash) */
   sessionId: string;
   workspaceId: string;
-  specialistId: string;
+  subagentId: string;
   organizationId: string;
   runner: AgentRunnerId;
   /** This adapter's HTTP port (chat surface only) */
@@ -50,7 +50,7 @@ export function isRunnerSessionManifest(
     record.version === RUNNER_SESSION_MANIFEST_VERSION &&
     typeof record.sessionId === "string" &&
     typeof record.workspaceId === "string" &&
-    typeof record.specialistId === "string" &&
+    typeof record.subagentId === "string" &&
     typeof record.organizationId === "string" &&
     typeof record.runner === "string" &&
     typeof record.gatewayPort === "number" &&

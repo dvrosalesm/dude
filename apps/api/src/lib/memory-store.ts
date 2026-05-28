@@ -69,7 +69,7 @@ export async function retrieveMemories(
   const query = input.query?.trim().toLowerCase();
   let rows = await listMemories();
 
-  if (input.specialist) {
+  if (input.subagent) {
     rows = rows.filter(
       (memory) =>
         memory.applies_to.length === 0 ||

@@ -3,7 +3,7 @@
  *
  * One background runner (pi / codex / hermes) per agent instance:
  * - Dude (main-assistant): one process per org + user thread
- * - Specialist: one process per org + specialist kind + workspace
+ * - Subagent: one process per org + subagent kind + workspace
  *
  * Instance id: `{agentKind}:{scopeId}` (see @dude/sdk/runner)
  */
@@ -53,7 +53,7 @@ import { getLocalDbPath } from './local-sqlite.js';
 import {
   ensureWorkspaceForToolHost,
 } from './workspace-tool-host-sync.js';
-import { resolveToolHostWorkspaceId } from './tool-host/resolve-specialist-id.js';
+import { resolveToolHostWorkspaceId } from './tool-host/resolve-subagent-id.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -149,7 +149,7 @@ function buildFingerprint(config: AgentConfig): string {
     config.provider.kind,
     config.provider.model,
     credentialsFingerprint(config.credentials),
-    // NOTE: Don't include systemPrompt length — specialists like the document
+    // NOTE: Don't include systemPrompt length — subagents like the document
     // editor inject changing context (slide content, selected slides) into the
     // prompt on every message, causing unnecessary respawns. The prompt is
     // passed via env var and the child process reads it at startup; subsequent
@@ -158,7 +158,7 @@ function buildFingerprint(config: AgentConfig): string {
 
   if (config.enabledSpecialists?.length) {
     parts.push(
-      'specialists:' +
+      'subagents:' +
         config.enabledSpecialists.map((s) => s.id).sort().join(','),
     );
   }
@@ -176,7 +176,7 @@ function buildFingerprint(config: AgentConfig): string {
  */
 export async function getOrStartInstance(
   workspaceId: string,
-  specialistId: string,
+  subagentId: string,
   config: AgentConfig,
 ): Promise<AgentInstance> {
   const existingLock = spawnLocks.get(workspaceId);
@@ -188,7 +188,7 @@ export async function getOrStartInstance(
     }
   }
 
-  const lockPromise = doGetOrStart(workspaceId, specialistId, config);
+  const lockPromise = doGetOrStart(workspaceId, subagentId, config);
   spawnLocks.set(workspaceId, lockPromise);
 
   try {
@@ -202,7 +202,7 @@ export async function getOrStartInstance(
 
 async function doGetOrStart(
   workspaceId: string,
-  specialistId: string,
+  subagentId: string,
   config: AgentConfig,
 ): Promise<AgentInstance> {
   const fingerprint = buildFingerprint(config);
@@ -230,14 +230,14 @@ async function doGetOrStart(
   const scopeWorkspaceId = resolveToolHostWorkspaceId(workspaceId);
   ensureWorkspaceForToolHost({
     scopeWorkspaceId,
-    gatewaySpecialistId: specialistId,
+    gatewaySubagentId: subagentId,
   });
 
   const hostPort = await allocatePort();
 
   const instance: ManagedInstance = {
     id: workspaceId,
-    specialistId,
+    subagentId,
     organizationId: LOCAL_SCOPE,
     runner: config.runner || DEFAULT_AGENT_RUNNER_ID,
     gatewayPort: hostPort,
@@ -279,7 +279,7 @@ async function doGetOrStart(
 
     const spawnPlan = runner.buildSpawnPlan({
       workspaceId,
-      specialistId,
+      subagentId,
       organizationId: LOCAL_SCOPE,
       port: hostPort,
       workDir,
@@ -292,7 +292,7 @@ async function doGetOrStart(
     const manifestPath = join(workDir, RUNNER_SESSION_MANIFEST_FILENAME);
     const manifest = buildRunnerSessionManifest({
       workspaceId,
-      specialistId,
+      subagentId,
       organizationId: LOCAL_SCOPE,
       runner: config.runner || DEFAULT_AGENT_RUNNER_ID,
       gatewayPort: hostPort,

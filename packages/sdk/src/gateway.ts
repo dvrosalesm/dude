@@ -1,31 +1,31 @@
-import type { SpecialistHostConfig, SpecialistPlugin } from "./types.js";
-import { createSpecialistRegistry } from "./registry.js";
+import type { SubagentHostConfig, SubagentPlugin } from "./types.js";
+import { createSubagentRegistry } from "./registry.js";
 
 export type {
   BaseToolId,
-  SpecialistDeclaration,
+  SubagentDeclaration,
   ToolDefinition,
 } from "./types.js";
 
-export { createSpecialistRegistry } from "./registry.js";
+export { createSubagentRegistry } from "./registry.js";
 
-export interface LoadedGatewaySpecialists {
-  registry: ReturnType<typeof createSpecialistRegistry>;
-  specialists: Record<string, import("./types.js").SpecialistDeclaration>;
+export interface LoadedGatewaySubagents {
+  registry: ReturnType<typeof createSubagentRegistry>;
+  subagents: Record<string, import("./types.js").SubagentDeclaration>;
 }
 
-export function loadGatewaySpecialists(config: SpecialistHostConfig): LoadedGatewaySpecialists {
-  const registry = createSpecialistRegistry(config);
-  const specialists: Record<string, import("./types.js").SpecialistDeclaration> = {};
+export function loadGatewaySubagents(config: SubagentHostConfig): LoadedGatewaySubagents {
+  const registry = createSubagentRegistry(config);
+  const subagents: Record<string, import("./types.js").SubagentDeclaration> = {};
 
   for (const plugin of registry.list()) {
     if (!plugin.gateway) continue;
-    specialists[plugin.id] = plugin.gateway.declaration;
+    subagents[plugin.id] = plugin.gateway.declaration;
   }
 
-  return { registry, specialists };
+  return { registry, subagents };
 }
 
-export function getGatewaySkillPaths(plugin: SpecialistPlugin): string[] {
+export function getGatewaySkillPaths(plugin: SubagentPlugin): string[] {
   return plugin.gateway?.skillPaths ?? plugin.gateway?.declaration.skillPaths ?? [];
 }

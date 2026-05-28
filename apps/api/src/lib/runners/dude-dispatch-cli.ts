@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * Typed dispatch CLI — the only supported way for native runners (Codex) to call specialist actions.
+ * Typed dispatch CLI — the only supported way for native runners (Codex) to call subagent actions.
  *
  * Usage:
  *   dude-dispatch-cli.ts --manifest /path/.dude-runner-session.json <action> '<payload-json>'
@@ -65,7 +65,7 @@ async function main() {
     const catalog = await fetchAgentCatalog({
       baseUrl: manifest.internalApi.baseUrl,
       workspaceId: manifest.workspaceId,
-      specialistId: manifest.specialistId,
+      subagentId: manifest.subagentId,
       organizationId: manifest.organizationId,
       runner: manifest.runner,
     });

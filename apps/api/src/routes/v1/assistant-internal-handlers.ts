@@ -5,11 +5,11 @@ import { composeSystemPrompt } from '../../lib/assistant-prompt';
 import {
   createWorkspaceRecord,
   insertWorkspaceMessage,
-  listWorkspacesBySpecialist,
+  listWorkspacesBySubagent,
 } from '../../lib/local-sqlite.js';
 import { listMemories, upsertMemory } from '../../lib/memory-store';
 import {
-  buildSpecialistInstanceId,
+  buildSubagentInstanceId,
   buildAgentConfig,
   resolveDefaultRunner,
   canonicalAgentKind,
@@ -19,14 +19,14 @@ import { executeChatTurnAndWait } from '../../lib/instances/chat-turn-orchestrat
 import { buildDefaultWorkspaceConfigurations } from '../../lib/workspace-tool-host-sync.js';
 
 /**
- * GET /v1/internal/assistant/specialist-workspaces?specialistId=...
+ * GET /v1/internal/assistant/subagent-workspaces?subagentId=...
  */
-export async function listWorkspaces(specialistId?: string) {
-  if (!specialistId) {
-    throw httpError("specialistId is required", 400);
+export async function listWorkspaces(subagentId?: string) {
+  if (!subagentId) {
+    throw httpError("subagentId is required", 400);
   }
 
-  const workspaces = listWorkspacesBySpecialist(specialistId);
+  const workspaces = listWorkspacesBySubagent(subagentId);
   return {
     workspaces: workspaces.map((row) => ({
       id: row.id,
@@ -37,29 +37,29 @@ export async function listWorkspaces(specialistId?: string) {
 }
 
 /**
- * POST /v1/internal/assistant/specialist-workspaces
+ * POST /v1/internal/assistant/subagent-workspaces
  */
 export async function createWorkspace(body: Record<string, unknown>) {
-  const { specialistId, name } = body || ({} as typeof body);
-  if (!specialistId || !name) {
-    throw httpError('specialistId and name are required', 400);
+  const { subagentId, name } = body || ({} as typeof body);
+  if (!subagentId || !name) {
+    throw httpError('subagentId and name are required', 400);
   }
 
   const workspaceId = crypto.randomUUID();
   const configurations = buildDefaultWorkspaceConfigurations(
-    String(specialistId),
+    String(subagentId),
     workspaceId,
   );
 
   const workspace = createWorkspaceRecord({
     id: workspaceId,
-    specialistId: String(specialistId),
+    subagentId: String(subagentId),
     name: String(name),
     configurations,
   });
 
   console.log(
-    `[specialist-workspaces] Created workspace "${name}" (${workspace.id}) for ${specialistId}`,
+    `[subagent-workspaces] Created workspace "${name}" (${workspace.id}) for ${subagentId}`,
   );
 
   return {
@@ -106,25 +106,25 @@ export async function saveMemory(body: Record<string, unknown>) {
   return memory;
 }
 
-export async function runSpecialist(body: Record<string, unknown>) {
-  const { specialistId, message } = body || ({} as typeof body);
-  if (!specialistId || !message) {
-    throw httpError('specialistId and message are required', 400);
+export async function runSubagent(body: Record<string, unknown>) {
+  const { subagentId, message } = body || ({} as typeof body);
+  if (!subagentId || !message) {
+    throw httpError('subagentId and message are required', 400);
   }
 
   const config = await getAssistantConfig();
-  const gatewayKind = canonicalAgentKind(String(specialistId));
+  const gatewayKind = canonicalAgentKind(String(subagentId));
   const systemPrompt = await composeSystemPrompt({
     config,
     query: String(message),
     userId: null,
-    specialist: gatewayKind,
+    subagent: gatewayKind,
   });
 
   const scopeId = body.workspaceId
     ? String(body.workspaceId)
     : `ephemeral:${gatewayKind}`;
-  const workspaceKey = buildSpecialistInstanceId(gatewayKind, scopeId);
+  const workspaceKey = buildSubagentInstanceId(gatewayKind, scopeId);
 
   const agentConfig = buildAgentConfig({
     agentKind: gatewayKind,
@@ -167,12 +167,12 @@ export async function runSpecialist(body: Record<string, unknown>) {
           content: answer,
         });
       } catch (err) {
-        console.error(`[specialist-run] Failed to persist workspace messages:`, err);
+        console.error(`[subagent-run] Failed to persist workspace messages:`, err);
       }
     }
 
     return {
-      specialistId,
+      subagentId,
       type: turn.result.response.type,
       answer: turn.result.response.answer,
       question: turn.result.response.question,

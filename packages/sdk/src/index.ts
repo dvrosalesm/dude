@@ -1,12 +1,12 @@
 export {
-  defineSpecialist,
-  defineSpecialistHost,
-  createSpecialistRegistry,
-  getManageableSpecialists,
-  getDelegableSpecialists,
-  isManageableSpecialist,
-  resolveManageableSpecialistId,
+  defineSubagent,
+  defineSubagentHost,
+  createSubagentRegistry,
+  getManageableSubagents,
+  getDelegableSubagents,
+  isManageableSubagent,
+  resolveManageableSubagentId,
 } from "./registry.js";
 
-export type { SpecialistRegistry } from "./registry.js";
+export type { SubagentRegistry } from "./registry.js";
 export * from "./types.js";

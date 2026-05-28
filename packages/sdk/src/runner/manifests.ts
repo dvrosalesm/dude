@@ -19,7 +19,7 @@ export const BUILTIN_AGENT_RUNNERS: Record<
     id: "codex",
     label: "Codex",
     description:
-      "OpenAI Codex app-server — native CLI loop with Dude specialist actions via internal dispatch API.",
+      "OpenAI Codex app-server — native CLI loop with Dude subagent actions via internal dispatch API.",
     availability: "experimental",
     harnessKind: "native",
     installHint: "npm install -g @openai/codex  (requires `codex` on PATH)",
@@ -29,7 +29,7 @@ export const BUILTIN_AGENT_RUNNERS: Record<
     id: "hermes",
     label: "Hermes",
     description:
-      "OpenRouter ReAct loop with Dude specialist actions via internal dispatch API.",
+      "OpenRouter ReAct loop with Dude subagent actions via internal dispatch API.",
     availability: "ready",
     harnessKind: "native",
     installHint: "Uses your configured LLM provider key (Settings → API & Models).",
@@ -39,7 +39,7 @@ export const BUILTIN_AGENT_RUNNERS: Record<
     id: "cursor",
     label: "Cursor SDK",
     description:
-      "Cursor programmatic agent API with Dude specialist actions via internal dispatch API.",
+      "Cursor programmatic agent API with Dude subagent actions via internal dispatch API.",
     availability: "experimental",
     harnessKind: "native",
     installHint:

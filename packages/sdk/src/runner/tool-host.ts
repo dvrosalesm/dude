@@ -20,7 +20,7 @@ export interface AgentToolCatalogEntry {
 
 export interface AgentToolHostSession {
   workspaceId: string;
-  specialistId: string;
+  subagentId: string;
   organizationId: string;
   runner: AgentRunnerId;
 }
@@ -43,7 +43,7 @@ export interface AgentToolHostExecuteResponse {
   details: Record<string, unknown>;
 }
 
-/** Unified dispatch API — routes by action name to specialist handlers. */
+/** Unified dispatch API — routes by action name to subagent handlers. */
 export interface AgentDispatchRequest {
   action: string;
   payload?: Record<string, unknown>;
@@ -54,14 +54,14 @@ export interface AgentDispatchRequest {
  * Tool Host HTTP routes on the main API (localhost-only).
  *
  * Runners call these with session headers:
- *   x-workspace-id, x-specialist-id, x-organization-id, x-runner-id
+ *   x-workspace-id, x-subagent-id, x-organization-id, x-runner-id
  */
 export const AGENT_TOOL_HOST_ROUTES = {
   catalog: "/v1/internal/tool-host/catalog",
   execute: "/v1/internal/tool-host/execute",
 } as const;
 
-/** Unified specialist action router — one endpoint, routes by action name. */
+/** Unified subagent action router — one endpoint, routes by action name. */
 export const AGENT_DISPATCH_ROUTES = {
   catalog: "/v1/internal/agent/catalog",
   dispatch: "/v1/internal/agent/dispatch",
@@ -69,7 +69,7 @@ export const AGENT_DISPATCH_ROUTES = {
 
 export const AGENT_TOOL_HOST_HEADERS = {
   workspaceId: "x-workspace-id",
-  specialistId: "x-specialist-id",
+  subagentId: "x-subagent-id",
   organizationId: "x-organization-id",
   runnerId: "x-runner-id",
 } as const;

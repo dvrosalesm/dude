@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Heart, ImageIcon, MoreVertical, Pin, Trash2, X } from "lucide-react";
-import { SpecialistChat } from "@dude/chat/specialists/specialist-chat";
-import { MainAssistantHome } from "@dude/chat/specialists/main-assistant-workspace";
-import { ProjectHubPanel } from "@dude/chat/specialists/project-hub-panel";
-import { SPECIALIST_META } from "@dude/chat/specialists/specialist-meta";
+import { SubagentChat } from "@dude/chat/subagents/subagent-chat";
+import { MainAssistantHome } from "@dude/chat/subagents/main-assistant-workspace";
+import { ProjectHubPanel } from "@dude/chat/subagents/project-hub-panel";
+import { SUBAGENT_META } from "@dude/chat/subagents/subagent-meta";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,30 +12,30 @@ import {
 } from "@dude/ui/components/dropdown-menu";
 import { cn } from "@dude/ui/design-system";
 import { AgentBlob, deriveAgentBlobState } from "@dude/ui/components/agent-blob";
-import { browserChatRuntime, SPECIALISTS } from "../../local-chat-runtime";
-import { navigateTo, specialistPath } from "../../route-utils";
+import { browserChatRuntime, SUBAGENTS } from "../../local-chat-runtime";
+import { navigateTo, subagentPath } from "../../route-utils";
 import { DEFAULT_PREFERENCES, type DudePreferences } from "../../preferences";
 import type {
   ProjectAgentCard,
   ProjectHubSnapshot,
-  SpecialistId,
-  SpecialistSummary,
+  SubagentId,
+  SubagentSummary,
 } from "../../types";
-import { SpecialistsSidebar } from "../sidebar/specialists-sidebar";
-import { isKnownSpecialist } from "../shell/specialist-icons";
-import { useLocalSpecialistChat } from "./use-local-specialist-chat";
+import { SubagentsSidebar } from "../sidebar/subagents-sidebar";
+import { isKnownSubagent } from "../shell/subagent-icons";
+import { useLocalSubagentChat } from "./use-local-subagent-chat";
 
 export function ChatSurface({
-  specialistId,
+  subagentId,
   preferences = DEFAULT_PREFERENCES,
-  specialists = SPECIALISTS,
+  subagents = SUBAGENTS,
 }: {
-  specialistId: SpecialistId;
+  subagentId: SubagentId;
   preferences?: DudePreferences;
-  specialists?: SpecialistSummary[];
+  subagents?: SubagentSummary[];
 }) {
-  const chat = useLocalSpecialistChat({
-    specialistId,
+  const chat = useLocalSubagentChat({
+    subagentId,
     assistantName: preferences.assistantName,
   });
   const [showPinnedOnly, setShowPinnedOnly] = useState(false);
@@ -43,10 +43,10 @@ export function ChatSurface({
   const [galleryPreview, setGalleryPreview] = useState<string | null>(null);
   const [projectHub, setProjectHub] = useState<ProjectHubSnapshot | null>(null);
   const [projectHubLoading, setProjectHubLoading] = useState(false);
-  const isMainAssistant = specialistId === "main-assistant";
-  const specialist = isMainAssistant
+  const isMainAssistant = subagentId === "main-assistant";
+  const subagent = isMainAssistant
     ? undefined
-    : SPECIALISTS.find((item) => item.id === specialistId);
+    : SUBAGENTS.find((item) => item.id === subagentId);
   const shownMessages = showPinnedOnly
     ? chat.chatProps.messages.filter((message) => message.pinned)
     : chat.chatProps.messages;
@@ -59,9 +59,9 @@ export function ChatSurface({
     hasDraft: chat.chatProps.newMessage.trim().length > 0,
   });
   const assistantName = preferences.assistantName || "Dude";
-  const knownSpecialists = useMemo(
-    () => specialists.filter(isKnownSpecialist),
-    [specialists],
+  const knownSubagents = useMemo(
+    () => subagents.filter(isKnownSubagent),
+    [subagents],
   );
   const pinnedSnippets = useMemo(
     () =>
@@ -81,7 +81,7 @@ export function ChatSurface({
     try {
       const hub = await browserChatRuntime.fetchProjectHub("main-assistant");
       // #region agent log
-      fetch('http://127.0.0.1:7884/ingest/44760fdd-2433-4958-be9a-fbf49e3e279f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'099559'},body:JSON.stringify({sessionId:'099559',location:'chat-surface.tsx:refreshProjectHub',message:'project hub refreshed',data:{agentCount:hub?.agents?.length??0,specialistIds:hub?.agents?.map((a)=>a.specialistId)??[]},timestamp:Date.now(),hypothesisId:'E'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7884/ingest/44760fdd-2433-4958-be9a-fbf49e3e279f',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'099559'},body:JSON.stringify({sessionId:'099559',location:'chat-surface.tsx:refreshProjectHub',message:'project hub refreshed',data:{agentCount:hub?.agents?.length??0,subagentIds:hub?.agents?.map((a)=>a.subagentId)??[]},timestamp:Date.now(),hypothesisId:'E'})}).catch(()=>{});
       // #endregion
       setProjectHub(hub);
     } finally {
@@ -126,41 +126,41 @@ export function ChatSurface({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [showGallery, galleryPreview, closeGallery]);
 
-  function specialistLabel(id: string) {
-    return SPECIALIST_META[id]?.label ?? id;
+  function subagentLabel(id: string) {
+    return SUBAGENT_META[id]?.label ?? id;
   }
 
   function handleInstructAgent(agent: ProjectAgentCard) {
     chat.chatProps.onMessageChange(
-      `Tell ${specialistLabel(agent.specialistId)} in workspace "${agent.workspaceName}" (${agent.workspaceId}) to: `,
+      `Tell ${subagentLabel(agent.subagentId)} in workspace "${agent.workspaceName}" (${agent.workspaceId}) to: `,
     );
   }
 
   function handleReviewAgent(agent: ProjectAgentCard) {
     void chat.chatProps.onSend(
-      `Review the latest work from ${specialistLabel(agent.specialistId)} in workspace "${agent.workspaceName}" (${agent.workspaceId}). Summarize what was done, what's missing, and recommend next steps.`,
+      `Review the latest work from ${subagentLabel(agent.subagentId)} in workspace "${agent.workspaceName}" (${agent.workspaceId}). Summarize what was done, what's missing, and recommend next steps.`,
     );
   }
 
   function handleOpenAgent(agent: ProjectAgentCard) {
     navigateTo(
-      specialistPath(agent.specialistId as SpecialistId, agent.workspaceId),
+      subagentPath(agent.subagentId as SubagentId, agent.workspaceId),
     );
   }
 
   function handleMainSuggestionAction(action: string, args: string[]) {
-    if (action === "open-specialist") {
-      const [specialistIdArg, workspaceId] = args;
-      if (specialistIdArg) {
-        navigateTo(specialistPath(specialistIdArg as SpecialistId, workspaceId || undefined));
+    if (action === "open-subagent") {
+      const [subagentIdArg, workspaceId] = args;
+      if (subagentIdArg) {
+        navigateTo(subagentPath(subagentIdArg as SubagentId, workspaceId || undefined));
       }
       return;
     }
     if (action === "instruct-agent") {
-      const [specialistIdArg, workspaceId] = args;
+      const [subagentIdArg, workspaceId] = args;
       const agent = projectHub?.agents.find(
         (row) =>
-          row.specialistId === specialistIdArg &&
+          row.subagentId === subagentIdArg &&
           row.workspaceId === workspaceId,
       );
       if (agent) {
@@ -168,15 +168,15 @@ export function ChatSurface({
         return;
       }
       chat.chatProps.onMessageChange(
-        `Tell ${specialistLabel(specialistIdArg)} to: `,
+        `Tell ${subagentLabel(subagentIdArg)} to: `,
       );
       return;
     }
     if (action === "review-agent") {
-      const [specialistIdArg, workspaceId] = args;
+      const [subagentIdArg, workspaceId] = args;
       const agent = projectHub?.agents.find(
         (row) =>
-          row.specialistId === specialistIdArg &&
+          row.subagentId === subagentIdArg &&
           row.workspaceId === workspaceId,
       );
       if (agent) {
@@ -184,12 +184,12 @@ export function ChatSurface({
         return;
       }
       void chat.chatProps.onSend(
-        `Review the latest work from ${specialistLabel(specialistIdArg)} in workspace ${workspaceId}. Summarize what was done and recommend next steps.`,
+        `Review the latest work from ${subagentLabel(subagentIdArg)} in workspace ${workspaceId}. Summarize what was done and recommend next steps.`,
       );
       return;
     }
     if (action === "import-data") {
-      navigateTo(specialistPath("data-analyst"));
+      navigateTo(subagentPath("data-analyst"));
     }
   }
 
@@ -217,8 +217,8 @@ export function ChatSurface({
             </div>
           </header>
 
-          <SpecialistsSidebar
-            specialists={specialists}
+          <SubagentsSidebar
+            subagents={subagents}
             showPinnedOnly={showPinnedOnly}
             onTogglePinnedOnly={() => setShowPinnedOnly((current) => !current)}
             onShowGallery={() => setShowGallery(true)}
@@ -238,7 +238,7 @@ export function ChatSurface({
               <AgentBlob
                 state={agentBlobState}
                 size={32}
-                aria-label={specialist?.name ?? preferences.assistantName}
+                aria-label={subagent?.name ?? preferences.assistantName}
               />
             </button>
 
@@ -293,7 +293,7 @@ export function ChatSurface({
       )}
 
       <div className={cn("flex min-h-0 flex-1 flex-col", isMainAssistant && "pt-24")}>
-        <SpecialistChat
+        <SubagentChat
           {...chat.chatProps}
           messages={shownMessages}
           inputLayout="docked"
@@ -311,11 +311,11 @@ export function ChatSurface({
               ) : showPinnedOnly ? undefined : (
                 <MainAssistantHome
                   assistantName={assistantName}
-                  specialists={knownSpecialists}
+                  subagents={knownSubagents}
                   pinnedSnippets={pinnedSnippets}
                   onStarterPrompt={(prompt) => void chat.chatProps.onSend(prompt)}
-                  onSpecialistClick={(id) =>
-                    navigateTo(specialistPath(id as SpecialistId))
+                  onSubagentClick={(id) =>
+                    navigateTo(subagentPath(id as SubagentId))
                   }
                   onShowPinned={() => setShowPinnedOnly(true)}
                 />

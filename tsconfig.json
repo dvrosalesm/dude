@@ -25,8 +25,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts",
-    "specialists.config.ts",
-    "specialists.config.client.ts",
+    "subagents.config.ts",
+    "subagents.config.client.ts",
     "types/**/*.d.ts"
   ],
   "exclude": ["node_modules", "dist", "desktop-dist", "packages/**/dist", "apps/**/dist"]

@@ -1,4 +1,4 @@
-import type { SpecialistId } from "@dude/client-types";
+import type { SubagentId } from "@dude/client-types";
 
 import {
   deleteWorkspaceById,
@@ -22,13 +22,13 @@ import {
 } from "./uploads";
 
 export async function callWorkspaceAction(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
   actionPath: string,
   options: { method?: string; body?: Record<string, unknown> } = {},
 ) {
-  const result = await handleSpecialistWorkspaceAction(
-    specialistId,
+  const result = await handleSubagentWorkspaceAction(
+    subagentId,
     workspaceId,
     actionPath,
     options.method ?? "POST",
@@ -45,14 +45,14 @@ export async function callWorkspaceAction(
 }
 
 export async function postWorkspaceUploadUrl(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
   file: File,
 ) {
   const body = await uploadBodyFromFile(file);
   return storeUploadFromBody(
     body,
-    `${specialistId}:${workspaceId}:upload-url`,
+    `${subagentId}:${workspaceId}:upload-url`,
   ) as Promise<{
     uploadKey: string;
     key: string;
@@ -62,22 +62,22 @@ export async function postWorkspaceUploadUrl(
 }
 
 export async function* streamWorkspaceIngest(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
   body: Record<string, unknown>,
 ): AsyncGenerator<Record<string, unknown>, void, unknown> {
-  const workspace = await requireMatchingWorkspace(specialistId, workspaceId);
+  const workspace = await requireMatchingWorkspace(subagentId, workspaceId);
   yield* ingestWorkspaceFile(workspace, body);
 }
 
-async function handleSpecialistWorkspaceAction(
-  specialistId: SpecialistId,
+async function handleSubagentWorkspaceAction(
+  subagentId: SubagentId,
   workspaceId: string,
   actionPath: string | undefined,
   method: string,
   body: Record<string, unknown> = {},
 ) {
-  const workspace = await requireMatchingWorkspace(specialistId, workspaceId);
+  const workspace = await requireMatchingWorkspace(subagentId, workspaceId);
   const normalizedMethod = method.toUpperCase();
 
   if (!actionPath) {
@@ -145,7 +145,7 @@ async function handleSpecialistWorkspaceAction(
         bytesBase64: typeof body.bytesBase64 === "string" ? body.bytesBase64 : undefined,
         dataUrl: typeof body.dataUrl === "string" ? body.dataUrl : undefined,
       },
-      `${workspace.specialistId}:${workspace.id}:upload-url`,
+      `${workspace.subagentId}:${workspace.id}:upload-url`,
     );
   }
 
@@ -208,7 +208,7 @@ async function handleSpecialistWorkspaceAction(
         bytesBase64: typeof body.bytesBase64 === "string" ? body.bytesBase64 : undefined,
         dataUrl: typeof body.dataUrl === "string" ? body.dataUrl : undefined,
       },
-      `${workspace.specialistId}:${workspace.id}:upload`,
+      `${workspace.subagentId}:${workspace.id}:upload`,
       fileId,
     );
     const file = {

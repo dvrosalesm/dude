@@ -1,6 +1,6 @@
 /**
  * Hermes runner adapter — Tool Host catalog + OpenRouter ReAct loop.
- * Uses the same specialist tools as Pi via HTTP.
+ * Uses the same subagent tools as Pi via HTTP.
  */
 
 import { startAdapterServer } from "../../lib/runners/adapter-http.js";

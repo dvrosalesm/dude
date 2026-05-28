@@ -5,14 +5,14 @@ import {
   readStoredPreferences,
   type DudePreferences,
 } from "./preferences";
-import { SPECIALISTS } from "./local-chat-runtime";
-import { applyTheme } from "./features/shell/specialist-icons";
+import { SUBAGENTS } from "./local-chat-runtime";
+import { applyTheme } from "./features/shell/subagent-icons";
 import { PreferencesView } from "./features/preferences/preferences-view";
-import { SpecialistsDirectory } from "./features/specialists/specialists-directory";
+import { SubagentsDirectory } from "./features/subagents/subagents-directory";
 import {
-  SpecialistListRoute,
-  SpecialistWorkspaceRoute,
-} from "./features/shell/specialist-routes";
+  SubagentListRoute,
+  SubagentWorkspaceRoute,
+} from "./features/shell/subagent-routes";
 import { ChatSurface } from "./features/chat/chat-surface";
 import { attachAgentDebugHooks } from "./agent-debug";
 
@@ -58,21 +58,21 @@ export function LocalChatApp() {
           preferences={preferences}
           onChange={setPreferences}
         />
-      ) : route.section === "specialists" && !route.specialistId ? (
-        <SpecialistsDirectory specialists={SPECIALISTS} />
-      ) : route.section === "specialists" &&
-        route.specialistId &&
+      ) : route.section === "subagents" && !route.subagentId ? (
+        <SubagentsDirectory subagents={SUBAGENTS} />
+      ) : route.section === "subagents" &&
+        route.subagentId &&
         !route.workspaceId ? (
-        <SpecialistListRoute specialistId={route.specialistId} />
-      ) : route.section === "specialists" &&
-        route.specialistId &&
+        <SubagentListRoute subagentId={route.subagentId} />
+      ) : route.section === "subagents" &&
+        route.subagentId &&
         route.workspaceId ? (
-        <SpecialistWorkspaceRoute specialistId={route.specialistId} />
+        <SubagentWorkspaceRoute subagentId={route.subagentId} />
       ) : (
         <ChatSurface
-          specialistId={route.specialistId ?? "main-assistant"}
+          subagentId={route.subagentId ?? "main-assistant"}
           preferences={preferences}
-          specialists={SPECIALISTS}
+          subagents={SUBAGENTS}
         />
       )}
     </main>

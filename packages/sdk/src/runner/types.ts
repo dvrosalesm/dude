@@ -135,7 +135,7 @@ export type AgentInstanceStatus =
 
 export interface AgentInstance {
   id: string;
-  specialistId: string;
+  subagentId: string;
   organizationId: string;
   runner: AgentRunnerId;
   gatewayPort: number;
@@ -205,7 +205,7 @@ export interface AgentChatStateSnapshot {
  * - GET  /health
  * - POST /v1/chat          (SSE stream, ends with `event: done`)
  * - GET  /v1/chat/state    (?since=N for recovery)
- * - POST /v1/query         (optional — SQL passthrough for data specialists)
+ * - POST /v1/query         (optional — SQL passthrough for data subagents)
  *
  * At spawn, the instance manager writes `.dude-runner-session.json` (see
  * RunnerSessionManifest). Adapters load it on startup; all tool/dispatch calls

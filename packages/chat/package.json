@@ -10,9 +10,9 @@
       "default": "./src/index.ts"
     },
     "./types": {
-      "types": "./src/specialists/types.ts",
-      "import": "./src/specialists/types.ts",
-      "default": "./src/specialists/types.ts"
+      "types": "./src/subagents/types.ts",
+      "import": "./src/subagents/types.ts",
+      "default": "./src/subagents/types.ts"
     },
     "./components/chat/chat-markdown": {
       "types": "./src/components/chat/chat-markdown.tsx",
@@ -89,105 +89,105 @@
       "import": "./src/lib/html-in-canvas/types.ts",
       "default": "./src/lib/html-in-canvas/types.ts"
     },
-    "./specialists/floating-chat-panel": {
-      "types": "./src/specialists/floating-chat-panel.tsx",
-      "import": "./src/specialists/floating-chat-panel.tsx",
-      "default": "./src/specialists/floating-chat-panel.tsx"
+    "./subagents/floating-chat-panel": {
+      "types": "./src/subagents/floating-chat-panel.tsx",
+      "import": "./src/subagents/floating-chat-panel.tsx",
+      "default": "./src/subagents/floating-chat-panel.tsx"
     },
-    "./specialists/hooks/upload-chat-images": {
-      "types": "./src/specialists/hooks/upload-chat-images.ts",
-      "import": "./src/specialists/hooks/upload-chat-images.ts",
-      "default": "./src/specialists/hooks/upload-chat-images.ts"
+    "./subagents/hooks/upload-chat-images": {
+      "types": "./src/subagents/hooks/upload-chat-images.ts",
+      "import": "./src/subagents/hooks/upload-chat-images.ts",
+      "default": "./src/subagents/hooks/upload-chat-images.ts"
     },
-    "./specialists/hooks/use-assistant-loop": {
-      "types": "./src/specialists/hooks/use-assistant-loop.ts",
-      "import": "./src/specialists/hooks/use-assistant-loop.ts",
-      "default": "./src/specialists/hooks/use-assistant-loop.ts"
+    "./subagents/hooks/use-assistant-loop": {
+      "types": "./src/subagents/hooks/use-assistant-loop.ts",
+      "import": "./src/subagents/hooks/use-assistant-loop.ts",
+      "default": "./src/subagents/hooks/use-assistant-loop.ts"
     },
-    "./specialists/hooks/use-gateway-session": {
-      "types": "./src/specialists/hooks/use-gateway-session.ts",
-      "import": "./src/specialists/hooks/use-gateway-session.ts",
-      "default": "./src/specialists/hooks/use-gateway-session.ts"
+    "./subagents/hooks/use-gateway-session": {
+      "types": "./src/subagents/hooks/use-gateway-session.ts",
+      "import": "./src/subagents/hooks/use-gateway-session.ts",
+      "default": "./src/subagents/hooks/use-gateway-session.ts"
     },
-    "./specialists/hooks/use-specialist-chat": {
-      "types": "./src/specialists/hooks/use-specialist-chat.ts",
-      "import": "./src/specialists/hooks/use-specialist-chat.ts",
-      "default": "./src/specialists/hooks/use-specialist-chat.ts"
+    "./subagents/hooks/use-subagent-chat": {
+      "types": "./src/subagents/hooks/use-subagent-chat.ts",
+      "import": "./src/subagents/hooks/use-subagent-chat.ts",
+      "default": "./src/subagents/hooks/use-subagent-chat.ts"
     },
-    "./specialists/hooks/use-specialist-workspace-loader": {
-      "types": "./src/specialists/hooks/use-specialist-workspace-loader.ts",
-      "import": "./src/specialists/hooks/use-specialist-workspace-loader.ts",
-      "default": "./src/specialists/hooks/use-specialist-workspace-loader.ts"
+    "./subagents/hooks/use-subagent-workspace-loader": {
+      "types": "./src/subagents/hooks/use-subagent-workspace-loader.ts",
+      "import": "./src/subagents/hooks/use-subagent-workspace-loader.ts",
+      "default": "./src/subagents/hooks/use-subagent-workspace-loader.ts"
     },
-    "./specialists/inline-render-spec": {
-      "types": "./src/specialists/inline-render-spec.tsx",
-      "import": "./src/specialists/inline-render-spec.tsx",
-      "default": "./src/specialists/inline-render-spec.tsx"
+    "./subagents/inline-render-spec": {
+      "types": "./src/subagents/inline-render-spec.tsx",
+      "import": "./src/subagents/inline-render-spec.tsx",
+      "default": "./src/subagents/inline-render-spec.tsx"
     },
-    "./specialists/lava-lamp-pattern": {
-      "types": "./src/specialists/lava-lamp-pattern.tsx",
-      "import": "./src/specialists/lava-lamp-pattern.tsx",
-      "default": "./src/specialists/lava-lamp-pattern.tsx"
+    "./subagents/lava-lamp-pattern": {
+      "types": "./src/subagents/lava-lamp-pattern.tsx",
+      "import": "./src/subagents/lava-lamp-pattern.tsx",
+      "default": "./src/subagents/lava-lamp-pattern.tsx"
     },
-    "./specialists/main-assistant-stage": {
-      "types": "./src/specialists/main-assistant-stage.tsx",
-      "import": "./src/specialists/main-assistant-stage.tsx",
-      "default": "./src/specialists/main-assistant-stage.tsx"
+    "./subagents/main-assistant-stage": {
+      "types": "./src/subagents/main-assistant-stage.tsx",
+      "import": "./src/subagents/main-assistant-stage.tsx",
+      "default": "./src/subagents/main-assistant-stage.tsx"
     },
-    "./specialists/main-assistant-workspace": {
-      "types": "./src/specialists/main-assistant-workspace.tsx",
-      "import": "./src/specialists/main-assistant-workspace.tsx",
-      "default": "./src/specialists/main-assistant-workspace.tsx"
+    "./subagents/main-assistant-workspace": {
+      "types": "./src/subagents/main-assistant-workspace.tsx",
+      "import": "./src/subagents/main-assistant-workspace.tsx",
+      "default": "./src/subagents/main-assistant-workspace.tsx"
     },
-    "./specialists/project-hub-panel": {
-      "types": "./src/specialists/project-hub-panel.tsx",
-      "import": "./src/specialists/project-hub-panel.tsx",
-      "default": "./src/specialists/project-hub-panel.tsx"
+    "./subagents/project-hub-panel": {
+      "types": "./src/subagents/project-hub-panel.tsx",
+      "import": "./src/subagents/project-hub-panel.tsx",
+      "default": "./src/subagents/project-hub-panel.tsx"
     },
-    "./specialists/specialist-chat": {
-      "types": "./src/specialists/specialist-chat.tsx",
-      "import": "./src/specialists/specialist-chat.tsx",
-      "default": "./src/specialists/specialist-chat.tsx"
+    "./subagents/subagent-chat": {
+      "types": "./src/subagents/subagent-chat.tsx",
+      "import": "./src/subagents/subagent-chat.tsx",
+      "default": "./src/subagents/subagent-chat.tsx"
     },
-    "./specialists/specialist-message-bubble": {
-      "types": "./src/specialists/specialist-message-bubble.tsx",
-      "import": "./src/specialists/specialist-message-bubble.tsx",
-      "default": "./src/specialists/specialist-message-bubble.tsx"
+    "./subagents/subagent-message-bubble": {
+      "types": "./src/subagents/subagent-message-bubble.tsx",
+      "import": "./src/subagents/subagent-message-bubble.tsx",
+      "default": "./src/subagents/subagent-message-bubble.tsx"
     },
-    "./specialists/specialist-meta": {
-      "types": "./src/specialists/specialist-meta.ts",
-      "import": "./src/specialists/specialist-meta.ts",
-      "default": "./src/specialists/specialist-meta.ts"
+    "./subagents/subagent-meta": {
+      "types": "./src/subagents/subagent-meta.ts",
+      "import": "./src/subagents/subagent-meta.ts",
+      "default": "./src/subagents/subagent-meta.ts"
     },
-    "./specialists/specialist-workspace-layout": {
-      "types": "./src/specialists/specialist-workspace-layout.tsx",
-      "import": "./src/specialists/specialist-workspace-layout.tsx",
-      "default": "./src/specialists/specialist-workspace-layout.tsx"
+    "./subagents/subagent-workspace-layout": {
+      "types": "./src/subagents/subagent-workspace-layout.tsx",
+      "import": "./src/subagents/subagent-workspace-layout.tsx",
+      "default": "./src/subagents/subagent-workspace-layout.tsx"
     },
-    "./specialists/specialist-workspace-list": {
-      "types": "./src/specialists/specialist-workspace-list.tsx",
-      "import": "./src/specialists/specialist-workspace-list.tsx",
-      "default": "./src/specialists/specialist-workspace-list.tsx"
+    "./subagents/subagent-workspace-list": {
+      "types": "./src/subagents/subagent-workspace-list.tsx",
+      "import": "./src/subagents/subagent-workspace-list.tsx",
+      "default": "./src/subagents/subagent-workspace-list.tsx"
     },
-    "./specialists/types": {
-      "types": "./src/specialists/types.ts",
-      "import": "./src/specialists/types.ts",
-      "default": "./src/specialists/types.ts"
+    "./subagents/types": {
+      "types": "./src/subagents/types.ts",
+      "import": "./src/subagents/types.ts",
+      "default": "./src/subagents/types.ts"
     },
-    "./specialists/ui-input-prompt": {
-      "types": "./src/specialists/ui-input-prompt.tsx",
-      "import": "./src/specialists/ui-input-prompt.tsx",
-      "default": "./src/specialists/ui-input-prompt.tsx"
+    "./subagents/ui-input-prompt": {
+      "types": "./src/subagents/ui-input-prompt.tsx",
+      "import": "./src/subagents/ui-input-prompt.tsx",
+      "default": "./src/subagents/ui-input-prompt.tsx"
     },
-    "./specialists/workspace-header-bar": {
-      "types": "./src/specialists/workspace-header-bar.tsx",
-      "import": "./src/specialists/workspace-header-bar.tsx",
-      "default": "./src/specialists/workspace-header-bar.tsx"
+    "./subagents/workspace-header-bar": {
+      "types": "./src/subagents/workspace-header-bar.tsx",
+      "import": "./src/subagents/workspace-header-bar.tsx",
+      "default": "./src/subagents/workspace-header-bar.tsx"
     },
-    "./specialists/workspace-layout-icon": {
-      "types": "./src/specialists/workspace-layout-icon.tsx",
-      "import": "./src/specialists/workspace-layout-icon.tsx",
-      "default": "./src/specialists/workspace-layout-icon.tsx"
+    "./subagents/workspace-layout-icon": {
+      "types": "./src/subagents/workspace-layout-icon.tsx",
+      "import": "./src/subagents/workspace-layout-icon.tsx",
+      "default": "./src/subagents/workspace-layout-icon.tsx"
     }
   },
   "dependencies": {
@@ -197,7 +197,7 @@
     "@dude/data-analyst-core": "*",
     "@dude/inline-render": "*",
     "@dude/gateway-shared": "*",
-    "@dude/specialist-params": "*",
+    "@dude/subagent-params": "*",
     "@dude/ui": "*",
     "@dude/workspaces": "*",
     "@json-render/core": "^0.6.0",

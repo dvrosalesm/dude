@@ -32,16 +32,16 @@ If API is down, chat turns fail with gateway/proxy 500 — fix API first, not th
 ## 3. CLI harness
 
 ```sh
-npm run agent -- workspaces create --specialist document-writer --name "Agent test"
-npm run agent -- chat --specialist document-writer --workspace <id> --message "..."
-npm run agent -- browser-hints --specialist document-writer --workspace <id>
+npm run agent -- workspaces create --subagent document-writer --name "Agent test"
+npm run agent -- chat --subagent document-writer --workspace <id> --message "..."
+npm run agent -- browser-hints --subagent document-writer --workspace <id>
 ```
 
 Full reference: `scripts/agent-harness/README.md`.
 
 ## 4. Browser MCP (`cursor-ide-browser`)
 
-1. `browser_navigate` → URL from `npm run agent -- url --specialist <id> [--workspace <id>]`
+1. `browser_navigate` → URL from `npm run agent -- url --subagent <id> [--workspace <id>]`
 2. `browser_lock` → interact → `browser_unlock`
 3. After agent work, CDP evaluate:
 
@@ -51,11 +51,16 @@ window.__DUDE_AGENT__?.snapshot()
 
 Document Writer canvas: `window.__DUDE_DW_DEBUG__?.snapshot()` — expect `blockCount > 0` after edits.
 
-## 5. Specialist IDs
+## 5. Subagent IDs
 
 `main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`, `prospect`
 
-## 6. Do not
+## 6. Routes
+
+- Current: `/chat/subagents/<subagentId>[/<workspaceId>]`
+- Legacy `/chat/subagents/...` redirects to `/chat/subagents/...` in dev
+
+## 7. Do not
 
 - Commit or log `.env.local` secrets
 - Assume `/health` on API root — use `agent:status` (checks `/healthz`, `/v1/health`, `/api/health`)

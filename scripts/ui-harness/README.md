@@ -1,6 +1,6 @@
 # UI harness (browser / CDP)
 
-Programmatic checks for specialist UIs without adding Playwright to the repo.
+Programmatic checks for subagent UIs without adding Playwright to the repo.
 
 **Start here for agents:** [`scripts/agent-harness/README.md`](../agent-harness/README.md) — unified CLI (`npm run agent`), workspaces, API chat, and browser MCP hints.
 
@@ -27,7 +27,7 @@ The probe:
 
 ### Browser MCP flow (Cursor `cursor-ide-browser`)
 
-1. `browser_navigate` → `http://127.0.0.1:5173/chat/specialists/document-writer`
+1. `browser_navigate` → `http://127.0.0.1:5173/chat/subagents/document-writer`
 2. Create or open a workspace from the list UI
 3. `browser_snapshot` — find chat input, send a short prompt (e.g. "Add a title and one paragraph about testing")
 4. After the agent finishes, run CDP evaluate (from probe output):

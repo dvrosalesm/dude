@@ -1,6 +1,6 @@
 "use client";
 
-import type { LocalChatMessage, SpecialistId } from "../types";
+import type { LocalChatMessage, SubagentId } from "../types";
 import type { SendLocalMessageInput } from "@dude/client-types";
 import type { GatewayConversationMessage } from "./gateway-types";
 import {
@@ -20,7 +20,7 @@ import {
 import { canUseGateway } from "./gateway-desktop";
 
 export type PendingGatewayTurn = {
-  specialistId: SpecialistId;
+  subagentId: SubagentId;
   workspaceId: string;
   gtWorkspaceId: string;
   sessionId: string;
@@ -35,8 +35,8 @@ export type GatewayTurnProgress = {
 
 type TurnListener = (update: GatewayTurnProgress) => void;
 
-function turnKey(specialistId: SpecialistId, workspaceId?: string): string {
-  return threadKey(specialistId, workspaceId);
+function turnKey(subagentId: SubagentId, workspaceId?: string): string {
+  return threadKey(subagentId, workspaceId);
 }
 
 function pendingStorageKey(key: string): string {
@@ -59,7 +59,7 @@ function readPendingTurn(key: string): PendingGatewayTurn | null {
 
 function writePendingTurn(turn: PendingGatewayTurn): void {
   if (typeof sessionStorage === "undefined") return;
-  const key = turnKey(turn.specialistId, turn.workspaceId);
+  const key = turnKey(turn.subagentId, turn.workspaceId);
   sessionStorage.setItem(pendingStorageKey(key), JSON.stringify(turn));
 }
 
@@ -69,11 +69,11 @@ function clearPendingTurn(key: string): void {
 }
 
 export function subscribeGatewayTurn(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string | undefined,
   listener: TurnListener,
 ): () => void {
-  const key = turnKey(specialistId, workspaceId);
+  const key = turnKey(subagentId, workspaceId);
   const set = turnListeners.get(key) ?? new Set();
   set.add(listener);
   turnListeners.set(key, set);
@@ -95,17 +95,17 @@ function notifyTurnListeners(
 }
 
 export function getInflightGatewayTurn(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ): Promise<void> | undefined {
-  return inflightTurns.get(turnKey(specialistId, workspaceId));
+  return inflightTurns.get(turnKey(subagentId, workspaceId));
 }
 
 export function abandonGatewayTurn(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ): void {
-  const key = turnKey(specialistId, workspaceId);
+  const key = turnKey(subagentId, workspaceId);
   inflightTurns.delete(key);
   clearPendingTurn(key);
 }
@@ -119,26 +119,26 @@ function sleep(ms: number): Promise<void> {
 
 /** Wait for the gateway session to leave processing without opening a new SSE stream. */
 async function pollUntilGatewayTurnSettles(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string | undefined,
   sessionId: string,
 ): Promise<void> {
   const deadline = Date.now() + POLL_MAX_WAIT_MS;
   while (Date.now() < deadline) {
     const messages = await fetchGatewaySessionMessages(
-      specialistId,
+      subagentId,
       workspaceId,
       sessionId,
     );
     if (!gatewaySessionHasActiveTurn(messages)) {
-      await syncGatewayMessagesToLocalThread(specialistId, workspaceId);
+      await syncGatewayMessagesToLocalThread(subagentId, workspaceId);
       return;
     }
     await sleep(POLL_INTERVAL_MS);
   }
-  await syncGatewayMessagesToLocalThread(specialistId, workspaceId);
+  await syncGatewayMessagesToLocalThread(subagentId, workspaceId);
   const stillActive = gatewaySessionHasActiveTurn(
-    await fetchGatewaySessionMessages(specialistId, workspaceId, sessionId),
+    await fetchGatewaySessionMessages(subagentId, workspaceId, sessionId),
   );
   if (stillActive) {
     throw new Error("Timed out waiting for the agent to finish");
@@ -146,12 +146,12 @@ async function pollUntilGatewayTurnSettles(
 }
 
 export async function fetchGatewaySessionMessages(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string | undefined,
   sessionId: string,
 ): Promise<GatewayConversationMessage[]> {
-  const gatewayScope = resolveGatewayScopeId(specialistId, workspaceId);
-  const gtWorkspaceId = gatewayWorkspaceId(specialistId, gatewayScope);
+  const gatewayScope = resolveGatewayScopeId(subagentId, workspaceId);
+  const gtWorkspaceId = gatewayWorkspaceId(subagentId, gatewayScope);
   const data = await gatewayRequest<{
     sessionId: string;
     messages: GatewayConversationMessage[];
@@ -182,33 +182,33 @@ export function resolveActiveAssistantMessageId(
 }
 
 export async function syncGatewayMessagesToLocalThread(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ): Promise<{ messages: LocalChatMessage[]; active: boolean }> {
-  const chatScope = normalizeChatScopeId(specialistId, workspaceId);
+  const chatScope = normalizeChatScopeId(subagentId, workspaceId);
   const state = await readState();
   if (!chatScope) {
     return {
-      messages: getThread(state, specialistId, workspaceId),
+      messages: getThread(state, subagentId, workspaceId),
       active: false,
     };
   }
 
-  const localMessages = getThread(state, specialistId, chatScope);
+  const localMessages = getThread(state, subagentId, chatScope);
 
   if (!canUseGateway()) {
     return { messages: localMessages, active: false };
   }
 
-  const gatewayScope = resolveGatewayScopeId(specialistId, chatScope);
-  const sessionId = readGatewaySessionId(specialistId, gatewayScope);
+  const gatewayScope = resolveGatewayScopeId(subagentId, chatScope);
+  const sessionId = readGatewaySessionId(subagentId, gatewayScope);
   if (!sessionId) {
     return { messages: localMessages, active: false };
   }
 
   try {
     const gatewayMessages = await fetchGatewaySessionMessages(
-      specialistId,
+      subagentId,
       chatScope,
       sessionId,
     );
@@ -219,9 +219,9 @@ export async function syncGatewayMessagesToLocalThread(
           message.role === "user" ||
           (message.role === "assistant" && message.status !== "processing"),
       )
-      .map((message) => mapGatewayMessage(message, specialistId));
+      .map((message) => mapGatewayMessage(message, subagentId));
 
-    state.threads[threadKey(specialistId, chatScope)] = persisted;
+    state.threads[threadKey(subagentId, chatScope)] = persisted;
     await writeState(state);
     return {
       messages: persisted,
@@ -230,7 +230,7 @@ export async function syncGatewayMessagesToLocalThread(
   } catch {
     return {
       messages: localMessages,
-      active: Boolean(getInflightGatewayTurn(specialistId, chatScope)),
+      active: Boolean(getInflightGatewayTurn(subagentId, chatScope)),
     };
   }
 }
@@ -243,7 +243,7 @@ export async function appendGatewayUserMessage(
   const userFacing =
     displayContent?.trim() ||
     extractUserFacingMessage(gatewayUser.content);
-  const mapped = mapGatewayMessage(gatewayUser, input.specialistId);
+  const mapped = mapGatewayMessage(gatewayUser, input.subagentId);
   return appendUserMessageToThread(input, {
     ...mapped,
     content: userFacing,
@@ -261,7 +261,7 @@ export async function completeGatewayTurn(
     displayContent?: string;
   },
 ): Promise<void> {
-  const key = turnKey(turn.specialistId, turn.workspaceId);
+  const key = turnKey(turn.subagentId, turn.workspaceId);
 
   const notify = (update: GatewayTurnProgress) => {
     options?.onProgress?.(update as Parameters<
@@ -274,7 +274,7 @@ export async function completeGatewayTurn(
     turn.gtWorkspaceId,
     turn.sessionId,
     turn.assistantMessageId,
-    turn.specialistId,
+    turn.subagentId,
     notify,
   );
 
@@ -289,10 +289,10 @@ export async function completeGatewayTurn(
     throw new Error("Gateway returned an incomplete chat turn");
   }
 
-  const mappedUser = mapGatewayMessage(userMessage, turn.specialistId);
+  const mappedUser = mapGatewayMessage(userMessage, turn.subagentId);
   const mappedAssistant = mapGatewayMessage(
     assistantMessage,
-    turn.specialistId,
+    turn.subagentId,
   );
   const userFacingContent =
     options?.displayContent?.trim() ||
@@ -319,7 +319,7 @@ export function startGatewayTurnCompletion(
     displayContent?: string;
   },
 ): Promise<void> {
-  const key = turnKey(turn.specialistId, turn.workspaceId);
+  const key = turnKey(turn.subagentId, turn.workspaceId);
   const existing = inflightTurns.get(key);
   if (existing) return existing;
 
@@ -342,24 +342,24 @@ export function startGatewayTurnCompletion(
 }
 
 export async function resumeGatewayTurnIfNeeded(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId?: string,
 ): Promise<{
   active: boolean;
   promise?: Promise<void>;
   reattaching?: boolean;
 }> {
-  const key = turnKey(specialistId, workspaceId);
+  const key = turnKey(subagentId, workspaceId);
   const inflight = inflightTurns.get(key);
   if (inflight) {
     return { active: true, promise: inflight, reattaching: true };
   }
 
   const gatewayScope = resolveGatewayScopeId(
-    specialistId,
-    normalizeChatScopeId(specialistId, workspaceId),
+    subagentId,
+    normalizeChatScopeId(subagentId, workspaceId),
   );
-  const sessionId = readGatewaySessionId(specialistId, gatewayScope);
+  const sessionId = readGatewaySessionId(subagentId, gatewayScope);
   if (!sessionId) {
     return { active: false };
   }
@@ -367,8 +367,8 @@ export async function resumeGatewayTurnIfNeeded(
   let messages: GatewayConversationMessage[];
   try {
     messages = await fetchGatewaySessionMessages(
-      specialistId,
-      normalizeChatScopeId(specialistId, workspaceId),
+      subagentId,
+      normalizeChatScopeId(subagentId, workspaceId),
       sessionId,
     );
   } catch {
@@ -378,11 +378,11 @@ export async function resumeGatewayTurnIfNeeded(
 
   if (!gatewaySessionHasActiveTurn(messages)) {
     clearPendingTurn(key);
-    await syncGatewayMessagesToLocalThread(specialistId, workspaceId);
+    await syncGatewayMessagesToLocalThread(subagentId, workspaceId);
     return { active: false };
   }
 
-  const gtWorkspaceId = gatewayWorkspaceId(specialistId, gatewayScope);
+  const gtWorkspaceId = gatewayWorkspaceId(subagentId, gatewayScope);
   try {
     const instance = await gatewayRequest<{ status?: string }>(
       `/instances/${encodeURIComponent(gtWorkspaceId)}`,
@@ -390,17 +390,17 @@ export async function resumeGatewayTurnIfNeeded(
     );
     if (instance.status !== "running") {
       clearPendingTurn(key);
-      await syncGatewayMessagesToLocalThread(specialistId, workspaceId);
+      await syncGatewayMessagesToLocalThread(subagentId, workspaceId);
       return { active: false };
     }
   } catch {
     clearPendingTurn(key);
-    await syncGatewayMessagesToLocalThread(specialistId, workspaceId);
+    await syncGatewayMessagesToLocalThread(subagentId, workspaceId);
     return { active: false };
   }
 
   const promise = pollUntilGatewayTurnSettles(
-    specialistId,
+    subagentId,
     workspaceId,
     sessionId,
   )

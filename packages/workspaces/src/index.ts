@@ -8,8 +8,8 @@ export type {
 export type { UploadBody } from "./uploads";
 
 export {
-  listSpecialistWorkspaces,
-  createSpecialistWorkspace,
+  listSubagentWorkspaces,
+  createSubagentWorkspace,
   getWorkspaceById,
   patchWorkspaceById,
   updateWorkspaceById,

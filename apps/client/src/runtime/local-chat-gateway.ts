@@ -7,7 +7,7 @@ export {
   gatewayRequest,
   appendMessagePair,
   appendUserMessageToThread,
-  gatewaySpecialistId,
+  gatewaySubagentId,
   gatewayWorkspaceId,
 } from "./gateway-desktop";
 export { buildGatewayConfig } from "./gateway-prompts";

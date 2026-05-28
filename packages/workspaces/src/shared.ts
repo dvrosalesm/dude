@@ -1,7 +1,7 @@
 import type {
   LocalChatMessage,
-  LocalSpecialistWorkspace,
-  SpecialistId,
+  LocalSubagentWorkspace,
+  SubagentId,
 } from "@dude/client-types";
 
 import { extractUserFacingMessage } from "@dude/gateway-shared/user-facing-message";
@@ -10,7 +10,7 @@ import { chatRuntime } from "./runtime-binding";
 
 export { chatRuntime };
 
-/** Known specialist route paths — kept free of `specialists.config.client` to avoid import cycles. */
+/** Known subagent route paths — kept free of `subagents.config.client` to avoid import cycles. */
 const SPECIALIST_PATHS = new Set<string>([
   "data-analyst",
   "presentation-editor",
@@ -19,7 +19,7 @@ const SPECIALIST_PATHS = new Set<string>([
   "design-branding",
 ]);
 
-export type WorkspaceRecord = LocalSpecialistWorkspace;
+export type WorkspaceRecord = LocalSubagentWorkspace;
 
 export type UiMessage = {
   id: string;
@@ -48,8 +48,8 @@ export function toUiMessage(message: LocalChatMessage): UiMessage {
   };
 }
 
-export function specialistFromPath(value: string | undefined): SpecialistId | null {
-  if (value && SPECIALIST_PATHS.has(value)) return value as SpecialistId;
+export function subagentFromPath(value: string | undefined): SubagentId | null {
+  if (value && SPECIALIST_PATHS.has(value)) return value as SubagentId;
   return null;
 }
 
@@ -62,18 +62,18 @@ export async function requireWorkspace(workspaceId: string) {
 }
 
 export async function requireMatchingWorkspace(
-  specialistId: SpecialistId,
+  subagentId: SubagentId,
   workspaceId: string,
 ) {
   const workspace = await requireWorkspace(workspaceId);
-  if (workspace.specialistId !== specialistId) {
-    throw new LocalWorkspaceApiError("Workspace specialist mismatch", 403);
+  if (workspace.subagentId !== subagentId) {
+    throw new LocalWorkspaceApiError("Workspace subagent mismatch", 403);
   }
   return workspace;
 }
 
 export async function patchWorkspaceConfig(
-  workspace: LocalSpecialistWorkspace,
+  workspace: LocalSubagentWorkspace,
   updates: Record<string, unknown>,
 ) {
   const next = await chatRuntime.updateWorkspace(workspace.id, {

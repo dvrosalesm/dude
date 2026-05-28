@@ -7,9 +7,9 @@
 ![Electron](https://img.shields.io/badge/Electron-42-47848F?logo=electron&logoColor=white)
 ![License](https://img.shields.io/badge/License-Proprietary-FBB76B)
 
-Local-first AI workspace. **Dude** is the main assistant orchestrator; each domain agent is an installable `@dude/specialist-*` package with its own UI and gateway tools.
+Local-first AI workspace. **Dude** is the main assistant orchestrator; each domain agent is an installable `@dude/subagent-*` package with its own UI and gateway tools.
 
-More docs: [docs/](./docs/README.md) — architecture, specialist authoring, [design system](./docs/design.md).
+More docs: [docs/](./docs/README.md) — architecture, subagent authoring, [design system](./docs/design.md).
 
 ## Prerequisites
 
@@ -48,19 +48,19 @@ One **background runner** (Pi, Codex, Hermes, or Cursor) per agent identity:
 | Agent | Instance id | Scope |
 |-------|-------------|-------|
 | **Dude** (main assistant) | `{org}:main-assistant:{userId}` | One runner per user thread |
-| **Specialist** | `{org}:{specialistKind}:{workspaceId}` | One runner per workspace |
+| **Subagent** | `{org}:{subagentKind}:{workspaceId}` | One runner per workspace |
 | **Custom** | `{org}:{yourKind}:{scopeId}` | Same pattern |
 
-Dude delegates to specialists via tools — each delegation spawns or reuses that specialist's runner. Tools are served by the **Tool Host** (`/v1/internal/tool-host/*`).
+Dude delegates to subagents via tools — each delegation spawns or reuses that subagent's runner. Tools are served by the **Tool Host** (`/v1/internal/tool-host/*`).
 
 ```
 User → Dude runner (main-assistant)
-         ├─ tool: data-analyst → specialist runner (workspace A)
-         ├─ tool: document-writer → specialist runner (workspace B)
-         └─ direct chat in workspace → that workspace's specialist runner
+         ├─ tool: data-analyst → subagent runner (workspace A)
+         ├─ tool: document-writer → subagent runner (workspace B)
+         └─ direct chat in workspace → that workspace's subagent runner
 ```
 
-Helpers: `@dude/sdk/runner` — `buildMainAssistantInstanceId`, `buildSpecialistInstanceId`, `MAIN_ASSISTANT_KIND`.
+Helpers: `@dude/sdk/runner` — `buildMainAssistantInstanceId`, `buildSubagentInstanceId`, `MAIN_ASSISTANT_KIND`.
 
 ## Monorepo layout
 
@@ -70,32 +70,32 @@ dude/
     client/              # Vite + React SPA (web + Electron renderer)
     api/                 # Unified Elysia server (REST + AI gateway)
   packages/
-    sdk/                 # @dude/sdk — defineSpecialist, registry, gateway types
+    sdk/                 # @dude/sdk — defineSubagent, registry, gateway types
     ui/                  # Design system (shadcn)
-    chat/                # Shared specialist chat shell
+    chat/                # Shared subagent chat shell
     workspaces/          # Workspace CRUD, assistant, uploads
     data-analyst-core/   # Reports, json-render, SQL UI
     presentation-editor/ # PPTX editor domain
     gateway-shared/      # html-preview, tool labels
-    specialist-*/        # Installable specialists (UI + gateway)
-    …                    # client-types, app-navigation, specialist-params, …
+    subagent-*/          # Installable subagents (UI + gateway)
+    …                    # client-types, app-navigation, subagent-params, …
   electron/              # Desktop shell
   scripts/               # Agent harness, icon generation, probes
-  specialists.config.ts         # Server host (API, tool-host, spawn)
-  specialists.config.client.ts  # Browser-safe host (UI only)
+  subagents.config.ts         # Server host (API, tool-host, spawn)
+  subagents.config.client.ts  # Browser-safe host (UI only)
 ```
 
-### Registered specialists
+### Registered subagents
 
 | Package | Role |
 |---------|------|
-| `@dude/specialist-data-analyst` | Data analysis, charts, SQL workspaces |
-| `@dude/specialist-document-editor` | Rich document editing |
-| `@dude/specialist-document-writer` | Structured document / canvas writing |
-| `@dude/specialist-prospect` | Prospect research workflows |
-| `@dude/specialist-design-branding` | Brand and design tasks |
+| `@dude/subagent-data-analyst` | Data analysis, charts, SQL workspaces |
+| `@dude/subagent-document-editor` | Rich document editing |
+| `@dude/subagent-document-writer` | Structured document / canvas writing |
+| `@dude/subagent-prospect` | Prospect research workflows |
+| `@dude/subagent-design-branding` | Brand and design tasks |
 
-Register new specialists in both `specialists.config.ts` and `specialists.config.client.ts`. See [CREATING-A-SPECIALIST.md](./docs/CREATING-A-SPECIALIST.md).
+Register new subagents in both `subagents.config.ts` and `subagents.config.client.ts`. See [CREATING-A-SUBAGENT.md](./docs/CREATING-A-SUBAGENT.md).
 
 ### API surfaces
 
@@ -106,7 +106,7 @@ One Elysia process on port **8787**:
 | `/api/*` | Minimal app REST (`GET /api`, `GET /api/health`) |
 | `/v1/*` | Gateway — instances, workspaces, chat, `/v1/internal/tool-host/*` |
 
-Workspace CRUD, chat turns, and specialist actions go through `/v1/*`, not `/api/*`.
+Workspace CRUD, chat turns, and subagent actions go through `/v1/*`, not `/api/*`.
 
 ## Testing with the agent harness
 
@@ -116,19 +116,19 @@ For Cursor agents and local smoke tests without Playwright:
 npm run dev
 npm run agent:status
 
-npm run agent -- workspaces create --specialist document-writer --name "Smoke test"
-npm run agent -- chat --specialist document-writer --workspace <id> --message "Hello"
+npm run agent -- workspaces create --subagent document-writer --name "Smoke test"
+npm run agent -- chat --subagent document-writer --workspace <id> --message "Hello"
 ```
 
 Full CLI reference: [scripts/agent-harness/README.md](./scripts/agent-harness/README.md). Agents in this repo should follow [.cursor/rules/dude-agent-testing.mdc](./.cursor/rules/dude-agent-testing.mdc).
 
-Specialist IDs used by the harness include: `main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`, `prospect`.
+Subagent IDs used by the harness include: `main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`, `prospect`.
 
-## Adding a specialist
+## Adding a subagent
 
-1. Create `packages/specialist-my-agent/` exporting `defineSpecialist(...)` from `@dude/sdk`
+1. Create `packages/subagent-my-agent/` exporting `defineSubagent(...)` from `@dude/sdk`
 2. Add the package to root `package.json` workspace dependencies
-3. Register in `specialists.config.ts` and `specialists.config.client.ts`
+3. Register in `subagents.config.ts` and `subagents.config.client.ts`
 4. Put gateway tools in your package's `gateway/` folder; shared base tools in `apps/api/src/lib/tool-host/tools/`
 
 ## Environment (desktop / packaged)
@@ -150,7 +150,7 @@ Optional runtime secrets for packaged desktop: copy [desktop.env.example](./desk
 | `npm run build` | SDK + client + API |
 | `npm run test` | Jest |
 | `npm run lint` | ESLint (`packages/`) |
-| `npm run generate:specialists` | Regenerate specialist scaffolds |
+| `npm run generate:subagents` | Regenerate subagent scaffolds |
 | `npm run generate:icons` | App icons for desktop |
 | `npm run agent -- <cmd>` | Local agent/CLI harness |
 | `npm run agent:status` | Check client + API reachability |

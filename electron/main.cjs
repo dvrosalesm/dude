@@ -194,7 +194,7 @@ function getLocalDb() {
 
     CREATE TABLE IF NOT EXISTS workspaces (
       id TEXT PRIMARY KEY,
-      specialist_id TEXT NOT NULL,
+      subagent_id TEXT NOT NULL,
       name TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'draft',
       configurations TEXT NOT NULL DEFAULT '{}',
@@ -204,7 +204,7 @@ function getLocalDb() {
     );
 
     CREATE INDEX IF NOT EXISTS idx_workspaces_specialist
-      ON workspaces (specialist_id, updated_at DESC);
+      ON workspaces (subagent_id, updated_at DESC);
 
     CREATE TABLE IF NOT EXISTS threads (
       key TEXT PRIMARY KEY,
@@ -264,7 +264,7 @@ function migrateLocalDbSchema(db) {
   const columnNames = new Set(columns.map((column) => column.name));
   const expectedColumns = [
     "id",
-    "specialist_id",
+    "subagent_id",
     "name",
     "status",
     "configurations",
@@ -286,7 +286,7 @@ function migrateLocalDbSchema(db) {
   db.exec(`
     CREATE TABLE workspaces__next (
       id TEXT PRIMARY KEY,
-      specialist_id TEXT NOT NULL,
+      subagent_id TEXT NOT NULL,
       name TEXT NOT NULL,
       status TEXT NOT NULL DEFAULT 'draft',
       configurations TEXT NOT NULL DEFAULT '{}',
@@ -299,7 +299,7 @@ function migrateLocalDbSchema(db) {
   const insertWorkspace = db.prepare(`
     INSERT INTO workspaces__next (
       id,
-      specialist_id,
+      subagent_id,
       name,
       status,
       configurations,
@@ -309,7 +309,7 @@ function migrateLocalDbSchema(db) {
     )
     VALUES (
       @id,
-      @specialist_id,
+      @subagent_id,
       @name,
       @status,
       @configurations,
@@ -330,7 +330,7 @@ function migrateLocalDbSchema(db) {
           ? fromData
           : {
               id: row.id,
-              specialistId: row.specialist_id,
+              subagentId: row.subagent_id,
               name: row.name,
               status: row.status,
               createdAt: row.created_at,
@@ -340,8 +340,8 @@ function migrateLocalDbSchema(db) {
 
       insertWorkspace.run({
         id: String(workspace.id || row.id),
-        specialist_id:
-          workspace.specialistId || row.specialist_id || "main-assistant",
+        subagent_id:
+          workspace.subagentId || row.subagent_id || "main-assistant",
         name: workspace.name || row.name || "Untitled workspace",
         status: workspace.status || row.status || "draft",
         created_at: workspace.createdAt || row.created_at || now,
@@ -355,7 +355,7 @@ function migrateLocalDbSchema(db) {
       DROP TABLE workspaces;
       ALTER TABLE workspaces__next RENAME TO workspaces;
       CREATE INDEX IF NOT EXISTS idx_workspaces_specialist
-        ON workspaces (specialist_id, updated_at DESC);
+        ON workspaces (subagent_id, updated_at DESC);
     `);
   });
 
@@ -370,7 +370,7 @@ function readLocalStateFromDb() {
 
   for (const row of db
     .prepare(
-      "SELECT id, specialist_id, name, status, created_at, updated_at, configurations, data FROM workspaces",
+      "SELECT id, subagent_id, name, status, created_at, updated_at, configurations, data FROM workspaces",
     )
     .all()) {
     const fromColumn = readJsonColumn(row.configurations, {});
@@ -393,7 +393,7 @@ function readLocalStateFromDb() {
         ? {
             ...fromData,
             id: row.id,
-            specialistId: fromData.specialistId || row.specialist_id,
+            subagentId: fromData.subagentId || row.subagent_id,
             name: fromData.name || row.name,
             status: fromData.status || row.status,
             createdAt: fromData.createdAt || row.created_at,
@@ -402,7 +402,7 @@ function readLocalStateFromDb() {
           }
         : {
             id: row.id,
-            specialistId: row.specialist_id,
+            subagentId: row.subagent_id,
             name: row.name,
             status: row.status,
             createdAt: row.created_at,
@@ -444,7 +444,7 @@ function writeLocalStateToDb(state) {
     const insertWorkspace = db.prepare(`
       INSERT INTO workspaces (
         id,
-        specialist_id,
+        subagent_id,
         name,
         status,
         created_at,
@@ -454,7 +454,7 @@ function writeLocalStateToDb(state) {
       )
       VALUES (
         @id,
-        @specialist_id,
+        @subagent_id,
         @name,
         @status,
         @created_at,
@@ -467,7 +467,7 @@ function writeLocalStateToDb(state) {
       if (!workspace || typeof workspace !== "object") continue;
       insertWorkspace.run({
         id,
-        specialist_id: workspace.specialistId || "main-assistant",
+        subagent_id: workspace.subagentId || "main-assistant",
         name: workspace.name || "Untitled workspace",
         status: workspace.status || "draft",
         created_at: workspace.createdAt || now,

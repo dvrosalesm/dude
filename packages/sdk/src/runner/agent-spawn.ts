@@ -2,7 +2,7 @@
  * Agent spawn model — one background runner per agent identity.
  *
  * - **Dude (main assistant)**: one pi/codex/hermes process per user thread
- * - **Specialist**: one process per specialist kind + workspace
+ * - **Specialist**: one process per subagent kind + workspace
  *
  * Instance id format: `{agentKind}:{scopeId}`
  *
@@ -11,14 +11,14 @@
 
 export const MAIN_ASSISTANT_KIND = "main-assistant" as const;
 
-/** Main assistant or any specialist / custom agent kind id. */
+/** Main assistant or any subagent / custom agent kind id. */
 export type AgentKind = typeof MAIN_ASSISTANT_KIND | (string & {});
 
 export interface AgentSpawnIdentity {
   agentKind: AgentKind;
   /**
    * Main assistant → user id (conversation thread).
-   * Specialist → workspace id (each workspace gets its own runner).
+   * Subagent → workspace id (each workspace gets its own runner).
    */
   scopeId: string;
   /** Present when parsed from a legacy hosted instance id. */
@@ -59,7 +59,7 @@ export function parseAgentInstanceId(
   return { agentKind, scopeId };
 }
 
-/** Map client route ids to gateway specialist ids (e.g. presentation-editor → document-editor). */
+/** Map client route ids to gateway subagent ids (e.g. presentation-editor → document-editor). */
 export function canonicalAgentKind(agentKind: string): string {
   if (agentKind === "presentation-editor") return "document-editor";
   return agentKind;
@@ -72,7 +72,7 @@ export function buildMainAssistantInstanceId(userId: string): string {
   });
 }
 
-export function buildSpecialistInstanceId(
+export function buildSubagentInstanceId(
   specialistKind: string,
   workspaceId: string,
 ): string {

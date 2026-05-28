@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import type { SpecialistId } from "./types";
+import type { SubagentId } from "./types";
 
-export type RouteSection = "assistant" | "specialists" | "preferences";
+export type RouteSection = "assistant" | "subagents" | "preferences";
 
 export interface ChatRoute {
   section: RouteSection;
-  specialistId?: SpecialistId;
+  subagentId?: SubagentId;
   workspaceId?: string;
   subpath: string[];
 }
 
 const FILE_ROUTE_PARAM = "dudeRoute";
-const ROUTE_SECTIONS = new Set(["assistant", "specialists", "preferences"]);
-const SPECIALIST_IDS = new Set([
+const ROUTE_SECTIONS = new Set(["assistant", "subagents", "preferences"]);
+const SUBAGENT_IDS = new Set([
   "main-assistant",
   "data-analyst",
   "document-writer",
@@ -42,7 +42,12 @@ export function normalizePath(path: string) {
   if (!cleanedPath || cleanedPath === "/" || cleanedPath.endsWith("/index.html")) {
     return "/chat";
   }
-  return cleanedPath.startsWith("/") ? cleanedPath : `/${cleanedPath}`;
+  const normalized = cleanedPath.startsWith("/") ? cleanedPath : `/${cleanedPath}`;
+  // Legacy bookmarks: /chat/subagents → /chat/subagents
+  if (normalized.startsWith("/chat/subagents")) {
+    return normalized.replace("/chat/subagents", "/chat/subagents");
+  }
+  return normalized;
 }
 
 export function navigateTo(path: string, replace = false) {
@@ -110,7 +115,7 @@ export function parseRoute(path: string): ChatRoute {
   if (
     segments[cursor] &&
     !ROUTE_SECTIONS.has(segments[cursor]) &&
-    !SPECIALIST_IDS.has(segments[cursor])
+    !SUBAGENT_IDS.has(segments[cursor])
   ) {
     cursor += 1;
   }
@@ -121,18 +126,18 @@ export function parseRoute(path: string): ChatRoute {
     : "assistant";
   cursor += section === "assistant" && maybeSection !== "assistant" ? 0 : 1;
 
-  const maybeSpecialistId = segments[cursor];
-  const specialistId = SPECIALIST_IDS.has(maybeSpecialistId ?? "")
-    ? (maybeSpecialistId as SpecialistId)
+  const maybeSubagentId = segments[cursor];
+  const subagentId = SUBAGENT_IDS.has(maybeSubagentId ?? "")
+    ? (maybeSubagentId as SubagentId)
     : undefined;
-  if (specialistId) cursor += 1;
+  if (subagentId) cursor += 1;
 
-  const workspaceId = specialistId ? segments[cursor] : undefined;
+  const workspaceId = subagentId ? segments[cursor] : undefined;
   if (workspaceId) cursor += 1;
 
   return {
     section,
-    specialistId,
+    subagentId,
     workspaceId,
     subpath: segments.slice(cursor),
   };
@@ -141,15 +146,15 @@ export function parseRoute(path: string): ChatRoute {
 export function getCurrentParams() {
   const route = parseRoute(readRoutePath());
   return {
-    specialistId: route.specialistId,
+    subagentId: route.subagentId,
     workspaceId: route.workspaceId,
     assessmentId:
       route.subpath[0] === "assessment" ? route.subpath[1] : undefined,
   };
 }
 
-export function specialistPath(specialistId: SpecialistId, workspaceId?: string) {
+export function subagentPath(subagentId: SubagentId, workspaceId?: string) {
   return workspaceId
-    ? `/chat/specialists/${specialistId}/${workspaceId}`
-    : `/chat/specialists/${specialistId}`;
+    ? `/chat/subagents/${subagentId}/${workspaceId}`
+    : `/chat/subagents/${subagentId}`;
 }

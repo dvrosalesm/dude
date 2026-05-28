@@ -7,8 +7,8 @@ import {
   navigateTo,
   parseRoute,
   readRoutePath,
-  specialistPath,
-  type SpecialistId,
+  subagentPath,
+  type SubagentId,
 } from "./route-utils";
 
 export type DudeAgentDebugSnapshot = {
@@ -27,8 +27,8 @@ export function attachAgentDebugHooks(): void {
     __DUDE_AGENT__?: {
       snapshot: () => DudeAgentDebugSnapshot;
       navigate: (path: string) => void;
-      openSpecialist: (
-        specialistId: SpecialistId,
+      openSubagent: (
+        subagentId: SubagentId,
         workspaceId?: string,
       ) => string;
       probes: {
@@ -48,8 +48,8 @@ export function attachAgentDebugHooks(): void {
       },
     }),
     navigate: (path) => navigateTo(path),
-    openSpecialist: (specialistId, workspaceId) => {
-      const path = specialistPath(specialistId, workspaceId);
+    openSubagent: (subagentId, workspaceId) => {
+      const path = subagentPath(subagentId, workspaceId);
       navigateTo(path);
       return path;
     },

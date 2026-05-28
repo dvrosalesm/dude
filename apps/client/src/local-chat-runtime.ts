@@ -1,8 +1,8 @@
 import type {
   LocalChatRuntime,
-  LocalSpecialistWorkspace,
+  LocalSubagentWorkspace,
   LocalStoredFile,
-  SpecialistId,
+  SubagentId,
 } from "./types";
 import {
   clearGatewaySessionId,
@@ -38,13 +38,13 @@ import {
   writeState,
 } from "./runtime/local-chat-storage";
 
-export { SPECIALISTS, getSpecialistRegistry } from "./runtime/specialist-list";
+export { SUBAGENTS, getSubagentRegistry } from "./runtime/subagent-list";
 
 export const browserChatRuntime: LocalChatRuntime = {
-  async listWorkspaces(specialistId) {
+  async listWorkspaces(subagentId) {
     const state = await readState();
     return Object.values(state.workspaces)
-      .filter((workspace) => workspace.specialistId === specialistId)
+      .filter((workspace) => workspace.subagentId === subagentId)
       .sort(workspaceSort);
   },
 
@@ -56,15 +56,15 @@ export const browserChatRuntime: LocalChatRuntime = {
   async createWorkspace(input) {
     const state = await readState();
     const now = new Date().toISOString();
-    const workspace: LocalSpecialistWorkspace = {
-      id: createId(`ws-${input.specialistId}`),
-      specialistId: input.specialistId,
-      name: input.name?.trim() || defaultWorkspaceName(input.specialistId),
+    const workspace: LocalSubagentWorkspace = {
+      id: createId(`ws-${input.subagentId}`),
+      subagentId: input.subagentId,
+      name: input.name?.trim() || defaultWorkspaceName(input.subagentId),
       createdAt: now,
       updatedAt: now,
       status: "draft",
       configurations: {
-        ...defaultWorkspaceConfig(input.specialistId),
+        ...defaultWorkspaceConfig(input.subagentId),
         ...(input.configurations ?? {}),
       },
     };
@@ -78,7 +78,7 @@ export const browserChatRuntime: LocalChatRuntime = {
     const workspace = state.workspaces[workspaceId];
     if (!workspace) return null;
 
-    const nextWorkspace: LocalSpecialistWorkspace = {
+    const nextWorkspace: LocalSubagentWorkspace = {
       ...workspace,
       ...updates,
       configurations: {
@@ -105,33 +105,33 @@ export const browserChatRuntime: LocalChatRuntime = {
     return true;
   },
 
-  async listMessages(specialistId, workspaceId) {
+  async listMessages(subagentId, workspaceId) {
     if (
       canUseGateway() &&
-      normalizeChatScopeId(specialistId, workspaceId)
+      normalizeChatScopeId(subagentId, workspaceId)
     ) {
       const synced = await syncGatewayMessagesToLocalThread(
-        specialistId,
+        subagentId,
         workspaceId,
       );
       return synced.messages;
     }
     const state = await readState();
-    const messages = getThread(state, specialistId, workspaceId);
+    const messages = getThread(state, subagentId, workspaceId);
     await writeState(state);
     return messages;
   },
 
-  async resumeActiveTurn(specialistId, workspaceId) {
+  async resumeActiveTurn(subagentId, workspaceId) {
     if (!canUseGateway()) {
       return { active: false as const };
     }
-    return resumeGatewayTurnIfNeeded(specialistId, workspaceId);
+    return resumeGatewayTurnIfNeeded(subagentId, workspaceId);
   },
 
-  abandonActiveTurn(specialistId, workspaceId) {
+  abandonActiveTurn(subagentId, workspaceId) {
     if (!canUseGateway()) return;
-    abandonGatewayTurn(specialistId, workspaceId);
+    abandonGatewayTurn(subagentId, workspaceId);
   },
 
   async respondUiInput(workspaceId, requestId, response) {
@@ -158,12 +158,12 @@ export const browserChatRuntime: LocalChatRuntime = {
     }
 
     const state = await readState();
-    const messages = getThread(state, input.specialistId, input.workspaceId);
+    const messages = getThread(state, input.subagentId, input.workspaceId);
     const now = new Date().toISOString();
     const userMessage = {
       id: createId("msg"),
       role: "user" as const,
-      specialistId: input.specialistId,
+      subagentId: input.subagentId,
       createdAt: now,
       content: input.content,
       images: input.images,
@@ -172,7 +172,7 @@ export const browserChatRuntime: LocalChatRuntime = {
     const assistantMessage = {
       id: createId("msg"),
       role: "assistant" as const,
-      specialistId: input.specialistId,
+      subagentId: input.subagentId,
       createdAt: new Date(Date.now() + 250).toISOString(),
       content: createAssistantReply(input),
       suggestions: createSuggestions(input),
@@ -184,11 +184,11 @@ export const browserChatRuntime: LocalChatRuntime = {
     return { userMessage, assistantMessage };
   },
 
-  async clearThread(specialistId, workspaceId) {
-    clearGatewaySessionId(specialistId, workspaceId);
+  async clearThread(subagentId, workspaceId) {
+    clearGatewaySessionId(subagentId, workspaceId);
     const state = await readState();
-    state.threads[threadKey(specialistId, workspaceId)] = [];
-    const messages = getThread(state, specialistId, workspaceId);
+    state.threads[threadKey(subagentId, workspaceId)] = [];
+    const messages = getThread(state, subagentId, workspaceId);
     await writeState(state);
     return messages;
   },
@@ -219,8 +219,8 @@ export const browserChatRuntime: LocalChatRuntime = {
     return true;
   },
 
-  async fetchProjectHub(specialistId, workspaceId) {
-    return fetchProjectHubSnapshot(specialistId, workspaceId);
+  async fetchProjectHub(subagentId, workspaceId) {
+    return fetchProjectHubSnapshot(subagentId, workspaceId);
   },
 };
 

@@ -196,7 +196,7 @@ export const TYPOGRAPHY_TOKENS: TypographyToken[] = [
     id: "body",
     name: "Body",
     className: "text-sm leading-relaxed",
-    sample: "Message your assistant or pick a specialist.",
+    sample: "Message your assistant or pick a subagent.",
     usage: "Default UI copy, chat, forms",
   },
   {

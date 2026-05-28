@@ -19,11 +19,11 @@ jest.mock("../apps/api/src/routes/v1/middleware.js", () => ({
 jest.mock("../apps/api/src/lib/tool-host/index.js", () => ({
   parseToolHostSessionFromHeaders: (headers: Headers) => {
     const workspaceId = headers.get("x-workspace-id")?.trim();
-    const specialistId = headers.get("x-specialist-id")?.trim();
-    if (!workspaceId || !specialistId) return null;
+    const subagentId = headers.get("x-subagent-id")?.trim();
+    if (!workspaceId || !subagentId) return null;
     return {
       workspaceId,
-      specialistId,
+      subagentId,
       organizationId: headers.get("x-organization-id")?.trim() || "local",
       runner: headers.get("x-runner-id")?.trim() || "pi",
     };
@@ -36,7 +36,7 @@ import { getAgentCatalog, postAgentDispatch } from "../apps/api/src/routes/v1/ag
 function localSessionHeaders(extra: Record<string, string> = {}) {
   return new Headers({
     "x-workspace-id": "ws-test",
-    "x-specialist-id": "document-editor",
+    "x-subagent-id": "document-editor",
     "x-organization-id": "local",
     "x-runner-id": "codex",
     "x-dude-manifest-version": "1",

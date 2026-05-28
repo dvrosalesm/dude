@@ -216,17 +216,17 @@ export const v1Routes = new Elysia({ prefix: "/v1" })
       })
       .group("/assistant", (assistantApp) =>
         assistantApp
-          .get("/specialist-workspaces", async ({ query, set }) => {
+          .get("/subagent-workspaces", async ({ query, set }) => {
             try {
               return await wrap(
                 assistantInternal.listWorkspaces,
-                query.specialistId as string | undefined,
+                query.subagentId as string | undefined,
               );
             } catch (error) {
               return handleRouteError(error, set);
             }
           })
-          .post("/specialist-workspaces", async ({ body, set }) => {
+          .post("/subagent-workspaces", async ({ body, set }) => {
             try {
               return await wrap(
                 assistantInternal.createWorkspace,
@@ -253,10 +253,10 @@ export const v1Routes = new Elysia({ prefix: "/v1" })
               return handleRouteError(error, set);
             }
           })
-          .post("/specialist-run", async ({ body, set }) => {
+          .post("/subagent-run", async ({ body, set }) => {
             try {
               return await wrap(
-                assistantInternal.runSpecialist,
+                assistantInternal.runSubagent,
                 body as Record<string, unknown>,
               );
             } catch (error) {

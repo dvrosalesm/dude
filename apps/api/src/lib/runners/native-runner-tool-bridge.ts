@@ -15,16 +15,16 @@ import {
 import {
   buildPresentationNativeRunnerAppendix,
   isDocumentEditorSpecialist,
-} from "@dude/specialist-document-editor/gateway/slide-authoring-guidelines";
+} from "@dude/subagent-document-editor/gateway/slide-authoring-guidelines";
 import {
   buildDocumentWriterNativeRunnerAppendix,
   isDocumentWriterSpecialist,
-} from "@dude/specialist-document-writer/gateway/document-authoring-guidelines";
+} from "@dude/subagent-document-writer/gateway/document-authoring-guidelines";
 
 const appendixCache = new Map<string, string>();
 
 function cacheKey(manifest: RunnerSessionManifest): string {
-  return `${manifest.sessionId}:${manifest.workspaceId}:${manifest.specialistId}`;
+  return `${manifest.sessionId}:${manifest.workspaceId}:${manifest.subagentId}`;
 }
 
 function formatActionCatalog(catalog: AgentToolHostCatalogResponse): string {
@@ -43,9 +43,9 @@ export function buildNativeRunnerToolAppendix(
 
   let appendix =
     `\n\n<dude_specialist_actions>\n` +
-    `Specialist: ${catalog.session.specialistId}\n` +
+    `Subagent: ${catalog.session.subagentId}\n` +
     `Session: ${manifest.sessionId}\n\n` +
-    `To run specialist actions, use the typed Dude dispatch CLI ONLY:\n` +
+    `To run subagent actions, use the typed Dude dispatch CLI ONLY:\n` +
     `  ${dispatchCmd} <action> '<payload-json>'\n\n` +
     `Rules:\n` +
     `- NEVER use curl or HTTP clients for dispatch.\n` +
@@ -59,10 +59,10 @@ export function buildNativeRunnerToolAppendix(
     `The user only sees the finish_turn answer — never narrate shell commands.\n` +
     `</dude_specialist_actions>`;
 
-  if (isDocumentEditorSpecialist(catalog.session.specialistId)) {
+  if (isDocumentEditorSpecialist(catalog.session.subagentId)) {
     appendix += buildPresentationNativeRunnerAppendix(toolNames);
   }
-  if (isDocumentWriterSpecialist(catalog.session.specialistId)) {
+  if (isDocumentWriterSpecialist(catalog.session.subagentId)) {
     appendix += buildDocumentWriterNativeRunnerAppendix(toolNames);
   }
 
@@ -95,7 +95,7 @@ export function toolHostConfigFromManifest(
   return {
     baseUrl: manifest.internalApi.baseUrl,
     workspaceId: manifest.workspaceId,
-    specialistId: manifest.specialistId,
+    subagentId: manifest.subagentId,
     organizationId: manifest.organizationId,
     runner: manifest.runner,
   };

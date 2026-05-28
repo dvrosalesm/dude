@@ -9,5 +9,5 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src/**/*.ts", "../../specialists.config.ts"]
+  "include": ["src/**/*.ts", "../../subagents.config.ts"]
 }

@@ -1,19 +1,19 @@
 import { Elysia } from "elysia";
-import type { SpecialistHostConfig } from "./types.js";
-import { createSpecialistRegistry } from "./registry.js";
+import type { SubagentHostConfig } from "./types.js";
+import { createSubagentRegistry } from "./registry.js";
 
-export type { SpecialistHostConfig, SpecialistPlugin } from "./types.js";
-export { defineSpecialist, defineSpecialistHost } from "./registry.js";
-export { loadGatewaySpecialists, getGatewaySkillPaths } from "./gateway.js";
+export type { SubagentHostConfig, SubagentPlugin } from "./types.js";
+export { defineSubagent, defineSubagentHost } from "./registry.js";
+export { loadGatewaySubagents, getGatewaySkillPaths } from "./gateway.js";
 
 type AnyElysia = Elysia<any, any, any, any, any, any, any>;
 
-export function mountAllSpecialistApi(
+export function mountAllSubagentApi(
   app: AnyElysia,
-  config: SpecialistHostConfig,
-  basePath = "/api/specialists",
+  config: SubagentHostConfig,
+  basePath = "/api/subagents",
 ) {
-  const registry = createSpecialistRegistry(config);
+  const registry = createSubagentRegistry(config);
 
   for (const plugin of registry.list()) {
     const sub = new Elysia({ prefix: `${basePath}/${plugin.path}` });
@@ -38,8 +38,8 @@ export function errorResponse(message: string, status = 400) {
   return jsonResponse({ error: message, message }, { status });
 }
 
-export function createApiApp(config: SpecialistHostConfig) {
+export function createApiApp(config: SubagentHostConfig) {
   const app = new Elysia();
-  const registry = mountAllSpecialistApi(app, config);
+  const registry = mountAllSubagentApi(app, config);
   return { app, registry };
 }

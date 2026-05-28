@@ -8,7 +8,7 @@ export {
   MAIN_ASSISTANT_KIND,
   buildAgentInstanceId,
   buildMainAssistantInstanceId,
-  buildSpecialistInstanceId,
+  buildSubagentInstanceId,
   canonicalAgentKind,
   isMainAssistantKind,
   parseAgentInstanceId,
