@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#000;--ink:#e7e9ea;--muted:#71767b;--accent:#1d9bf0;--border:#2f3336;
+  font-family:-apple-system,'Chirp','Segoe UI',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin 5cqmin;gap:4cqmin;
+}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;color:var(--muted);font-weight:500}
+.meta strong{color:var(--ink)}
+.tweet{background:var(--bg);border:.15cqmin solid var(--border);border-radius:3cqmin;padding:4cqmin;display:flex;flex-direction:column;gap:2.5cqmin;box-shadow:0 0 60px rgba(29,155,240,.05)}
+.head{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center}
+.pfp{width:10cqmin;height:10cqmin;border-radius:50%;background:linear-gradient(135deg,#1d9bf0,#a855f7);display:flex;align-items:center;justify-content:center;font-size:4cqmin;font-weight:900;color:#fff;font-family:'Chirp',sans-serif}
+.who{display:flex;flex-direction:column;line-height:1.2}
+.who .nm{font-size:2.6cqmin;font-weight:800;display:flex;align-items:center;gap:.6cqmin}
+.who .nm .vf{color:var(--accent);font-size:2.3cqmin}
+.who .hd{font-size:2cqmin;color:var(--muted);font-weight:500}
+.more{color:var(--muted);font-size:3cqmin;font-weight:700}
+.body{font-size:5cqmin;line-height:1.25;font-weight:500;letter-spacing:-.015em;color:var(--ink)}
+.body em{font-style:normal;color:var(--accent)}
+.body .hl{background:rgba(29,155,240,.18);color:var(--accent);padding:.15cqmin .5cqmin;border-radius:.5cqmin}
+.body strong{font-weight:800}
+.body .tag{color:var(--accent)}
+.time{font-size:2cqmin;color:var(--muted);font-weight:500;padding-top:1.5cqmin;border-top:.12cqmin solid var(--border)}
+.time strong{color:var(--ink);font-weight:800}
+.stats{display:flex;gap:4cqmin;padding-top:1.5cqmin;border-top:.12cqmin solid var(--border)}
+.stat{font-size:2.1cqmin;color:var(--muted);font-weight:500}
+.stat strong{color:var(--ink);font-weight:800;display:block;font-size:2.4cqmin;margin-bottom:.2cqmin}
+.actions{display:flex;justify-content:space-between;padding-top:1.5cqmin;border-top:.12cqmin solid var(--border);color:var(--muted)}
+.action{display:flex;align-items:center;gap:.8cqmin;font-size:2cqmin;font-weight:600}
+.action .ic{font-size:2.6cqmin}
+.action.liked{color:#f91880}
+.action.rt{color:#00ba7c}
+.quote-attr{display:flex;gap:2cqmin;align-items:center;padding:2.5cqmin 3cqmin;background:#0a0a0a;border:.12cqmin solid var(--border);border-radius:2cqmin;margin-top:auto}
+.quote-attr .n{width:7cqmin;height:7cqmin;border-radius:50%;background:linear-gradient(135deg,#f91880,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:3cqmin;font-weight:900;color:#fff;flex-shrink:0}
+.quote-attr .tx{flex:1;font-size:2cqmin;color:var(--muted);line-height:1.4}
+.quote-attr .tx strong{color:var(--ink);font-weight:800;display:block;font-size:2.3cqmin;margin-bottom:.3cqmin}
+.hashtags{font-size:1.9cqmin;color:var(--accent);font-weight:600;letter-spacing:.02em;padding:2cqmin 0 0;text-align:center}
+</style></head><body>
+<div class="meta"><span>✔ receipts.txt</span><span>screenshot · <strong>dev.dread</strong></span></div>
+<div class="tweet">
+  <div class="head">
+    <span class="pfp">D</span>
+    <div class="who"><span class="nm">dread dev <span class="vf">✔</span></span><span class="hd">@dev_dread · 2h</span></div>
+    <span class="more">···</span>
+  </div>
+  <p class="body">my therapist: <em>so what are you doing today</em><br/><br/>me, a staff engineer making <strong>$340k/yr:</strong><br/><br/><span class="hl">changing the spacing<br/>of a button by 2px</span><br/><br/>for the <strong>fourth</strong> week.<br/><br/><span class="tag">#softwareengineering</span> <span class="tag">#figma</span></p>
+  <div class="time">9:41 AM · Apr 20, 2026 · <strong>1.4M</strong> Views</div>
+  <div class="stats">
+    <span class="stat"><strong>2,481</strong>Reposts</span>
+    <span class="stat"><strong>419</strong>Quotes</span>
+    <span class="stat"><strong>42.1K</strong>Likes</span>
+    <span class="stat"><strong>1,203</strong>Bookmarks</span>
+  </div>
+  <div class="actions">
+    <span class="action"><span class="ic">💬</span> 1.2K</span>
+    <span class="action rt"><span class="ic">🔁</span> 2.4K</span>
+    <span class="action liked"><span class="ic">♥</span> 42.1K</span>
+    <span class="action"><span class="ic">📊</span> 1.4M</span>
+    <span class="action"><span class="ic">⤴</span></span>
+  </div>
+</div>
+<div class="quote-attr">
+  <span class="n">R</span>
+  <div class="tx"><strong>quoted by @rent.is.due</strong>this is the most accurate post on this godforsaken website</div>
+</div>
+<div class="hashtags">◈ repost · save · send to your PM</div>
+</body></html>

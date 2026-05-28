@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fff;--ink:#000;--yellow:#ffea00;--red:#ff2d2d;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:0;
+  background-image:repeating-linear-gradient(0deg,transparent 0,transparent 4cqmin,rgba(0,0,0,.03) 4cqmin,rgba(0,0,0,.03) 4.1cqmin);
+}
+.strip{background:var(--ink);color:var(--yellow);padding:2cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900}
+.head{padding:3cqmin;border-bottom:.5cqmin solid var(--ink)}
+.head .row{display:flex;justify-content:space-between;align-items:end;margin-bottom:1cqmin;font-size:1.8cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900}
+.head h2{font-size:13cqmin;line-height:.85;font-weight:900;letter-spacing:-.04em;text-transform:uppercase}
+.head h2 .y{background:var(--yellow);padding:0 .5cqmin}
+.head h2 em{font-style:italic;color:var(--red)}
+.rules{display:grid;align-content:center;gap:0;padding:0}
+.rule{display:grid;grid-template-columns:12cqmin 1fr;gap:2cqmin;padding:2.5cqmin 3cqmin;border-bottom:.3cqmin solid var(--ink);align-items:center}
+.rule:nth-child(odd){background:var(--yellow)}
+.rule:nth-child(3){background:var(--ink);color:var(--bg)}
+.rule:nth-child(3) .n{background:var(--red);color:var(--bg)}
+.rule:nth-child(3) h3 em{color:var(--yellow)}
+.n{width:10cqmin;height:10cqmin;background:var(--red);color:var(--bg);border:.4cqmin solid var(--ink);font-size:4cqmin;font-weight:900;display:flex;align-items:center;justify-content:center;letter-spacing:-.04em}
+.rule.alt .n{background:var(--ink);color:var(--yellow)}
+.txt h3{font-size:3.2cqmin;line-height:1.05;font-weight:900;letter-spacing:-.01em;text-transform:uppercase}
+.txt h3 em{font-style:italic;color:var(--red)}
+.txt p{font-size:2cqmin;line-height:1.3;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-top:.5cqmin}
+.rule:nth-child(3) .txt p{opacity:.9}
+.foot-row{background:var(--red);color:var(--bg);padding:2cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-top:.5cqmin solid var(--ink)}
+.foot-row .pill{background:var(--bg);color:var(--red);padding:.5cqmin 1.3cqmin;border:.2cqmin solid var(--bg)}
+</style></head><body>
+<div class="strip"><span>★ ISSUE 007</span><span>★ ★ ★ ★ ★</span><span>04/11 →</span></div>
+<div class="head">
+  <div class="row"><span>→ CHAPTER 2</span><span>RULES · 05</span></div>
+  <h2>5 THINGS <span class="y">SOCIAL</span><br/>MEDIA <em>WANTS</em> YOU<br/>TO BELIEVE.</h2>
+</div>
+<div class="rules">
+  <div class="rule"><span class="n">01</span><div class="txt"><h3>"ENGAGEMENT = <em>CONNECTION</em>"</h3><p>→ NO. IT'S A NUMBER ON A DASHBOARD.</p></div></div>
+  <div class="rule alt"><span class="n">02</span><div class="txt"><h3>"IF YOU'RE <em>NOT POSTING</em>, YOU DON'T EXIST"</h3><p>→ THE 200 PEOPLE WHO LOVE YOU HAVE YOUR PHONE NUMBER.</p></div></div>
+  <div class="rule"><span class="n">03</span><div class="txt"><h3>"THE ALGORITHM <em>KNOWS YOU</em>"</h3><p>→ IT KNOWS <strong>WHAT KEEPS YOU SCROLLING</strong>. THAT IS NOT YOU.</p></div></div>
+  <div class="rule alt"><span class="n">04</span><div class="txt"><h3>"POSTING IS <em>FREE</em>"</h3><p>→ YOU PAY IN ATTENTION. YOUR ATTENTION IS NOT FREE.</p></div></div>
+  <div class="rule"><span class="n">05</span><div class="txt"><h3>"THIS POST WILL <em>CHANGE YOUR LIFE</em>"</h3><p>→ IT WILL NOT. CLOSE THE APP.</p></div></div>
+</div>
+<div class="foot-row"><span>★ @BLACKFLAG.ZINE</span><span>★</span><span class="pill">SWIPE →</span></div>
+</body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:6cqmin 8cqmin;gap:2.5cqmin;text-align:center;position:relative;
+  background-image:radial-gradient(ellipse 50% 40% at 50% 50%,rgba(201,169,97,.12),transparent 60%);
+}
+.frame{position:absolute;inset:3cqmin;border:1px solid var(--rule);pointer-events:none}
+.frame::before{content:"";position:absolute;inset:.8cqmin;border:1px solid rgba(201,169,97,.15);pointer-events:none}
+.corner{position:absolute;width:4cqmin;height:4cqmin;border:1px solid var(--gold)}
+.corner.tl{top:3cqmin;left:3cqmin;border-right:none;border-bottom:none}
+.corner.tr{top:3cqmin;right:3cqmin;border-left:none;border-bottom:none}
+.corner.bl{bottom:3cqmin;left:3cqmin;border-right:none;border-top:none}
+.corner.br{bottom:3cqmin;right:3cqmin;border-left:none;border-top:none}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);padding:.8cqmin 2.5cqmin;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);position:relative;z-index:1}
+.mark{font-size:18cqmin;line-height:.6;font-weight:400;color:var(--gold);font-style:italic;letter-spacing:-.05em;position:relative;z-index:1;margin-bottom:-1cqmin;font-family:'Didot',serif}
+blockquote{font-size:5.2cqmin;line-height:1.2;font-weight:400;letter-spacing:-.01em;font-style:italic;max-width:28ch;position:relative;z-index:1;color:var(--ink)}
+blockquote em{font-style:normal;color:var(--gold)}
+.divider{display:flex;align-items:center;gap:1.5cqmin;color:var(--gold);font-size:1.8cqmin;letter-spacing:.4em;width:40%;position:relative;z-index:1}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.cite{font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);position:relative;z-index:1;line-height:1.8}
+.cite strong{color:var(--gold);font-weight:600;letter-spacing:.35em;font-size:1.5cqmin;display:block}
+.cite em{font-style:italic;color:var(--ink);letter-spacing:.2em;text-transform:none;font-family:'Didot',serif;font-size:1.8cqmin}
+</style></head><body>
+<div class="frame"></div>
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+
+<span class="kicker">Parole d'atelier</span>
+<div class="mark">&#x201C;</div>
+<blockquote>We work in years. The world works in quarters. That is the entire <em>disagreement</em>.</blockquote>
+<div class="divider">❦</div>
+<div class="cite">
+  <strong>Hélène Aurelia-Sorel</strong>
+  <em>— Fifth-generation director, Maison Aurelia</em>
+  Paris, on the occasion of the 140th anniversary
+</div>
+</body></html>

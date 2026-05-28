@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5f1e8;--ink:#0a0a0a;--accent:#ff3b3b;--muted:#6b6b6b;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:8cqmin 6cqmin;
+}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.meta .live{display:flex;align-items:center;gap:1.2cqmin;color:var(--accent)}
+.meta .dot{width:1.4cqmin;height:1.4cqmin;background:var(--accent);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.main{display:flex;flex-direction:column;justify-content:center;gap:4cqmin;position:relative}
+.kicker{font-size:2.4cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;color:var(--accent);margin-bottom:2cqmin}
+h1{font-size:18cqmin;line-height:.88;font-weight:900;letter-spacing:-.045em;text-transform:uppercase}
+h1 .strike{position:relative;display:inline-block}
+h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:48%;height:1.8cqmin;background:var(--accent);transform:rotate(-3deg)}
+h1 em{font-style:normal;background:var(--accent);color:var(--bg);padding:0 1cqmin;display:inline-block;transform:rotate(-2deg)}
+h1 .u{background:var(--ink);color:var(--bg);padding:0 1cqmin}
+.scribble{position:absolute;top:25cqmin;right:2cqmin;font-family:'Caveat','Kalam',cursive;font-size:5cqmin;color:var(--accent);transform:rotate(-6deg);line-height:1}
+.arrow{position:absolute;top:33cqmin;right:6cqmin;width:10cqmin;height:10cqmin;border:.6cqmin solid var(--accent);border-radius:50%;border-top-color:transparent;border-right-color:transparent;transform:rotate(145deg)}
+.arrow::after{content:"";position:absolute;top:-.8cqmin;left:2cqmin;width:3cqmin;height:.6cqmin;background:var(--accent);transform:rotate(45deg);transform-origin:left}
+.foot{display:flex;flex-direction:column;gap:2cqmin;align-items:center;text-align:center}
+.cta-pill{display:inline-flex;align-items:center;gap:1.5cqmin;background:var(--ink);color:var(--bg);padding:3cqmin 5cqmin;border-radius:100px;font-size:3cqmin;font-weight:900;letter-spacing:.02em}
+.cta-pill .arr{font-size:3.5cqmin}
+.handle{font-size:2.2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.handle strong{color:var(--ink)}
+</style></head><body>
+<div class="meta"><span>@method.studio</span><span class="live"><span class="dot"></span>reel · 09.12</span></div>
+<div class="main">
+  <span class="kicker">→ watch till the end</span>
+  <h1>Your <span class="strike">5-step</span><br/><em>morning</em><br/>routine is<br/><span class="u">lying</span><br/>to you.</h1>
+  <span class="scribble">(sorry not sorry)</span>
+  <span class="arrow"></span>
+</div>
+<div class="foot">
+  <span class="cta-pill">Swipe up<span class="arr">↑</span></span>
+  <span class="handle">save this · <strong>@method.studio</strong></span>
+</div>
+</body></html>

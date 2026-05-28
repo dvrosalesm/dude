@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fef3c7;--ink:#422006;--accent:#ef4444;--pink:#ec4899;--blue:#3b82f6;--green:#10b981;--purple:#a855f7;
+  font-family:'Poppins','Nunito',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:3cqmin;
+  background-image:radial-gradient(circle at 80% 90%,rgba(168,85,247,.15),transparent 50%);
+}
+header{display:flex;justify-content:space-between;align-items:flex-end}
+.kicker{display:inline-flex;align-items:center;gap:.8cqmin;padding:.6cqmin 1.6cqmin;background:var(--ink);color:#fef3c7;border-radius:100px;font-size:1.25cqmin;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+h2{font-size:6cqmin;line-height:1;font-weight:900;letter-spacing:-.025em;margin-top:1.5cqmin}
+h2 .u{background:var(--accent);color:#fff;padding:0 1cqmin;border-radius:1cqmin;box-shadow:.5cqmin .5cqmin 0 var(--ink);display:inline-block;transform:rotate(-2deg)}
+.count{font-family:'Caveat',cursive;font-size:2.4cqmin;color:var(--pink)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5cqmin;align-items:stretch}
+.card{background:#fff;border:.4cqmin solid var(--ink);border-radius:2.5cqmin;padding:3cqmin 2.5cqmin;display:flex;flex-direction:column;gap:1.5cqmin;box-shadow:.8cqmin .8cqmin 0 var(--ink);position:relative;transition:transform .2s}
+.card:nth-child(1){transform:rotate(-1.5deg)}
+.card:nth-child(2){transform:rotate(1deg)}
+.card:nth-child(3){transform:rotate(-.8deg)}
+.emoji{font-size:6cqmin;line-height:1}
+.card h3{font-size:2.8cqmin;font-weight:800;letter-spacing:-.015em;line-height:1.1}
+.card p{font-size:1.55cqmin;line-height:1.5;color:#713f12;font-weight:500}
+.chip{display:inline-flex;align-items:center;gap:.5cqmin;padding:.5cqmin 1.2cqmin;border-radius:100px;font-size:1.1cqmin;font-weight:700;letter-spacing:.05em;text-transform:uppercase;width:fit-content}
+.card:nth-child(1) .chip{background:var(--blue);color:#fff}
+.card:nth-child(2) .chip{background:var(--pink);color:#fff}
+.card:nth-child(3) .chip{background:var(--green);color:#fff}
+.card .tape{position:absolute;top:-1.5cqmin;left:50%;transform:translateX(-50%) rotate(-4deg);width:10cqmin;height:3cqmin;background:rgba(239,68,68,.5);border-radius:.2cqmin}
+.card .signature{font-family:'Caveat',cursive;font-size:2cqmin;color:var(--accent);margin-top:auto}
+.sparkle{position:absolute;font-size:3cqmin}
+.foot-note{text-align:center;font-family:'Caveat',cursive;font-size:2.4cqmin;color:var(--purple)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">★ How we work</span>
+    <h2>Three <span class="u">unusual</span> habits<br/>that keep us making things.</h2>
+  </div>
+  <span class="count">exhibit ·003 ✿</span>
+</header>
+<div class="grid">
+  <div class="card">
+    <div class="tape"></div>
+    <span class="emoji">🗑️</span>
+    <span class="chip">★ Ritual #1</span>
+    <h3>Friday kill list</h3>
+    <p>Every Friday we delete the thing we're most afraid to cut. We've killed 14 features this way. Revenue went up. Nobody wrote in.</p>
+    <span class="signature">— ferdinand approves ✓</span>
+    <span class="sparkle" style="top:10cqmin;right:3cqmin;color:var(--accent)">✦</span>
+  </div>
+  <div class="card">
+    <div class="tape" style="background:rgba(16,185,129,.5)"></div>
+    <span class="emoji">📮</span>
+    <span class="chip">★ Ritual #2</span>
+    <h3>Postcards, not press releases</h3>
+    <p>Every customer who renewed gets a real paper postcard in the mail. Hand-written. Stamped. Sometimes decorated. Our retention is 97%. Correlation? Causation? Either way.</p>
+    <span class="signature">— 2,400 stamps and counting</span>
+    <span class="sparkle" style="bottom:8cqmin;left:3cqmin;color:var(--pink)">✿</span>
+  </div>
+  <div class="card">
+    <div class="tape" style="background:rgba(59,130,246,.5)"></div>
+    <span class="emoji">☕</span>
+    <span class="chip">★ Ritual #3</span>
+    <h3>Wednesday slow-down</h3>
+    <p>No meetings before noon on Wednesdays. None. Ever. The mornings are for the deep work we promised each other we'd do. The afternoons are for the meetings we actually can't skip.</p>
+    <span class="signature">— sacred since 2023</span>
+    <span class="sparkle" style="top:4cqmin;left:4cqmin;color:var(--blue)">★</span>
+  </div>
+</div>
+<p class="foot-note">↑ none of these are in the employee handbook. all of them are in the culture.</p>
+</body></html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0a0a;--ink:#fff;--surface:#181818;--muted:#8a8a8a;--border:#2a2a2a;
+  --s:#ff3b3b;--a:#ff9500;--b:#fbbf24;--c:#22d3ee;--d:#a855f7;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:4cqmin;gap:2cqmin;
+  background-image:radial-gradient(ellipse 40% 20% at 100% 0%,rgba(255,59,59,.15),transparent 60%);
+}
+.pager{display:flex;justify-content:space-between;align-items:center;padding:1cqmin 2cqmin;border:.15cqmin solid var(--border);border-radius:100px;font-size:1.7cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.pager .tag{background:var(--s);color:var(--bg);padding:.4cqmin 1.2cqmin;border-radius:100px;font-weight:900}
+.head{text-align:left;display:flex;flex-direction:column;gap:.8cqmin}
+.head h2{font-size:10cqmin;line-height:.92;font-weight:900;letter-spacing:-.035em}
+.head h2 em{font-style:italic;color:var(--s)}
+.head h2 .u{background:var(--s);color:var(--bg);padding:0 .4cqmin;display:inline-block;transform:rotate(-1deg)}
+.head .sub{font-size:2cqmin;color:var(--muted);font-weight:500;line-height:1.4}
+.head .sub em{color:var(--ink);font-style:italic;font-weight:700}
+.tier-grid{display:grid;grid-template-columns:10cqmin 1fr;gap:0;border:.25cqmin solid var(--border);border-radius:1.5cqmin;overflow:hidden;align-content:center}
+.row{display:contents}
+.label{display:flex;align-items:center;justify-content:center;font-size:7cqmin;font-weight:900;letter-spacing:-.02em;color:var(--bg);border-bottom:.2cqmin solid var(--border);border-right:.2cqmin solid var(--border);font-style:italic}
+.tier-s .label{background:var(--s)}
+.tier-a .label{background:var(--a)}
+.tier-b .label{background:var(--b)}
+.tier-c .label{background:var(--c)}
+.tier-d .label{background:var(--d)}
+.row:last-child .label,.row:last-child .items{border-bottom:none}
+.items{background:var(--surface);padding:1.6cqmin;display:flex;gap:1cqmin;flex-wrap:wrap;align-items:center;border-bottom:.2cqmin solid var(--border)}
+.item{padding:1.4cqmin 1.8cqmin;background:#262626;border-radius:1cqmin;font-size:1.9cqmin;font-weight:700;letter-spacing:-.005em;line-height:1;border:.15cqmin solid #363636;white-space:nowrap;display:flex;align-items:center;gap:.8cqmin}
+.item.hot{background:var(--s);color:var(--bg);border-color:var(--s);box-shadow:0 0 0 .2cqmin rgba(255,59,59,.2)}
+.item em{font-style:italic;opacity:.7;font-size:1.5cqmin}
+.item .mini{display:inline-flex;padding:.25cqmin .8cqmin;background:rgba(255,255,255,.1);border-radius:100px;font-size:1.15cqmin;letter-spacing:.1em;text-transform:uppercase;font-weight:900}
+.item.hot .mini{background:rgba(0,0,0,.2)}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:1.2cqmin 2cqmin;border:.15cqmin solid var(--border);border-radius:100px;font-size:1.5cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.foot .handle{color:var(--s);font-weight:900}
+.foot .save{background:var(--s);color:var(--bg);padding:.4cqmin 1.2cqmin;border-radius:100px;font-weight:900}
+</style></head><body>
+<div class="pager"><span>post · 02/12</span><span class="tag">★ tier list</span></div>
+<div class="head">
+  <h2>my hot take <em>2026</em><br/><span class="u">group chat</span><br/>tier list.</h2>
+  <p class="sub">→ based on <em>real anthropology</em>. fight me in the comments, i'll win.</p>
+</div>
+<div class="tier-grid">
+  <div class="row tier-s">
+    <span class="label">S</span>
+    <div class="items">
+      <span class="item hot">pet photos gc <span class="mini">★ sacred</span></span>
+      <span class="item">"can someone drive me to the airport" gc</span>
+      <span class="item">work friends <em>(off-hours)</em></span>
+    </div>
+  </div>
+  <div class="row tier-a">
+    <span class="label">A</span>
+    <div class="items">
+      <span class="item">family <em>(new phones)</em></span>
+      <span class="item">college crew</span>
+      <span class="item">3-person niche meme gc</span>
+    </div>
+  </div>
+  <div class="row tier-b">
+    <span class="label">B</span>
+    <div class="items">
+      <span class="item">"we should plan a trip"</span>
+      <span class="item">gym buddies <em>(aspirational)</em></span>
+      <span class="item">wedding party</span>
+    </div>
+  </div>
+  <div class="row tier-c">
+    <span class="label">C</span>
+    <div class="items">
+      <span class="item">work <em>(on-hours)</em></span>
+      <span class="item">family (old phones)</span>
+      <span class="item">fantasy league</span>
+    </div>
+  </div>
+  <div class="row tier-d">
+    <span class="label">D</span>
+    <div class="items">
+      <span class="item">apartment building</span>
+      <span class="item">startup alumni <em>("you'll love this guy")</em></span>
+      <span class="item">any gc > 8 people</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span class="handle">@vibe.founder</span><span>swipe → 03</span><span class="save">◈ save + share</span></div>
+</body></html>

@@ -1,0 +1,29 @@
+{
+  "name": "@dude/gateway-shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./html-preview": {
+      "types": "./src/html-preview.ts",
+      "import": "./src/html-preview.ts",
+      "default": "./src/html-preview.ts"
+    },
+    "./tool-labels": {
+      "types": "./src/tool-labels.ts",
+      "import": "./src/tool-labels.ts",
+      "default": "./src/tool-labels.ts"
+    },
+    "./user-facing-message": {
+      "types": "./src/user-facing-message.ts",
+      "import": "./src/user-facing-message.ts",
+      "default": "./src/user-facing-message.ts"
+    }
+  },
+  "dependencies": {
+    "puppeteer": "^25.0.4"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

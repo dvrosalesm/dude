@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:1fr 1.3fr;
+  padding:0;position:relative;
+}
+.left{padding:7cqmin 5cqmin;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--rule);background:linear-gradient(180deg,#0d111d,#0a0e1a);position:relative}
+.left::after{content:"";position:absolute;right:-.4cqmin;top:15%;bottom:15%;width:1px;background:linear-gradient(180deg,transparent,var(--gold),transparent)}
+.chapter{font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold)}
+.num{font-size:22cqmin;line-height:.8;font-weight:400;font-style:italic;color:var(--gold);letter-spacing:-.03em}
+.mark{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
+.right{padding:7cqmin 6cqmin;display:flex;flex-direction:column;justify-content:center;gap:3cqmin;position:relative}
+.ornament{font-size:2.2cqmin;color:var(--gold);letter-spacing:.3em}
+h2{font-size:9cqmin;line-height:1.05;font-weight:400;letter-spacing:-.015em;max-width:18ch}
+h2 em{font-style:italic;color:var(--gold)}
+.divider{display:flex;align-items:center;gap:1cqmin;color:var(--gold);font-size:1.5cqmin;letter-spacing:.4em}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);max-width:14cqmin}
+p{font-size:2cqmin;line-height:1.7;color:#e5d5b5;max-width:45ch;font-style:italic}
+</style></head><body>
+<div class="left">
+  <div>
+    <span class="chapter">Chapter</span>
+    <div class="num" style="margin-top:1cqmin">IV</div>
+  </div>
+  <span class="mark">Of time &amp; its measure</span>
+</div>
+<div class="right">
+  <div class="ornament">— ❦ ※ ❦ —</div>
+  <h2>Of the <em>hours</em><br/>between dusk<br/>&amp; <em>design.</em></h2>
+  <div class="divider">Chapter the Fourth</div>
+  <p>The atelier keeps its own clock. The gilder begins before the espresso, the engraver after midnight, and the bench jeweller — as always — arrives precisely when needed and never a moment before.</p>
+</div>
+</body></html>

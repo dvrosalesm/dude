@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0a0a;--ink:#f5f1e8;--accent:#ff3b3b;--yellow:#fff27a;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+  background-image:repeating-linear-gradient(45deg,transparent 0,transparent 12cqmin,rgba(255,255,255,.015) 12cqmin,rgba(255,255,255,.015) 24cqmin);
+}
+.ribbon{background:var(--accent);color:var(--bg);padding:2.5cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:2.4cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;position:relative;overflow:hidden;animation:sl 8s linear infinite;white-space:nowrap}
+@keyframes sl{to{background-position:-20cqmin 0}}
+.ribbon::before{content:"★ LAUNCH · 04.26.26 · LAUNCH · 04.26.26 · LAUNCH · 04.26.26 · ";position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);font-size:2.4cqmin;letter-spacing:.25em;padding-left:2cqmin;animation:sl 20s linear infinite;white-space:nowrap}
+@keyframes sl{to{transform:translate(-50%,-50%)}}
+.main{display:flex;flex-direction:column;justify-content:center;gap:4cqmin;padding:6cqmin;position:relative}
+.badge{display:inline-flex;align-items:center;gap:1.5cqmin;background:var(--yellow);color:var(--bg);padding:2cqmin 3.5cqmin;border-radius:100px;font-size:2.3cqmin;letter-spacing:.15em;text-transform:uppercase;font-weight:900;width:fit-content;transform:rotate(-2deg);box-shadow:.6cqmin .6cqmin 0 var(--accent)}
+.badge .tag{background:var(--bg);color:var(--yellow);padding:.3cqmin 1cqmin;border-radius:100px;font-size:2cqmin}
+h1{font-size:19cqmin;line-height:.85;font-weight:900;letter-spacing:-.05em;text-transform:uppercase}
+h1 em{font-style:italic;color:var(--accent)}
+h1 .y{background:var(--yellow);color:var(--bg);padding:0 1cqmin;display:inline-block;transform:rotate(-1deg);box-shadow:.5cqmin .5cqmin 0 var(--accent)}
+h1 .out{color:transparent;-webkit-text-stroke:.5cqmin var(--ink);display:inline-block}
+.date-card{background:var(--ink);color:var(--bg);padding:3cqmin 3.5cqmin;border-radius:3cqmin;display:grid;grid-template-columns:auto 1fr auto;gap:3cqmin;align-items:center;width:fit-content}
+.date-card .ic{width:8cqmin;height:8cqmin;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:4cqmin;font-weight:900;color:var(--bg)}
+.date-card .dt{font-size:3.5cqmin;font-weight:900;letter-spacing:-.015em;text-transform:uppercase;line-height:1;color:var(--bg)}
+.date-card .dt small{display:block;font-size:2cqmin;font-weight:700;letter-spacing:.2em;opacity:.8;margin-top:.4cqmin;color:var(--bg)}
+.sub{font-size:2.8cqmin;line-height:1.45;color:#c5c5c5;max-width:30ch;font-weight:500}
+.sub strong{color:var(--accent);font-weight:700}
+.ribbon.bot{background:var(--yellow);color:var(--bg)}
+.ribbon.bot::before{content:"★ PRE-ORDER OPEN · ★ PRE-ORDER OPEN · ★ PRE-ORDER OPEN · "}
+</style></head><body>
+<div class="ribbon">★ LAUNCH · 04.26.26 · LAUNCH · 04.26.26 · ★</div>
+<div class="main">
+  <span class="badge"><span class="tag">NEW</span> VOLUME 02 · DROPS MONDAY</span>
+  <h1>It's <em>finally</em><br/><span class="out">happening.</span><br/>Year <span class="y">02</span><br/>is here.</h1>
+  <div class="date-card">
+    <span class="ic">◎</span>
+    <span class="dt">APR 26<small>MONDAY · 09:00 EST</small></span>
+  </div>
+  <p class="sub">1-year edition of the magazine you didn't ask for. <strong>244 pages.</strong> Handwritten. Hand-bound. Limited to 1,200 copies.</p>
+</div>
+<div class="ribbon bot">★ PRE-ORDER OPEN · FREE SHIPPING · ★</div>
+</body></html>

@@ -1,0 +1,31 @@
+{
+  "name": "@dude/specialist-params",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.tsx",
+      "import": "./src/index.tsx",
+      "default": "./src/index.tsx"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@dude/sdk": "*",
+    "@dude/ui": "*",
+    "@dude/workspaces": "*",
+    "@dude/chat": "*",
+    "@dude/specialist-params": "*",
+    "@dude/app-navigation": "*",
+    "@dude/client-types": "*",
+    "lucide-react": "^0.474.0",
+    "react": "^19.0.0"
+  }
+}

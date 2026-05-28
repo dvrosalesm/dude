@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--accent:#00ff88;--accent2:#a855f7;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:1fr 1.2fr;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px),
+    radial-gradient(ellipse 60% 40% at 0% 30%,rgba(0,255,136,.08),transparent 60%);
+  background-size:2.5cqmin 2.5cqmin,2.5cqmin 2.5cqmin,100% 100%;
+}
+.left{padding:5cqmin;display:flex;flex-direction:column;justify-content:center;gap:2.5cqmin;position:relative}
+.left::after{content:"";position:absolute;right:0;top:10%;bottom:10%;width:1px;background:linear-gradient(180deg,transparent,var(--border),transparent)}
+.kicker{font-family:'SF Mono',monospace;font-size:1.2cqmin;color:var(--accent);letter-spacing:.15em}
+.kicker::before{content:"$ ";opacity:.6}
+h1{font-size:7.5cqmin;font-weight:700;letter-spacing:-.03em;line-height:1;max-width:16ch}
+h1 .a{color:var(--accent);text-shadow:0 0 24px rgba(0,255,136,.3)}
+.lede{font-size:1.8cqmin;line-height:1.6;color:#a8adbb;max-width:40ch}
+.lede code{font-family:'SF Mono',monospace;font-size:1.5cqmin;color:var(--accent);background:rgba(0,255,136,.1);padding:.2cqmin .5cqmin;border-radius:.2cqmin}
+.cta{display:flex;gap:1cqmin;margin-top:1cqmin}
+.btn{font-family:'SF Mono',monospace;padding:1.3cqmin 2.2cqmin;border-radius:.4cqmin;font-size:1.4cqmin;background:var(--accent);color:#05060a;font-weight:700;letter-spacing:-.005em}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--ink)}
+.btn.ghost span{color:var(--accent)}
+.right{padding:5cqmin;display:flex;flex-direction:column;justify-content:center;gap:2cqmin}
+.code-block{background:var(--surface);border:1px solid var(--border);border-radius:.6cqmin;overflow:hidden;box-shadow:0 2cqmin 4cqmin rgba(0,0,0,.5),0 0 0 1px rgba(0,255,136,.08)}
+.code-head{padding:1cqmin 1.5cqmin;background:#080a10;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1cqmin;font-family:'SF Mono',monospace;font-size:1.1cqmin;color:var(--muted)}
+.code-head .dots{display:flex;gap:.5cqmin}
+.code-head .dots div{width:.8cqmin;height:.8cqmin;border-radius:50%;background:#333}
+.code-head .lang{margin-left:auto;color:var(--accent)}
+.code-body{padding:1.5cqmin 2cqmin;font-family:'SF Mono',monospace;font-size:1.25cqmin;line-height:1.6;color:#e4e7ef;overflow:hidden}
+.ln{display:block;white-space:pre}
+.ln::before{content:attr(data-n);color:#2d3140;margin-right:1.5cqmin;display:inline-block;width:2cqmin;text-align:right}
+.kw{color:#a855f7}.fn{color:var(--accent)}.str{color:#fbbf24}.num{color:#00d9ff}.com{color:#4a4d58;font-style:italic}
+.resp{background:#050810;border:1px solid var(--border);border-radius:.6cqmin;padding:1.5cqmin 2cqmin;font-family:'SF Mono',monospace;font-size:1.15cqmin;line-height:1.7}
+.resp .k{color:#00d9ff}
+.resp .v{color:var(--accent)}
+.resp .ok{color:var(--accent);font-weight:700}
+.stat-row{display:flex;justify-content:space-between;font-family:'SF Mono',monospace;font-size:1.15cqmin;color:var(--muted);padding:0 .5cqmin}
+.stat-row span{color:var(--accent)}
+</style></head><body>
+<div class="left">
+  <span class="kicker">curl -X POST https://api.helix.dev/v1/instances</span>
+  <h1>Five lines of code from <span class="a">nothing</span> to a running agent.</h1>
+  <p class="lede">One <code>POST</code>, one <code>GET</code>, one stream. No container orchestrator, no queue, no provisioning dance. We handle the process model so you can handle the product.</p>
+  <div class="cta">
+    <span class="btn">npm i @helix/gateway</span>
+    <span class="btn ghost"><span>$</span> docs</span>
+  </div>
+</div>
+<div class="right">
+  <div class="code-block">
+    <div class="code-head"><div class="dots"><div></div><div></div><div></div></div><span>demo.ts</span><span class="lang">typescript</span></div>
+    <div class="code-body">
+<span class="ln" data-n="1"><span class="kw">import</span> {Helix} <span class="kw">from</span> <span class="str">"@helix/gateway"</span>;</span>
+<span class="ln" data-n="2"></span>
+<span class="ln" data-n="3"><span class="com">// spin up an isolated agent</span></span>
+<span class="ln" data-n="4"><span class="kw">const</span> agent = <span class="kw">await</span> <span class="fn">helix.spawn</span>({</span>
+<span class="ln" data-n="5">  model: <span class="str">"claude-opus-4-7"</span>,</span>
+<span class="ln" data-n="6">  tools: [<span class="str">"sql"</span>, <span class="str">"python"</span>],</span>
+<span class="ln" data-n="7">  ttl: <span class="num">300</span>,</span>
+<span class="ln" data-n="8">});</span>
+<span class="ln" data-n="9"></span>
+<span class="ln" data-n="10"><span class="kw">for</span> <span class="kw">await</span> (<span class="kw">const</span> tok <span class="kw">of</span> <span class="fn">agent.chat</span>(msg))</span>
+<span class="ln" data-n="11">  <span class="fn">process.stdout.write</span>(tok);</span>
+    </div>
+  </div>
+  <div class="resp">
+<span style="color:var(--muted)">→ response</span><br/>
+  <span class="k">agent_id:</span> <span class="v">"ag_0192"</span><br/>
+  <span class="k">port:</span> <span class="v">42701</span>    <span class="k">boot:</span> <span class="v">128ms</span><br/>
+  <span class="k">status:</span> <span class="ok">READY</span>  <span class="k">sandbox:</span> <span class="ok">ON</span>
+  </div>
+  <div class="stat-row">
+    <span>streaming · <span style="color:var(--accent)">●</span> connected</span>
+    <span>tokens · <span>42/s</span></span>
+    <span>idle in · <span>4m 57s</span></span>
+  </div>
+</div>
+</body></html>

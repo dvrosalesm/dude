@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#dbeafe;--ink:#1e1b4b;--accent:#ef4444;--pink:#ec4899;--blue:#3b82f6;--green:#10b981;--yellow:#fbbf24;
+  font-family:'Poppins','Nunito',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:3cqmin;
+  background-image:radial-gradient(circle at 90% 10%,rgba(251,191,36,.2),transparent 40%),radial-gradient(circle at 10% 90%,rgba(236,72,153,.2),transparent 40%);
+}
+header{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1cqmin}
+.kicker{display:inline-flex;align-items:center;gap:.8cqmin;padding:.7cqmin 1.6cqmin;background:var(--ink);color:var(--yellow);border-radius:100px;font-size:1.3cqmin;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h2{font-size:5.5cqmin;line-height:1.05;font-weight:900;letter-spacing:-.025em;max-width:28ch}
+h2 .u{background:var(--yellow);color:var(--ink);padding:0 1cqmin;border-radius:1cqmin;box-shadow:.4cqmin .4cqmin 0 var(--ink);transform:rotate(-2deg);display:inline-block}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:2cqmin;align-content:center}
+.item{background:#fff;border:.4cqmin solid var(--ink);border-radius:1.8cqmin;padding:2.2cqmin;display:grid;grid-template-columns:6cqmin 1fr;gap:1.5cqmin;align-items:center;box-shadow:.5cqmin .5cqmin 0 var(--ink);position:relative}
+.item:nth-child(1){transform:rotate(-.8deg)}
+.item:nth-child(2){transform:rotate(.6deg)}
+.item:nth-child(3){transform:rotate(.5deg)}
+.item:nth-child(4){transform:rotate(-1deg)}
+.item:nth-child(5){transform:rotate(-.4deg)}
+.item:nth-child(6){transform:rotate(.9deg)}
+.check{width:6cqmin;height:6cqmin;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:3cqmin;font-weight:900;border:.4cqmin solid var(--ink);box-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.item:nth-child(2n) .check{background:var(--pink)}
+.item:nth-child(3n) .check{background:var(--blue)}
+.item:nth-child(4n) .check{background:var(--yellow);color:var(--ink)}
+.item h3{font-size:2cqmin;font-weight:800;line-height:1.15;margin-bottom:.3cqmin}
+.item p{font-size:1.35cqmin;line-height:1.4;font-weight:500;color:#4338ca}
+.item .signature{position:absolute;top:-.6cqmin;right:1cqmin;font-family:'Caveat',cursive;font-size:1.4cqmin;color:var(--accent);transform:rotate(-6deg)}
+footer{display:flex;justify-content:center;align-items:center;gap:1cqmin;font-family:'Caveat',cursive;font-size:2.2cqmin;color:var(--pink)}
+</style></head><body>
+<header>
+  <span class="kicker">★ Our Operating Agreement · v2</span>
+  <h2>Six things we promised <br/><span class="u">each other</span> we'd do.</h2>
+</header>
+<div class="list">
+  <div class="item">
+    <div class="check">✓</div>
+    <div>
+      <h3>Ship every Friday, even small.</h3>
+      <p>Streak: 142 weeks. Streak we're proudest of: last Friday's two-line fix that closed a 3-year-old ticket.</p>
+    </div>
+    <span class="signature">weekly!</span>
+  </div>
+  <div class="item">
+    <div class="check">✓</div>
+    <div>
+      <h3>Write docs before code.</h3>
+      <p>If we can't describe the feature in five sentences, it isn't ready. If it's only three sentences, it probably doesn't need to exist.</p>
+    </div>
+  </div>
+  <div class="item">
+    <div class="check">✓</div>
+    <div>
+      <h3>No meetings before noon on Wednesdays.</h3>
+      <p>Sacred. Enforced by a small cactus named Ferdinand.</p>
+    </div>
+    <span class="signature">sacred!</span>
+  </div>
+  <div class="item">
+    <div class="check">✓</div>
+    <div>
+      <h3>One on-call per quarter, max.</h3>
+      <p>If one person is on-call twice, we've failed and we fix the system, not the rotation.</p>
+    </div>
+  </div>
+  <div class="item">
+    <div class="check">✓</div>
+    <div>
+      <h3>Customers first, then quiet.</h3>
+      <p>We reply to every support email in under four hours, and we don't pipe it through a bot first. Quality beats response time, but we can do both.</p>
+    </div>
+    <span class="signature">xoxo</span>
+  </div>
+  <div class="item">
+    <div class="check">✓</div>
+    <div>
+      <h3>Have fun. It matters.</h3>
+      <p>If the work isn't fun this quarter, we talk about it. Most of our best features came from a Friday afternoon of messing around.</p>
+    </div>
+  </div>
+</div>
+<footer>↑ pinned to the office fridge since 2023 ✿</footer>
+</body></html>

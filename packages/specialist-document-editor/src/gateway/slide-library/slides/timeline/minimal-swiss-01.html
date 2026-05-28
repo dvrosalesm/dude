@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafafa;--ink:#0a0a0a;--muted:#6b6b6b;--rule:#111;--dot:#0a0a0a;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 6cqmin;gap:4cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:1.8cqmin}
+h2{font-size:4.5cqmin;font-weight:500;letter-spacing:-.02em}
+.kicker{font-size:1.3cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.timeline{position:relative;display:grid;grid-template-columns:repeat(5,1fr);align-items:start;gap:2cqmin;padding-top:5cqmin}
+.timeline::before{content:"";position:absolute;left:2cqmin;right:2cqmin;top:6cqmin;height:1px;background:#ccc}
+.step{position:relative;padding-right:2cqmin}
+.dot{position:absolute;top:0;left:0;width:1.4cqmin;height:1.4cqmin;background:var(--dot);border-radius:50%}
+.date{display:block;font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-top:3.4cqmin}
+.title{display:block;font-size:2.1cqmin;font-weight:500;margin-top:.8cqmin;letter-spacing:-.01em}
+.body{display:block;font-size:1.45cqmin;line-height:1.5;color:#555;margin-top:.8cqmin}
+footer{display:flex;justify-content:space-between;border-top:1px solid var(--rule);padding-top:1.8cqmin;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+</style></head><body>
+<header><h2>How the quarter unfolded.</h2><span class="kicker">Timeline · five moments</span></header>
+<div class="timeline">
+  <div class="step"><span class="dot"></span><span class="date">Week 01 · Jan 5</span><span class="title">Kickoff</span><span class="body">Re-scoped goals down to four measurable outcomes. Killed eleven side projects.</span></div>
+  <div class="step"><span class="dot"></span><span class="date">Week 04 · Jan 26</span><span class="title">Onboarding v2</span><span class="body">Shipped a new first-run flow. Time-to-value fell from 19 minutes to 4.</span></div>
+  <div class="step"><span class="dot"></span><span class="date">Week 08 · Feb 23</span><span class="title">Pricing update</span><span class="body">Introduced a mid-tier band. Mid-market conversion climbed 22% within three weeks.</span></div>
+  <div class="step"><span class="dot"></span><span class="date">Week 10 · Mar 9</span><span class="title">Infra migration</span><span class="body">Moved the core archive behind the new gateway. 99.99% availability held.</span></div>
+  <div class="step"><span class="dot"></span><span class="date">Week 13 · Mar 30</span><span class="title">Close</span><span class="body">Finished the quarter 12% above plan with two weeks of buffer on the runway.</span></div>
+</div>
+<footer><span>Timeline</span><span>007 / 042</span></footer>
+</body></html>

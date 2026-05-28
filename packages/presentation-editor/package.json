@@ -1,0 +1,221 @@
+{
+  "name": "@dude/presentation-editor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./types": {
+      "types": "./src/types/document-editor.ts",
+      "import": "./src/types/document-editor.ts",
+      "default": "./src/types/document-editor.ts"
+    },
+    "./store": {
+      "types": "./src/store/use-document-editor-store.ts",
+      "import": "./src/store/use-document-editor-store.ts",
+      "default": "./src/store/use-document-editor-store.ts"
+    },
+    "./document-editor/apply-edits": {
+      "types": "./src/lib/document-editor/apply-edits.ts",
+      "import": "./src/lib/document-editor/apply-edits.ts",
+      "default": "./src/lib/document-editor/apply-edits.ts"
+    },
+    "./lib/design-examples": {
+      "types": "./src/lib/presentation-editor/design-examples.ts",
+      "import": "./src/lib/presentation-editor/design-examples.ts",
+      "default": "./src/lib/presentation-editor/design-examples.ts"
+    },
+    "./lib/design-styles": {
+      "types": "./src/lib/presentation-editor/design-styles/index.ts",
+      "import": "./src/lib/presentation-editor/design-styles/index.ts",
+      "default": "./src/lib/presentation-editor/design-styles/index.ts"
+    },
+    "./lib/design-styles/index": {
+      "types": "./src/lib/presentation-editor/design-styles/index.ts",
+      "import": "./src/lib/presentation-editor/design-styles/index.ts",
+      "default": "./src/lib/presentation-editor/design-styles/index.ts"
+    },
+    "./lib/design-styles/loader": {
+      "types": "./src/lib/presentation-editor/design-styles/loader.ts",
+      "import": "./src/lib/presentation-editor/design-styles/loader.ts",
+      "default": "./src/lib/presentation-editor/design-styles/loader.ts"
+    },
+    "./lib/document-context": {
+      "types": "./src/lib/presentation-editor/document-context.ts",
+      "import": "./src/lib/presentation-editor/document-context.ts",
+      "default": "./src/lib/presentation-editor/document-context.ts"
+    },
+    "./lib/document-editor-actions": {
+      "types": "./src/lib/presentation-editor/document-editor-actions.ts",
+      "import": "./src/lib/presentation-editor/document-editor-actions.ts",
+      "default": "./src/lib/presentation-editor/document-editor-actions.ts"
+    },
+    "./lib/document-export-html": {
+      "types": "./src/lib/presentation-editor/document-export-html.ts",
+      "import": "./src/lib/presentation-editor/document-export-html.ts",
+      "default": "./src/lib/presentation-editor/document-export-html.ts"
+    },
+    "./lib/document-export-images": {
+      "types": "./src/lib/presentation-editor/document-export-images.ts",
+      "import": "./src/lib/presentation-editor/document-export-images.ts",
+      "default": "./src/lib/presentation-editor/document-export-images.ts"
+    },
+    "./lib/document-export-pdf": {
+      "types": "./src/lib/presentation-editor/document-export-pdf.ts",
+      "import": "./src/lib/presentation-editor/document-export-pdf.ts",
+      "default": "./src/lib/presentation-editor/document-export-pdf.ts"
+    },
+    "./lib/document-export-raster": {
+      "types": "./src/lib/presentation-editor/document-export-raster.ts",
+      "import": "./src/lib/presentation-editor/document-export-raster.ts",
+      "default": "./src/lib/presentation-editor/document-export-raster.ts"
+    },
+    "./lib/document-export-video": {
+      "types": "./src/lib/presentation-editor/document-export-video.ts",
+      "import": "./src/lib/presentation-editor/document-export-video.ts",
+      "default": "./src/lib/presentation-editor/document-export-video.ts"
+    },
+    "./lib/document-export": {
+      "types": "./src/lib/presentation-editor/document-export.ts",
+      "import": "./src/lib/presentation-editor/document-export.ts",
+      "default": "./src/lib/presentation-editor/document-export.ts"
+    },
+    "./lib/font-pairs": {
+      "types": "./src/lib/presentation-editor/font-pairs/index.ts",
+      "import": "./src/lib/presentation-editor/font-pairs/index.ts",
+      "default": "./src/lib/presentation-editor/font-pairs/index.ts"
+    },
+    "./lib/font-pairs/index": {
+      "types": "./src/lib/presentation-editor/font-pairs/index.ts",
+      "import": "./src/lib/presentation-editor/font-pairs/index.ts",
+      "default": "./src/lib/presentation-editor/font-pairs/index.ts"
+    },
+    "./lib/font-pairs/loader": {
+      "types": "./src/lib/presentation-editor/font-pairs/loader.ts",
+      "import": "./src/lib/presentation-editor/font-pairs/loader.ts",
+      "default": "./src/lib/presentation-editor/font-pairs/loader.ts"
+    },
+    "./lib/ensure-renderable-slides": {
+      "types": "./src/lib/presentation-editor/ensure-renderable-slides.ts",
+      "import": "./src/lib/presentation-editor/ensure-renderable-slides.ts",
+      "default": "./src/lib/presentation-editor/ensure-renderable-slides.ts"
+    },
+    "./lib/html-slide-controls": {
+      "types": "./src/lib/presentation-editor/html-slide-controls.ts",
+      "import": "./src/lib/presentation-editor/html-slide-controls.ts",
+      "default": "./src/lib/presentation-editor/html-slide-controls.ts"
+    },
+    "./lib/html-slide-templates": {
+      "types": "./src/lib/presentation-editor/html-slide-templates.ts",
+      "import": "./src/lib/presentation-editor/html-slide-templates.ts",
+      "default": "./src/lib/presentation-editor/html-slide-templates.ts"
+    },
+    "./lib/icon-library": {
+      "types": "./src/lib/presentation-editor/icon-library.ts",
+      "import": "./src/lib/presentation-editor/icon-library.ts",
+      "default": "./src/lib/presentation-editor/icon-library.ts"
+    },
+    "./lib/remotion/presentation-video": {
+      "types": "./src/lib/presentation-editor/remotion/presentation-video.tsx",
+      "import": "./src/lib/presentation-editor/remotion/presentation-video.tsx",
+      "default": "./src/lib/presentation-editor/remotion/presentation-video.tsx"
+    },
+    "./lib/remotion/render": {
+      "types": "./src/lib/presentation-editor/remotion/render.ts",
+      "import": "./src/lib/presentation-editor/remotion/render.ts",
+      "default": "./src/lib/presentation-editor/remotion/render.ts"
+    },
+    "./lib/remotion/root": {
+      "types": "./src/lib/presentation-editor/remotion/root.tsx",
+      "import": "./src/lib/presentation-editor/remotion/root.tsx",
+      "default": "./src/lib/presentation-editor/remotion/root.tsx"
+    },
+    "./lib/slide-quality": {
+      "types": "./src/lib/presentation-editor/slide-quality.ts",
+      "import": "./src/lib/presentation-editor/slide-quality.ts",
+      "default": "./src/lib/presentation-editor/slide-quality.ts"
+    },
+    "./components/document-export-menu": {
+      "types": "./src/components/document-export-menu.tsx",
+      "import": "./src/components/document-export-menu.tsx",
+      "default": "./src/components/document-export-menu.tsx"
+    },
+    "./components/effects-dialog": {
+      "types": "./src/components/effects-dialog.tsx",
+      "import": "./src/components/effects-dialog.tsx",
+      "default": "./src/components/effects-dialog.tsx"
+    },
+    "./components/insert-ai-image-dialog": {
+      "types": "./src/components/insert-ai-image-dialog.tsx",
+      "import": "./src/components/insert-ai-image-dialog.tsx",
+      "default": "./src/components/insert-ai-image-dialog.tsx"
+    },
+    "./components/insert-chart-dialog": {
+      "types": "./src/components/insert-chart-dialog.tsx",
+      "import": "./src/components/insert-chart-dialog.tsx",
+      "default": "./src/components/insert-chart-dialog.tsx"
+    },
+    "./components/insert-icon-dialog": {
+      "types": "./src/components/insert-icon-dialog.tsx",
+      "import": "./src/components/insert-icon-dialog.tsx",
+      "default": "./src/components/insert-icon-dialog.tsx"
+    },
+    "./components/insert-image-dialog": {
+      "types": "./src/components/insert-image-dialog.tsx",
+      "import": "./src/components/insert-image-dialog.tsx",
+      "default": "./src/components/insert-image-dialog.tsx"
+    },
+    "./components/insert-table-dialog": {
+      "types": "./src/components/insert-table-dialog.tsx",
+      "import": "./src/components/insert-table-dialog.tsx",
+      "default": "./src/components/insert-table-dialog.tsx"
+    },
+    "./components/pptx-preview": {
+      "types": "./src/components/pptx-preview.tsx",
+      "import": "./src/components/pptx-preview.tsx",
+      "default": "./src/components/pptx-preview.tsx"
+    },
+    "./components/presentation-mode": {
+      "types": "./src/components/presentation-mode.tsx",
+      "import": "./src/components/presentation-mode.tsx",
+      "default": "./src/components/presentation-mode.tsx"
+    },
+    "./components/shader-canvas": {
+      "types": "./src/components/shader-canvas.tsx",
+      "import": "./src/components/shader-canvas.tsx",
+      "default": "./src/components/shader-canvas.tsx"
+    },
+    "./components/shape-element": {
+      "types": "./src/components/shape-element.tsx",
+      "import": "./src/components/shape-element.tsx",
+      "default": "./src/components/shape-element.tsx"
+    },
+    "./components/slide-canvas": {
+      "types": "./src/components/slide-canvas.tsx",
+      "import": "./src/components/slide-canvas.tsx",
+      "default": "./src/components/slide-canvas.tsx"
+    }
+  },
+  "dependencies": {
+    "@dude/ui": "*",
+    "@dude/workspaces": "*",
+    "class-variance-authority": "^0.7.1",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.474.0",
+    "react": "^19.0.0",
+    "zustand": "^5.0.3",
+    "@remotion/bundler": "^4.0.422",
+    "@remotion/renderer": "^4.0.422"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

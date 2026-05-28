@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafbff;--surface:#fff;--ink:#0b0d1a;--muted:#64748b;--accent:#6366f1;--border:#e5e7ef;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin 6cqmin;gap:3.5cqmin;
+  background-image:linear-gradient(180deg,#fafbff,#f0f3ff);
+}
+header{display:flex;justify-content:space-between;align-items:flex-end}
+h2{font-size:5cqmin;line-height:1.02;font-weight:700;letter-spacing:-.025em;max-width:22ch}
+h2 em{font-style:normal;background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kicker{font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:stretch;position:relative}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:1.4cqmin;padding:2.6cqmin;display:flex;flex-direction:column;gap:1.3cqmin;position:relative;box-shadow:0 1cqmin 2cqmin rgba(15,23,42,.04);margin:0 1cqmin}
+.step:first-child{margin-left:0}
+.step:last-child{margin-right:0}
+.arrow{position:absolute;top:50%;right:-1.6cqmin;transform:translateY(-50%);width:3cqmin;height:3cqmin;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--border);border-radius:50%;color:var(--accent);font-size:1.8cqmin;font-weight:700;z-index:2}
+.step:last-child .arrow{display:none}
+.num{font-size:3.2cqmin;font-weight:800;letter-spacing:-.03em;color:var(--accent);line-height:1}
+.name{font-size:2cqmin;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.desc{font-size:1.4cqmin;line-height:1.55;color:var(--muted)}
+.code{font-family:'SF Mono',Menlo,monospace;font-size:1.1cqmin;background:#0b0d1a;color:#22d3ee;padding:1cqmin;border-radius:.6cqmin;margin-top:auto;line-height:1.4;overflow:hidden}
+.code .m{color:#fbbf24}.code .k{color:#a78bfa}.code .s{color:#34d399}
+.foot{display:flex;justify-content:space-between;padding-top:2cqmin;border-top:1px solid var(--border);font-size:1.3cqmin;color:var(--muted)}
+.legend{display:flex;gap:2cqmin;align-items:center}
+.legend .dot{width:1cqmin;height:1cqmin;border-radius:50%}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">From request to running agent</span>
+    <h2 style="margin-top:1cqmin">Four steps. <em>Under a second.</em></h2>
+  </div>
+  <span class="kicker">Request lifecycle</span>
+</header>
+<div class="steps">
+  <div class="step">
+    <span class="num">01</span>
+    <span class="name">Request lands</span>
+    <p class="desc">NestJS validates the bearer token, fingerprints the requested agent config, and looks up any warm process it can reuse.</p>
+    <div class="code"><span class="m">POST</span> /v1/instances<br/><span class="k">Authorization</span>: <span class="s">Bearer ***</span></div>
+    <div class="arrow">→</div>
+  </div>
+  <div class="step">
+    <span class="num">02</span>
+    <span class="name">DB provisioned</span>
+    <p class="desc">If this workspace has a saved archive in R2, we download, decrypt, and write it to a fresh temp directory with a UUID path.</p>
+    <div class="code"><span class="m">r2.get</span>(<span class="s">"wk_9fA2b.enc"</span>)<br/>→ <span class="k">decrypt</span> → <span class="s">/tmp/...</span></div>
+    <div class="arrow">→</div>
+  </div>
+  <div class="step">
+    <span class="num">03</span>
+    <span class="name">Process spawned</span>
+    <p class="desc">We fork a <code>tsx</code> child process on a free port with a minimal env — no Supabase keys, no R2 keys, just the workspace config.</p>
+    <div class="code"><span class="m">spawn</span>(<span class="s">"tsx server.ts"</span>)<br/>→ port <span class="k">42701</span></div>
+    <div class="arrow">→</div>
+  </div>
+  <div class="step">
+    <span class="num">04</span>
+    <span class="name">Streaming ready</span>
+    <p class="desc">The child process reports back over an internal socket. We return the agent ID; your chat client starts streaming over SSE.</p>
+    <div class="code"><span class="m">GET</span> /chat<br/>→ <span class="s">text/event-stream</span></div>
+  </div>
+</div>
+<div class="foot">
+  <div class="legend"><span class="dot" style="background:var(--accent)"></span> <span>NestJS gateway</span><span class="dot" style="background:#22d3ee;margin-left:1cqmin"></span> <span>Child process</span><span class="dot" style="background:#34d399;margin-left:1cqmin"></span> <span>Object storage</span></div>
+  <span>Typical end-to-end · 284 ms p95</span>
+</div>
+</body></html>

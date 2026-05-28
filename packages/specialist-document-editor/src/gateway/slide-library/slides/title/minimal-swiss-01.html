@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5f5f2;--ink:#0a0a0a;--muted:#6b6b6b;--rule:#1c1c1c;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:1fr auto;
+  padding:6cqmin 7cqmin;
+}
+.grid-overlay{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to right,transparent 14.2857%,rgba(0,0,0,.06) 14.2857%,rgba(0,0,0,.06) calc(14.2857% + 1px),transparent calc(14.2857% + 1px)) repeat-x,
+    linear-gradient(to right,transparent 28.5714%,rgba(0,0,0,.06) 28.5714%,rgba(0,0,0,.06) calc(28.5714% + 1px),transparent calc(28.5714% + 1px)) repeat-x,
+    linear-gradient(to right,transparent 42.857%,rgba(0,0,0,.06) 42.857%,rgba(0,0,0,.06) calc(42.857% + 1px),transparent calc(42.857% + 1px)) repeat-x,
+    linear-gradient(to right,transparent 57.143%,rgba(0,0,0,.06) 57.143%,rgba(0,0,0,.06) calc(57.143% + 1px),transparent calc(57.143% + 1px)) repeat-x,
+    linear-gradient(to right,transparent 71.428%,rgba(0,0,0,.06) 71.428%,rgba(0,0,0,.06) calc(71.428% + 1px),transparent calc(71.428% + 1px)) repeat-x,
+    linear-gradient(to right,transparent 85.714%,rgba(0,0,0,.06) 85.714%,rgba(0,0,0,.06) calc(85.714% + 1px),transparent calc(85.714% + 1px)) repeat-x;
+}
+.meta{display:flex;justify-content:space-between;font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--rule);padding-bottom:2cqmin;position:relative;z-index:1}
+.main{display:flex;flex-direction:column;justify-content:flex-end;gap:3cqmin;position:relative;z-index:1}
+h1{font-size:12cqmin;line-height:.9;font-weight:500;letter-spacing:-.04em;max-width:18ch}
+h1 em{font-style:italic;font-weight:400}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;padding-top:2cqmin;border-top:1px solid var(--rule);font-size:1.4cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);position:relative;z-index:1}
+.num{font-size:1.4cqmin;letter-spacing:.1em;color:var(--ink)}
+</style></head><body>
+<div class="grid-overlay"></div>
+<div class="meta"><span>Quarterly Review</span><span>Fig. 01 · Cover</span><span>2026 / Q1</span></div>
+<div class="main">
+  <h1>A measured look at <em>what worked</em>, and what didn't.</h1>
+</div>
+<div class="foot"><span>Strategy & Operations</span><span class="num">001 / 042</span><span>18.04.2026</span></div>
+</body></html>

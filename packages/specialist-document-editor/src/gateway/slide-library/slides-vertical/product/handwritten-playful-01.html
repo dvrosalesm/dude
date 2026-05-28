@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5efe0;--ink:#2a2418;--red:#c94f3c;--yellow:#eab73a;--blue:#6a9bc4;--green:#7a9b5c;--cream:#fff9e8;
+  font-family:'Caveat','Kalam','Patrick Hand',cursive;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2cqmin;position:relative;
+}
+.paper-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(180deg,transparent 0,transparent 5cqmin,rgba(106,155,196,.15) 5cqmin,rgba(106,155,196,.15) 5.15cqmin);pointer-events:none;z-index:0}
+.margin{position:absolute;left:7cqmin;top:0;bottom:0;width:.3cqmin;background:rgba(201,79,60,.25);z-index:0}
+.top-bar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding-left:8cqmin;font-size:2.4cqmin;color:var(--ink)}
+.top-bar .pill{background:var(--green);color:#fff;padding:.7cqmin 1.6cqmin;border:.25cqmin solid var(--ink);box-shadow:.3cqmin .3cqmin 0 var(--ink);transform:rotate(-1deg)}
+.main{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:2cqmin;padding-left:4cqmin}
+.hero{display:flex;flex-direction:column;align-items:center;gap:2cqmin;padding-top:1cqmin}
+.product-sticker{position:relative;width:52cqmin;transform:rotate(-3deg)}
+.product-photo{aspect-ratio:4/5;background:
+  linear-gradient(135deg,#fff9e8 0%,#f5d88e 40%,#eab73a 70%,#c94f3c 100%);
+  background-image:radial-gradient(circle at 30% 30%,rgba(255,255,255,.6),transparent 40%),linear-gradient(135deg,#fff9e8 0%,#f5d88e 40%,#eab73a 70%,#c94f3c 100%);
+  border:.3cqmin solid var(--ink);box-shadow:.6cqmin .6cqmin 0 var(--ink);display:flex;align-items:center;justify-content:center;position:relative;padding:3cqmin;overflow:hidden}
+.product-photo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle 4cqmin at 25% 30%,rgba(255,255,255,.4),transparent),radial-gradient(circle 3cqmin at 75% 70%,rgba(255,255,255,.25),transparent)}
+.product-photo .jar{width:70%;height:80%;background:linear-gradient(180deg,rgba(42,36,24,.04),transparent 15%,rgba(255,255,255,.15) 30%,transparent 60%),radial-gradient(ellipse 60% 40% at 50% 30%,rgba(255,255,255,.5),transparent 60%);border-radius:3cqmin;border:.25cqmin solid rgba(42,36,24,.4);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:3cqmin 2cqmin}
+.product-photo .jar .lbl{background:#fff;padding:1.5cqmin 2cqmin;border:.25cqmin solid var(--ink);width:100%;text-align:center;transform:rotate(-2deg);box-shadow:.3cqmin .3cqmin 0 rgba(42,36,24,.4)}
+.product-photo .jar .lbl big{display:block;font-size:3.5cqmin;line-height:1;color:var(--red);font-style:italic}
+.product-photo .jar .lbl small{display:block;font-family:'Patrick Hand',cursive;font-size:1.6cqmin;color:var(--ink);letter-spacing:.1em;text-transform:uppercase;margin-top:.3cqmin}
+.tape-corner{position:absolute;top:-2cqmin;right:-2cqmin;width:10cqmin;height:3.5cqmin;background:rgba(234,183,58,.7);border:.15cqmin solid rgba(42,36,24,.3);transform:rotate(35deg);z-index:3}
+.price-sticker{position:absolute;bottom:-4cqmin;left:-4cqmin;background:var(--red);color:#fff;padding:1.5cqmin 2cqmin;border:.3cqmin solid var(--ink);box-shadow:.5cqmin .5cqmin 0 var(--ink);transform:rotate(-12deg);font-size:3cqmin;line-height:1;text-align:center}
+.price-sticker big{display:block;font-size:5cqmin;font-style:italic;letter-spacing:-.02em}
+.price-sticker small{font-family:'Patrick Hand',cursive;font-size:1.4cqmin;letter-spacing:.2em;text-transform:uppercase;opacity:.9;display:block;margin-top:.3cqmin}
+.copy{text-align:left;display:flex;flex-direction:column;gap:1cqmin;align-items:flex-start}
+h2{font-size:10cqmin;line-height:.95;font-weight:400;letter-spacing:-.005em;color:var(--ink)}
+h2 em{color:var(--red);font-style:italic}
+h2 .u{color:var(--green);text-decoration:underline wavy var(--yellow);text-decoration-thickness:.3cqmin;text-underline-offset:.8cqmin}
+.desc{font-size:2.6cqmin;line-height:1.4;color:var(--ink);max-width:95%}
+.desc em{color:var(--red);font-style:italic}
+.doodle{position:absolute;z-index:3;pointer-events:none}
+.doodle.d1{top:28cqmin;right:3cqmin;font-size:6cqmin;color:var(--blue);transform:rotate(15deg)}
+.doodle.d1 small{display:block;font-size:2.4cqmin;color:var(--ink);transform:rotate(-15deg);margin-top:-.5cqmin}
+.cta{display:inline-flex;align-items:center;gap:1.5cqmin;padding:2cqmin 3cqmin;background:var(--yellow);border:.3cqmin solid var(--ink);box-shadow:.5cqmin .5cqmin 0 var(--ink);font-size:3.2cqmin;color:var(--ink);transform:rotate(1deg);align-self:flex-start}
+.cta .arr{font-size:4cqmin;color:var(--red)}
+.foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:1.5cqmin 2cqmin;font-family:'Patrick Hand',cursive;font-size:2.4cqmin;color:var(--ink);border-top:.25cqmin dashed var(--ink)}
+.foot .heart{color:var(--red)}
+</style></head><body>
+<div class="paper-lines"></div>
+<div class="margin"></div>
+<div class="top-bar"><span>4.20 · new drop ✿</span><span class="pill">★ small batch ★</span></div>
+<div class="main">
+  <div class="hero">
+    <div class="product-sticker">
+      <div class="product-photo">
+        <span class="tape-corner"></span>
+        <div class="jar"><div class="lbl"><big>summer<br/>honey</big><small>raw · ballyhane</small></div></div>
+      </div>
+      <span class="price-sticker"><big>€14</big><small>incl. post</small></span>
+    </div>
+    <span class="doodle d1">✿<small>← real bees!</small></span>
+  </div>
+  <div class="copy">
+    <h2>the <em>first</em> honey <span class="u">we ever made</span> ♡</h2>
+    <p class="desc">from the two hives at the bottom of the field, after the apple blossom and before the heather. <em>just 80 jars.</em> we eat one per week, the rest go to you →</p>
+    <span class="cta">shop · link in bio <span class="arr">→</span></span>
+  </div>
+</div>
+<div class="foot"><span>@millie.plants <span class="heart">♡</span></span><span>small batch 001 · 80 jars only</span></div>
+</body></html>

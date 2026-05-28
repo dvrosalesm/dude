@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ff2a68;--ink:#1a1a4a;--lime:#c6ff00;--cyan:#1affff;--pink:#ff80c0;--white:#fff;
+  font-family:'Arial Black','Impact','Helvetica Neue',sans-serif;
+  background:var(--bg);color:var(--white);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+  background-image:
+    radial-gradient(ellipse 50% 30% at 30% 20%,rgba(26,255,255,.4),transparent 55%),
+    radial-gradient(ellipse 50% 30% at 70% 80%,rgba(198,255,0,.3),transparent 55%);
+}
+.ticker-top{background:var(--ink);color:var(--lime);padding:1.5cqmin 0;border-bottom:.4cqmin solid var(--lime);overflow:hidden;white-space:nowrap}
+.ticker-top .track{display:inline-block;font-size:2.2cqmin;font-weight:900;letter-spacing:.3em;text-transform:uppercase;animation:scroll 15s linear infinite;padding-left:100%}
+@keyframes scroll{to{transform:translateX(-100%)}}
+.main{padding:5cqmin;display:flex;flex-direction:column;justify-content:center;gap:3cqmin;position:relative}
+.badge{display:inline-flex;align-items:center;gap:1.2cqmin;padding:1.6cqmin 3cqmin;background:var(--lime);color:var(--ink);border:.4cqmin solid var(--ink);border-radius:100px;font-size:2.2cqmin;font-weight:900;letter-spacing:.12em;text-transform:uppercase;width:fit-content;box-shadow:.5cqmin .5cqmin 0 var(--ink);transform:rotate(-2deg)}
+.badge .bx{background:var(--ink);color:var(--lime);padding:.3cqmin 1cqmin;border-radius:100px;font-size:1.8cqmin}
+h1{font-size:20cqmin;line-height:.82;font-weight:900;letter-spacing:-.045em;text-transform:uppercase;color:transparent;background:linear-gradient(180deg,#fff 0%,#c0ffff 40%,#1affff 60%,#3a80ff 90%,#1a1a80 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.6cqmin var(--ink);filter:drop-shadow(.5cqmin .5cqmin 0 var(--ink)) drop-shadow(1cqmin 1cqmin 0 var(--lime))}
+h1 em{font-style:italic;color:transparent;background:linear-gradient(180deg,#fff,#fef098,var(--lime));-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.5cqmin var(--ink);display:inline-block;transform:rotate(-3deg)}
+h1 .u{color:transparent;background:linear-gradient(180deg,#fff,#ffd0e8,#ff80c0);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.5cqmin var(--ink)}
+.starburst{position:absolute;top:28cqmin;right:2cqmin;width:18cqmin;height:18cqmin;background:var(--lime);color:var(--ink);clip-path:polygon(50% 0,56% 35%,90% 20%,72% 50%,100% 55%,68% 68%,88% 100%,50% 80%,12% 100%,32% 68%,0 55%,28% 50%,10% 20%,44% 35%);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.8cqmin;font-weight:900;text-transform:uppercase;letter-spacing:.05em;line-height:1;text-align:center;transform:rotate(12deg);padding:1.5cqmin}
+.starburst big{font-size:4.5cqmin;line-height:1;letter-spacing:-.03em}
+.date-card{background:var(--white);color:var(--ink);border:.4cqmin solid var(--ink);border-radius:3cqmin;padding:3cqmin;display:grid;grid-template-columns:auto 1fr auto;gap:2.5cqmin;align-items:center;box-shadow:.6cqmin .6cqmin 0 var(--ink);transform:rotate(1deg);width:fit-content;max-width:85%}
+.date-card .ic{width:10cqmin;height:10cqmin;background:var(--cyan);border:.3cqmin solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:5cqmin;line-height:1;color:var(--ink)}
+.date-card .dt{line-height:1;font-weight:900;letter-spacing:-.01em}
+.date-card .dt big{font-size:4.5cqmin;text-transform:uppercase;display:block}
+.date-card .dt small{font-size:1.8cqmin;font-weight:700;letter-spacing:.2em;opacity:.7;text-transform:uppercase;margin-top:.4cqmin;display:block}
+.date-card .count{background:var(--pink);color:var(--ink);border:.3cqmin solid var(--ink);border-radius:1.5cqmin;padding:1.5cqmin 2cqmin;text-align:center;line-height:1}
+.date-card .count big{display:block;font-size:3.5cqmin;font-weight:900}
+.date-card .count small{font-size:1.3cqmin;font-weight:700;letter-spacing:.2em;margin-top:.3cqmin;display:block}
+.ticker-bot{background:var(--ink);color:var(--pink);padding:1.5cqmin 0;border-top:.4cqmin solid var(--pink);overflow:hidden;white-space:nowrap}
+.ticker-bot .track{display:inline-block;font-size:2.2cqmin;font-weight:900;letter-spacing:.3em;text-transform:uppercase;animation:scroll 12s linear infinite;padding-left:100%}
+</style></head><body>
+<div class="ticker-top"><span class="track">★★★ BIG NEWS ★★★ BIG NEWS ★★★ BIG NEWS ★★★ BIG NEWS ★★★ BIG NEWS ★★★</span></div>
+<div class="main">
+  <span class="badge"><span class="bx">NEW</span> vol. 7 · drops 04.26</span>
+  <h1>THE<br/><em>zine</em><br/>is <span class="u">back</span><br/>BB.</h1>
+  <span class="starburst">shipped<br/><big>in 48h</big>guaranteed</span>
+  <div class="date-card">
+    <span class="ic">◎</span>
+    <div class="dt"><big>APR 26</big><small>mon · 9am pst</small></div>
+    <div class="count"><big>1,200</big><small>copies only</small></div>
+  </div>
+</div>
+<div class="ticker-bot"><span class="track">◈ pre-order open · free shipping · ◈ pre-order open · free shipping · ◈</span></div>
+</body></html>

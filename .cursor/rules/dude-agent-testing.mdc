@@ -1,0 +1,62 @@
+---
+description: How Cursor agents run and test the local Dude app (dev server, CLI harness, browser MCP).
+globs:
+  - apps/**/*
+  - packages/**/*
+  - scripts/**/*
+alwaysApply: false
+---
+
+# Testing Dude locally (agents)
+
+When verifying Dude behavior, use this workflow instead of guessing URLs or APIs.
+
+## 1. Start dev
+
+```sh
+npm run dev
+```
+
+Confirm: `npm run agent:status` (exit 0). Client `http://127.0.0.1:5173`, API `http://127.0.0.1:8787`.
+
+If API is down, chat turns fail with gateway/proxy 500 — fix API first, not the UI.
+
+## 2. Choose test mode
+
+| Mode | When |
+|------|------|
+| **API** (`npm run agent -- chat …`) | Logic, tools, agent completion without UI |
+| **Browser MCP** | Layout, TipTap/canvas, streaming UI, clicks |
+| **Both** | Create workspace via CLI, open `openUrl` in browser, send prompt in UI |
+
+## 3. CLI harness
+
+```sh
+npm run agent -- workspaces create --specialist document-writer --name "Agent test"
+npm run agent -- chat --specialist document-writer --workspace <id> --message "..."
+npm run agent -- browser-hints --specialist document-writer --workspace <id>
+```
+
+Full reference: `scripts/agent-harness/README.md`.
+
+## 4. Browser MCP (`cursor-ide-browser`)
+
+1. `browser_navigate` → URL from `npm run agent -- url --specialist <id> [--workspace <id>]`
+2. `browser_lock` → interact → `browser_unlock`
+3. After agent work, CDP evaluate:
+
+```javascript
+window.__DUDE_AGENT__?.snapshot()
+```
+
+Document Writer canvas: `window.__DUDE_DW_DEBUG__?.snapshot()` — expect `blockCount > 0` after edits.
+
+## 5. Specialist IDs
+
+`main-assistant`, `data-analyst`, `document-writer`, `presentation-editor`, `design-branding`, `prospect`
+
+## 6. Do not
+
+- Commit or log `.env.local` secrets
+- Assume `/health` on API root — use `agent:status` (checks `/healthz`, `/v1/health`, `/api/health`)
+- Skip `npm run dev` when testing integrated chat/gateway flows

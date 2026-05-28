@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0a0a;--ink:#fff;--muted:#71767b;--accent:#ff6b9d;--accent2:#fbbf24;--green:#00ba7c;--border:#1f1f1f;
+  font-family:-apple-system,'SF Pro Text','Segoe UI',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin 5cqmin;gap:3cqmin;
+  background-image:radial-gradient(ellipse 60% 40% at 50% 60%,rgba(255,107,157,.12),transparent 60%);
+}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;color:var(--muted);font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.meta .end{background:var(--accent);color:var(--bg);padding:.5cqmin 1.3cqmin;border-radius:100px;font-weight:900}
+.main{display:flex;flex-direction:column;justify-content:center;gap:3cqmin}
+.big{font-size:18cqmin;line-height:.9;font-weight:900;letter-spacing:-.04em}
+.big .dim{color:var(--muted)}
+.big em{font-style:italic;color:var(--accent)}
+.big .hl{background:var(--accent2);color:var(--bg);padding:0 .6cqmin;display:inline-block;transform:rotate(-1.5deg)}
+.sub{font-size:2.8cqmin;line-height:1.4;color:#c5c5c5;max-width:30ch;font-weight:500}
+.sub em{font-style:normal;color:var(--accent);font-weight:700}
+.sub strong{color:#fff;font-weight:700}
+.commandments{display:flex;flex-direction:column;gap:1.2cqmin;margin-top:1cqmin}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center;padding:2.2cqmin 2.8cqmin;background:var(--border);border-radius:2.5cqmin;position:relative;overflow:hidden}
+.row.like::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.5cqmin;background:var(--accent)}
+.row.save::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.5cqmin;background:var(--accent2)}
+.row.follow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.5cqmin;background:var(--green)}
+.row .ic{width:6cqmin;height:6cqmin;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3cqmin;font-weight:900}
+.row.like .ic{background:var(--accent);color:var(--bg)}
+.row.save .ic{background:var(--accent2);color:var(--bg)}
+.row.follow .ic{background:var(--green);color:var(--bg)}
+.row .tx h3{font-size:2.4cqmin;font-weight:900;letter-spacing:-.005em;line-height:1.1}
+.row .tx h3 em{font-style:italic;color:var(--muted);font-weight:500}
+.row .tx p{font-size:1.8cqmin;color:var(--muted);line-height:1.4;margin-top:.3cqmin;font-weight:500}
+.row .tx p strong{color:#fff}
+.row .arr{font-size:3cqmin;color:var(--accent);font-weight:900}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:2cqmin 2.5cqmin;background:var(--border);border-radius:100px;font-size:1.9cqmin;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.foot .handle{display:flex;align-items:center;gap:1.5cqmin}
+.foot .handle .dp{width:5cqmin;height:5cqmin;border-radius:50%;background:linear-gradient(135deg,#ff6b9d,#a855f7);display:flex;align-items:center;justify-content:center;font-size:2.5cqmin;font-weight:900;color:#fff}
+.foot .handle strong{color:#fff}
+</style></head><body>
+<div class="meta"><span>final slide · 06/06</span><span class="end">★ fin ★</span></div>
+<div class="main">
+  <h2 class="big"><span class="dim">you made it</span><br/>to the <em>end</em>.<br/>now do <span class="hl">3 things</span>.</h2>
+  <p class="sub">the algorithm doesn't know you read it. <em>it only knows</em> if you did one of these. <strong>takes 4 seconds.</strong></p>
+  <div class="commandments">
+    <div class="row like">
+      <span class="ic">♥</span>
+      <div class="tx"><h3>double-tap <em>this very post</em></h3><p>tells the algo <strong>"more like this, less gym-tok"</strong></p></div>
+      <span class="arr">→</span>
+    </div>
+    <div class="row save">
+      <span class="ic">◈</span>
+      <div class="tx"><h3>save it to your bookmarks</h3><p>you're gonna forget otherwise. <strong>be real.</strong></p></div>
+      <span class="arr">→</span>
+    </div>
+    <div class="row follow">
+      <span class="ic">+</span>
+      <div class="tx"><h3>follow for <em>more of this</em></h3><p>i post every tuesday at 10pm. <strong>one post</strong>, no content-farm nonsense.</p></div>
+      <span class="arr">→</span>
+    </div>
+  </div>
+</div>
+<div class="foot">
+  <div class="handle"><span class="dp">D</span><span>posted by <strong>@dread.dev</strong></span></div>
+  <span>thx 4 reading · see u tuesday</span>
+</div>
+</body></html>

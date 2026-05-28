@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--surface:#f8fafc;--border:#e2e8f0;--pos:#15803d;--neg:#b91c1c;
+  font-family:'Source Sans Pro','Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:5cqmin;gap:2.5cqmin;
+}
+.bar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--accent);padding-bottom:1.4cqmin}
+h2{font-size:4.2cqmin;font-weight:700;letter-spacing:-.01em}
+.kicker{font-size:1.2cqmin;letter-spacing:.2em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.lede{font-size:1.7cqmin;color:var(--muted);line-height:1.5;max-width:80ch}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5cqmin;align-content:start}
+.cell{border:1px solid var(--border);border-radius:.6cqmin;padding:2.4cqmin;display:flex;flex-direction:column;gap:.8cqmin;background:var(--bg);position:relative;overflow:hidden}
+.cell::before{content:"";position:absolute;top:0;left:0;bottom:0;width:.4cqmin;background:var(--accent)}
+.cell.pos::before{background:var(--pos)}.cell.neg::before{background:var(--neg)}
+.label{font-size:1.2cqmin;letter-spacing:.15em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.val{font-size:6cqmin;font-weight:700;letter-spacing:-.03em;line-height:1;margin-top:.5cqmin}
+.val sup{font-size:2.2cqmin;vertical-align:top;font-weight:500;color:var(--muted)}
+.delta{font-size:1.4cqmin;font-weight:600;display:inline-flex;align-items:center;gap:.5cqmin}
+.delta.up{color:var(--pos)}.delta.down{color:var(--neg)}
+.note{font-size:1.3cqmin;color:var(--muted);line-height:1.5;border-top:1px solid var(--border);padding-top:1cqmin;margin-top:.5cqmin}
+.legend{display:flex;gap:3cqmin;font-size:1.25cqmin;color:var(--muted);align-items:center;padding:1.6cqmin 0;border-top:1px solid var(--border)}
+.legend span{display:flex;align-items:center;gap:.7cqmin}
+.legend .sw{width:1cqmin;height:1cqmin;border-radius:.2cqmin}
+.foot{display:flex;justify-content:space-between;font-size:1.15cqmin;color:var(--muted);padding-top:1cqmin;border-top:1px solid var(--border)}
+</style></head><body>
+<div class="bar"><h2>Executive dashboard · FY2026 Q1</h2><span class="kicker">Exhibit 1 · Page 12 of 42</span></div>
+<p class="lede">Topline remains ahead of plan. Cost-to-serve showed expected seasonal pressure but has now inflected downward for the third consecutive month. Working capital remains the watchpoint.</p>
+<div class="grid">
+  <div class="cell pos"><span class="label">Revenue · YTD</span><span class="val">$412<sup>M</sup></span><span class="delta up">▲ 8.4% vs plan</span><span class="note">Volume and price both contributing. NA region accounts for 58% of the beat.</span></div>
+  <div class="cell pos"><span class="label">EBITDA margin</span><span class="val">22.6<sup>%</sup></span><span class="delta up">▲ 140 bps YoY</span><span class="note">Operating leverage from 2025 cost program continues to flow through.</span></div>
+  <div class="cell neg"><span class="label">Working capital days</span><span class="val">54.2<sup>d</sup></span><span class="delta down">▲ 4.1 days</span><span class="note">Receivables aging in EMEA. Treasury has a plan in flight; expected to normalize by June.</span></div>
+  <div class="cell pos"><span class="label">Net Promoter Score</span><span class="val">+61</span><span class="delta up">▲ 7 points YoY</span><span class="note">Highest reading since 2023. Support response time the primary driver.</span></div>
+</div>
+<div class="legend">
+  <span><span class="sw" style="background:var(--pos)"></span> On or ahead of plan</span>
+  <span><span class="sw" style="background:var(--neg)"></span> Watchpoint · management action in flight</span>
+  <span>▲ / ▼ denote quarter-on-quarter movement</span>
+</div>
+<div class="foot"><span>Source · internal management reporting, unaudited</span><span>Prepared by Finance & Strategy · Meridian Advisory</span><span>Page 12 of 42</span></div>
+</body></html>

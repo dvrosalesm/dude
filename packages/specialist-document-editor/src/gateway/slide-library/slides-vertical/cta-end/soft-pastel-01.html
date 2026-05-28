@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f3ede3;--ink:#3d2e24;--sage:#8ba585;--peach:#e8b091;--cream:#fcf6ea;--rule:#d8cfbd;
+  font-family:'Cormorant Garamond','Didot',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:7cqmin 6cqmin;gap:3cqmin;position:relative;text-align:center;
+  background-image:
+    radial-gradient(ellipse 50% 40% at 50% 50%,rgba(252,246,234,.8),transparent 60%),
+    radial-gradient(ellipse 40% 25% at 80% 80%,rgba(232,176,145,.2),transparent 60%);
+}
+.frame{position:absolute;inset:3.5cqmin;border:.15cqmin solid var(--rule);border-radius:3cqmin;pointer-events:none}
+.pager{display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;font-size:1.8cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);opacity:.55;font-weight:500;padding-bottom:1cqmin;border-bottom:.1cqmin solid var(--rule);position:relative;z-index:1}
+.pager .end{color:var(--peach)}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2.5cqmin;position:relative;z-index:1}
+.orn{font-size:2.2cqmin;color:var(--peach);letter-spacing:.5em}
+.kicker{font-family:'Inter',sans-serif;font-size:1.9cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--sage);font-weight:500;padding:1cqmin 2cqmin;border-top:.1cqmin solid var(--sage);border-bottom:.1cqmin solid var(--sage)}
+h2{font-size:12cqmin;line-height:1;font-weight:300;letter-spacing:-.01em;max-width:14ch}
+h2 em{font-style:italic;color:var(--sage)}
+h2 .script{font-family:'Allura',cursive;font-size:15cqmin;color:var(--peach);font-style:italic;letter-spacing:-.02em;display:block;line-height:.85;margin:1cqmin 0}
+.sub{font-family:'Inter',sans-serif;font-size:2.1cqmin;line-height:1.6;color:var(--ink);opacity:.75;max-width:32ch;font-weight:400;letter-spacing:.01em}
+.sub em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--sage);font-weight:500;font-size:2.3cqmin}
+.links{display:flex;flex-direction:column;gap:1.8cqmin;margin-top:1cqmin;width:100%;max-width:75%}
+.link{display:grid;grid-template-columns:5cqmin 1fr auto;gap:2cqmin;align-items:center;padding:2.4cqmin 3cqmin;background:var(--cream);border-radius:2cqmin;border:.15cqmin solid var(--rule);text-align:left}
+.link.accent{background:#fbeee4;border-color:var(--peach)}
+.link .ic{font-size:3cqmin;color:var(--peach)}
+.link h3{font-size:2.6cqmin;font-style:italic;font-weight:400;letter-spacing:-.005em;line-height:1.1}
+.link p{font-family:'Inter',sans-serif;font-size:1.6cqmin;color:var(--ink);opacity:.6;letter-spacing:.15em;text-transform:uppercase;margin-top:.2cqmin;font-weight:500}
+.link .arr{font-family:'Inter',sans-serif;font-size:2cqmin;color:var(--sage);letter-spacing:.3em}
+.foot{display:flex;flex-direction:column;align-items:center;gap:1.2cqmin;padding-top:2cqmin;border-top:.1cqmin solid var(--rule);position:relative;z-index:1}
+.handwritten{font-family:'Allura',cursive;font-size:4.5cqmin;color:var(--peach);font-style:italic;letter-spacing:.02em;line-height:.9}
+.foot .thx{font-family:'Inter',sans-serif;font-size:1.6cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--ink);opacity:.5;font-weight:500}
+</style></head><body>
+<div class="frame"></div>
+<div class="pager"><span>last note · vii of vii</span><span class="end">✦ end ✦</span></div>
+<div class="main">
+  <div class="orn">✦ · ✦ · ✦</div>
+  <span class="kicker">— remerciements —</span>
+  <h2>thank you<br/><em>for</em><span class="script">reading.</span></h2>
+  <p class="sub">If something here finds you on a tender morning, <em>let it.</em> We make these slowly, and share them one Sunday at a time.</p>
+  <div class="links">
+    <div class="link accent"><span class="ic">✦</span><div><h3>Save these notes</h3><p>for the next gentle sunday</p></div><span class="arr">save</span></div>
+    <div class="link"><span class="ic">✉</span><div><h3>Letters twice a month</h3><p>sage-and-honey.co/letters</p></div><span class="arr">subscribe</span></div>
+    <div class="link"><span class="ic">✿</span><div><h3>Next edition · spring</h3><p>drops sunday, 5 may</p></div><span class="arr">follow</span></div>
+  </div>
+</div>
+<div class="foot">
+  <span class="handwritten">with warmth,</span>
+  <span class="thx">— sage &amp; honey</span>
+</div>
+</body></html>

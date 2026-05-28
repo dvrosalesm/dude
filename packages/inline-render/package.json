@@ -1,0 +1,26 @@
+{
+  "name": "@dude/inline-render",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.tsx",
+      "import": "./src/index.tsx",
+      "default": "./src/index.tsx"
+    }
+  },
+  "dependencies": {
+    "@dude/data-analyst-core": "*",
+    "@dude/ui": "*",
+    "@json-render/react": "^0.9.1",
+    "@json-render/core": "^0.6.0",
+    "react": "^19.0.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

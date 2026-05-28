@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafafa;--ink:#0a0a0a;--muted:#6b6b6b;--rule:#111;--pos:#1a6b3a;--neg:#8a1f1f;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 6cqmin;gap:3cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:1.8cqmin}
+h2{font-size:4cqmin;font-weight:500;letter-spacing:-.02em}
+.kicker{font-size:1.3cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);align-content:center;gap:0}
+.cell{padding:2.5cqmin 2cqmin;border-right:1px solid #d8d8d8;display:flex;flex-direction:column;gap:.8cqmin}
+.cell:last-child{border-right:none}
+.label{font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+.num{font-size:8cqmin;line-height:1;font-weight:500;letter-spacing:-.04em;margin-top:1cqmin}
+.num sup{font-size:3cqmin;font-weight:400;vertical-align:top;letter-spacing:0}
+.delta{font-size:1.5cqmin;letter-spacing:.02em;margin-top:.5cqmin}
+.delta.up{color:var(--pos)}
+.delta.down{color:var(--neg)}
+.note{font-size:1.45cqmin;line-height:1.5;color:#555;margin-top:1.4cqmin}
+footer{display:flex;justify-content:space-between;border-top:1px solid var(--rule);padding-top:1.8cqmin;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+</style></head><body>
+<header>
+  <h2>Q1 at a glance.</h2>
+  <span class="kicker">Four numbers · One page</span>
+</header>
+<div class="grid">
+  <div class="cell"><span class="label">Revenue</span><span class="num">$14.2<sup>M</sup></span><span class="delta up">↑ 28% vs Q4</span><span class="note">Driven by net-new mid-market logos and a healthier expansion motion.</span></div>
+  <div class="cell"><span class="label">Net retention</span><span class="num">118<sup>%</sup></span><span class="delta up">↑ 6 pts</span><span class="note">Expansion outpaced churn across every segment above seed.</span></div>
+  <div class="cell"><span class="label">Gross margin</span><span class="num">74<sup>%</sup></span><span class="delta up">↑ 2 pts</span><span class="note">Infra renegotiation landed in February; savings began compounding.</span></div>
+  <div class="cell"><span class="label">Cycle time</span><span class="num">11<sup>d</sup></span><span class="delta down">↓ 4 d</span><span class="note">Measured from first contact to signed order form.</span></div>
+</div>
+<footer><span>Metrics · Q1 2026</span><span>005 / 042</span></footer>
+</body></html>

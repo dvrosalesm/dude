@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--neon:#00ff88;--pink:#ff3864;--cyan:#00d9ff;--amber:#fbbf24;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:4cqmin;gap:2.5cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px),
+    radial-gradient(ellipse 60% 40% at 50% 50%,rgba(0,255,136,.1),transparent 60%);
+  background-size:2.5cqmin 2.5cqmin,2.5cqmin 2.5cqmin,100% 100%;
+}
+.term-bar{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.5cqmin 2.8cqmin;display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.6cqmin;color:var(--muted)}
+.term-bar .tag{color:var(--neon)}
+.term-bar .fin{background:var(--neon);color:var(--bg);padding:.3cqmin 1cqmin;border-radius:100px;font-weight:900;letter-spacing:.15em}
+.main{display:flex;flex-direction:column;gap:2.5cqmin;justify-content:center}
+.prompt{font-family:'SF Mono',monospace;font-size:1.9cqmin;color:var(--muted);line-height:1.8}
+.prompt .arr{color:var(--neon)}
+.prompt .ok{color:var(--neon);font-weight:700}
+.prompt .com{color:#4a4d58;font-style:italic}
+h1{font-size:15cqmin;line-height:.9;font-weight:800;letter-spacing:-.035em;text-transform:lowercase}
+h1 .neon{color:var(--neon);text-shadow:0 0 24px rgba(0,255,136,.5)}
+h1 code{font-family:'SF Mono',monospace;font-size:12cqmin;background:rgba(0,255,136,.12);border:.3cqmin solid var(--neon);color:var(--neon);padding:0 .5cqmin;border-radius:1cqmin;display:inline-block;letter-spacing:-.02em}
+h1 em{font-style:italic;color:var(--pink)}
+.sub{font-size:2.5cqmin;line-height:1.45;color:#a8adbb;max-width:32ch;font-weight:500}
+.sub code{font-family:'SF Mono',monospace;color:var(--neon);background:rgba(0,255,136,.1);padding:.15cqmin .4cqmin;border-radius:.4cqmin;font-size:2.1cqmin}
+.sub strong{color:var(--ink);font-weight:700}
+.btn-stack{display:flex;flex-direction:column;gap:1.2cqmin;margin-top:.5cqmin}
+.btn{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center;padding:2.2cqmin 2.8cqmin;background:var(--surface);border:.15cqmin solid var(--border);border-radius:2cqmin;font-family:'SF Mono',monospace;position:relative}
+.btn.neon{border-color:rgba(0,255,136,.35);box-shadow:0 0 0 1px rgba(0,255,136,.15),inset 0 0 20px rgba(0,255,136,.04)}
+.btn.pink{border-color:rgba(255,56,100,.35)}
+.btn.cyan{border-color:rgba(0,217,255,.35)}
+.btn .ic{width:5cqmin;height:5cqmin;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.6cqmin;font-weight:700}
+.btn.neon .ic{background:rgba(0,255,136,.15);color:var(--neon);border:.15cqmin solid var(--neon)}
+.btn.pink .ic{background:rgba(255,56,100,.15);color:var(--pink);border:.15cqmin solid var(--pink)}
+.btn.cyan .ic{background:rgba(0,217,255,.15);color:var(--cyan);border:.15cqmin solid var(--cyan)}
+.btn .tx h3{font-family:'Inter',sans-serif;font-size:2.3cqmin;font-weight:700;letter-spacing:-.01em;line-height:1.1;text-transform:lowercase}
+.btn .tx h3 code{font-family:'SF Mono',monospace;font-size:1.85cqmin;color:var(--amber);background:rgba(251,191,36,.12);padding:.15cqmin .4cqmin;border-radius:.4cqmin;font-weight:500;margin-left:.4cqmin}
+.btn .tx p{font-family:'SF Mono',monospace;font-size:1.4cqmin;color:var(--muted);margin-top:.3cqmin;letter-spacing:.05em}
+.btn .arr{font-size:2.4cqmin;color:var(--muted)}
+.btn.neon .arr{color:var(--neon)}
+.btn.pink .arr{color:var(--pink)}
+.btn.cyan .arr{color:var(--cyan)}
+.foot{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.8cqmin 2.8cqmin;display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.5cqmin;color:var(--muted)}
+.foot .h{color:var(--neon)}
+</style></head><body>
+<div class="term-bar"><span>&gt; ./post.sh --finish</span><span><span class="tag">build ok</span> · <span class="fin">EXIT 0</span></span></div>
+<div class="main">
+  <div class="prompt">
+    <span class="arr">$</span> cat thanks.md<br/>
+    <span class="com"># that's a wrap · 12/12 · build passing</span>
+  </div>
+  <h1>ok, you <span class="neon">made it</span>.<br/>now <code>run</code><br/>one of these <em>→</em></h1>
+  <p class="sub">all three take &lt;<code>4s</code>. you don't have to do the last one but <strong>tuesday</strong> drops hit different.</p>
+  <div class="btn-stack">
+    <div class="btn neon">
+      <span class="ic">♥</span>
+      <div class="tx"><h3>./double-tap.sh <code>--fast</code></h3><p>→ signals the algo · more like this</p></div>
+      <span class="arr">→</span>
+    </div>
+    <div class="btn cyan">
+      <span class="ic">◈</span>
+      <div class="tx"><h3>./save <code>--read-later</code></h3><p>→ you will need tip #04 on monday</p></div>
+      <span class="arr">→</span>
+    </div>
+    <div class="btn pink">
+      <span class="ic">+</span>
+      <div class="tx"><h3>./follow <code>@dread.dev</code></h3><p>→ new post every tuesday · 10pm pst</p></div>
+      <span class="arr">→</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span><span class="h">@</span>dread.dev</span><span>12/12 · fin</span><span>◆ thanks for reading</span></div>
+</body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0f0b26;--ink:#fff;--accent:#ff2d8a;--lime:#bdff3a;--cyan:#3ae0ff;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 4cqmin;gap:2cqmin;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 20% 20%,rgba(255,45,138,.25),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 80%,rgba(58,224,255,.18),transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 50%,rgba(189,255,58,.12),transparent 60%);
+}
+.head{display:flex;justify-content:space-between;align-items:center;padding:1.2cqmin 2.4cqmin;background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:.15cqmin solid rgba(255,255,255,.2);border-radius:100px;font-size:1.7cqmin;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.head .tag{background:var(--lime);color:#0f0b26;padding:.4cqmin 1.2cqmin;border-radius:100px}
+.main{display:flex;flex-direction:column;gap:2.5cqmin;justify-content:center}
+.bento{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto auto;gap:1.5cqmin;align-items:stretch}
+.card{border-radius:2.5cqmin;padding:2.5cqmin;display:flex;flex-direction:column;gap:1cqmin;position:relative;overflow:hidden;border:.15cqmin solid rgba(255,255,255,.15)}
+.card.hero{grid-column:span 2;background:linear-gradient(135deg,var(--accent),#ff6fba);color:#fff;transform:rotate(-.5deg);box-shadow:.8cqmin .8cqmin 0 rgba(0,0,0,.3)}
+.card.lime{background:var(--lime);color:#0f0b26;transform:rotate(1deg)}
+.card.dark{background:rgba(10,5,25,.8);backdrop-filter:blur(10px);color:#fff;transform:rotate(-1deg)}
+.card.cyan{background:var(--cyan);color:#0f0b26;transform:rotate(.5deg);grid-column:span 2}
+.card .lbl{font-size:1.4cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;opacity:.75}
+.card.hero .lbl{color:rgba(255,255,255,.85)}
+.hero h2{font-size:7cqmin;line-height:.9;font-weight:900;letter-spacing:-.03em;text-transform:uppercase}
+.hero h2 em{font-style:italic;color:var(--lime)}
+.hero p{font-size:1.7cqmin;line-height:1.4;color:rgba(255,255,255,.85);font-weight:500;max-width:38ch;margin-top:.5cqmin}
+.hero p strong{color:var(--lime);font-weight:700}
+.hero .emoji{position:absolute;top:1.5cqmin;right:2cqmin;font-size:7cqmin;line-height:1;filter:drop-shadow(.4cqmin .4cqmin 0 rgba(0,0,0,.3))}
+.lime .big{font-size:10cqmin;line-height:.85;font-weight:900;letter-spacing:-.05em;font-style:italic}
+.lime .big sup{font-size:3cqmin;color:var(--accent);vertical-align:top;font-style:normal}
+.lime p{font-size:1.5cqmin;line-height:1.4;color:#0f0b26;opacity:.75;font-weight:600;margin-top:auto;padding-top:.8cqmin;border-top:.15cqmin solid rgba(15,11,38,.2)}
+.dark h3{font-size:3.4cqmin;line-height:1.05;font-weight:900;letter-spacing:-.015em;font-style:italic}
+.dark h3 em{color:var(--lime);font-style:italic}
+.dark p{font-size:1.55cqmin;line-height:1.4;color:rgba(255,255,255,.75);font-weight:500;margin-top:auto}
+.dark .badge{background:var(--accent);color:#fff;font-size:1.1cqmin;letter-spacing:.2em;text-transform:uppercase;padding:.3cqmin .9cqmin;border-radius:100px;font-weight:900;width:fit-content;margin-top:.5cqmin}
+.cyan .label{font-size:1.4cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;color:#0f0b26;opacity:.65}
+.cyan .stat-row{display:flex;justify-content:space-between;align-items:baseline;gap:2cqmin;margin-top:1cqmin}
+.cyan h3{font-size:4.5cqmin;line-height:1;font-weight:900;letter-spacing:-.02em;font-style:italic;color:#0f0b26;max-width:18ch}
+.cyan h3 em{background:var(--accent);color:#fff;padding:0 .3cqmin;font-style:italic;transform:rotate(-2deg);display:inline-block}
+.cyan .num{font-size:7cqmin;font-weight:900;line-height:1;color:#0f0b26;letter-spacing:-.04em;font-style:italic}
+.cyan .num sup{font-size:2cqmin;color:var(--accent);vertical-align:top;font-style:normal}
+.scribble{position:absolute;font-family:'Caveat',cursive;font-size:3.4cqmin;transform:rotate(-8deg);line-height:.9;z-index:3}
+.scribble.s1{top:28cqmin;right:2cqmin;color:var(--lime);font-size:4cqmin}
+.scribble.s1 small{font-size:2cqmin;display:block;color:var(--cyan)}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:1.2cqmin 2cqmin;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:.15cqmin solid rgba(255,255,255,.2);border-radius:100px;font-size:1.5cqmin;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);font-weight:700}
+.foot .handle{color:var(--lime);font-weight:900}
+</style></head><body>
+<div class="head"><span>◆ stats-that-go-hard</span><span class="tag">★ unserious data</span></div>
+<div class="main">
+  <div class="bento">
+    <div class="card hero">
+      <span class="emoji">🍜</span>
+      <span class="lbl">pov · you are me · monday</span>
+      <h2>most-ordered<br/><em>at 11pm</em>.</h2>
+      <p>you have, since march, personally kept the <strong>korean noodle place</strong> on the corner <strong>in business</strong>.</p>
+    </div>
+    <div class="card lime">
+      <span class="lbl">orders this year</span>
+      <div class="big">142<sup>★</sup></div>
+      <p>→ avg 2.7 / week. <em>steady.</em></p>
+    </div>
+    <div class="card dark">
+      <span class="lbl">algo thinks you are</span>
+      <h3>A <em>nocturnal</em><br/>noodle <em>enthusiast</em></h3>
+      <p>your delivery app homepage is 60% noodles. it sees you.</p>
+      <span class="badge">#1 in your city</span>
+    </div>
+    <div class="card cyan">
+      <span class="label">★ your personal record</span>
+      <div class="stat-row">
+        <h3><em>3 orders</em><br/>in <em>one</em> day</h3>
+        <div class="num">3<sup>▼</sup></div>
+      </div>
+    </div>
+    <span class="scribble s1">healing era ✦<br/><small>according to you</small></span>
+  </div>
+</div>
+<div class="foot"><span>your wrapped · edition 03</span><span class="handle">@noodle.core</span></div>
+</body></html>

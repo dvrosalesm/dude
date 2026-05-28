@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--neon:#00ff88;--pink:#ff3864;--cyan:#00d9ff;--border:#1a1d26;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 4cqmin;gap:3cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px),
+    radial-gradient(ellipse 70% 40% at 50% 20%,rgba(255,56,100,.15),transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 80%,rgba(0,255,136,.15),transparent 60%);
+  background-size:2.5cqmin 2.5cqmin,2.5cqmin 2.5cqmin,100% 100%,100% 100%;
+}
+.term-bar{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.2cqmin 2.5cqmin;display:flex;align-items:center;gap:1.5cqmin;font-family:'SF Mono','Fira Code',monospace;font-size:1.6cqmin;color:var(--muted)}
+.term-bar .dots{display:flex;gap:.6cqmin}
+.term-bar .dots div{width:1.2cqmin;height:1.2cqmin;border-radius:50%}
+.term-bar .dots div:nth-child(1){background:var(--pink)}
+.term-bar .dots div:nth-child(2){background:#fbbf24}
+.term-bar .dots div:nth-child(3){background:var(--neon)}
+.term-bar .name{margin:0 auto;color:var(--neon)}
+.term-bar .pulse{color:var(--neon);font-size:1.2cqmin;display:flex;align-items:center;gap:.6cqmin}
+.term-bar .pulse::before{content:"";width:.9cqmin;height:.9cqmin;background:var(--neon);border-radius:50%;box-shadow:0 0 8px var(--neon);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.main{display:flex;flex-direction:column;gap:3cqmin;justify-content:center;position:relative}
+.prompt-line{font-family:'SF Mono',monospace;font-size:1.8cqmin;color:var(--muted);line-height:1.8}
+.prompt-line .arr{color:var(--neon)}
+.prompt-line .cmd{color:var(--ink)}
+.prompt-line .com{color:#4a4d58}
+.prompt-line .ok{color:var(--neon);font-weight:700}
+.prompt-line .err{color:var(--pink)}
+h1{font-size:18cqmin;line-height:.9;font-weight:800;letter-spacing:-.04em;color:var(--ink);font-family:'Inter',sans-serif;text-transform:lowercase}
+h1 .neon{color:var(--neon);text-shadow:0 0 24px rgba(0,255,136,.5)}
+h1 .pink{color:var(--pink);text-shadow:0 0 24px rgba(255,56,100,.5)}
+h1 .cyan{color:var(--cyan);text-shadow:0 0 18px rgba(0,217,255,.4)}
+h1 code{font-family:'SF Mono',monospace;font-size:15cqmin;background:rgba(0,255,136,.12);border:.3cqmin solid var(--neon);color:var(--neon);padding:0 .6cqmin;border-radius:1.5cqmin;display:inline-block;letter-spacing:-.02em}
+.chip{display:inline-flex;align-items:center;gap:1cqmin;padding:1.2cqmin 2.5cqmin;background:rgba(255,56,100,.1);border:.2cqmin solid var(--pink);border-radius:100px;font-family:'SF Mono',monospace;font-size:1.7cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);width:fit-content;font-weight:600}
+.chip::before{content:"◆";font-size:1.5cqmin}
+.code-frame{background:var(--surface);border:.15cqmin solid var(--border);border-radius:2cqmin;padding:2cqmin 2.5cqmin;font-family:'SF Mono',monospace;font-size:1.6cqmin;line-height:1.6;overflow:hidden;box-shadow:0 0 0 1px rgba(0,255,136,.08)}
+.code-frame .ln{display:block;white-space:pre}
+.code-frame .kw{color:#a855f7}
+.code-frame .fn{color:var(--neon)}
+.code-frame .str{color:#fbbf24}
+.code-frame .num{color:var(--cyan)}
+.code-frame .com{color:#4a4d58;font-style:italic}
+.code-frame .err-line{background:rgba(255,56,100,.15);color:var(--pink);padding:.2cqmin .5cqmin;margin:.3cqmin -1.5cqmin;border-left:.3cqmin solid var(--pink)}
+.foot{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.8cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.5cqmin;color:var(--muted)}
+.foot .h{color:var(--neon)}
+.foot .save{color:var(--cyan);display:flex;align-items:center;gap:.8cqmin}
+</style></head><body>
+<div class="term-bar">
+  <div class="dots"><div></div><div></div><div></div></div>
+  <span class="name">~/rants/senior-devs</span>
+  <span class="pulse">live · recording</span>
+</div>
+<div class="main">
+  <div class="prompt-line">
+    <span class="arr">$</span> <span class="cmd">npm run deploy</span><br/>
+    <span class="com"># building...</span><br/>
+    <span class="arr">›</span> <span class="err">error</span> you forgot to <span class="cmd">git pull</span>
+  </div>
+  <span class="chip">◆ pov · your first week at faang</span>
+  <h1>you are <span class="pink">not</span><br/><span class="neon">a 10×</span><br/>engineer.<br/>you just have<br/><code>claude</code> <span class="cyan">open</span>.</h1>
+  <div class="code-frame">
+<span class="ln"><span class="com">// what they see in your PR</span></span>
+<span class="ln"><span class="kw">const</span> feature = <span class="fn">await</span> ai.<span class="fn">ship</span>();</span>
+<span class="ln"><span class="err-line">×  you.haveNoIdea(<span class="str">"how it works"</span>)</span></span>
+<span class="ln"><span class="kw">return</span> feature; <span class="com">// lgtm 🫠</span></span>
+  </div>
+</div>
+<div class="foot"><span><span class="h">@</span>dread.dev</span><span>reel · 03/12</span><span class="save">◈ save</span></div>
+</body></html>

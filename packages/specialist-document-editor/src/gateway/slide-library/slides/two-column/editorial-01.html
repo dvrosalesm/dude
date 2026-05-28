@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f2eee7;--ink:#1a1410;--muted:#6b5e52;--rule:#2a211a;--accent:#7a2e1f;
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:0;
+  padding:0;
+}
+.left{padding:6cqmin 5cqmin;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--rule);background:linear-gradient(180deg,#f2eee7,#ebe4d8)}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--accent)}
+.byline{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:2cqmin}
+h2{font-size:6.8cqmin;line-height:1;font-weight:400;letter-spacing:-.015em;margin-top:2cqmin}
+h2 em{font-style:italic;color:var(--accent)}
+.lede{font-size:2cqmin;line-height:1.55;color:#3a302a;margin-top:2.5cqmin;max-width:34ch;font-style:italic}
+.caption{font-size:1.3cqmin;line-height:1.55;color:var(--muted);font-family:'Helvetica Neue',sans-serif}
+.right{padding:6cqmin 5cqmin;display:flex;flex-direction:column;gap:2.4cqmin;background:#ebe4d8;position:relative}
+.right::before{content:"";position:absolute;inset:3cqmin;border:1px solid #d4c8b4;pointer-events:none}
+.article h3{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.8cqmin}
+.article p{font-size:1.55cqmin;line-height:1.6;color:#3a302a;text-indent:1.5cqmin}
+.article p:first-of-type{text-indent:0}
+.article p:first-of-type::first-letter{float:left;font-size:5.5cqmin;line-height:.85;padding:.3cqmin 1cqmin 0 0;color:var(--accent);font-weight:400}
+.sign{margin-top:auto;font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);padding-top:2cqmin;border-top:1px solid #d4c8b4;display:flex;justify-content:space-between}
+</style></head><body>
+<div class="left">
+  <div>
+    <div class="kicker">Feature · 08</div>
+    <h2>The <em>archivist's</em> year.</h2>
+    <p class="lede">A conversation with Iris Oduya on tending old systems, slow wins, and why the boring work wins decades.</p>
+  </div>
+  <div class="caption">Photograph by M. Adebayo · March 2026</div>
+</div>
+<div class="right">
+  <div class="article">
+    <h3>The interview</h3>
+    <p>Iris has spent eleven years inside the same archive system. Four managers, three rewrites, two acquisitions. The code she touched in her first week is still in production. Ask her about it and she'll pretend it's not a compliment.</p>
+    <p>"The fashion is always some new framework," she said over coffee in January. "The work is always the same. You read. You listen. You fix the thing nobody else wants to read."</p>
+    <p>Her team shipped a 77% reduction in retrieval time without adding a single new service.</p>
+    <div class="sign"><span>Interview by E. M.</span><span>Continued on p. 31</span></div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ffea00;--ink:#000;--red:#ff2d2d;--white:#fff;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;position:relative;
+}
+.strip{background:var(--ink);color:var(--bg);padding:1.5cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-bottom:.5cqmin solid var(--red)}
+.strip .r{color:var(--red)}
+.body{padding:4cqmin 3cqmin;display:flex;flex-direction:column;justify-content:center;gap:2cqmin;position:relative;overflow:hidden}
+.body::before{content:"\201C";position:absolute;top:-5cqmin;left:-2cqmin;font-size:60cqmin;line-height:.7;font-family:Georgia,serif;color:var(--red);opacity:.25;font-weight:900}
+.label{position:relative;z-index:1;display:inline-flex;gap:1cqmin;padding:1.3cqmin 2.5cqmin;background:var(--ink);color:var(--bg);font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;width:fit-content;border:.4cqmin solid var(--ink)}
+blockquote{position:relative;z-index:1;font-size:14cqmin;line-height:.9;font-weight:900;letter-spacing:-.035em;text-transform:uppercase;max-width:16ch}
+blockquote em{font-style:normal;background:var(--ink);color:var(--bg);padding:0 .5cqmin;display:inline-block;transform:rotate(-2deg)}
+blockquote .r{color:var(--red);text-decoration:underline var(--ink);text-decoration-thickness:1.2cqmin;text-underline-offset:1.8cqmin}
+blockquote .strike{position:relative;display:inline-block}
+blockquote .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:48%;height:1.4cqmin;background:var(--red)}
+.cite{position:relative;z-index:1;display:flex;align-items:center;gap:2.5cqmin;background:var(--ink);color:var(--bg);padding:2.5cqmin 3.5cqmin;border:.4cqmin solid var(--ink);margin-top:2cqmin;box-shadow:.6cqmin .6cqmin 0 var(--red);transform:rotate(-1deg);width:fit-content;max-width:95%}
+.cite .ph{width:9cqmin;height:9cqmin;background:var(--red);color:var(--bg);border:.3cqmin solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:4cqmin;font-weight:900;flex-shrink:0}
+.cite .nm{line-height:1.1}
+.cite .nm big{font-size:3cqmin;display:block;font-weight:900;letter-spacing:-.005em;text-transform:uppercase}
+.cite .nm small{font-size:1.7cqmin;letter-spacing:.15em;text-transform:uppercase;opacity:.75;display:block;margin-top:.5cqmin;font-weight:700}
+.stamp{position:absolute;top:3cqmin;right:3cqmin;background:var(--red);color:var(--bg);padding:1.5cqmin 2cqmin;border:.4cqmin solid var(--ink);font-size:1.8cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;line-height:1.1;text-align:center;transform:rotate(10deg);box-shadow:.4cqmin .4cqmin 0 var(--ink);z-index:2}
+.stamp big{display:block;font-size:3cqmin}
+.scribble{position:absolute;bottom:22cqmin;right:4cqmin;font-family:'Caveat',cursive;font-size:5cqmin;color:var(--red);transform:rotate(-8deg);line-height:.8;text-align:right}
+.scribble small{display:block;font-size:2.5cqmin;letter-spacing:.01em}
+.foot{background:var(--red);color:var(--bg);padding:2cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-top:.5cqmin solid var(--ink)}
+.foot .pill{background:var(--ink);padding:.5cqmin 1.3cqmin}
+</style></head><body>
+<div class="strip"><span>★ ISSUE 007</span><span class="r">★ VOICES ★</span><span>07/11 →</span></div>
+<div class="body">
+  <span class="stamp">★<br/><big>ON RECORD</big></span>
+  <span class="label">→ OVERHEARD</span>
+  <blockquote>
+    <span class="strike">I HATE</span><br/>
+    PHONES.<br/>
+    <em>I USE ONE</em><br/>
+    EVERY DAY<br/>
+    <span class="r">ANYWAY.</span>
+  </blockquote>
+  <span class="scribble">relatable<br/><small>↘ horribly</small></span>
+  <div class="cite">
+    <span class="ph">MA</span>
+    <span class="nm"><big>MARIA ALVAREZ-TORRES</big><small>WRITER · AUTHOR OF "BRAIN FOG"</small></span>
+  </div>
+</div>
+<div class="foot"><span>★ @BLACKFLAG.ZINE</span><span>★ ★ ★</span><span class="pill">SAVE →</span></div>
+</body></html>

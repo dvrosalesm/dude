@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#000;--ink:#fff;--yellow:#ffea00;--red:#ff2d2d;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+}
+.top{background:var(--yellow);color:var(--bg);padding:1.5cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.4cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;border-bottom:.8cqmin solid var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:0}
+.cell{border-right:.5cqmin solid var(--ink);border-bottom:.5cqmin solid var(--ink);padding:3cqmin;display:flex;flex-direction:column;gap:1cqmin;position:relative;overflow:hidden;background:var(--bg);color:var(--ink)}
+.cell:nth-child(4n){border-right:none}
+.cell.big{grid-column:span 2;grid-row:span 2;background:var(--yellow);color:var(--bg)}
+.cell.y{background:var(--yellow);color:var(--bg)}
+.cell.r{background:var(--red);color:var(--ink)}
+.cell.w{background:var(--ink);color:var(--bg)}
+.lbl{font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900}
+.val{font-size:11cqmin;line-height:.85;font-weight:900;letter-spacing:-.06em;margin-top:auto}
+.cell.big .val{font-size:25cqmin;letter-spacing:-.08em}
+.val sup{font-size:3cqmin;vertical-align:top;font-weight:900}
+.delta{font-size:1.4cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;padding:.5cqmin 1cqmin;background:var(--ink);color:var(--bg);width:fit-content;border:.3cqmin solid var(--ink)}
+.cell.y .delta{background:var(--bg);color:var(--yellow)}
+.cell.r .delta{background:var(--ink);color:var(--red)}
+.cell.w .delta{background:var(--yellow);color:var(--bg)}
+.cell .stamp{position:absolute;top:2cqmin;right:2cqmin;background:var(--red);color:var(--bg);padding:.4cqmin 1cqmin;font-size:1.1cqmin;letter-spacing:.1em;text-transform:uppercase;font-weight:900;transform:rotate(8deg);border:.3cqmin solid var(--bg)}
+.cell.r .stamp{background:var(--ink);color:var(--red);border-color:var(--ink)}
+.cell.w .stamp{background:var(--yellow);color:var(--bg);border-color:var(--bg)}
+.cell.big .stamp{font-size:1.8cqmin;padding:.6cqmin 1.6cqmin;transform:rotate(-4deg)}
+.spark-bars{display:flex;align-items:flex-end;height:4cqmin;gap:.3cqmin;margin-top:.5cqmin}
+.spark-bars div{flex:1;background:currentColor;opacity:.9}
+.cell.big p{font-size:1.8cqmin;text-transform:uppercase;font-weight:900;line-height:1.3;letter-spacing:.05em;margin-top:auto;padding-top:1cqmin;border-top:.3cqmin solid var(--bg)}
+.bottom{background:var(--ink);color:var(--yellow);padding:1.2cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;border-top:.5cqmin solid var(--ink)}
+</style></head><body>
+<div class="top"><span>→ THE RECEIPTS · Q1 2026</span><span>★ EXHIBIT 09 ★</span><span>NO EDITS · NO ROUNDING</span></div>
+<div class="grid">
+  <div class="cell big">
+    <span class="stamp">THE ★ NUMBER</span>
+    <span class="lbl">ARR / ANNUAL RECURRING REVENUE</span>
+    <span class="val">$8.4<sup>M</sup></span>
+    <span class="delta">→ +412% YOY · NO TYPOS</span>
+    <p>WE DIDN'T RAISE MONEY.<br/>WE DIDN'T HIRE.<br/>WE SHIPPED ONCE A WEEK.<br/>THAT'S THE WHOLE TRICK.</p>
+  </div>
+  <div class="cell y">
+    <span class="stamp">★ HOT</span>
+    <span class="lbl">CUSTOMERS</span>
+    <span class="val">14.2<sup>K</sup></span>
+    <span class="delta">→ +6.4K</span>
+  </div>
+  <div class="cell r">
+    <span class="stamp">★ ZERO</span>
+    <span class="lbl">PAID ADS</span>
+    <span class="val">$0</span>
+    <span class="delta">→ TRUE STORY</span>
+  </div>
+  <div class="cell w">
+    <span class="stamp">★ UP</span>
+    <span class="lbl">NPS</span>
+    <span class="val">+82</span>
+    <span class="delta">→ +11</span>
+  </div>
+  <div class="cell">
+    <span class="stamp">★ TINY</span>
+    <span class="lbl">TEAM</span>
+    <span class="val">12</span>
+    <span class="delta">→ ON PURPOSE</span>
+  </div>
+</div>
+<div class="bottom"><span>★ ALL FIGURES INTERNAL · UNAUDITED · HONEST</span><span>BLACKFLAG.STUDIO</span><span>P. 018/028</span></div>
+</body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ff3b3b;--ink:#0a0a0a;--white:#f5f1e8;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--white);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin;gap:4cqmin;position:relative;
+}
+.meta{display:flex;justify-content:space-between;align-items:center;padding:2cqmin 3cqmin;border:.3cqmin solid var(--white);border-radius:100px;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.meta strong{color:var(--ink);background:var(--white);padding:.4cqmin 1cqmin;border-radius:100px}
+.main{display:flex;flex-direction:column;justify-content:center;gap:3cqmin;position:relative}
+.mark{font-family:'Times New Roman',serif;font-size:40cqmin;line-height:.6;font-weight:900;color:var(--ink);margin-bottom:-4cqmin;margin-left:-2cqmin}
+blockquote{font-size:13cqmin;line-height:.95;font-weight:900;letter-spacing:-.035em;text-transform:uppercase;max-width:16ch}
+blockquote em{font-style:normal;background:var(--ink);color:var(--bg);padding:0 1cqmin;display:inline-block;transform:rotate(-1deg)}
+blockquote .u{text-decoration:underline var(--ink);text-decoration-thickness:1.2cqmin;text-underline-offset:1.8cqmin}
+blockquote .w{color:var(--white);-webkit-text-stroke:.4cqmin var(--ink)}
+.divider{width:15cqmin;height:1.2cqmin;background:var(--ink);margin-top:2cqmin}
+.cite{display:flex;align-items:center;gap:3cqmin;background:var(--ink);color:var(--bg);padding:3cqmin 4cqmin;border-radius:100px;width:fit-content}
+.cite .avatar{width:10cqmin;height:10cqmin;background:var(--white);color:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:4cqmin;font-weight:900;letter-spacing:-.02em}
+.cite .nm{font-size:3cqmin;font-weight:900;letter-spacing:.01em}
+.cite .nm small{display:block;font-size:1.8cqmin;font-weight:500;opacity:.7;letter-spacing:.15em;text-transform:uppercase;margin-top:.3cqmin}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:2cqmin;border-top:.3cqmin solid rgba(0,0,0,.2);font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.foot .handle strong{background:var(--ink);color:var(--bg);padding:.4cqmin 1cqmin;border-radius:100px}
+.foot .save{display:flex;align-items:center;gap:1.2cqmin;color:var(--ink)}
+</style></head><body>
+<div class="meta"><span><strong>❝</strong> testimonial · 06</span><span>★ ★ ★ ★ ★</span></div>
+<div class="main">
+  <div class="mark">"</div>
+  <blockquote><em>founders</em><br/>who read<br/>this went <span class="w">from</span><br/><span class="u">zero to one</span><br/>in weeks.</blockquote>
+  <div class="divider"></div>
+</div>
+<div class="cite">
+  <span class="avatar">JM</span>
+  <span class="nm">Jules Moreau<small>3× founder · $44M raised</small></span>
+</div>
+<div class="foot">
+  <span class="handle">via <strong>@method.studio</strong></span>
+  <span class="save">◈ save this</span>
+</div>
+</body></html>

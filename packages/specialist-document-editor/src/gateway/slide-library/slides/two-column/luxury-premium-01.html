@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:1fr 1fr;padding:0;
+  background-image:radial-gradient(ellipse 50% 40% at 0% 50%,rgba(201,169,97,.06),transparent 60%);
+}
+.left{padding:6cqmin 5cqmin;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--rule);position:relative}
+.left::after{content:"";position:absolute;right:-.4cqmin;top:20%;bottom:20%;width:1px;background:linear-gradient(180deg,transparent,var(--gold),transparent)}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold)}
+h2{font-size:7cqmin;line-height:1.02;font-weight:400;letter-spacing:-.015em;font-style:italic;margin-top:2cqmin}
+h2 em{font-style:normal;color:var(--gold)}
+.body-text{font-size:1.8cqmin;line-height:1.75;color:#e5d5b5;max-width:36ch;font-style:italic}
+.body-text .dropcap{float:left;font-size:8cqmin;line-height:.8;padding:.4cqmin 1.2cqmin .2cqmin 0;color:var(--gold);font-style:normal;font-weight:400}
+.sign{font-family:'Helvetica Neue',sans-serif;font-size:1.1cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.right{padding:6cqmin 5cqmin;display:flex;flex-direction:column;gap:2cqmin;position:relative}
+.ornament{font-size:2cqmin;color:var(--gold);letter-spacing:.3em;align-self:center;padding-bottom:1.5cqmin;border-bottom:1px solid var(--rule);width:100%;text-align:center}
+dl{display:grid;grid-template-columns:auto 1fr;column-gap:3cqmin;row-gap:1.8cqmin;align-content:center;flex:1}
+dt{font-family:'Helvetica Neue',sans-serif;font-size:1.15cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-weight:500;padding-top:.8cqmin;min-width:11cqmin}
+dd{font-size:2cqmin;line-height:1.5;color:var(--ink);border-bottom:1px solid var(--rule);padding-bottom:1.6cqmin;font-style:italic}
+dd strong{color:var(--gold);font-weight:400;font-style:normal}
+dd em{color:#c5b590;font-style:italic;font-size:1.6cqmin;display:block;margin-top:.4cqmin}
+</style></head><body>
+<div class="left">
+  <div>
+    <span class="kicker">Dossier · pièce CVII</span>
+    <h2>A <em>commission</em><br/>in seven<br/><em>hands.</em></h2>
+  </div>
+  <p class="body-text"><span class="dropcap">E</span>very piece passes, without exception, through the same seven sets of hands — in the same order, at the same bench, and in the same atelier in which each craftsman began as an apprentice. The order has not changed since 1886.</p>
+  <span class="sign">— Private Preview · Spring MMXXVI</span>
+</div>
+<div class="right">
+  <span class="ornament">— ❦ ※ ❦ —</span>
+  <dl>
+    <dt>Dessin</dt><dd><strong>Drawn</strong> in pencil and ink<em>Atelier du Maître · 14 hours</em></dd>
+    <dt>Gilt</dt><dd><strong>Gilded</strong> leaf by leaf<em>Bench I · Mme. Véronique, 28 hours</em></dd>
+    <dt>Gravé</dt><dd><strong>Engraved</strong> free-hand<em>Bench II · M. Oduya, 46 hours</em></dd>
+    <dt>Serti</dt><dd><strong>Set</strong> beneath the loupe<em>Bench III · M. Cervantes, 62 hours</em></dd>
+    <dt>Ciselé</dt><dd><strong>Chased</strong> by the chaser<em>Bench IV · Mme. Laurent, 38 hours</em></dd>
+    <dt>Poli</dt><dd><strong>Polished</strong> by the polisher<em>Bench V · M. Takahashi, 22 hours</em></dd>
+    <dt>Signé</dt><dd><strong>Signed</strong> by the master<em>Atelier du Maître · ledger entry</em></dd>
+  </dl>
+</div>
+</body></html>

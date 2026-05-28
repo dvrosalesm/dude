@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ec4899;--ink:#422006;--accent:#fde047;--blue:#3b82f6;--green:#10b981;--pink:#be185d;
+  font-family:'Poppins','Nunito',system-ui,sans-serif;
+  background:var(--bg);color:#fff;
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  padding:6cqmin;gap:2cqmin;position:relative;
+  background-image:radial-gradient(circle at 20% 80%,rgba(253,224,71,.35),transparent 40%),radial-gradient(circle at 80% 20%,rgba(59,130,246,.3),transparent 40%);
+}
+.star{position:absolute;font-size:5cqmin;color:var(--accent);text-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.star.s1{top:8cqmin;left:10cqmin;transform:rotate(20deg)}
+.star.s2{top:12cqmin;right:12cqmin;transform:rotate(-10deg);color:#fff}
+.star.s3{bottom:10cqmin;left:15cqmin;transform:rotate(-15deg);color:var(--green)}
+.star.s4{bottom:8cqmin;right:10cqmin;transform:rotate(25deg);color:#fff}
+.sticker{display:inline-flex;align-items:center;gap:.8cqmin;padding:.8cqmin 1.8cqmin;background:var(--ink);color:var(--accent);border-radius:100px;font-size:1.4cqmin;font-weight:700;letter-spacing:.1em;text-transform:uppercase;box-shadow:.4cqmin .4cqmin 0 var(--accent)}
+h1{font-size:16cqmin;line-height:.85;font-weight:900;letter-spacing:-.05em;color:var(--accent);text-shadow:.6cqmin .6cqmin 0 var(--ink)}
+h1 .u{color:#fff;background:var(--blue);padding:0 1.5cqmin;border-radius:1.5cqmin;box-shadow:.6cqmin .6cqmin 0 var(--ink);display:inline-block;transform:rotate(-2deg)}
+.sub{font-size:2.4cqmin;line-height:1.45;max-width:40ch;font-weight:600;margin-top:.5cqmin;text-shadow:.2cqmin .2cqmin 0 var(--ink)}
+.contacts{display:flex;gap:2cqmin;margin-top:1.5cqmin;flex-wrap:wrap;justify-content:center}
+.contact{background:#fff;color:var(--ink);border:.4cqmin solid var(--ink);border-radius:100px;padding:1.4cqmin 2.4cqmin;font-weight:700;font-size:1.55cqmin;box-shadow:.5cqmin .5cqmin 0 var(--ink);display:flex;align-items:center;gap:.8cqmin}
+.contact:nth-child(1){transform:rotate(-2deg)}
+.contact:nth-child(2){transform:rotate(1.5deg);background:var(--accent)}
+.contact:nth-child(3){transform:rotate(-1deg);background:var(--green);color:#fff}
+.contact:nth-child(4){transform:rotate(2deg);background:var(--blue);color:#fff}
+.cactus{font-size:6cqmin;transform:rotate(-10deg)}
+.signature{font-family:'Caveat',cursive;font-size:3cqmin;color:var(--accent);margin-top:1cqmin;text-shadow:.3cqmin .3cqmin 0 var(--ink)}
+</style></head><body>
+<span class="star s1">✦</span><span class="star s2">★</span><span class="star s3">✿</span><span class="star s4">✦</span>
+<span class="sticker">✿ That's all folks</span>
+<div class="cactus">🌵</div>
+<h1>Thanks for<br/>being <span class="u">lovely!</span></h1>
+<p class="sub">If you ask a question, Ferdinand has to answer first.<br/>He's been practicing. Go easy.</p>
+<div class="contacts">
+  <span class="contact">📮 hello@sproutco.io</span>
+  <span class="contact">🌐 sproutco.io</span>
+  <span class="contact">🐦 @sprout_co</span>
+  <span class="contact">💌 postcards welcome</span>
+</div>
+<p class="signature">— the crew, all twelve of us ✿</p>
+</body></html>

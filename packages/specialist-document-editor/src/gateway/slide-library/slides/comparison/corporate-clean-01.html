@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--surface:#f8fafc;--border:#e2e8f0;--pos:#15803d;--neg:#b91c1c;--neutral:#ca8a04;
+  font-family:'Source Sans Pro','Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2cqmin;
+}
+.bar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--accent);padding-bottom:1.4cqmin}
+h2{font-size:4cqmin;font-weight:700;letter-spacing:-.01em}
+.kicker{font-size:1.2cqmin;letter-spacing:.2em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.table{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.6fr;border:1px solid var(--border);border-radius:.6cqmin;overflow:hidden;align-content:start}
+.cell{padding:1.6cqmin 1.8cqmin;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:1.4cqmin;line-height:1.45;display:flex;align-items:center}
+.cell:nth-child(5n){border-right:none}
+.cell.h{background:var(--surface);font-weight:700;font-size:1.3cqmin;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding-top:1.8cqmin;padding-bottom:1.8cqmin}
+.cell.recommended{background:#eff6ff;border-left:.4cqmin solid var(--accent);padding-left:1.4cqmin}
+.cell.row-h{background:var(--surface);font-weight:600;color:var(--ink)}
+.cell.row-h small{display:block;font-weight:400;font-size:1.15cqmin;color:var(--muted);margin-top:.2cqmin;letter-spacing:0;text-transform:none}
+.rating{display:flex;gap:.4cqmin}
+.rating .dot{width:1.1cqmin;height:1.1cqmin;border-radius:50%;background:var(--border)}
+.rating .dot.on{background:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:.5cqmin;padding:.3cqmin 1cqmin;border-radius:.3cqmin;font-size:1.1cqmin;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.chip.pos{background:#dcfce7;color:var(--pos)}.chip.neg{background:#fee2e2;color:var(--neg)}.chip.neu{background:#fef3c7;color:var(--neutral)}
+.note{font-size:1.25cqmin;color:var(--muted);line-height:1.5}
+.badge{display:inline-block;background:var(--accent);color:#fff;font-size:1cqmin;letter-spacing:.2em;text-transform:uppercase;padding:.3cqmin .9cqmin;border-radius:.3cqmin;margin-bottom:.4cqmin;font-weight:700}
+.foot{display:flex;justify-content:space-between;font-size:1.15cqmin;color:var(--muted);padding-top:1cqmin;border-top:1px solid var(--border)}
+</style></head><body>
+<div class="bar"><h2>Operating model options · decision matrix</h2><span class="kicker">Exhibit 4 · Page 21 of 42</span></div>
+<div class="table">
+  <div class="cell h">Dimension</div>
+  <div class="cell h">A · Status quo</div>
+  <div class="cell h">B · Regional consolidation</div>
+  <div class="cell h recommended"><span class="badge">Recommended</span><br/>C · Shared services</div>
+  <div class="cell h">Rationale</div>
+
+  <div class="cell row-h">Run-rate savings<small>Annualized vs FY2026 baseline</small></div>
+  <div class="cell"><span class="chip neu">$0</span></div>
+  <div class="cell"><span class="chip pos">$18M</span></div>
+  <div class="cell recommended"><span class="chip pos">$42M</span></div>
+  <div class="cell note">Option C unlocks the largest step-change by centralizing finance, IT, and procurement.</div>
+
+  <div class="cell row-h">One-time cost<small>Cash · three-year horizon</small></div>
+  <div class="cell"><span class="chip pos">$0</span></div>
+  <div class="cell"><span class="chip neu">$7M</span></div>
+  <div class="cell recommended"><span class="chip neu">$14M</span></div>
+  <div class="cell note">Payback under 5 months in both B and C; technology investment is the largest line item.</div>
+
+  <div class="cell row-h">Execution risk<small>Qualitative, five-point</small></div>
+  <div class="cell"><div class="rating"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div>
+  <div class="cell"><div class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div>
+  <div class="cell recommended"><div class="rating"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div></div>
+  <div class="cell note">Risk is manageable with the proposed 90-day change program and board oversight.</div>
+
+  <div class="cell row-h">Time to value<small>From board approval</small></div>
+  <div class="cell">—</div>
+  <div class="cell">9–12 months</div>
+  <div class="cell recommended">12–15 months</div>
+  <div class="cell note">First savings visible in quarter two of FY2027 under Option C.</div>
+
+  <div class="cell row-h">Organizational impact<small>Reporting changes · FTEs</small></div>
+  <div class="cell"><span class="chip pos">Low</span></div>
+  <div class="cell"><span class="chip neu">Moderate</span></div>
+  <div class="cell recommended"><span class="chip neg">High</span></div>
+  <div class="cell note">Requires careful communication and a dedicated people & change workstream.</div>
+</div>
+<div class="foot"><span>Source · Meridian analysis based on client finance data and interviews</span><span>Page 21 of 42</span></div>
+</body></html>

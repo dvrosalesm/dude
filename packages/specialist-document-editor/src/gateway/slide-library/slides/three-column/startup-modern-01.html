@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafbff;--surface:#fff;--ink:#0b0d1a;--muted:#64748b;--accent:#6366f1;--border:#e5e7ef;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr;
+  padding:6cqmin 6cqmin;gap:4cqmin;
+  background-image:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(99,102,241,.08),transparent 60%);
+}
+header{display:flex;justify-content:space-between;align-items:flex-end}
+h2{font-size:5cqmin;line-height:1.05;font-weight:700;letter-spacing:-.025em;max-width:26ch}
+h2 em{font-style:normal;color:var(--accent)}
+.kicker{font-size:1.25cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:1cqmin;display:block}
+.lede{font-size:1.8cqmin;line-height:1.55;color:var(--muted);max-width:44ch;margin-top:1.4cqmin}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqmin;align-content:stretch}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:1.4cqmin;padding:3cqmin;display:flex;flex-direction:column;gap:1.5cqmin;box-shadow:0 1cqmin 3cqmin rgba(15,23,42,.04);position:relative;overflow:hidden}
+.card.featured{background:linear-gradient(180deg,#eef1ff,#fff);border-color:#c7cbf5;box-shadow:0 2cqmin 5cqmin rgba(99,102,241,.12)}
+.card.featured::before{content:"Most popular";position:absolute;top:2cqmin;right:2cqmin;font-size:1.05cqmin;letter-spacing:.2em;text-transform:uppercase;background:var(--accent);color:#fff;padding:.5cqmin 1.1cqmin;border-radius:100px;font-weight:600}
+.role{font-size:1.2cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.name{font-size:2.4cqmin;font-weight:700;letter-spacing:-.015em}
+.desc{font-size:1.5cqmin;line-height:1.55;color:var(--muted)}
+.ul{list-style:none;display:flex;flex-direction:column;gap:.9cqmin;margin-top:.5cqmin}
+.ul li{font-size:1.5cqmin;line-height:1.4;padding-left:2.2cqmin;position:relative;color:#0b0d1a}
+.ul li::before{content:"✓";position:absolute;left:0;top:.1cqmin;color:var(--accent);font-weight:700;font-size:1.55cqmin}
+.foot{font-size:1.2cqmin;color:var(--muted);margin-top:auto;padding-top:1cqmin;border-top:1px solid var(--border)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">For whom we built it</span>
+    <h2>One platform, <em>three jobs to be done.</em></h2>
+    <p class="lede">The same gateway serves very different teams. Here's how each one tends to land on it, and what they use first.</p>
+  </div>
+  <div class="kicker">Audience</div>
+</header>
+<div class="grid">
+  <div class="card">
+    <span class="role">Platform Engineering</span>
+    <div class="name">The builders of builders</div>
+    <p class="desc">Internal teams shipping agentic features inside their own product — need reliability, sandboxing, and one surface to page on.</p>
+    <ul class="ul"><li>Multi-tenant isolation</li><li>Usage metering per workspace</li><li>BYO model + tool registry</li></ul>
+    <span class="foot">First endpoint called · /v1/instances</span>
+  </div>
+  <div class="card featured">
+    <span class="role">Product Teams</span>
+    <div class="name">The shippers</div>
+    <p class="desc">Teams embedding an agent in their app who want to think in features, not infrastructure. Zero to demo in an afternoon.</p>
+    <ul class="ul"><li>Typed agent configs</li><li>Streaming chat out of the box</li><li>Clean SSE, predictable retries</li></ul>
+    <span class="foot">First endpoint called · /v1/instances/:id/chat</span>
+  </div>
+  <div class="card">
+    <span class="role">Research & Ops</span>
+    <div class="name">The experimenters</div>
+    <p class="desc">Analytics and research functions running internal agents against private data — with strict controls on what the model can touch.</p>
+    <ul class="ul"><li>Per-run SQLite snapshots</li><li>Encrypted at rest in R2</li><li>Full audit replay</li></ul>
+    <span class="foot">First endpoint called · /v1/instances/:id/query</span>
+  </div>
+</div>
+</body></html>

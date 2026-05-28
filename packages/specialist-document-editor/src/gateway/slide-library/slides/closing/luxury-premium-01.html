@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:4cqmin 5cqmin;gap:2cqmin;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,169,97,.15),transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 100%,rgba(201,169,97,.08),transparent 60%);
+  position:relative;
+}
+.frame{position:absolute;inset:2.5cqmin;border:1px solid var(--rule);pointer-events:none}
+.frame::before{content:"";position:absolute;inset:.8cqmin;border:1px solid rgba(201,169,97,.2);pointer-events:none}
+.masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.6cqmin;border-bottom:1px solid var(--gold);position:relative;z-index:1;font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+.masthead .center{color:var(--ink);font-family:'Didot',serif;font-size:2.2cqmin;letter-spacing:.15em;font-style:italic;letter-spacing:.2em;text-transform:none}
+.body{display:grid;grid-template-rows:auto auto auto 1fr;align-items:center;justify-items:center;text-align:center;gap:2cqmin;padding:3cqmin 0;position:relative;z-index:1}
+.ornament{font-size:2.5cqmin;color:var(--gold);letter-spacing:.4em;line-height:1}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);padding:.8cqmin 2.5cqmin;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+h1{font-size:10cqmin;line-height:1;font-weight:400;letter-spacing:-.015em;font-style:italic}
+h1 em{font-style:normal;color:var(--gold)}
+.dedication{font-size:1.9cqmin;line-height:1.7;color:#e5d5b5;font-style:italic;max-width:46ch;margin-top:1cqmin}
+.card{display:grid;grid-template-columns:repeat(3,auto);gap:5cqmin;padding-top:3cqmin;margin-top:auto;border-top:1px solid var(--rule);font-family:'Helvetica Neue',sans-serif;font-size:1.25cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);text-align:center}
+.card strong{display:block;color:var(--gold);font-weight:600;margin-bottom:.5cqmin;letter-spacing:.35em;font-size:1.05cqmin}
+.card em{font-family:'Didot',serif;font-style:italic;color:var(--ink);font-size:1.65cqmin;letter-spacing:.1em;text-transform:none;display:block;margin-top:.2cqmin}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.4cqmin;border-top:1px solid var(--rule);font-family:'Helvetica Neue',sans-serif;font-size:1.1cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);position:relative;z-index:1}
+.foot .center{color:var(--gold);letter-spacing:.5em}
+</style></head><body>
+<div class="frame"></div>
+<div class="masthead">
+  <span>Fin · End of the Private Preview</span>
+  <span class="center">Aurelia</span>
+  <span>MMXXVI</span>
+</div>
+<div class="body">
+  <div class="ornament">— ❦ ※ ❦ —</div>
+  <span class="kicker">Remerciements</span>
+  <h1>With our sincerest <em>thanks.</em></h1>
+  <p class="dedication">For your evening, your attention, and the standing invitation to the maison — which is, as it always has been, open by the day and never by appointment.</p>
+  <div class="card">
+    <div><strong>Atelier</strong><em>rue de Turenne, 14<sup>e</sup></em>Paris</div>
+    <div><strong>Correspondence</strong><em>maison@aurelia.co</em>+33 1 45 00 14 86</div>
+    <div><strong>Commissions</strong><em>Mondays &amp; Thursdays</em>by letter · not by email</div>
+  </div>
+</div>
+<div class="foot"><span>Maison Aurelia · fondée MDCCCLXXXVI</span><span class="center">— ※ —</span><span>Private Preview · MMXXVI</span></div>
+</body></html>

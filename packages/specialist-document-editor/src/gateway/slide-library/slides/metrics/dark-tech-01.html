@@ -1,0 +1,103 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--accent:#00ff88;--accent2:#ff3864;--accent3:#00d9ff;--border:#1a1d26;
+  font-family:'SF Mono',Menlo,'Fira Code',monospace;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2.5cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px);
+  background-size:2.5cqmin 2.5cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--border);padding-bottom:1.6cqmin}
+.kicker{font-size:1.15cqmin;color:var(--accent);letter-spacing:.15em}
+.kicker::before{content:"// "}
+h2{font-size:4.5cqmin;font-weight:700;letter-spacing:-.02em;font-family:'Inter',system-ui,sans-serif;margin-top:.5cqmin}
+h2 .a{color:var(--accent)}
+.ts{font-size:1.2cqmin;color:var(--muted)}
+.ts .live{display:inline-flex;align-items:center;gap:.5cqmin;color:var(--accent);margin-left:1cqmin}
+.ts .led{width:.7cqmin;height:.7cqmin;background:var(--accent);border-radius:50%;box-shadow:0 0 6px var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:1fr 1fr;gap:1.5cqmin}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:.5cqmin;padding:1.8cqmin;display:flex;flex-direction:column;gap:.8cqmin;position:relative}
+.card.wide{grid-column:span 2}
+.card.tall{grid-row:span 2}
+.card h3{font-size:1cqmin;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.card h3 .tag{font-size:.95cqmin;color:var(--accent);border:1px solid rgba(0,255,136,.3);background:rgba(0,255,136,.05);padding:.15cqmin .5cqmin;border-radius:.2cqmin}
+.val{font-size:5cqmin;font-weight:700;letter-spacing:-.03em;line-height:1;font-family:'Inter',system-ui,sans-serif;color:var(--ink)}
+.val.accent{color:var(--accent);text-shadow:0 0 16px rgba(0,255,136,.25)}
+.val.big{font-size:9cqmin}
+.val sup{font-size:1.8cqmin;color:var(--muted);vertical-align:top;font-weight:500}
+.sub{font-size:1.1cqmin;color:var(--muted);margin-top:auto}
+.sub .good{color:var(--accent)}
+.sub .warn{color:var(--accent2)}
+.spark{display:flex;align-items:flex-end;height:5cqmin;gap:.3cqmin;margin-top:.8cqmin}
+.spark div{flex:1;background:linear-gradient(180deg,var(--accent),rgba(0,255,136,.15));border-radius:.1cqmin}
+.gauge{display:flex;align-items:center;gap:1cqmin;margin-top:.5cqmin}
+.gauge .track{flex:1;height:.5cqmin;background:#1a1d26;border-radius:.3cqmin;overflow:hidden}
+.gauge .fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent));border-radius:.3cqmin}
+.legend{display:flex;gap:2cqmin;font-size:1.1cqmin;color:var(--muted);padding-top:1.4cqmin;border-top:1px solid var(--border);flex-wrap:wrap}
+.legend span span{color:var(--accent)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">observability dashboard · last 24h</span>
+    <h2>Gateway health <span class="a">[LIVE]</span></h2>
+  </div>
+  <span class="ts">2026-04-20 09:32:14 UTC <span class="live"><span class="led"></span> ALL GREEN</span></span>
+</header>
+<div class="grid">
+  <div class="card tall">
+    <h3>p95 latency <span class="tag">sla &lt; 500</span></h3>
+    <span class="val big accent">284<sup>ms</sup></span>
+    <div class="spark">
+      <div style="height:45%"></div><div style="height:52%"></div><div style="height:48%"></div><div style="height:42%"></div>
+      <div style="height:38%"></div><div style="height:44%"></div><div style="height:41%"></div><div style="height:39%"></div>
+      <div style="height:36%"></div><div style="height:40%"></div><div style="height:35%"></div><div style="height:32%"></div>
+      <div style="height:30%"></div><div style="height:28%"></div><div style="height:31%"></div>
+    </div>
+    <span class="sub"><span class="good">▼</span> 38% below target · trending down for 7 days</span>
+  </div>
+  <div class="card wide">
+    <h3>requests / min</h3>
+    <span class="val">42.1<sup>k</sup></span>
+    <span class="sub"><span class="good">▲</span> 3.2× over 30d</span>
+  </div>
+  <div class="card">
+    <h3>uptime · 30d</h3>
+    <span class="val accent">99.99<sup>%</sup></span>
+    <span class="sub">52m budget used</span>
+  </div>
+  <div class="card">
+    <h3>active agents</h3>
+    <span class="val">1,847</span>
+    <span class="sub">across 14 regions</span>
+  </div>
+  <div class="card wide">
+    <h3>error rate · 5xx</h3>
+    <span class="val">0.021<sup>%</sup></span>
+    <div class="gauge"><div class="track"><div class="fill" style="width:8%"></div></div></div>
+    <span class="sub">budget <span class="good">92%</span> remaining this month</span>
+  </div>
+  <div class="card">
+    <h3>cold starts</h3>
+    <span class="val">0.4<sup>%</sup></span>
+    <span class="sub">of total boots</span>
+  </div>
+  <div class="card">
+    <h3>cost · avg</h3>
+    <span class="val">$0.48<sup>/hr</sup></span>
+    <span class="sub">per workspace</span>
+  </div>
+</div>
+<div class="legend">
+  <span><span>●</span> data: prometheus + otel · scrape 10s</span>
+  <span><span>●</span> sli: helix.dev/sla</span>
+  <span><span>●</span> status page: status.helix.dev</span>
+</div>
+</body></html>

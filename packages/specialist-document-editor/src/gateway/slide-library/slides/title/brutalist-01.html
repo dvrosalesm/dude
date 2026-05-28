@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ffea00;--ink:#000;--red:#ff2d2d;--white:#fff;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;border:1cqmin solid var(--ink);
+}
+.barcode{display:flex;gap:.15cqmin;align-items:center}
+.barcode div{width:.3cqmin;background:var(--ink)}
+.barcode div:nth-child(3n){width:.5cqmin}
+.barcode div:nth-child(4n){height:3cqmin}
+.barcode div:nth-child(odd){height:2.5cqmin}
+.barcode div:nth-child(even){height:2cqmin}
+.top{background:var(--ink);color:var(--bg);padding:1cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900}
+.main{padding:4cqmin;display:grid;grid-template-rows:auto 1fr auto;gap:2cqmin;position:relative;overflow:hidden}
+.meta-row{display:flex;justify-content:space-between;align-items:center;border-bottom:.5cqmin solid var(--ink);padding-bottom:2cqmin;font-size:1.4cqmin;letter-spacing:.15em;text-transform:uppercase;font-weight:900}
+.meta-row .stamp{background:var(--red);color:var(--white);padding:.5cqmin 1.2cqmin;transform:rotate(-3deg);border:.3cqmin solid var(--ink);font-size:1.2cqmin;letter-spacing:.15em}
+h1{font-size:24cqmin;line-height:.8;font-weight:900;letter-spacing:-.06em;text-transform:uppercase;position:relative}
+h1 .y{color:var(--bg);background:var(--ink);padding:0 .5cqmin;display:inline-block;line-height:.9}
+h1 .r{color:var(--red)}
+h1 .rot{display:inline-block;transform:rotate(-2deg);background:var(--red);color:var(--bg);padding:0 .5cqmin}
+h1 .slash{color:var(--ink);position:relative}
+h1 .slash::after{content:"";position:absolute;left:-2%;right:-2%;top:48%;height:1.2cqmin;background:var(--red);transform:rotate(-3deg)}
+.footer-row{display:grid;grid-template-columns:auto 1fr auto;gap:3cqmin;align-items:end;border-top:.5cqmin solid var(--ink);padding-top:1.8cqmin;font-size:1.4cqmin;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.footer-row .big{font-size:5cqmin;line-height:.9}
+.footer-row .big .slash{display:inline-block;width:2cqmin;height:.5cqmin;background:var(--ink);vertical-align:middle;transform:rotate(-60deg);margin:0 .2cqmin}
+.notice{background:var(--ink);color:var(--bg);padding:2cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase}
+.notice .ex{font-size:2.5cqmin;color:var(--red);transform:rotate(-3deg)}
+.marquee{font-size:1.2cqmin;letter-spacing:.3em;white-space:nowrap}
+</style></head><body>
+<div class="top">
+  <span>★ ISSUE 001 ★ VOL. I ★ LIMITED EDITION ★</span>
+  <div class="barcode"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <span>→ MMXXVI / IV / XX</span>
+</div>
+<div class="main">
+  <div class="meta-row">
+    <span>CATEGORY · MANIFESTO</span>
+    <span class="stamp">DO NOT FOLD</span>
+    <span>PRICE · $0.00</span>
+  </div>
+  <h1><span class="r">NO</span> <span class="y">MORE</span><br/><span class="slash">BORING</span><br/><span class="rot">SOFTWARE.</span></h1>
+  <div class="footer-row">
+    <span>BY<br/><span class="big">BLACK<span class="slash"></span>FLAG<br/>STUDIOS</span></span>
+    <span style="text-align:center">FOR BUILDERS WHO HAVE HAD ENOUGH →</span>
+    <span>PAGE<br/><span class="big">001</span></span>
+  </div>
+</div>
+<div class="notice">
+  <span>→ WARNING · CONTENTS OPINIONATED</span>
+  <span class="ex">※</span>
+  <span>BLACKFLAG.STUDIO · 2026</span>
+</div>
+</body></html>

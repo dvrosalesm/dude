@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafafa;--ink:#0a0a0a;--muted:#6b6b6b;--red:#e11d48;--green:#059669;--rule:#e5e5e5;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:4cqmin;gap:2.5cqmin;
+}
+.head{display:flex;justify-content:space-between;align-items:end;border-bottom:.3cqmin solid var(--ink);padding-bottom:1.5cqmin}
+.head h2{font-size:5.5cqmin;line-height:.95;font-weight:900;letter-spacing:-.025em;max-width:20ch}
+.head h2 em{font-style:italic;color:var(--red)}
+.head h2 .g{color:var(--green)}
+.head .tag{font-size:1.35cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;color:var(--muted);display:flex;flex-direction:column;align-items:end;gap:.3cqmin;line-height:1.2}
+.head .tag strong{background:var(--ink);color:var(--bg);padding:.4cqmin 1cqmin;letter-spacing:.2em}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:2.5cqmin}
+.side{border-radius:2cqmin;padding:3cqmin;display:flex;flex-direction:column;gap:1.8cqmin;position:relative;overflow:hidden}
+.side.red{background:#fee2e2;border:.35cqmin solid var(--red)}
+.side.green{background:#d1fae5;border:.35cqmin solid var(--green)}
+.side .banner{display:inline-flex;align-items:center;gap:1cqmin;padding:1.2cqmin 2cqmin;border-radius:100px;font-size:1.5cqmin;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:#fff;width:fit-content;box-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.side.red .banner{background:var(--red)}
+.side.green .banner{background:var(--green)}
+.side .banner .flag{font-size:2cqmin}
+.side ul{list-style:none;display:flex;flex-direction:column;gap:1.1cqmin;margin-top:.5cqmin}
+.side li{display:grid;grid-template-columns:3cqmin 1fr;gap:1cqmin;align-items:start;padding:1.4cqmin 1.6cqmin;background:#fff;border:.2cqmin solid var(--ink);border-radius:1cqmin;font-size:1.7cqmin;line-height:1.3;font-weight:600}
+.side li .ic{font-size:1.8cqmin;line-height:1;color:var(--red);font-weight:900}
+.side.green li .ic{color:var(--green)}
+.side li em{font-style:italic;color:var(--muted);font-weight:500;display:block;font-size:1.4cqmin;margin-top:.25cqmin;letter-spacing:.01em}
+.side li .mini{display:inline-block;background:var(--ink);color:var(--bg);padding:.15cqmin .5cqmin;border-radius:.3cqmin;font-size:1.15cqmin;letter-spacing:.15em;text-transform:uppercase;margin-left:.3cqmin;font-weight:900}
+.tag-row{font-size:1.3cqmin;letter-spacing:.15em;color:var(--ink);font-weight:700;margin-top:auto;padding-top:1cqmin;border-top:.2cqmin dashed rgba(0,0,0,.3);opacity:.8}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.2cqmin;border-top:.2cqmin solid var(--rule);font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.foot .handle{background:var(--ink);color:var(--bg);padding:.5cqmin 1.2cqmin;letter-spacing:.2em}
+</style></head><body>
+<div class="head">
+  <h2><em>red flags</em> vs <span class="g">green flags</span><br/>in a tech job interview.</h2>
+  <span class="tag">Meme format · <strong>red/green flag</strong></span>
+</div>
+<div class="split">
+  <div class="side red">
+    <span class="banner"><span class="flag">🚩</span> run away fast</span>
+    <ul>
+      <li><span class="ic">✕</span><div>"We work hard and <em>play</em> hard"<em>→ translation: play hard = 7pm lunch, work hard = 11pm deploy</em></div></li>
+      <li><span class="ic">✕</span><div>"We don't really have <em>titles</em>"<span class="mini">a choice</span><em>→ so also no leveling, ladder, or raises</em></div></li>
+      <li><span class="ic">✕</span><div>Recruiter "personally loved your github"<em>→ your github is three forks of create-next-app</em></div></li>
+      <li><span class="ic">✕</span><div>The office has a <em>slide</em> in the lobby<em>→ the slide will not save you from the outage tonight</em></div></li>
+      <li><span class="ic">✕</span><div>"We're a <em>family</em>"<em>→ families do not have performance reviews</em></div></li>
+    </ul>
+    <div class="tag-row">★ score · 3+ = no thanks</div>
+  </div>
+  <div class="side green">
+    <span class="banner"><span class="flag">🟢</span> sign today</span>
+    <ul>
+      <li><span class="ic">✓</span><div>Published comp bands <em>and</em> they stick to them<span class="mini">rare</span><em>→ you don't have to negotiate your own dignity</em></div></li>
+      <li><span class="ic">✓</span><div>Clear on-call rotation with <em>opt-in</em> bonus<em>→ or better, no on-call in the first 6 months</em></div></li>
+      <li><span class="ic">✓</span><div>The interviewer has been there <em>&gt; 3 years</em><em>→ cannot fake this; retention is a signal</em></div></li>
+      <li><span class="ic">✓</span><div>"Here's the doc that got killed last month"<em>→ they publish the misses, not just the wins</em></div></li>
+      <li><span class="ic">✓</span><div>Asked "what's your <em>boundary</em> on hours?"<em>→ unprompted. this is the one.</em></div></li>
+    </ul>
+    <div class="tag-row">★ score · 3+ = you're home</div>
+  </div>
+</div>
+<div class="foot"><span>save · send to your friend job-hunting</span><span>★ 2026 edition</span><span class="handle">@vibe.engineer</span></div>
+</body></html>

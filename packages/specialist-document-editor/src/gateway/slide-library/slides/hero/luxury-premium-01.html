@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:3fr 4fr;padding:0;
+  background-image:radial-gradient(ellipse 50% 40% at 100% 50%,rgba(201,169,97,.08),transparent 60%);
+}
+.left{padding:6cqmin 4cqmin 6cqmin 6cqmin;display:flex;flex-direction:column;justify-content:center;gap:2cqmin;border-right:1px solid var(--rule);position:relative}
+.left::after{content:"";position:absolute;right:-.4cqmin;top:10%;bottom:10%;width:1px;background:linear-gradient(180deg,transparent,var(--gold),transparent)}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:6cqmin;line-height:1.1;font-weight:400;letter-spacing:-.01em;max-width:22ch}
+h1 em{font-style:italic;color:var(--gold)}
+.lede{font-size:1.75cqmin;line-height:1.7;color:#e5d5b5;font-style:italic;max-width:36ch}
+.caption{font-family:'Helvetica Neue',sans-serif;font-size:1.1cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.right{padding:6cqmin;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2cqmin;position:relative}
+.ornament-top{font-size:2.4cqmin;color:var(--gold);letter-spacing:.3em;margin-bottom:1cqmin}
+.stat-label{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);text-align:center}
+.numeral{font-size:25cqmin;line-height:.85;font-weight:400;font-style:italic;color:var(--gold);letter-spacing:-.06em;text-shadow:0 0 40px rgba(201,169,97,.2)}
+.numeral .sup{font-size:6cqmin;vertical-align:top;color:var(--ink);font-style:normal;letter-spacing:0}
+.desc{font-size:2cqmin;line-height:1.5;color:var(--ink);font-style:italic;max-width:34ch;text-align:center;margin-top:1cqmin}
+.divider{display:flex;align-items:center;gap:1cqmin;color:var(--gold);font-size:1.5cqmin;letter-spacing:.4em;width:70%}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+</style></head><body>
+<div class="left">
+  <span class="kicker">The Reference Figure</span>
+  <h1>A number as <em>old</em><br/>as the <em>maison.</em></h1>
+  <p class="lede">For one hundred and forty years, each piece has passed through the same seven sets of hands. No automation has replaced even one of them, and none has been proposed.</p>
+  <span class="caption">— Bureau du Maître, Paris · 2026</span>
+</div>
+<div class="right">
+  <div class="ornament-top">— ※ —</div>
+  <span class="stat-label">Years in practice</span>
+  <div class="numeral">140<span class="sup">y.</span></div>
+  <div class="divider">❦</div>
+  <p class="desc">of an unbroken atelier — seven bench positions, one recipe, and a ledger kept continuously since the year of our founding.</p>
+  <div class="ornament-top">— ※ —</div>
+</div>
+</body></html>

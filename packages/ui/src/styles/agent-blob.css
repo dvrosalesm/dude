@@ -1,0 +1,29 @@
+/* Agent mascot — strand motion in JS (rAF); face morph in use-agent-face-motion. */
+
+.agent-blob {
+  display: block;
+  overflow: visible;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.agent-blob__inner {
+  transform-origin: 20px 20px;
+  will-change: transform;
+}
+
+.agent-blob__strand {
+  will-change: d, stroke-dashoffset, stroke-width;
+}
+
+.agent-blob__face-glow,
+.agent-blob__face-open-eyes {
+  pointer-events: none;
+}
+
+.agent-blob__eye-closed,
+.agent-blob__eye-open-wrap,
+.agent-blob__mouth {
+  transform-box: fill-box;
+  transform-origin: center;
+}

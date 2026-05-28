@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f0fdf4;--ink:#422006;--accent:#ef4444;--pink:#ec4899;--blue:#3b82f6;--green:#10b981;--yellow:#fde047;--purple:#a855f7;
+  font-family:'Poppins','Nunito',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:3cqmin;
+  background-image:radial-gradient(circle at 20% 20%,rgba(236,72,153,.1),transparent 50%),radial-gradient(circle at 80% 80%,rgba(59,130,246,.1),transparent 50%);
+}
+header{display:flex;justify-content:space-between;align-items:flex-end}
+.kicker{display:inline-flex;align-items:center;gap:.6cqmin;padding:.7cqmin 1.6cqmin;background:var(--ink);color:#fef3c7;border-radius:100px;font-size:1.3cqmin;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+h2{font-size:6cqmin;line-height:1;font-weight:900;letter-spacing:-.025em;margin-top:1.5cqmin}
+h2 .u{background:var(--yellow);color:var(--ink);padding:0 1cqmin;border-radius:1cqmin;box-shadow:.5cqmin .5cqmin 0 var(--ink);display:inline-block;transform:rotate(-1.5deg)}
+.note{font-family:'Caveat',cursive;font-size:2.5cqmin;color:var(--pink);transform:rotate(-4deg)}
+.grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:2cqmin}
+.card{background:#fff;border:.4cqmin solid var(--ink);border-radius:2cqmin;padding:2.5cqmin;display:flex;flex-direction:column;gap:1cqmin;box-shadow:.6cqmin .6cqmin 0 var(--ink);position:relative;overflow:hidden}
+.card.big{grid-row:span 2;background:var(--yellow);transform:rotate(-1deg)}
+.card.pink{background:var(--pink);color:#fff;transform:rotate(1deg)}
+.card.blue{background:var(--blue);color:#fff;transform:rotate(-1.5deg)}
+.card.green{background:var(--green);color:#fff;transform:rotate(.5deg)}
+.card.purple{background:var(--purple);color:#fff;transform:rotate(1.5deg)}
+.card .lbl{font-size:1.3cqmin;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9}
+.card .big-num{font-size:9cqmin;font-weight:900;letter-spacing:-.04em;line-height:.9}
+.card.big .big-num{font-size:14cqmin;line-height:.85}
+.card .big-num sup{font-size:4cqmin;vertical-align:top;opacity:.8;font-weight:700}
+.card .delta{font-family:'Caveat',cursive;font-size:2.4cqmin;line-height:1}
+.card p{font-size:1.4cqmin;line-height:1.5;font-weight:500;margin-top:auto}
+.card .badge{position:absolute;top:-1cqmin;right:-1cqmin;background:var(--accent);color:#fff;border:.3cqmin solid var(--ink);border-radius:100%;padding:1.2cqmin;width:5cqmin;height:5cqmin;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.4cqmin;transform:rotate(12deg);box-shadow:.3cqmin .3cqmin 0 var(--ink);text-align:center;line-height:.9}
+.emoji{font-size:4cqmin}
+.foot-note{text-align:center;font-size:1.3cqmin;color:#713f12;font-weight:500}
+.foot-note strong{font-family:'Caveat',cursive;font-size:2cqmin;color:var(--accent)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">✿ Numbers from the little book</span>
+    <h2>A <span class="u">pretty good</span> year,<br/>measured in ways we like.</h2>
+  </div>
+  <span class="note">↙ no rounding tricks!</span>
+</header>
+<div class="grid">
+  <div class="card big">
+    <span class="lbl">Annual Recurring Revenue</span>
+    <div class="big-num">$4.2<sup>M</sup></div>
+    <div class="delta">↗ 2.6× year-on-year 🎉</div>
+    <span class="emoji">🌱</span>
+    <p>Entirely customer-funded. No VCs were consulted or harmed in the making of this growth chart.</p>
+    <span class="badge">WOO<br/>HOO</span>
+  </div>
+  <div class="card pink">
+    <span class="lbl">Happy customers</span>
+    <div class="big-num">14,208</div>
+    <div class="delta">↗ +6,400 this year</div>
+    <p>Each one got a postcard.</p>
+  </div>
+  <div class="card blue">
+    <span class="lbl">Postcards sent</span>
+    <div class="big-num">2,411</div>
+    <div class="delta">← all hand-written</div>
+    <p>Average retention for the cohort that received one · <strong style="font-family:'Caveat',cursive;font-size:2cqmin;font-weight:700">97%</strong>.</p>
+  </div>
+  <div class="card green">
+    <span class="lbl">Net Promoter Score</span>
+    <div class="big-num">+82</div>
+    <div class="delta">↗ up from +71</div>
+    <p>Highest since we started tracking. Something's working.</p>
+  </div>
+  <div class="card purple">
+    <span class="lbl">Team size</span>
+    <div class="big-num">12</div>
+    <div class="delta">→ on purpose</div>
+    <p>Four time zones. One very opinionated cactus.</p>
+  </div>
+</div>
+<p class="foot-note">*All figures self-reported, unaudited, and mildly proud of themselves. <strong>— Sprout &amp; Co.</strong></p>
+</body></html>

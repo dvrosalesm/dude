@@ -1,0 +1,86 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5efe0;--ink:#2a2418;--red:#c94f3c;--yellow:#eab73a;--blue:#6a9bc4;--green:#7a9b5c;--cream:#fff9e8;
+  font-family:'Caveat','Kalam','Patrick Hand',cursive;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2cqmin;position:relative;
+}
+.paper-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(180deg,transparent 0,transparent 5cqmin,rgba(106,155,196,.15) 5cqmin,rgba(106,155,196,.15) 5.15cqmin);pointer-events:none;z-index:0}
+.margin{position:absolute;left:7cqmin;top:0;bottom:0;width:.3cqmin;background:rgba(201,79,60,.25);z-index:0}
+.washi-bot{position:absolute;bottom:7cqmin;left:-3cqmin;right:-3cqmin;height:4cqmin;background:repeating-linear-gradient(90deg,var(--green) 0 4cqmin,var(--yellow) 4cqmin 8cqmin,var(--red) 8cqmin 12cqmin);opacity:.8;transform:rotate(-1deg);box-shadow:0 .3cqmin .5cqmin rgba(0,0,0,.1);z-index:1}
+.pager{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding-left:8cqmin;font-size:2.2cqmin;color:var(--ink)}
+.pager .pill{background:var(--red);color:#fff;padding:.6cqmin 1.4cqmin;border:.25cqmin solid var(--ink);box-shadow:.3cqmin .3cqmin 0 var(--ink);transform:rotate(-1deg)}
+.main{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:2cqmin;padding-left:4cqmin;text-align:center;align-items:center}
+.hello{font-size:4cqmin;color:var(--red);line-height:1;transform:rotate(-3deg)}
+h1{font-size:15cqmin;line-height:.9;font-weight:400;letter-spacing:-.01em;color:var(--ink);margin-top:1cqmin}
+h1 em{color:var(--red);font-style:italic;display:inline-block;transform:rotate(-2deg)}
+h1 .u{color:var(--green);text-decoration:underline wavy var(--yellow);text-decoration-thickness:.3cqmin;text-underline-offset:1cqmin}
+h1 .big-heart{color:var(--red);font-size:14cqmin;display:inline-block;transform:rotate(5deg);line-height:.8}
+.sub{font-size:2.8cqmin;line-height:1.4;color:var(--ink);max-width:85%}
+.sub em{color:var(--red);font-style:italic}
+.sub strong{color:var(--green);font-weight:400;text-decoration:underline wavy var(--yellow);text-decoration-thickness:.2cqmin}
+.stickies{display:grid;grid-template-columns:1fr 1fr;gap:2cqmin;margin-top:1cqmin;width:100%;max-width:90%}
+.sticky{background:var(--yellow);padding:2cqmin;border:.3cqmin solid var(--ink);box-shadow:.4cqmin .4cqmin 0 var(--ink);transform:rotate(-2deg);text-align:left;position:relative;display:flex;flex-direction:column;gap:.5cqmin}
+.sticky:nth-child(2){background:var(--cream);transform:rotate(2deg)}
+.sticky:nth-child(3){background:var(--blue);color:#fff;transform:rotate(1deg)}
+.sticky:nth-child(4){background:var(--green);color:#fff;transform:rotate(-1deg)}
+.sticky::before{content:"";position:absolute;top:-1cqmin;left:30%;width:8cqmin;height:2.5cqmin;background:rgba(201,79,60,.55);border:.15cqmin solid rgba(42,36,24,.3);transform:rotate(-8deg)}
+.sticky .ic{font-size:3.8cqmin;line-height:1;color:var(--red)}
+.sticky:nth-child(3) .ic,.sticky:nth-child(4) .ic{color:var(--yellow)}
+.sticky h3{font-size:3cqmin;line-height:1;letter-spacing:-.005em}
+.sticky h3 em{color:var(--red);font-style:italic}
+.sticky:nth-child(3) h3 em,.sticky:nth-child(4) h3 em{color:var(--yellow)}
+.sticky p{font-family:'Patrick Hand',cursive;font-size:1.9cqmin;line-height:1.35}
+.signature-block{display:flex;flex-direction:column;align-items:center;gap:.5cqmin;margin-top:1.5cqmin}
+.signature{font-size:5cqmin;color:var(--red);font-style:italic;line-height:.8;transform:rotate(-4deg)}
+.signature-block small{font-family:'Patrick Hand',cursive;font-size:2cqmin;color:var(--ink);letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.doodle{position:absolute;font-size:6cqmin;color:var(--green);z-index:3;pointer-events:none}
+.doodle.d1{top:20cqmin;right:4cqmin;transform:rotate(15deg)}
+.doodle.d2{bottom:20cqmin;left:3cqmin;color:var(--blue);transform:rotate(-20deg)}
+.foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:1.5cqmin 2cqmin;font-family:'Patrick Hand',cursive;font-size:2.4cqmin;color:var(--ink);border-top:.25cqmin dashed var(--ink)}
+.foot .heart{color:var(--red)}
+</style></head><body>
+<div class="paper-lines"></div>
+<div class="margin"></div>
+<div class="washi-bot"></div>
+<div class="pager"><span>last page ✿ 7 of 7</span><span class="pill">★ the end ★</span></div>
+<div class="main">
+  <span class="hello">✿ · ✿ · ✿</span>
+  <h1>thanks for<br/><em>reading</em> till<br/>the <span class="u">end</span> <span class="big-heart">♡</span></h1>
+  <p class="sub">if one little thing made you smile, <em>tell me about it.</em> i read every reply and <strong>write back to all of them.</strong></p>
+  <div class="stickies">
+    <div class="sticky">
+      <span class="ic">♡</span>
+      <h3><em>double-tap</em> if it helped</h3>
+      <p>tiny thing · big smile on my end</p>
+    </div>
+    <div class="sticky">
+      <span class="ic">✿</span>
+      <h3><em>save</em> for spring</h3>
+      <p>come back when the tulips wake up</p>
+    </div>
+    <div class="sticky">
+      <span class="ic">✉</span>
+      <h3><em>write me</em> · letters @</h3>
+      <p>millie.plants@mail.ie</p>
+    </div>
+    <div class="sticky">
+      <span class="ic">+</span>
+      <h3><em>follow</em> for sunday notes</h3>
+      <p>new ones every second sunday ♡</p>
+    </div>
+  </div>
+  <div class="signature-block">
+    <span class="signature">— with love, millie ♡</span>
+    <small>ballyhane · co. kilkenny</small>
+  </div>
+  <span class="doodle d1">✿</span>
+  <span class="doodle d2">★</span>
+</div>
+<div class="foot"><span>@millie.plants <span class="heart">♡</span></span><span>· fin ·</span></div>
+</body></html>

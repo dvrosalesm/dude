@@ -1,0 +1,2 @@
+# This file ensures the patches directory exists in git
+# Even when there are no patch files

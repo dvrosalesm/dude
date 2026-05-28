@@ -1,0 +1,37 @@
+{
+  "name": "@dude/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unified Dude backend — REST API + AI gateway (Elysia)",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsup src/index.ts src/app.ts --format esm"
+  },
+  "dependencies": {
+    "@anthropic-ai/sandbox-runtime": "^0.0.52",
+    "@bufbuild/protobuf": "1.10.0",
+    "@cursor/sdk": "^1.0.13",
+    "@dude/gateway-shared": "*",
+    "@dude/presentation-editor": "*",
+    "@dude/sdk": "*",
+    "@dude/specialist-data-analyst": "*",
+    "@dude/specialist-design-branding": "*",
+    "@dude/specialist-document-editor": "*",
+    "@dude/specialist-document-writer": "*",
+    "@dude/specialist-prospect": "*",
+    "@elysiajs/cors": "^1.4.2",
+    "@elysiajs/node": "^1.4.5",
+    "@mariozechner/pi-ai": "^0.73.1",
+    "@mariozechner/pi-coding-agent": "^0.73.1",
+    "@sinclair/typebox": "^0.34.49",
+    "elysia": "^1.4.28",
+    "puppeteer": "^25.0.4"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.2",
+    "typescript": "5.9.3"
+  }
+}

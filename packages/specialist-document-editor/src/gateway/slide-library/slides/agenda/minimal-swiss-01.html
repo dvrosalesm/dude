@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafafa;--ink:#0a0a0a;--muted:#6b6b6b;--rule:#111;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 7cqmin;gap:3cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:1.8cqmin}
+h2{font-size:4.5cqmin;font-weight:500;letter-spacing:-.02em}
+.kicker{font-size:1.3cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.list{display:grid;align-content:center;gap:0}
+.row{display:grid;grid-template-columns:4cqmin 1fr auto;align-items:baseline;padding:2.4cqmin 0;border-bottom:1px solid #dadad4;gap:2cqmin}
+.row:last-child{border-bottom:none}
+.n{font-size:1.3cqmin;letter-spacing:.2em;color:var(--muted)}
+.t{font-size:3.4cqmin;font-weight:500;letter-spacing:-.02em}
+.t small{display:block;font-size:1.4cqmin;font-weight:400;letter-spacing:0;color:var(--muted);margin-top:.5cqmin}
+.time{font-size:1.4cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+footer{display:flex;justify-content:space-between;border-top:1px solid var(--rule);padding-top:1.8cqmin;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+</style></head><body>
+<header><h2>Agenda.</h2><span class="kicker">45 minutes · Four chapters</span></header>
+<div class="list">
+  <div class="row"><span class="n">01</span><span class="t">The quarter, summarized<small>What moved, what didn't, and by how much.</small></span><span class="time">10 min</span></div>
+  <div class="row"><span class="n">02</span><span class="t">What worked<small>Three interventions that outperformed plan.</small></span><span class="time">12 min</span></div>
+  <div class="row"><span class="n">03</span><span class="t">What didn't<small>A candid read on the two bets we walked back.</small></span><span class="time">10 min</span></div>
+  <div class="row"><span class="n">04</span><span class="t">The shape of Q2<small>Commitments, not forecasts. Questions welcome.</small></span><span class="time">13 min</span></div>
+</div>
+<footer><span>Agenda</span><span>002 / 042</span></footer>
+</body></html>

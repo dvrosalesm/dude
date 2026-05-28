@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ffea00;--ink:#000;--red:#ff2d2d;--white:#fff;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+}
+.top{background:var(--ink);color:var(--bg);padding:1cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;border-bottom:1cqmin solid var(--red)}
+.body{padding:4cqmin 5cqmin;display:flex;flex-direction:column;justify-content:center;gap:2cqmin;position:relative;overflow:hidden}
+.body::before{content:"\201C";position:absolute;top:-6cqmin;left:-1cqmin;font-size:60cqmin;line-height:.6;font-weight:900;color:var(--ink);opacity:.1;font-family:Georgia,serif}
+.kicker{font-size:1.6cqmin;letter-spacing:.4em;text-transform:uppercase;font-weight:900;position:relative;z-index:1}
+.kicker::before{content:"★ "}
+.kicker::after{content:" ★"}
+blockquote{font-size:11cqmin;line-height:.92;font-weight:900;letter-spacing:-.035em;text-transform:uppercase;max-width:20ch;position:relative;z-index:1}
+blockquote em{font-style:normal;background:var(--ink);color:var(--bg);padding:0 .4cqmin}
+blockquote .r{color:var(--red)}
+blockquote .strike{position:relative;display:inline-block}
+blockquote .strike::after{content:"";position:absolute;left:-1%;right:-1%;top:48%;height:1cqmin;background:var(--red)}
+.cite{display:flex;align-items:center;gap:2cqmin;background:var(--ink);color:var(--bg);padding:1.8cqmin 2.5cqmin;border:.5cqmin solid var(--ink);width:fit-content;font-size:1.5cqmin;letter-spacing:.15em;text-transform:uppercase;font-weight:900;position:relative;z-index:1;transform:rotate(-1deg);box-shadow:.5cqmin .5cqmin 0 var(--red)}
+.cite .ph{width:5cqmin;height:5cqmin;background:var(--red);border:.3cqmin solid var(--bg);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:2.5cqmin;font-weight:900}
+.cite big{display:block;font-size:2.2cqmin;line-height:1}
+.bottom{background:var(--red);color:var(--bg);padding:1cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;border-top:1cqmin solid var(--ink)}
+</style></head><body>
+<div class="top"><span>→ EXHIBIT 007</span><span>★ VOICE FROM THE FIELD ★</span><span>PAGE 014/028</span></div>
+<div class="body">
+  <span class="kicker">ON THE RECORD</span>
+  <blockquote>WE <span class="strike">HAD A PLAN.</span><br/>THEN WE HAD <em>CUSTOMERS</em>.<br/><span class="r">IT TURNS OUT</span><br/>YOU ONLY NEED ONE.</blockquote>
+  <span class="cite">
+    <span class="ph">DK</span>
+    <span>— <big>DARIUS KELLNER</big>CEO · BLACKFLAG STUDIOS · 2026</span>
+  </span>
+</div>
+<div class="bottom"><span>★ NO PR. NO SPIN. NO BS.</span><span>BLACKFLAG.STUDIO</span><span>★ ★ ★ ★ ★</span></div>
+</body></html>

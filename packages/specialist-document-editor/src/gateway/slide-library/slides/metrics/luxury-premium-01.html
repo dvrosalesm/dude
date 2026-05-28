@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 6cqmin;gap:2.5cqmin;
+  background-image:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(201,169,97,.08),transparent 60%);
+  position:relative;
+}
+.frame{position:absolute;inset:2.5cqmin;border:1px solid var(--rule);pointer-events:none}
+.head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--gold);padding-bottom:1.6cqmin;position:relative;z-index:1}
+h2{font-size:4.8cqmin;line-height:1.1;font-weight:400;letter-spacing:-.005em;font-style:italic}
+h2 em{color:var(--gold)}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-content:center;position:relative;z-index:1}
+.cell{padding:3cqmin 2.5cqmin;display:flex;flex-direction:column;gap:1cqmin;border-right:1px solid var(--rule);text-align:center;align-items:center}
+.cell:last-child{border-right:none}
+.ornament{font-size:1.8cqmin;color:var(--gold);letter-spacing:.3em}
+.lbl{font-family:'Helvetica Neue',sans-serif;font-size:1.15cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.val{font-size:11cqmin;line-height:.9;font-weight:400;color:var(--gold);letter-spacing:-.04em;font-style:italic;margin:.5cqmin 0}
+.val sup{font-size:3.5cqmin;color:var(--ink);vertical-align:top;font-style:normal;letter-spacing:0}
+.val .roman{font-size:8cqmin;letter-spacing:-.01em}
+.desc{font-size:1.6cqmin;line-height:1.5;color:#c5b590;font-style:italic;max-width:24ch}
+.sub{font-family:'Helvetica Neue',sans-serif;font-size:1.1cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);padding-top:1cqmin;border-top:1px solid var(--rule);width:60%}
+.foot{display:flex;justify-content:space-between;align-items:center;font-family:'Helvetica Neue',sans-serif;font-size:1.1cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);padding-top:1.2cqmin;border-top:1px solid var(--rule);position:relative;z-index:1}
+.foot .center{color:var(--gold);letter-spacing:.5em}
+</style></head><body>
+<div class="frame"></div>
+<div class="head">
+  <div>
+    <span class="kicker">Inventaire de l'atelier · Spring MMXXVI</span>
+    <h2 style="margin-top:1cqmin">By <em>the numbers</em> — such as we allow.</h2>
+  </div>
+  <span class="kicker">Folio XXIV</span>
+</div>
+<div class="grid">
+  <div class="cell">
+    <span class="ornament">— ※ —</span>
+    <span class="lbl">Hours, per piece</span>
+    <span class="val">218<sup>h.</sup></span>
+    <p class="desc">The median bench time for a commission in the Spring collection, from first drawing to final polish.</p>
+    <span class="sub">— Ledger XLIII —</span>
+  </div>
+  <div class="cell">
+    <span class="ornament">— ※ —</span>
+    <span class="lbl">Pieces, per year</span>
+    <span class="val"><span class="roman">LXII</span></span>
+    <p class="desc">Sixty-two pieces, each signed by name, each numbered, and each carrying the ledger folio of its commission.</p>
+    <span class="sub">— MMXXVI annual —</span>
+  </div>
+  <div class="cell">
+    <span class="ornament">— ※ —</span>
+    <span class="lbl">Ateliers, in rotation</span>
+    <span class="val">07</span>
+    <p class="desc">Seven bench positions, unchanged since 1886 — the gilder, engraver, setter, chaser, polisher, assembler, and the apprentice.</p>
+    <span class="sub">— Paris ·  unchanged —</span>
+  </div>
+</div>
+<div class="foot"><span>Archives Aurelia</span><span class="center">— ❦ —</span><span>Private Preview · MMXXVI</span></div>
+</body></html>

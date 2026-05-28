@@ -1,0 +1,277 @@
+import { Elysia } from "elysia";
+import { gatewayHealthRoutes } from "./health.js";
+import { instanceRoutes } from "./instances.js";
+import { runnerRoutes } from "./runners.js";
+import { proxyRoutes } from "./proxy.js";
+import {
+  localhostOnly,
+  internalDbContext,
+  handleRouteError,
+  withInternalRequestDb,
+} from "./middleware.js";
+import * as internal from "./internal-handlers.js";
+import * as prospectLanding from "./internal/prospect-landing.js";
+import * as assistantInternal from "./assistant-internal-handlers.js";
+import * as toolHost from "./tool-host-handlers.js";
+import * as agentDispatch from "./agent-dispatch-handlers.js";
+import * as uiInput from "./ui-input-handlers.js";
+
+const { getToolHostCatalog, postToolHostExecute } = toolHost;
+const { getAgentCatalog, postAgentDispatch } = agentDispatch;
+
+function wrap<T extends (...args: never[]) => Promise<unknown>>(
+  fn: T,
+  ...args: Parameters<T>
+) {
+  return fn(...args);
+}
+
+export const v1Routes = new Elysia({ prefix: "/v1" })
+  .use(gatewayHealthRoutes)
+  .use(runnerRoutes)
+  .use(instanceRoutes)
+  .use(proxyRoutes)
+  .group("/internal", (app) =>
+    app
+      .use(localhostOnly)
+      .use(internalDbContext)
+      .get("/tool-host/catalog", async ({ request, set }) => {
+        try {
+          return await getToolHostCatalog(request);
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/tool-host/execute", async ({ request, set }) => {
+        try {
+          return await postToolHostExecute(request);
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .get("/agent/catalog", async ({ request, set }) => {
+        try {
+          return await getAgentCatalog(request);
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/agent/dispatch", async ({ request, set }) => {
+        try {
+          return await postAgentDispatch(request);
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/workspace/:workspaceId/save-messages", async ({ params, body, request, set }) => {
+        try {
+          return await withInternalRequestDb(request, () =>
+            internal.saveMessages(
+              params.workspaceId,
+              body as Record<string, unknown>,
+            ),
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/workspace/:workspaceId/charge-tool", async ({ params, body, request, set }) => {
+        try {
+          return await withInternalRequestDb(request, () =>
+            internal.chargeTool(
+              params.workspaceId,
+              body as Record<string, unknown>,
+            ),
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .get("/workspace/:workspaceId/config", async ({ params, request, set }) => {
+        try {
+          return await withInternalRequestDb(request, () =>
+            internal.getConfig(params.workspaceId),
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/workspace/:workspaceId/collection", async ({ params, body, request, set }) => {
+        try {
+          return await withInternalRequestDb(request, () =>
+            internal.saveCollection(
+              params.workspaceId,
+              body as Record<string, unknown>,
+            ),
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .get(
+        "/workspace/:workspaceId/collection/:collection",
+        async ({ params, request, set }) => {
+          try {
+            return await withInternalRequestDb(request, () =>
+              internal.readCollection(params.workspaceId, params.collection),
+            );
+          } catch (error) {
+            return handleRouteError(error, set);
+          }
+        },
+      )
+      .post("/workspace/:workspaceId/landing-page-draft", async ({ params, body, set }) => {
+        try {
+          return await wrap(
+            prospectLanding.saveDraft,
+            params.workspaceId,
+            body as Record<string, unknown>,
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/workspace/:workspaceId/landing-page", async ({ params, body, set }) => {
+        try {
+          return await wrap(
+            prospectLanding.saveLandingPage,
+            params.workspaceId,
+            body as Record<string, unknown>,
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/workspace/:workspaceId/landing-page-fields", async ({ params, body, set }) => {
+        try {
+          return await wrap(
+            prospectLanding.saveLandingPageFields,
+            params.workspaceId,
+            body as Record<string, unknown>,
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post(
+        "/workspace/:workspaceId/landing-page-attributions",
+        async ({ params, body, set }) => {
+          try {
+            return await wrap(
+              prospectLanding.saveLandingPageAttributions,
+              params.workspaceId,
+              body as Record<string, unknown>,
+            );
+          } catch (error) {
+            return handleRouteError(error, set);
+          }
+        },
+      )
+      .post("/workspace/:workspaceId/landing-page-publish", async ({ params, body, set }) => {
+        try {
+          return await wrap(
+            prospectLanding.publishLandingPage,
+            params.workspaceId,
+            body as Record<string, unknown>,
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .get(
+        "/workspace/:workspaceId/landing-page-html/:pageId",
+        async ({ params, set }) => {
+          try {
+            return await wrap(
+              prospectLanding.getLandingPageHtml,
+              params.workspaceId,
+              params.pageId,
+            );
+          } catch (error) {
+            return handleRouteError(error, set);
+          }
+        },
+      )
+      .post("/workspace/:workspaceId/landing-page-edit", async ({ params, body, set }) => {
+        try {
+          return await wrap(
+            prospectLanding.editLandingPage,
+            params.workspaceId,
+            body as Record<string, unknown>,
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .post("/workspace/:workspaceId/ui-input/wait", async ({ params, body, set }) => {
+        try {
+          return await wrap(
+            uiInput.waitForWorkspaceUiInput,
+            params.workspaceId,
+            body as Record<string, unknown>,
+          );
+        } catch (error) {
+          return handleRouteError(error, set);
+        }
+      })
+      .group("/assistant", (assistantApp) =>
+        assistantApp
+          .get("/specialist-workspaces", async ({ query, set }) => {
+            try {
+              return await wrap(
+                assistantInternal.listWorkspaces,
+                query.specialistId as string | undefined,
+              );
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          })
+          .post("/specialist-workspaces", async ({ body, set }) => {
+            try {
+              return await wrap(
+                assistantInternal.createWorkspace,
+                body as Record<string, unknown>,
+              );
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          })
+          .get("/memories", async ({ set }) => {
+            try {
+              return await wrap(assistantInternal.getMemories);
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          })
+          .post("/memories", async ({ body, set }) => {
+            try {
+              return await wrap(
+                assistantInternal.saveMemory,
+                body as Record<string, unknown>,
+              );
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          })
+          .post("/specialist-run", async ({ body, set }) => {
+            try {
+              return await wrap(
+                assistantInternal.runSpecialist,
+                body as Record<string, unknown>,
+              );
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          })
+          .post("/project-hub", async ({ body, set }) => {
+            try {
+              return await wrap(
+                assistantInternal.getProjectHub,
+                body as Record<string, unknown>,
+              );
+            } catch (error) {
+              return handleRouteError(error, set);
+            }
+          }),
+      ),
+  );

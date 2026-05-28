@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f2eee7;--ink:#1a1410;--muted:#6b5e52;--rule:#2a211a;--accent:#7a2e1f;
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 6cqmin;gap:3cqmin;
+}
+.head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:1.6cqmin}
+.head h2{font-size:4.5cqmin;font-weight:400;letter-spacing:-.01em;font-style:italic}
+.head .kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.body{display:grid;grid-template-columns:1fr 1fr;gap:4cqmin;align-content:center;column-rule:1px solid #cfc6b7}
+.col{border-right:1px solid #cfc6b7;padding-right:4cqmin}
+.col:last-child{border-right:none;padding-right:0;padding-left:4cqmin;border-left:1px solid #cfc6b7}
+.col:last-child{padding-left:0;border-left:none}
+article{margin-bottom:2.4cqmin}
+article:last-child{margin-bottom:0}
+article h3{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.8cqmin}
+article .lede{font-size:2cqmin;line-height:1.3;font-weight:400;margin-bottom:.8cqmin;letter-spacing:-.005em}
+article p{font-size:1.5cqmin;line-height:1.55;color:#3a302a}
+article p::first-letter{font-weight:700}
+.foot{display:flex;justify-content:space-between;border-top:1px solid var(--rule);padding-top:1.6cqmin;font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+</style></head><body>
+<div class="head">
+  <h2>Dispatches from the field.</h2>
+  <span class="kicker">Notebook · Five entries</span>
+</div>
+<div class="body">
+  <div class="col">
+    <article><h3>Entry 01</h3><div class="lede">The rewrite that wasn't.</div><p>We scoped a six-month rewrite in January and delivered none of it. Instead, the team shipped eleven small fixes that together accounted for the largest reliability improvement of the year.</p></article>
+    <article><h3>Entry 02</h3><div class="lede">A kinder sales motion.</div><p>We stopped chasing accounts that didn't want us. Pipeline shrank by a third. Win rate doubled. Sales cycles compressed to under a month.</p></article>
+    <article><h3>Entry 03</h3><div class="lede">The email we almost didn't send.</div><p>A plain-text newsletter written by a single engineer outperformed our five-person marketing calendar three weeks running.</p></article>
+  </div>
+  <div class="col">
+    <article><h3>Entry 04</h3><div class="lede">The meeting we killed.</div><p>Removing the Tuesday strategy sync returned sixteen hours a week to the org. No one asked to bring it back.</p></article>
+    <article><h3>Entry 05</h3><div class="lede">Trust as a product feature.</div><p>Publishing our incident post-mortems in full moved our NPS more than any onboarding change we shipped. Customers want to see the work, not the polish.</p></article>
+  </div>
+</div>
+<div class="foot"><span>Field Notes</span><span>— pp. 14 — 15 —</span><span>Issue IV</span></div>
+</body></html>

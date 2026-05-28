@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#1a0f1a;--ink:#f0e8d8;--muted:#a8957a;--gold:#c9a961;--velvet:#3d1a35;--rule:#3a2d2a;
+  font-family:'Didot','Bodoni 72','Playfair Display',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2cqmin;position:relative;text-align:center;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,169,97,.2),transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 100%,rgba(61,26,53,.5),transparent 60%);
+}
+.frame{position:absolute;inset:3cqmin;border:.15cqmin solid var(--gold);pointer-events:none;opacity:.5}
+.frame::before{content:"";position:absolute;inset:.8cqmin;border:.1cqmin solid rgba(201,169,97,.2);pointer-events:none}
+.corner{position:absolute;width:4cqmin;height:4cqmin;border:.2cqmin solid var(--gold)}
+.corner.tl{top:2.5cqmin;left:2.5cqmin;border-right:none;border-bottom:none}
+.corner.tr{top:2.5cqmin;right:2.5cqmin;border-left:none;border-bottom:none}
+.corner.bl{bottom:2.5cqmin;left:2.5cqmin;border-right:none;border-top:none}
+.corner.br{bottom:2.5cqmin;right:2.5cqmin;border-left:none;border-top:none}
+.masthead{position:relative;z-index:1;font-family:'Helvetica Neue',sans-serif;font-size:1.4cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);font-weight:500;display:flex;justify-content:space-between;align-items:center;padding-bottom:1.5cqmin;border-bottom:.12cqmin solid var(--gold)}
+.masthead .center{color:var(--ink);font-family:'Didot',serif;font-size:2cqmin;letter-spacing:.2em;font-style:italic;font-weight:300;text-transform:none}
+.main{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5cqmin;padding:2cqmin 0}
+.orn{font-size:2.8cqmin;color:var(--gold);letter-spacing:.5em}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.5cqmin;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);font-weight:500;padding:1cqmin 2.5cqmin;border-top:.12cqmin solid var(--gold);border-bottom:.12cqmin solid var(--gold)}
+.fin{font-size:12cqmin;line-height:1;font-weight:300;font-style:italic;color:var(--gold);letter-spacing:-.01em}
+h1{font-size:9cqmin;line-height:1.02;font-weight:300;letter-spacing:-.015em;max-width:16ch;font-style:italic}
+h1 em{font-style:normal;color:var(--gold)}
+.dedication{font-size:2.1cqmin;line-height:1.7;color:var(--muted);max-width:30ch;font-style:italic;font-weight:300}
+.dedication em{color:var(--gold);font-style:italic;font-weight:400}
+.contact-card{background:rgba(61,26,53,.4);border:.15cqmin solid var(--gold);padding:3cqmin 3.5cqmin;display:flex;flex-direction:column;gap:1.8cqmin;margin-top:1cqmin;width:100%;max-width:80%}
+.contact-card .hd{font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);font-weight:500;padding-bottom:1cqmin;border-bottom:.1cqmin solid var(--rule)}
+.contact-card .rows{display:grid;grid-template-columns:1fr 1fr;gap:1.8cqmin;text-align:left}
+.contact-card .row{display:flex;flex-direction:column;gap:.2cqmin}
+.contact-card .row .k{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.contact-card .row .v{font-size:2cqmin;font-style:italic;color:var(--ink);letter-spacing:.02em;font-weight:400}
+.script-sign{font-size:5cqmin;font-style:italic;color:var(--gold);letter-spacing:-.02em;line-height:.9;font-weight:300;margin-top:1cqmin}
+.sign-line{font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.foot-bar{position:relative;z-index:1;font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);font-weight:500;padding-top:1.2cqmin;border-top:.12cqmin solid var(--gold);display:flex;justify-content:space-between;align-items:center}
+.foot-bar .script{font-family:'Didot',serif;font-style:italic;color:var(--gold);font-size:2cqmin;letter-spacing:.05em;text-transform:none;font-weight:300}
+</style></head><body>
+<div class="frame"></div>
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<div class="masthead"><span>End · Fin</span><span class="center">Maison Côte &amp; Ciel</span><span>Vol. IX · 9 of 9</span></div>
+<div class="main">
+  <span class="orn">❦ · ※ · ❦</span>
+  <span class="kicker">— Remerciements —</span>
+  <div class="fin">Fin.</div>
+  <h1>With our <em>quiet</em><br/>thanks, <em>as ever</em>.</h1>
+  <p class="dedication">For your evening, your attention, and the standing invitation to the atelier — which is, <em>as it always has been</em>, open by the day and never by appointment.</p>
+  <div class="contact-card">
+    <span class="hd">— Par correspondance —</span>
+    <div class="rows">
+      <div class="row"><span class="k">Atelier</span><span class="v">14 rue de Turenne · 3<sup>e</sup> · Paris</span></div>
+      <div class="row"><span class="k">Correspondance</span><span class="v">atelier@cote-et-ciel.fr</span></div>
+      <div class="row"><span class="k">Carnet · Instagram</span><span class="v">@maison.coteetciel</span></div>
+      <div class="row"><span class="k">Invitations</span><span class="v">par lettre, les lundis</span></div>
+    </div>
+  </div>
+  <span class="script-sign">— avec reconnaissance, é.c-r.</span>
+  <span class="sign-line">directrice · sixième génération</span>
+</div>
+<div class="foot-bar"><span>Maison fondée MCMLXXIV</span><span class="script">— Vol. IX · MMXXVI —</span><span>Correspondance 0042</span></div>
+</body></html>

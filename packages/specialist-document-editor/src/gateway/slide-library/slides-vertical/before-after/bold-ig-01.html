@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5f1e8;--ink:#0a0a0a;--accent:#ff3b3b;--green:#00a86b;--muted:#6b6b6b;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:6cqmin;gap:3cqmin;
+}
+.pager{display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.head h2{font-size:11cqmin;line-height:.88;font-weight:900;letter-spacing:-.04em;text-transform:uppercase}
+.head h2 em{font-style:italic;color:var(--accent)}
+.head .sub{font-size:2.4cqmin;color:var(--muted);margin-top:1cqmin;font-weight:500;letter-spacing:.05em}
+.compare{display:grid;grid-template-rows:1fr 1fr;gap:2cqmin;align-content:stretch}
+.side{padding:4cqmin 3.5cqmin;border-radius:4cqmin;display:flex;flex-direction:column;gap:1.5cqmin;position:relative;overflow:hidden;border:.4cqmin solid var(--ink)}
+.side.before{background:#eee8d8;color:var(--ink)}
+.side.after{background:var(--ink);color:var(--bg);box-shadow:.6cqmin .6cqmin 0 var(--accent)}
+.side .tag{position:absolute;top:2cqmin;right:3cqmin;padding:.9cqmin 2cqmin;background:var(--ink);color:var(--bg);border-radius:100px;font-size:2cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+.side.after .tag{background:var(--green);color:var(--bg)}
+.side .label{font-size:2.4cqmin;font-weight:900;letter-spacing:.25em;text-transform:uppercase;color:var(--accent)}
+.side.after .label{color:var(--green)}
+.side h3{font-size:5.5cqmin;line-height:1;font-weight:900;letter-spacing:-.02em;text-transform:uppercase;margin-top:.5cqmin}
+.side h3 em{font-style:normal;background:var(--accent);color:var(--bg);padding:0 .6cqmin}
+.side.after h3 em{background:var(--green)}
+.side p{font-size:2.2cqmin;line-height:1.4;font-weight:500;margin-top:.5cqmin;opacity:.8}
+.meta-row{display:flex;gap:1.5cqmin;margin-top:auto;padding-top:1.5cqmin;border-top:1px solid rgba(0,0,0,.1);flex-wrap:wrap}
+.side.after .meta-row{border-top-color:rgba(255,255,255,.2)}
+.chip{padding:.9cqmin 2cqmin;border:.2cqmin solid var(--ink);border-radius:100px;font-size:1.9cqmin;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.side.after .chip{border-color:var(--bg)}
+.vs{position:relative;height:0}
+.vs-badge{position:absolute;top:-5cqmin;left:50%;transform:translateX(-50%);width:10cqmin;height:10cqmin;background:var(--accent);color:var(--bg);border:.5cqmin solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3cqmin;font-weight:900;z-index:2;box-shadow:.4cqmin .4cqmin 0 var(--ink)}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.5cqmin;border-top:1px solid #d0c9b8;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.foot .handle strong{color:var(--ink)}
+</style></head><body>
+<div class="pager"><span>@method.studio</span><span>case · 07/12</span></div>
+<div class="head">
+  <h2>3 weeks.<br/><em>Same product.</em> → New site.</h2>
+  <p class="sub">what changed, and what we did in 3 weeks to get there.</p>
+</div>
+<div class="compare">
+  <div class="side before">
+    <span class="tag">before</span>
+    <span class="label">Nov '25</span>
+    <h3>1.2% <em>conversion</em></h3>
+    <p>Homepage was a scroll. Pricing buried on slide three. Cart abandonment at 78%.</p>
+    <div class="meta-row"><span class="chip">$14k MRR</span><span class="chip">17s LCP</span><span class="chip">78% bounce</span></div>
+  </div>
+  <div class="vs"><span class="vs-badge">VS</span></div>
+  <div class="side after">
+    <span class="tag">after</span>
+    <span class="label">Feb '26</span>
+    <h3>5.8% <em>conversion</em></h3>
+    <p>Hero tells the whole story above the fold. Pricing in the nav. Cart flow = 2 screens.</p>
+    <div class="meta-row"><span class="chip">$41k MRR</span><span class="chip">2.1s LCP</span><span class="chip">22% bounce</span></div>
+  </div>
+</div>
+<div class="foot"><span>full case · bit.ly/studio-case-1</span><span class="handle">by <strong>@method.studio</strong></span></div>
+</body></html>

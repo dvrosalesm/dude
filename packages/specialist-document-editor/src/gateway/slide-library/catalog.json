@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-20",
+  "canvas": { "width": 1280, "height": 720, "aspect": "16:9" },
+  "canvases": {
+    "horizontal": { "width": 1280, "height": 720, "aspect": "16:9", "usage": "presentations, slides, keynotes" },
+    "vertical": { "width": 1080, "height": 1920, "aspect": "9:16", "usage": "instagram reels / stories / carousels, tiktok" }
+  },
+  "styles": {
+    "minimal-swiss": {
+      "label": "Minimal Swiss",
+      "keywords": ["minimal", "swiss", "typographic", "grid", "monochrome", "quiet", "editorial-report", "design-system", "clean", "white-space"],
+      "palette": ["#fafafa", "#0a0a0a", "#f5f5f2", "#6b6b6b"],
+      "voice": "understated, precise, typographic"
+    },
+    "editorial": {
+      "label": "Editorial Magazine",
+      "keywords": ["editorial", "magazine", "serif", "warm", "literary", "long-form", "journal", "annual-report", "newspaper", "cream"],
+      "palette": ["#f2eee7", "#1a1410", "#7a2e1f", "#c4944b"],
+      "voice": "literary, measured, with gravitas"
+    },
+    "startup-modern": {
+      "label": "Startup Modern",
+      "keywords": ["startup", "saas", "modern", "gradient", "tech", "pitch", "b2b", "product", "vivid", "investor-deck"],
+      "palette": ["#0b0d1a", "#22d3ee", "#8b5cf6", "#f8fafc"],
+      "voice": "confident, product-led, gradient-forward"
+    },
+    "corporate-clean": {
+      "label": "Corporate Clean",
+      "keywords": ["corporate", "consulting", "professional", "b2b", "blue", "board", "formal", "management", "finance", "advisory"],
+      "palette": ["#1e40af", "#0f172a", "#f8fafc", "#64748b"],
+      "voice": "professional, restrained, board-facing"
+    },
+    "dark-tech": {
+      "label": "Dark Developer",
+      "keywords": ["developer", "terminal", "code", "dark", "neon", "monospace", "devtool", "infrastructure", "engineering", "technical"],
+      "palette": ["#05060a", "#00ff88", "#00d9ff", "#e4e7ef"],
+      "voice": "precise, engineering-native, terminal-adjacent"
+    },
+    "playful-vibrant": {
+      "label": "Playful Vibrant",
+      "keywords": ["playful", "fun", "bright", "rounded", "whimsical", "consumer", "community", "indie", "memphis", "handwritten"],
+      "palette": ["#fef3c7", "#ec4899", "#3b82f6", "#10b981"],
+      "voice": "warm, witty, hand-drawn, unafraid of emoji"
+    },
+    "brutalist": {
+      "label": "Brutalist",
+      "keywords": ["brutalist", "raw", "zine", "manifesto", "oversized", "punk", "editorial-raw", "statement", "anti-corporate", "high-contrast"],
+      "palette": ["#ffea00", "#000000", "#ff2d2d", "#ffffff"],
+      "voice": "loud, blunt, shouting with a smirk"
+    },
+    "luxury-premium": {
+      "label": "Luxury Premium",
+      "keywords": ["luxury", "premium", "heritage", "maison", "atelier", "serif-display", "gold", "navy", "gala", "collector"],
+      "palette": ["#0a0e1a", "#c9a961", "#f5e6c8", "#3a3020"],
+      "voice": "restrained, heritage, French-editorial"
+    },
+    "bold-ig": {
+      "label": "Bold Instagram",
+      "keywords": ["instagram", "ig", "reel", "carousel", "bold", "sans", "highlighter", "tiktok", "social", "creator", "modern-editorial"],
+      "palette": ["#f5f1e8", "#0a0a0a", "#ff3b3b", "#fff27a"],
+      "voice": "confident creator, highlighted type, swipe-baiting",
+      "orientations": ["vertical"]
+    },
+    "soft-pastel": {
+      "label": "Soft Pastel",
+      "keywords": ["aesthetic", "studygram", "clean-girl", "pastel", "serif-script", "slow-living", "cottagecore", "journal", "peach", "sage"],
+      "palette": ["#f3ede3", "#8ba585", "#e8b091", "#3d2e24"],
+      "voice": "serif-script, sage-and-peach, slow-living journal",
+      "orientations": ["vertical"]
+    },
+    "meme-dark": {
+      "label": "Meme Dark Mode",
+      "keywords": ["meme", "twitter-screenshot", "dark-mode", "ironic", "relatable", "text-post", "reaction", "unhinged", "sf-pro", "internet"],
+      "palette": ["#000000", "#e7e9ea", "#1d9bf0", "#ff6b9d"],
+      "voice": "ironic, unhinged, twitter-native",
+      "orientations": ["vertical"]
+    },
+    "y2k-retro": {
+      "label": "Y2K Retro",
+      "keywords": ["y2k", "retro", "chrome", "2000s", "webcore", "bubble", "cd-rom", "frutiger", "scanlines", "cyber"],
+      "palette": ["#b0d8ff", "#ff2a68", "#c6ff00", "#1affff"],
+      "voice": "chrome-gradient, bubble-type, CD-ROM kitsch",
+      "orientations": ["vertical"]
+    },
+    "brutalist-zine": {
+      "label": "Brutalist Zine",
+      "keywords": ["brutalist", "zine", "xerox", "punk", "barcode", "stamp", "tabloid-vertical", "photocopy", "yellow-black", "statement"],
+      "palette": ["#ffea00", "#000000", "#ff2d2d", "#ffffff"],
+      "voice": "loud, xeroxed, tabloid-vertical",
+      "orientations": ["vertical"]
+    },
+    "dark-neon": {
+      "label": "Dark Neon (social)",
+      "keywords": ["developer", "code", "neon", "tiktok-dev", "terminal-vertical", "monospace", "devcore", "infosec", "vscode-like", "technical"],
+      "palette": ["#05060a", "#00ff88", "#ff3864", "#00d9ff"],
+      "voice": "devtok, monospace, neon glow",
+      "orientations": ["vertical"]
+    },
+    "handwritten-playful": {
+      "label": "Handwritten Playful",
+      "keywords": ["handwritten", "scrapbook", "journal", "washi", "polaroid", "ruled-paper", "sticky-note", "cottagecore", "casual", "personal"],
+      "palette": ["#f5efe0", "#c94f3c", "#eab73a", "#7a9b5c"],
+      "voice": "casual handwritten, washi-tape, polaroid, journal",
+      "orientations": ["vertical"]
+    },
+    "editorial-luxe": {
+      "label": "Editorial Luxe (social)",
+      "keywords": ["luxury", "fashion", "heritage", "maison", "velvet", "gold", "parfum", "couture", "dispatches", "chapter"],
+      "palette": ["#1a0f1a", "#c9a961", "#f0e8d8", "#3d1a35"],
+      "voice": "French heritage, velvet navy, maison correspondence",
+      "orientations": ["vertical"]
+    },
+    "meme-trend": {
+      "label": "Meme / Trending Format",
+      "keywords": ["meme", "trend", "viral", "drake", "tier-list", "pie-chart", "red-flag", "green-flag", "nobody-me", "pov", "wrapped", "rent-free", "tiktok", "reels", "shitpost", "relatable"],
+      "palette": ["#fef6d9", "#ef4444", "#fbbf24", "#22d3ee"],
+      "voice": "terminally-online, format-literate, relatable, unhinged",
+      "orientations": ["horizontal", "vertical"]
+    }
+  },
+  "categories": {
+    "title": { "label": "Title / Cover", "aliases": ["cover", "opening", "intro", "hero-title"] },
+    "section": { "label": "Section Divider", "aliases": ["chapter", "divider", "part"] },
+    "agenda": { "label": "Agenda / TOC", "aliases": ["contents", "outline", "toc", "schedule"] },
+    "bullets": { "label": "List / Bullets", "aliases": ["points", "list", "rules", "findings", "learnings"] },
+    "two-column": { "label": "Two-Column Split", "aliases": ["compare", "split", "text-plus-visual", "problem-solution"] },
+    "three-column": { "label": "Three-Column Cards", "aliases": ["features", "cards", "trio"] },
+    "metrics": { "label": "Metrics / KPIs", "aliases": ["numbers", "stats", "dashboard", "results"] },
+    "quote": { "label": "Quote / Testimonial", "aliases": ["pull-quote", "testimonial", "voice"] },
+    "timeline": { "label": "Timeline", "aliases": ["history", "chronology", "milestones", "roadmap-horizontal"] },
+    "process": { "label": "Process / Flow", "aliases": ["steps", "lifecycle", "sequence", "workflow", "phases"] },
+    "hero": { "label": "Hero Headline", "aliases": ["big-number", "showcase", "feature"] },
+    "pricing": { "label": "Pricing Tiers", "aliases": ["plans", "tiers", "packages"] },
+    "comparison": { "label": "Comparison Table", "aliases": ["matrix", "decision-matrix", "table", "options"] },
+    "team": { "label": "Team / People", "aliases": ["people", "crew", "cast", "contributors"] },
+    "closing": { "label": "Closing / Thanks", "aliases": ["thank-you", "contact", "end", "questions", "qna"] },
+    "hook": { "label": "Hook / Opening Frame", "aliases": ["first-frame", "reel-hook", "attention", "pov", "opener"], "orientations": ["vertical"] },
+    "carousel-cover": { "label": "Carousel Cover (IG)", "aliases": ["carousel", "carousel-1", "slide-1", "cover-vertical", "series-cover", "instagram-cover"], "orientations": ["vertical"] },
+    "tip": { "label": "Single Tip", "aliases": ["advice", "steal-this", "pro-tip", "how-to"], "orientations": ["vertical"] },
+    "list": { "label": "Numbered List (social)", "aliases": ["ranking", "checklist", "things", "top-5"], "orientations": ["vertical"] },
+    "stat": { "label": "Hero Stat", "aliases": ["big-number-vertical", "data-drop", "single-stat"], "orientations": ["vertical"] },
+    "before-after": { "label": "Before / After", "aliases": ["transformation", "then-now", "vs", "case"], "orientations": ["vertical"] },
+    "story-cover": { "label": "Story / Reel Cover", "aliases": ["story", "highlights-cover"], "orientations": ["vertical"] },
+    "cta-end": { "label": "Swipe-End CTA", "aliases": ["last-slide", "follow", "save-share", "end-social"], "orientations": ["vertical"] },
+    "product": { "label": "Product Showcase", "aliases": ["drop", "new-product", "ecommerce", "shop"], "orientations": ["vertical"] },
+    "announcement": { "label": "Announcement / Launch", "aliases": ["launch", "drop", "news"], "orientations": ["vertical"] },
+    "meme-text": { "label": "All-Text Meme", "aliases": ["tweet", "screenshot", "shitpost", "text-meme"], "orientations": ["vertical"] },
+    "drake": { "label": "Drake Approve/Reject", "aliases": ["drake-meme", "approve-reject", "two-panel", "drakeposting"] },
+    "pie-meme": { "label": "Pie Chart Meme", "aliases": ["personality-pie", "breakdown-pie", "chart-meme"] },
+    "tier-list": { "label": "Tier List (S/A/B)", "aliases": ["ranking", "tier", "tiers", "s-tier", "rankings", "tierlist"] },
+    "red-green-flag": { "label": "Red Flag / Green Flag", "aliases": ["redflag-greenflag", "flags", "warnings-wins"] },
+    "nobody-me": { "label": "Nobody : / Me :", "aliases": ["nobody-asked", "3am-thought", "meme-dialogue"] },
+    "pov": { "label": "POV Frame", "aliases": ["point-of-view", "pov-meme"], "orientations": ["vertical"] },
+    "year-wrapped": { "label": "Wrapped / Year-in-Review", "aliases": ["wrapped", "year-end", "recap", "spotify-wrapped-style"], "orientations": ["vertical"] },
+    "head-rent-free": { "label": "Living Rent-Free", "aliases": ["rent-free", "living-in-my-head", "things-in-my-head"], "orientations": ["vertical"] }
+  },
+  "slides": [
+    { "id": "ms-title-01", "file": "slides/title/minimal-swiss-01.html", "style": "minimal-swiss", "category": "title", "tags": ["quarterly-review", "report", "grid", "italic", "monochrome"], "description": "Minimal typographic cover with a seven-column grid overlay, small-caps meta row, and an italicized tagline." },
+    { "id": "ms-section-01", "file": "slides/section/minimal-swiss-01.html", "style": "minimal-swiss", "category": "section", "tags": ["chapter-number", "rule", "dark"], "description": "Dark chapter-break with a giant 02 numeral on the left rail and a hairline-rule intro on the right." },
+    { "id": "ms-bullets-01", "file": "slides/bullets/minimal-swiss-01.html", "style": "minimal-swiss", "category": "bullets", "tags": ["learnings", "two-column-list", "numbered"], "description": "Two-column numbered list of quarter learnings with hairline rules between items." },
+    { "id": "ms-two-col-01", "file": "slides/two-column/minimal-swiss-01.html", "style": "minimal-swiss", "category": "two-column", "tags": ["case-study", "key-value", "quote-inline"], "description": "Case-study split with narrative on the left, a key-value fact sheet and pull quote on the right." },
+    { "id": "ms-metrics-01", "file": "slides/metrics/minimal-swiss-01.html", "style": "minimal-swiss", "category": "metrics", "tags": ["four-up", "deltas", "quiet"], "description": "Four-up KPI row with green/red deltas and a one-sentence note under each metric." },
+    { "id": "ms-quote-01", "file": "slides/quote/minimal-swiss-01.html", "style": "minimal-swiss", "category": "quote", "tags": ["pull-quote", "serif-mark", "three-column"], "description": "Centered pull-quote flanked by narrow rails with vertical meta text and large serif quotation marks." },
+    { "id": "ms-timeline-01", "file": "slides/timeline/minimal-swiss-01.html", "style": "minimal-swiss", "category": "timeline", "tags": ["horizontal", "five-step", "quarter"], "description": "Horizontal five-step timeline showing how a quarter unfolded, each with date, title, and short body." },
+    { "id": "ms-agenda-01", "file": "slides/agenda/minimal-swiss-01.html", "style": "minimal-swiss", "category": "agenda", "tags": ["numbered-rows", "time-boxed"], "description": "Agenda of four numbered rows with subtitles, presenter names, and minute allocations." },
+    { "id": "ms-closing-01", "file": "slides/closing/minimal-swiss-01.html", "style": "minimal-swiss", "category": "closing", "tags": ["thank-you", "contact-row"], "description": "Closing slide with 'Thank you. Questions welcome.' over a three-column contact row." },
+
+    { "id": "ed-title-01", "file": "slides/title/editorial-01.html", "style": "editorial", "category": "title", "tags": ["magazine-masthead", "serif", "annual-report", "dropcap"], "description": "Cream magazine-style cover with double-rule masthead, serif logotype, kicker, headline, and a sidebar with dropcap." },
+    { "id": "ed-section-01", "file": "slides/section/editorial-01.html", "style": "editorial", "category": "section", "tags": ["chapter", "gold-accent", "dark-cream"], "description": "Dark cream section divider with gold section number and italic headline; ornamental divider at the foot." },
+    { "id": "ed-bullets-01", "file": "slides/bullets/editorial-01.html", "style": "editorial", "category": "bullets", "tags": ["journal-entries", "two-column", "dropcap"], "description": "Notebook-style two-column layout of five editorial 'entries' with dropcap first letters." },
+    { "id": "ed-two-col-01", "file": "slides/two-column/editorial-01.html", "style": "editorial", "category": "two-column", "tags": ["feature-story", "interview", "dropcap"], "description": "Editorial feature split: headline and lede on the left; three-paragraph article with dropcap on the right, framed." },
+    { "id": "ed-quote-01", "file": "slides/quote/editorial-01.html", "style": "editorial", "category": "quote", "tags": ["centered", "framed", "serif-mark"], "description": "Centered editorial pull-quote in an inner frame with decorative ornaments top and bottom." },
+    { "id": "ed-hero-01", "file": "slides/hero/editorial-01.html", "style": "editorial", "category": "hero", "tags": ["big-number", "dark-cream", "gold"], "description": "Split hero featuring a giant gold serif statistic (1.47×) alongside a reported headline and lede." },
+    { "id": "ed-timeline-01", "file": "slides/timeline/editorial-01.html", "style": "editorial", "category": "timeline", "tags": ["vertical", "five-year-history", "dotted"], "description": "Vertical history timeline with italic year markers, uppercase section headings, and short narrative blurbs." },
+    { "id": "ed-metrics-01", "file": "slides/metrics/editorial-01.html", "style": "editorial", "category": "metrics", "tags": ["three-column", "italic-narrative", "deltas"], "description": "Three-column annual-report metrics with italic commentary under each serif numeral." },
+    { "id": "ed-closing-01", "file": "slides/closing/editorial-01.html", "style": "editorial", "category": "closing", "tags": ["fin", "colophon", "heritage"], "description": "Magazine closing 'Fin.' slide with colophon-style contact card and masthead." },
+
+    { "id": "sm-title-01", "file": "slides/title/startup-modern-01.html", "style": "startup-modern", "category": "title", "tags": ["investor-deck", "series-b", "gradient", "badge"], "description": "Series-B cover with a glowing pill badge, gradient wordmark headline, subtitle, and three meta chips." },
+    { "id": "sm-section-01", "file": "slides/section/startup-modern-01.html", "style": "startup-modern", "category": "section", "tags": ["gradient-number", "chapter", "split"], "description": "Section divider with a giant gradient numeral on the left and large headline on the right." },
+    { "id": "sm-bullets-01", "file": "slides/bullets/startup-modern-01.html", "style": "startup-modern", "category": "bullets", "tags": ["three-cards", "icon", "gradient"], "description": "Three-card feature grid on a dark gradient with emoji-style icons and quantified taglines." },
+    { "id": "sm-three-col-01", "file": "slides/three-column/startup-modern-01.html", "style": "startup-modern", "category": "three-column", "tags": ["personas", "featured-middle", "light-bg"], "description": "Light-mode three persona cards with a highlighted middle 'most popular' card and checklisted benefits." },
+    { "id": "sm-metrics-01", "file": "slides/metrics/startup-modern-01.html", "style": "startup-modern", "category": "metrics", "tags": ["bento-grid", "hero-metric", "sparkline", "deltas"], "description": "Bento-style metric grid with a prominent hero tile, sparkline, live badge, and four smaller KPI tiles." },
+    { "id": "sm-hero-01", "file": "slides/hero/startup-modern-01.html", "style": "startup-modern", "category": "hero", "tags": ["product-mock", "gradient-cta", "logos"], "description": "Hero with tagline, CTA buttons, customer-logo row, and a simulated console mock showing a live API call." },
+    { "id": "sm-process-01", "file": "slides/process/startup-modern-01.html", "style": "startup-modern", "category": "process", "tags": ["four-step", "lifecycle", "inline-code"], "description": "Four-step request-lifecycle diagram with inline code snippets and arrow connectors between cards." },
+    { "id": "sm-two-col-01", "file": "slides/two-column/startup-modern-01.html", "style": "startup-modern", "category": "two-column", "tags": ["problem-solution", "before-after", "colored-borders"], "description": "Side-by-side problem/solution cards with red/green borders, checked benefits, and paired footer stats." },
+    { "id": "sm-pricing-01", "file": "slides/pricing/startup-modern-01.html", "style": "startup-modern", "category": "pricing", "tags": ["three-tier", "featured-middle", "gradient-cta"], "description": "Classic three-tier pricing with a dark highlighted middle tier featuring a gradient border." },
+    { "id": "sm-closing-01", "file": "slides/closing/startup-modern-01.html", "style": "startup-modern", "category": "closing", "tags": ["thank-you", "cta", "contact-grid"], "description": "Centered closing slide with a gradient headline, dual CTA, and four contact chips in a row." },
+
+    { "id": "cc-title-01", "file": "slides/title/corporate-clean-01.html", "style": "corporate-clean", "category": "title", "tags": ["consulting", "header-bar", "sidecar-meta"], "description": "Consulting cover with a blue top bar, confidentiality badge, headline, and a sidecar meta panel listing client, lead, and date." },
+    { "id": "cc-agenda-01", "file": "slides/agenda/corporate-clean-01.html", "style": "corporate-clean", "category": "agenda", "tags": ["five-rows", "presenter", "time-boxed", "active-row"], "description": "Board-session agenda with five rows showing topic, presenter, duration, and a highlighted active row." },
+    { "id": "cc-metrics-01", "file": "slides/metrics/corporate-clean-01.html", "style": "corporate-clean", "category": "metrics", "tags": ["executive-dashboard", "four-up", "watchpoint"], "description": "Executive-dashboard KPI grid with color-coded left borders and a legend distinguishing on-plan vs watchpoints." },
+    { "id": "cc-comparison-01", "file": "slides/comparison/corporate-clean-01.html", "style": "corporate-clean", "category": "comparison", "tags": ["decision-matrix", "recommended-option", "chips", "five-dimension"], "description": "Multi-dimension decision matrix comparing three options with a highlighted 'Recommended' column." },
+    { "id": "cc-process-01", "file": "slides/process/corporate-clean-01.html", "style": "corporate-clean", "category": "process", "tags": ["phase-plan", "four-phase", "gate-criteria"], "description": "90-day activation plan with a color-graded phase bar, four phase cards, and exit-gate criteria." },
+    { "id": "cc-bullets-01", "file": "slides/bullets/corporate-clean-01.html", "style": "corporate-clean", "category": "bullets", "tags": ["key-findings", "summary-quote", "two-column"], "description": "Diagnostic findings slide with an italic summary banner and two columns of numbered findings with Structural/Operational tags." },
+    { "id": "cc-team-01", "file": "slides/team/corporate-clean-01.html", "style": "corporate-clean", "category": "team", "tags": ["engagement-team", "eight-people", "initials-avatar"], "description": "Eight-person engagement team grid with initial-based avatars, role, bio, and tag chips." },
+    { "id": "cc-closing-01", "file": "slides/closing/corporate-clean-01.html", "style": "corporate-clean", "category": "closing", "tags": ["decisions-requested", "contact-card"], "description": "Closing page asking the board to endorse three decisions, with a framed contact card on the right." },
+
+    { "id": "dt-title-01", "file": "slides/title/dark-tech-01.html", "style": "dark-tech", "category": "title", "tags": ["terminal", "prompt", "launch-week", "readme"], "description": "Terminal-chrome cover with macOS traffic lights, blinking caret, ASCII-style headline, and kv meta chips." },
+    { "id": "dt-bullets-01", "file": "slides/bullets/dark-tech-01.html", "style": "dark-tech", "category": "bullets", "tags": ["feature-cards", "rune-icons", "inline-code"], "description": "Grid of four feature cards with monospace runes, inline code, and metric taglines." },
+    { "id": "dt-hero-01", "file": "slides/hero/dark-tech-01.html", "style": "dark-tech", "category": "hero", "tags": ["code-snippet", "api-demo", "response"], "description": "Split hero with marketing copy on the left and a realistic code editor + API response panel on the right." },
+    { "id": "dt-metrics-01", "file": "slides/metrics/dark-tech-01.html", "style": "dark-tech", "category": "metrics", "tags": ["observability", "live-dashboard", "sparkline", "gauge"], "description": "Observability-style live dashboard: hero latency panel with sparkline plus smaller tiles for uptime, errors, cost." },
+    { "id": "dt-process-01", "file": "slides/process/dark-tech-01.html", "style": "dark-tech", "category": "process", "tags": ["sequence-diagram", "five-node", "timestamps"], "description": "Five-node sequence diagram of a request lifecycle with dashed arrow connectors and per-node latency." },
+    { "id": "dt-three-col-01", "file": "slides/three-column/dark-tech-01.html", "style": "dark-tech", "category": "three-column", "tags": ["security", "allow-block", "code-panels"], "description": "Three sandbox-surface cards (Python/SQL/Shell) with code snippets and allow/block rule lists." },
+    { "id": "dt-closing-01", "file": "slides/closing/dark-tech-01.html", "style": "dark-tech", "category": "closing", "tags": ["terminal-exit", "ascii-box", "qna"], "description": "Terminal-themed closing with ASCII-box banner, blinking prompt, and four contact kv-tiles." },
+
+    { "id": "pv-title-01", "file": "slides/title/playful-vibrant-01.html", "style": "playful-vibrant", "category": "title", "tags": ["launch", "sticker", "blob", "handwritten"], "description": "Playful launch cover with blob shapes, sticker badges, wavy underline, rotated cards, and a cursive signature." },
+    { "id": "pv-three-col-01", "file": "slides/three-column/playful-vibrant-01.html", "style": "playful-vibrant", "category": "three-column", "tags": ["rituals", "tape-decorations", "handwritten-signature"], "description": "Three rotated 'ritual' cards with tape strips, emoji icons, colored badges, and handwritten signatures." },
+    { "id": "pv-quote-01", "file": "slides/quote/playful-vibrant-01.html", "style": "playful-vibrant", "category": "quote", "tags": ["testimonial", "pink-bg", "sticker-badges"], "description": "Bright pink testimonial slide with oversized quotation mark, bouncy type, highlight blocks, and a stickered avatar cite card." },
+    { "id": "pv-metrics-01", "file": "slides/metrics/playful-vibrant-01.html", "style": "playful-vibrant", "category": "metrics", "tags": ["bento", "hero-number", "sticker-badges", "handwritten-notes"], "description": "Bento metrics grid mixing yellow/pink/blue/green cards with handwritten deltas and sticker badges." },
+    { "id": "pv-bullets-01", "file": "slides/bullets/playful-vibrant-01.html", "style": "playful-vibrant", "category": "bullets", "tags": ["operating-agreement", "six-items", "checkmarks"], "description": "Six-item 'operating agreement' list with color-varied checkmark bubbles and handwritten annotations." },
+    { "id": "pv-closing-01", "file": "slides/closing/playful-vibrant-01.html", "style": "playful-vibrant", "category": "closing", "tags": ["thank-you", "cactus", "sticker-contacts"], "description": "Pink 'Thanks for being lovely!' closing with stars, a cactus emoji, and rotated sticker-style contact pills." },
+
+    { "id": "br-title-01", "file": "slides/title/brutalist-01.html", "style": "brutalist", "category": "title", "tags": ["manifesto", "barcode", "yellow-black", "oversized-type"], "description": "Brutalist yellow-and-black manifesto cover with barcode, stamp, oversized uppercase headline, and bold footer bar." },
+    { "id": "br-section-01", "file": "slides/section/brutalist-01.html", "style": "brutalist", "category": "section", "tags": ["chapter-rail", "roman-numeral", "multicolor-bar"], "description": "Section divider with yellow chapter rail containing a Roman-numeral III and a black panel headline with a chunky multicolor bar." },
+    { "id": "br-hero-01", "file": "slides/hero/brutalist-01.html", "style": "brutalist", "category": "hero", "tags": ["big-number", "quadrant-layout", "stickers"], "description": "Quadrant layout: black headline panel, yellow +412% stat panel, white copy panel, and red sticker grid." },
+    { "id": "br-quote-01", "file": "slides/quote/brutalist-01.html", "style": "brutalist", "category": "quote", "tags": ["strikethrough", "red-bars", "stamp-cite"], "description": "Yellow brutalist quote slide with strikethrough phrases, giant serif mark, and a black/red stamp-style citation card." },
+    { "id": "br-bullets-01", "file": "slides/bullets/brutalist-01.html", "style": "brutalist", "category": "bullets", "tags": ["rules", "numbered", "alternating-cells"], "description": "Six-rule grid of numbered cells alternating black and white, each with a red 'stamp' in the corner." },
+    { "id": "br-metrics-01", "file": "slides/metrics/brutalist-01.html", "style": "brutalist", "category": "metrics", "tags": ["quadrant", "hero-stat", "stamps"], "description": "Brutalist metrics tableau with a giant $8.4M hero cell, sticker stamps, and adjacent yellow/red/white tiles." },
+    { "id": "br-closing-01", "file": "slides/closing/brutalist-01.html", "style": "brutalist", "category": "closing", "tags": ["fin", "email-card", "no-newsletter"], "description": "Yellow closing with 'THAT'S IT. GO BUILD SOMETHING.' headline, a black email card, and a rotated 'no newsletter' stamp." },
+
+    { "id": "lx-title-01", "file": "slides/title/luxury-premium-01.html", "style": "luxury-premium", "category": "title", "tags": ["maison", "invitation", "double-frame", "crest"], "description": "Navy luxury cover with a double inner frame, centered italic headline, gold rule-bordered kicker, and maison crest." },
+    { "id": "lx-section-01", "file": "slides/section/luxury-premium-01.html", "style": "luxury-premium", "category": "section", "tags": ["chapter", "roman-numeral", "gold-accent"], "description": "Luxury chapter divider with an italic Roman-numeral IV on a dark rail and italic gold-accent headline on the right." },
+    { "id": "lx-hero-01", "file": "slides/hero/luxury-premium-01.html", "style": "luxury-premium", "category": "hero", "tags": ["big-number", "heritage", "italic-serif"], "description": "Heritage hero with a giant italic serif 140y. numeral set in a gold-glow halo, accompanied by a reflective caption." },
+    { "id": "lx-quote-01", "file": "slides/quote/luxury-premium-01.html", "style": "luxury-premium", "category": "quote", "tags": ["framed", "corner-marks", "italic-serif"], "description": "Framed italic serif quote on navy with gold corner marks, ornamental divider, and a multi-line citation." },
+    { "id": "lx-timeline-01", "file": "slides/timeline/luxury-premium-01.html", "style": "luxury-premium", "category": "timeline", "tags": ["five-year", "roman-numerals", "horizontal-dots"], "description": "Horizontal luxury timeline with five gold dots, italic year markers, Roman-numeral captions, and italic narrative under each." },
+    { "id": "lx-metrics-01", "file": "slides/metrics/luxury-premium-01.html", "style": "luxury-premium", "category": "metrics", "tags": ["three-column", "italic-serif", "atelier-numbers"], "description": "Three vertical atelier metrics (hours per piece, pieces per year, ateliers) set in italic gold serif with measured commentary." },
+    { "id": "lx-two-col-01", "file": "slides/two-column/luxury-premium-01.html", "style": "luxury-premium", "category": "two-column", "tags": ["dossier", "dropcap", "artisan-ledger"], "description": "Dossier split: dropcap narrative on the left; a seven-entry gold-labeled artisan ledger on the right." },
+    { "id": "lx-closing-01", "file": "slides/closing/luxury-premium-01.html", "style": "luxury-premium", "category": "closing", "tags": ["remerciements", "three-column-contact", "double-frame"], "description": "Double-framed closing thanking the audience in italic serif, with three refined contact columns and a centered logotype masthead." },
+
+    { "id": "v-bi-hook-01", "file": "slides-vertical/hook/bold-ig-01.html", "style": "bold-ig", "category": "hook", "orientation": "vertical", "tags": ["pov", "morning-routine", "highlighter", "strike", "scribble-arrow"], "description": "IG reel hook in Helvetica Black: strike-through subject, highlighter accent, scribbled arrow annotation, and a black swipe-up pill CTA." },
+    { "id": "v-bi-carousel-01", "file": "slides-vertical/carousel-cover/bold-ig-01.html", "style": "bold-ig", "category": "carousel-cover", "orientation": "vertical", "tags": ["new-series", "progress-dots", "9-tools", "neon-badge"], "description": "Dark IG carousel cover with 8-dot progress, neon-green pill badge, stroked outline headline, and an animated swipe row." },
+    { "id": "v-bi-tip-01", "file": "slides-vertical/tip/bold-ig-01.html", "style": "bold-ig", "category": "tip", "orientation": "vertical", "tags": ["page-counter", "highlighter", "callout", "steal-this"], "description": "Single IG tip with page counter, kicker pill, highlighter underline, and a dark 'steal this' callout at the bottom." },
+    { "id": "v-bi-list-01", "file": "slides-vertical/list/bold-ig-01.html", "style": "bold-ig", "category": "list", "orientation": "vertical", "tags": ["numbered", "circular-numerals", "hot-row", "fonts-ranking"], "description": "Five-item IG ranking list: each item a card with a black circular numeral, a highlighted 'hot' row, and save/swipe CTA." },
+    { "id": "v-bi-quote-01", "file": "slides-vertical/quote/bold-ig-01.html", "style": "bold-ig", "category": "quote", "orientation": "vertical", "tags": ["red-bg", "giant-serif-mark", "testimonial", "avatar-pill"], "description": "Red IG testimonial with giant Times serif quotation mark, stroked + underlined words, and an avatar-pill cite card." },
+    { "id": "v-bi-stat-01", "file": "slides-vertical/stat/bold-ig-01.html", "style": "bold-ig", "category": "stat", "orientation": "vertical", "tags": ["hero-number", "87-percent", "neon-accent", "glow"], "description": "Hero stat slide with a neon-green 87% numeral glowing on black, a dashed frame, delta pill and 'of gen z' pull copy." },
+    { "id": "v-bi-beforeafter-01", "file": "slides-vertical/before-after/bold-ig-01.html", "style": "bold-ig", "category": "before-after", "orientation": "vertical", "tags": ["conversion", "vs-badge", "case-study", "chip-row"], "description": "Conversion-rate before/after with stacked panels, vs badge in the middle, and chips of MRR/LCP/bounce for each side." },
+    { "id": "v-bi-cta-01", "file": "slides-vertical/cta-end/bold-ig-01.html", "style": "bold-ig", "category": "cta-end", "orientation": "vertical", "tags": ["3-things", "like-save-follow", "stacked-ctas"], "description": "IG swipe-end CTA stack: like / save / follow rows in dark cards with accent shadows and a final-slide badge." },
+    { "id": "v-bi-announce-01", "file": "slides-vertical/announcement/bold-ig-01.html", "style": "bold-ig", "category": "announcement", "orientation": "vertical", "tags": ["launch", "ticker", "date-card", "pre-order"], "description": "Launch announcement with a scrolling top/bottom ticker, rotated yellow pill badge, outline/italic headline, and a dated drop card." },
+
+    { "id": "v-sp-carousel-01", "file": "slides-vertical/carousel-cover/soft-pastel-01.html", "style": "soft-pastel", "category": "carousel-cover", "orientation": "vertical", "tags": ["aesthetic", "serif-script", "sage", "peach", "slow-living"], "description": "Pastel aesthetic carousel cover with double frame, serif logotype, italic + script headline, ornament dividers, and a gentle swipe row." },
+    { "id": "v-sp-tip-01", "file": "slides-vertical/tip/soft-pastel-01.html", "style": "soft-pastel", "category": "tip", "orientation": "vertical", "tags": ["ritual", "roman-numerals", "card-highlight", "sage"], "description": "Aesthetic tip slide with a circular ordinal badge, script accent headline, and a cream card listing required ingredients." },
+    { "id": "v-sp-list-01", "file": "slides-vertical/list/soft-pastel-01.html", "style": "soft-pastel", "category": "list", "orientation": "vertical", "tags": ["sunday-list", "roman", "slow-living", "framed"], "description": "Framed pastel list of five Sunday rituals with italic Roman-numeral markers, peach-accented entry, and cursive handle footer." },
+    { "id": "v-sp-quote-01", "file": "slides-vertical/quote/soft-pastel-01.html", "style": "soft-pastel", "category": "quote", "orientation": "vertical", "tags": ["journal", "script-emphasis", "peach-mark", "double-frame"], "description": "Peach journal-style quote with giant serif mark, wavy-underlined script emphasis, ornament dividers, and a centered cite." },
+    { "id": "v-sp-beforeafter-01", "file": "slides-vertical/before-after/soft-pastel-01.html", "style": "soft-pastel", "category": "before-after", "orientation": "vertical", "tags": ["garden-diary", "two-summers", "chips", "script-vs"], "description": "Garden-diary transformation with cream 'summer '24' and peach 'summer '26' cards, a script '— vs —' divider, and pastel stat chips." },
+    { "id": "v-sp-product-01", "file": "slides-vertical/product/soft-pastel-01.html", "style": "soft-pastel", "category": "product", "orientation": "vertical", "tags": ["apothecary", "bottle", "artisanal", "peach-bg"], "description": "Apothecary product slide with an illustrated bottle mock, three chip row of origin/volume/use, italic price + CTA, and a framed card." },
+    { "id": "v-sp-cta-01", "file": "slides-vertical/cta-end/soft-pastel-01.html", "style": "soft-pastel", "category": "cta-end", "orientation": "vertical", "tags": ["remerciements", "3-links", "handwritten-sign", "framed"], "description": "Pastel closing slide with framed border, italic 'thank you' + script, three save/subscribe/follow link cards, and a handwritten sign-off." },
+
+    { "id": "v-md-hook-01", "file": "slides-vertical/hook/meme-dark-01.html", "style": "meme-dark", "category": "hook", "orientation": "vertical", "tags": ["ios-status", "strike-through", "pov", "reactions"], "description": "iOS-status-bar hook slide with strike-through 'senior' → 'unemployed', rotated scribble note, emoji reaction pills, and a follow row." },
+    { "id": "v-md-meme-01", "file": "slides-vertical/meme-text/meme-dark-01.html", "style": "meme-dark", "category": "meme-text", "orientation": "vertical", "tags": ["twitter-screenshot", "tweet-chrome", "verified", "stats-row"], "description": "Pixel-perfect Twitter/X tweet screenshot meme with verified check, action row, engagement stats, and a quoted reply card." },
+    { "id": "v-md-tip-01", "file": "slides-vertical/tip/meme-dark-01.html", "style": "meme-dark", "category": "tip", "orientation": "vertical", "tags": ["unsolicited-advice", "junior-devs", "steal-this"], "description": "Dark-mode IG tip with a handle pill header, amber kicker badge, highlighter quotes, and a glowing accent 'steal this' call-out." },
+    { "id": "v-md-list-01", "file": "slides-vertical/list/meme-dark-01.html", "style": "meme-dark", "category": "list", "orientation": "vertical", "tags": ["stop-start", "therapist", "checklist"], "description": "Unhinged therapist-advice list: red-bordered stop items with ✕ icons and green-bordered start items with ✓, each tagged by category." },
+    { "id": "v-md-quote-01", "file": "slides-vertical/quote/meme-dark-01.html", "style": "meme-dark", "category": "quote", "orientation": "vertical", "tags": ["twitter-post-ui", "verified", "3am-screenshot"], "description": "Realistic X/Twitter post UI quote with verified account, full engagement stats, action bar, reply composer, and a cursive 'screenshotted at 3am' sticker." },
+    { "id": "v-md-cta-01", "file": "slides-vertical/cta-end/meme-dark-01.html", "style": "meme-dark", "category": "cta-end", "orientation": "vertical", "tags": ["3-things", "algo-feed", "pink-cards"], "description": "Dark meme-style closing: pink/amber/green rows of 'double-tap / save / follow' with colored left-borders, profile pill, and a signature foot." },
+
+    { "id": "v-y2k-hook-01", "file": "slides-vertical/hook/y2k-retro-01.html", "style": "y2k-retro", "category": "hook", "orientation": "vertical", "tags": ["windows-chrome", "sparkles", "comic-sans-joke", "chat-bubble"], "description": "Faux Windows-XP window chrome wrapping a chrome-gradient 'comic sans?' callout, sparkle stars, a rotated star burst, and a chat bubble punchline." },
+    { "id": "v-y2k-carousel-01", "file": "slides-vertical/carousel-cover/y2k-retro-01.html", "style": "y2k-retro", "category": "carousel-cover", "orientation": "vertical", "tags": ["rainbow-ribbon", "cd-rom", "chrome", "star-dust"], "description": "Rainbow-striped ribbon headers, a rotated CD-ROM graphic, chrome-gradient title, pill buttons, and sparkle overlays on a blue→pink gradient background." },
+    { "id": "v-y2k-stat-01", "file": "slides-vertical/stat/y2k-retro-01.html", "style": "y2k-retro", "category": "stat", "orientation": "vertical", "tags": ["scanlines", "chrome-38", "data-drop", "sparkles"], "description": "Y2K data-drop stat with CRT scanlines, sparkle dust, chrome 38% numeral, lime delta pill, and a handwritten-feel description card." },
+    { "id": "v-y2k-announce-01", "file": "slides-vertical/announcement/y2k-retro-01.html", "style": "y2k-retro", "category": "announcement", "orientation": "vertical", "tags": ["marquee", "scrolling-ticker", "starburst", "cyan-cyan"], "description": "Y2K announcement with scrolling marquee strips top and bottom, rotating starburst '48h shipping', chrome drop date card with pink count chip." },
+
+    { "id": "v-bz-hook-01", "file": "slides-vertical/hook/brutalist-zine-01.html", "style": "brutalist-zine", "category": "hook", "orientation": "vertical", "tags": ["barcode", "attention-strip", "stamp", "strike"], "description": "Tabloid-zine hook with a black barcode strip, red 'attention' banner, giant strike/rotate headline, warning-stamped note, and a scribble annotation." },
+    { "id": "v-bz-list-01", "file": "slides-vertical/list/brutalist-zine-01.html", "style": "brutalist-zine", "category": "list", "orientation": "vertical", "tags": ["numbered-cells", "rotated-stamps", "5-things"], "description": "Zine-style five-item list: alternating white/yellow/black rows with red numeral badges, caps-only blurbs and chunky dividers." },
+    { "id": "v-bz-quote-01", "file": "slides-vertical/quote/brutalist-zine-01.html", "style": "brutalist-zine", "category": "quote", "orientation": "vertical", "tags": ["giant-mark", "stamp", "rotated-cite"], "description": "Yellow quote slide with giant serif quote glyph, strike-through headline, rotated 'on record' stamp, and a red-shadowed black cite card." },
+    { "id": "v-bz-stat-01", "file": "slides-vertical/stat/brutalist-zine-01.html", "style": "brutalist-zine", "category": "stat", "orientation": "vertical", "tags": ["9-hour-stat", "tri-shadow", "stamps"], "description": "Brutalist dark stat slide with enormous yellow italic 9.2h triple-shadowed numeral, rotated 'not a typo' stamp, and caps-only supporting copy." },
+    { "id": "v-bz-cta-01", "file": "slides-vertical/cta-end/brutalist-zine-01.html", "style": "brutalist-zine", "category": "cta-end", "orientation": "vertical", "tags": ["3-actions", "numbered", "no-newsletter"], "description": "Yellow zine closing with black '3-things' action card numbered 01/02/03, caps-only instructions, and a rotated 'no newsletter' stamp." },
+
+    { "id": "v-dn-hook-01", "file": "slides-vertical/hook/dark-neon-01.html", "style": "dark-neon", "category": "hook", "orientation": "vertical", "tags": ["terminal-chrome", "error-line", "ai-joke", "pov"], "description": "Terminal-chrome hook with glowing green prompt, error-line red highlight, '10× vs claude open' punchline, and a code-block demo footer." },
+    { "id": "v-dn-tip-01", "file": "slides-vertical/tip/dark-neon-01.html", "style": "dark-neon", "category": "tip", "orientation": "vertical", "tags": ["try-catch", "bad-vs-good", "code-blocks"], "description": "Dev-tiktok tip with code comparison cards (bad/good), red/green border accents, inline code tokens, and a monospace prompt header." },
+    { "id": "v-dn-list-01", "file": "slides-vertical/list/dark-neon-01.html", "style": "dark-neon", "category": "list", "orientation": "vertical", "tags": ["config-files", "gitignore", "rm", "tech"], "description": "Developer list of seven 'config files to stop committing', each with a monospace chip code, a highlighted 'hot' .env row, and a `rm` arrow tag." },
+    { "id": "v-dn-stat-01", "file": "slides-vertical/stat/dark-neon-01.html", "style": "dark-neon", "category": "stat", "orientation": "vertical", "tags": ["14-hours", "framed-num", "corner-marks"], "description": "Hero dev stat with dashed corner-mark frame, glowing neon 14h numeral, pink/neon delta pills, and a monospace data citation." },
+    { "id": "v-dn-cta-01", "file": "slides-vertical/cta-end/dark-neon-01.html", "style": "dark-neon", "category": "cta-end", "orientation": "vertical", "tags": ["exit-0", "3-commands", "colored-buttons"], "description": "Terminal-themed closing with 'exit 0 / build ok' header, three colored command buttons (neon/cyan/pink) for like/save/follow, and a monospace foot bar." },
+
+    { "id": "v-hp-carousel-01", "file": "slides-vertical/carousel-cover/handwritten-playful-01.html", "style": "handwritten-playful", "category": "carousel-cover", "orientation": "vertical", "tags": ["washi-tape", "polaroid", "ruled-paper", "stickers"], "description": "Notebook carousel cover: ruled paper + red margin, washi tape header, polaroid photo with caption, and a stickered 'not a pro!' badge." },
+    { "id": "v-hp-tip-01", "file": "slides-vertical/tip/handwritten-playful-01.html", "style": "handwritten-playful", "category": "tip", "orientation": "vertical", "tags": ["circle-badge", "post-it", "garden", "doodle"], "description": "Handwritten tip slide with a red circular 'no. 4' badge, wavy-underlined emphasis, a yellow post-it note-to-self, and arrow doodles." },
+    { "id": "v-hp-list-01", "file": "slides-vertical/list/handwritten-playful-01.html", "style": "handwritten-playful", "category": "list", "orientation": "vertical", "tags": ["checklist", "done-marks", "rotated-cards"], "description": "Journal-style Saturday checklist with rotated cream cards, green-filled check ticks, script annotations, and decorative doodle arrows." },
+    { "id": "v-hp-product-01", "file": "slides-vertical/product/handwritten-playful-01.html", "style": "handwritten-playful", "category": "product", "orientation": "vertical", "tags": ["honey-jar", "price-sticker", "small-batch"], "description": "Ruled-paper product post with an illustrated honey jar, rotated red '€14' price sticker, washi margin, and a yellow shop-pill CTA." },
+    { "id": "v-hp-cta-01", "file": "slides-vertical/cta-end/handwritten-playful-01.html", "style": "handwritten-playful", "category": "cta-end", "orientation": "vertical", "tags": ["4-stickies", "script-sign-off", "doodles"], "description": "Handwritten closing with four colored sticky-note CTAs (like/save/write/follow), a script signature and 'ballyhane' location stamp." },
+
+    { "id": "v-el-carousel-01", "file": "slides-vertical/carousel-cover/editorial-luxe-01.html", "style": "editorial-luxe", "category": "carousel-cover", "orientation": "vertical", "tags": ["maison", "chapter-ix", "seal", "velvet"], "description": "French-heritage carousel cover with double frame, corner marks, seal + Roman-numeral 'MMXXVI' emblem, and a swipe-in-French (Suivez) CTA." },
+    { "id": "v-el-quote-01", "file": "slides-vertical/quote/editorial-luxe-01.html", "style": "editorial-luxe", "category": "quote", "orientation": "vertical", "tags": ["framed", "italic-serif", "script-emphasis", "gold-cite"], "description": "Luxe maison quote slide with corner marks, giant gold italic mark, script-emphasized word, and a multi-line italic cite." },
+    { "id": "v-el-product-01", "file": "slides-vertical/product/editorial-luxe-01.html", "style": "editorial-luxe", "category": "product", "orientation": "vertical", "tags": ["parfum", "velvet-bottle", "edition", "pre-order"], "description": "Luxe parfum drop with a velvet-gradient bottle mock, gold italic naming, Édition numérotée price row, and a French CTA." },
+    { "id": "v-el-cta-01", "file": "slides-vertical/cta-end/editorial-luxe-01.html", "style": "editorial-luxe", "category": "cta-end", "orientation": "vertical", "tags": ["remerciements", "atelier-card", "script-signoff"], "description": "Luxe 'Fin.' closing with framed double border, italic thanks, a four-row atelier contact card, and a gold script sign-off." },
+
+    { "id": "h-mt-drake-01", "file": "slides/drake/meme-trend-01.html", "style": "meme-trend", "category": "drake", "orientation": "horizontal", "tags": ["drake-format", "approve-reject", "engineering-meeting", "emoji-panels"], "description": "Classic 2x2 Drake meme: red 'rejecting' panel over green 'approving' panel, emoji face cells, engineering-meeting punchline." },
+    { "id": "h-mt-pie-01", "file": "slides/pie-meme/meme-trend-01.html", "style": "meme-trend", "category": "pie-meme", "orientation": "horizontal", "tags": ["pie-chart", "personality", "legend", "scribble"], "description": "Pie-chart meme with big conic pie, floating pill captions, legend with colored swatches and percentages, handwritten scribble annotation." },
+    { "id": "h-mt-tier-01", "file": "slides/tier-list/meme-trend-01.html", "style": "meme-trend", "category": "tier-list", "orientation": "horizontal", "tags": ["tier-list", "s-tier", "ranking", "dark", "productivity-apps"], "description": "Dark-mode tier list with colored S-A-B-C-D-F labels, pill item chips with a highlighted 'goat' S-tier item, and 'save' CTA footer." },
+    { "id": "h-mt-redgreen-01", "file": "slides/red-green-flag/meme-trend-01.html", "style": "meme-trend", "category": "red-green-flag", "orientation": "horizontal", "tags": ["red-flag", "green-flag", "interview", "split", "list"], "description": "Red-vs-green-flag comparison: pink and mint panels with banner pills, stacked list cards, and italic aside notes under each flag." },
+    { "id": "h-mt-nobodyme-01", "file": "slides/nobody-me/meme-trend-01.html", "style": "meme-trend", "category": "nobody-me", "orientation": "horizontal", "tags": ["nobody", "me", "3am", "rambling-block", "rust-rewrite"], "description": "Nobody/me format with 'nobody' grey row and 'me at 2am' dark row featuring a big italic punchline plus a rambling amber-highlighted quote block." },
+
+    { "id": "v-mt-pov-01", "file": "slides-vertical/pov/meme-trend-01.html", "style": "meme-trend", "category": "pov", "orientation": "vertical", "tags": ["pov", "founder", "reactions", "scribble", "ios-bar"], "description": "POV vertical hook with iOS status bar, rotated 'POV' stamp, strike-through text, amber highlights, scribble annotations, and emoji reaction pills." },
+    { "id": "v-mt-wrapped-01", "file": "slides-vertical/year-wrapped/meme-trend-01.html", "style": "meme-trend", "category": "year-wrapped", "orientation": "vertical", "tags": ["spotify-wrapped", "niche", "lime-pink", "bento-stats", "share"], "description": "Spotify-Wrapped-style recap with purple gradient backdrop, rotated year badge, script 'niche' accent, bento stats grid (top artist / genre / minutes) with rank pills." },
+    { "id": "v-mt-pie-01", "file": "slides-vertical/pie-meme/meme-trend-01.html", "style": "meme-trend", "category": "pie-meme", "orientation": "vertical", "tags": ["pie-chart", "saturday", "doomscroll", "chips"], "description": "Vertical pie-chart meme with headline card, big conic pie + caption pills, and a chip-legend row listing each slice with italic joke labels." },
+    { "id": "v-mt-tier-01", "file": "slides-vertical/tier-list/meme-trend-01.html", "style": "meme-trend", "category": "tier-list", "orientation": "vertical", "tags": ["tier-list", "group-chat", "dark", "5-tier", "ranking"], "description": "Dark vertical tier-list on 'group chats' with S/A/B/C/D rows, highlighted 'goat' chip, and a swipe/save footer pill." },
+    { "id": "v-mt-nobodyme-01", "file": "slides-vertical/nobody-me/meme-trend-01.html", "style": "meme-trend", "category": "nobody-me", "orientation": "vertical", "tags": ["nobody", "me", "3am", "squirrel-hoa", "unhinged"], "description": "Vertical nobody/me meme with two stacked cards (grey silent + red-bordered dark), italic big-type punchline, squirrel HOA joke, and reaction tag pills." },
+    { "id": "v-mt-rentfree-01", "file": "slides-vertical/head-rent-free/meme-trend-01.html", "style": "meme-trend", "category": "head-rent-free", "orientation": "vertical", "tags": ["rent-free", "4-cards", "rotated", "cream-bg", "kraft"], "description": "'Living rent-free' post with dark title card and a rotated 2x2 grid of colored cream/amber/blue/green numbered entries with italic caveat lines." },
+    { "id": "v-mt-pov-02", "file": "slides-vertical/pov/meme-trend-02.html", "style": "meme-trend", "category": "pov", "orientation": "vertical", "tags": ["bento-stats", "wrapped-style", "noodles", "pink-gradient"], "description": "Purple-gradient 'POV you are me' bento with pink hero card, lime/cyan/dark stat tiles, rotated layouts, scribble annotation, and a personal wrapped-style hook." }
+  ]
+}

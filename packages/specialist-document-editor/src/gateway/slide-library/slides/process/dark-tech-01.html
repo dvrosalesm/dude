@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--accent:#00ff88;--accent2:#00d9ff;--accent3:#a855f7;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2.5cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px);
+  background-size:2.5cqmin 2.5cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--border);padding-bottom:1.6cqmin}
+.kicker{font-family:'SF Mono',monospace;font-size:1.15cqmin;color:var(--accent);letter-spacing:.15em}
+.kicker::before{content:"// "}
+h2{font-size:4.5cqmin;font-weight:700;letter-spacing:-.02em;margin-top:.5cqmin}
+h2 .a{color:var(--accent)}
+.diag{display:grid;grid-template-columns:1fr 2cqmin 1fr 2cqmin 1fr 2cqmin 1fr 2cqmin 1fr;align-items:stretch;gap:0}
+.node{background:var(--surface);border:1px solid var(--border);border-radius:.6cqmin;padding:2cqmin 1.6cqmin;display:flex;flex-direction:column;gap:1cqmin;position:relative;overflow:hidden}
+.node.active{border-color:rgba(0,255,136,.4);box-shadow:0 0 0 1px rgba(0,255,136,.1),inset 0 0 30px rgba(0,255,136,.05)}
+.node .tag{font-family:'SF Mono',monospace;font-size:1cqmin;color:var(--muted);letter-spacing:.1em}
+.node .tag span{color:var(--accent)}
+.node h3{font-size:1.85cqmin;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.node p{font-size:1.25cqmin;line-height:1.5;color:#a8adbb}
+.node .meta{font-family:'SF Mono',monospace;font-size:1cqmin;color:var(--muted);margin-top:auto;padding-top:1cqmin;border-top:1px solid var(--border);display:flex;justify-content:space-between}
+.node .meta span{color:var(--accent)}
+.arr{display:flex;align-items:center;justify-content:center;position:relative}
+.arr::before{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:repeating-linear-gradient(90deg,var(--accent) 0,var(--accent) .4cqmin,transparent .4cqmin,transparent .8cqmin)}
+.arr::after{content:"▶";position:absolute;top:50%;right:0;transform:translateY(-50%);color:var(--accent);font-size:1.4cqmin}
+.lane{display:grid;grid-template-columns:15cqmin 1fr;gap:2cqmin;align-items:center;padding:1.8cqmin 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.lane-label{font-family:'SF Mono',monospace;font-size:1.2cqmin;color:var(--muted);display:flex;align-items:center;gap:.8cqmin}
+.lane-label .led{width:.7cqmin;height:.7cqmin;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent)}
+.lane-label strong{color:var(--ink);letter-spacing:.1em;text-transform:uppercase;font-size:1cqmin}
+.legend{display:flex;justify-content:space-between;font-family:'SF Mono',monospace;font-size:1.1cqmin;color:var(--muted);padding-top:1.2cqmin;border-top:1px solid var(--border)}
+.legend span span{color:var(--accent)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">sequence diagram · happy path</span>
+    <h2>What happens when you <span class="a">spawn()</span>.</h2>
+  </div>
+  <span class="kicker" style="color:var(--muted)">ref · docs/lifecycle.md</span>
+</header>
+<div>
+  <div class="lane">
+    <span class="lane-label"><span class="led"></span> <strong>Request flow</strong></span>
+    <div class="diag">
+      <div class="node active"><span class="tag">t0 · <span>+0ms</span></span><h3>Token validated</h3><p>Bearer check, config fingerprint, warm-process lookup.</p><div class="meta"><span>nestjs</span><span>12ms</span></div></div>
+      <div class="arr"></div>
+      <div class="node"><span class="tag">t1 · <span>+12ms</span></span><h3>DB provisioned</h3><p>R2 pull, AES-256 decrypt, write to scratch.</p><div class="meta"><span>r2-sdk</span><span>84ms</span></div></div>
+      <div class="arr"></div>
+      <div class="node"><span class="tag">t2 · <span>+96ms</span></span><h3>Process spawned</h3><p>fork(tsx server.ts) on free port, minimal env.</p><div class="meta"><span>node</span><span>128ms</span></div></div>
+      <div class="arr"></div>
+      <div class="node"><span class="tag">t3 · <span>+224ms</span></span><h3>Handshake</h3><p>Child reports ready on internal unix socket.</p><div class="meta"><span>ipc</span><span>22ms</span></div></div>
+      <div class="arr"></div>
+      <div class="node"><span class="tag">t4 · <span>+246ms</span></span><h3>Streaming</h3><p>SSE channel open; first token flushed to client.</p><div class="meta"><span>sse</span><span>38ms</span></div></div>
+    </div>
+  </div>
+</div>
+<div class="legend">
+  <span><span>▶</span> cold path shown. warm-reuse path skips t1–t3 and averages <span>&lt; 50ms</span> end-to-end.</span>
+  <span>traces · otel + tempo</span>
+</div>
+</body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#1a1410;--ink:#f2eee7;--muted:#b8a994;--rule:#4a3c2e;--accent:#c4944b;
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:3fr 4fr;gap:0;
+}
+.left{padding:6cqmin 5cqmin;display:flex;flex-direction:column;justify-content:space-between;position:relative;background:linear-gradient(180deg,#1a1410,#0f0a07)}
+.left::after{content:"";position:absolute;right:0;top:0;bottom:0;width:1px;background:var(--rule)}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:7.5cqmin;line-height:1;font-weight:400;letter-spacing:-.02em;margin-top:2cqmin}
+h1 em{font-style:italic;color:var(--accent)}
+.lede{font-size:1.85cqmin;line-height:1.6;color:var(--muted);margin-top:2.5cqmin;max-width:32ch;font-style:italic}
+.by{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:auto;padding-top:2cqmin;border-top:1px solid var(--rule);display:flex;justify-content:space-between}
+.right{padding:6cqmin 5cqmin;display:flex;flex-direction:column;justify-content:center;gap:2.5cqmin;position:relative}
+.right::before{content:"";position:absolute;inset:4cqmin;border:1px solid rgba(196,148,75,.15);pointer-events:none}
+.big-num{font-size:32cqmin;line-height:.8;font-weight:300;color:var(--accent);letter-spacing:-.06em;font-family:'Georgia',serif}
+.big-num sup{font-size:8cqmin;vertical-align:top;line-height:1}
+.caption{font-family:'Helvetica Neue',sans-serif;font-size:1.25cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);max-width:36ch;line-height:1.8}
+.desc{font-size:1.9cqmin;line-height:1.6;color:#e8ddc8;max-width:36ch;font-style:italic}
+</style></head><body>
+<div class="left">
+  <div>
+    <div class="kicker">The Headline Figure · 2026</div>
+    <h1>A single number that <em>rewrote</em> the plan.</h1>
+    <p class="lede">For the first time in the firm's history, the cohort of customers we served two years ago outspent the cohort we served last month.</p>
+  </div>
+  <div class="by"><span>Reported by E. M.</span><span>p. 02</span></div>
+</div>
+<div class="right">
+  <div class="caption">Net expansion — mid-market cohort, Q1 2024 vs Q1 2026</div>
+  <div class="big-num">1.47<sup>×</sup></div>
+  <p class="desc">The two-year-old cohort returned <strong>147 cents of revenue</strong> for every dollar it generated on day one — ahead of every cohort younger than it.</p>
+</div>
+</body></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--neon:#00ff88;--pink:#ff3864;--cyan:#00d9ff;--purple:#a855f7;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:4cqmin;gap:2.5cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px);
+  background-size:2.5cqmin 2.5cqmin;
+}
+.pager{display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.6cqmin;color:var(--muted)}
+.pager .h{color:var(--neon)}
+.pager .dots{display:flex;gap:.8cqmin}
+.pager .dots div{width:1.3cqmin;height:1.3cqmin;border:.2cqmin solid var(--border);border-radius:50%}
+.pager .dots div.on{background:var(--neon);border-color:var(--neon);box-shadow:0 0 8px var(--neon)}
+.main{display:flex;flex-direction:column;gap:2.5cqmin;justify-content:center}
+.tip-tag{display:inline-flex;align-items:center;gap:1cqmin;padding:1.2cqmin 2.5cqmin;background:rgba(0,255,136,.1);border:.2cqmin solid var(--neon);border-radius:100px;font-family:'SF Mono',monospace;font-size:1.7cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--neon);width:fit-content;font-weight:600}
+.tip-tag .n{background:var(--neon);color:var(--bg);padding:.2cqmin .8cqmin;border-radius:100px;font-weight:900}
+h2{font-size:14cqmin;line-height:.92;font-weight:800;letter-spacing:-.03em;text-transform:lowercase}
+h2 code{font-family:'SF Mono',monospace;font-size:11cqmin;background:rgba(168,85,247,.12);border:.3cqmin solid var(--purple);color:var(--purple);padding:0 .5cqmin;border-radius:1.2cqmin;display:inline-block;letter-spacing:-.02em}
+h2 .neon{color:var(--neon)}
+h2 em{font-style:italic;color:var(--pink)}
+.body{font-size:2.5cqmin;line-height:1.55;color:#a8adbb;max-width:38ch;font-weight:500}
+.body code{font-family:'SF Mono',monospace;font-size:2.1cqmin;color:var(--neon);background:rgba(0,255,136,.1);padding:.2cqmin .5cqmin;border-radius:.5cqmin;border:.1cqmin solid rgba(0,255,136,.3)}
+.body em{color:var(--pink);font-style:normal;font-weight:700}
+.body strong{color:var(--ink);font-weight:700}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.5cqmin;margin-top:1cqmin}
+.side{background:var(--surface);border:.15cqmin solid var(--border);border-radius:1.5cqmin;padding:2cqmin;display:flex;flex-direction:column;gap:1cqmin;font-family:'SF Mono',monospace;font-size:1.3cqmin;line-height:1.5;overflow:hidden}
+.side.bad{border-color:rgba(255,56,100,.3)}
+.side.good{border-color:rgba(0,255,136,.3)}
+.side .hd{font-size:1.4cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:.5cqmin;padding-bottom:1cqmin;border-bottom:.1cqmin solid var(--border)}
+.side.bad .hd{color:var(--pink)}
+.side.good .hd{color:var(--neon)}
+.side code{display:block;color:var(--ink)}
+.side .kw{color:var(--purple)}
+.side .fn{color:var(--neon)}
+.side .str{color:#fbbf24}
+.side .com{color:#4a4d58;font-style:italic}
+.side .dim{color:var(--muted)}
+.side.bad .line-x{background:rgba(255,56,100,.1);padding:.3cqmin .5cqmin;border-left:.2cqmin solid var(--pink);color:var(--pink);margin:.3cqmin -.5cqmin}
+.side.good .line-ok{background:rgba(0,255,136,.08);padding:.3cqmin .5cqmin;border-left:.2cqmin solid var(--neon);color:var(--neon);margin:.3cqmin -.5cqmin}
+.foot{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.8cqmin 2.8cqmin;display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.5cqmin;color:var(--muted)}
+.foot .save{color:var(--cyan);display:flex;align-items:center;gap:.5cqmin}
+.foot .h{color:var(--neon)}
+</style></head><body>
+<div class="pager"><span><span class="h">&gt;</span> tip 04 of 08</span><div class="dots"><div class="on"></div><div class="on"></div><div class="on"></div><div class="on"></div><div></div><div></div><div></div><div></div></div></div>
+<div class="main">
+  <span class="tip-tag"><span class="n">#04</span> save-this-or-regret</span>
+  <h2>stop writing<br/><code>try/catch</code><br/>around <em>everything.</em></h2>
+  <p class="body">if you catch <code>everything</code>, you <em>handle nothing</em>. <strong>let the app crash</strong> — logs will thank you. sentry will thank you. your future self will buy you a beer.</p>
+  <div class="compare">
+    <div class="side bad">
+      <span class="hd">◆ don't</span>
+      <span class="com">// you, yesterday</span>
+      <span><span class="kw">try</span>&nbsp;{ <span class="fn">ship</span>() }</span>
+      <span class="line-x"><span class="kw">catch</span>&nbsp;(e) { <span class="com">/* nothing */</span> }</span>
+      <span class="dim">→ error? dunno.</span>
+    </div>
+    <div class="side good">
+      <span class="hd">◆ do</span>
+      <span class="com">// you, tomorrow</span>
+      <span><span class="kw">try</span>&nbsp;{ <span class="fn">ship</span>() }</span>
+      <span class="line-ok"><span class="kw">catch</span>&nbsp;(e) { logger.<span class="fn">fatal</span>(e); <span class="kw">throw</span> e }</span>
+      <span class="dim">→ loud &amp; logged</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span><span class="h">@</span>dread.dev</span><span class="save">◈ save · share</span></div>
+</body></html>

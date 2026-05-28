@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--neon:#00ff88;--pink:#ff3864;--cyan:#00d9ff;--amber:#fbbf24;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:4cqmin;gap:2.5cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px),
+    radial-gradient(ellipse 80% 40% at 50% 40%,rgba(0,255,136,.15),transparent 60%),
+    radial-gradient(ellipse 60% 30% at 50% 90%,rgba(255,56,100,.12),transparent 60%);
+  background-size:2.5cqmin 2.5cqmin,2.5cqmin 2.5cqmin,100% 100%,100% 100%;
+}
+.term-bar{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.5cqmin 2.8cqmin;display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.6cqmin;color:var(--muted)}
+.term-bar .tag{color:var(--neon);display:flex;align-items:center;gap:.8cqmin}
+.term-bar .tag::before{content:"";width:1cqmin;height:1cqmin;background:var(--neon);border-radius:50%;box-shadow:0 0 8px var(--neon);animation:blink 1.5s infinite}
+@keyframes blink{50%{opacity:.3}}
+.main{display:flex;flex-direction:column;gap:2.5cqmin;justify-content:center;align-items:center;text-align:center;position:relative}
+.label{font-family:'SF Mono',monospace;font-size:1.7cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);font-weight:600;padding-bottom:1cqmin;border-bottom:.15cqmin solid var(--cyan);width:fit-content}
+.num-block{position:relative;display:flex;flex-direction:column;align-items:center}
+.num-grid{position:absolute;inset:-6cqmin -3cqmin;border:.15cqmin dashed rgba(0,255,136,.2);border-radius:3cqmin;pointer-events:none}
+.num-grid::before,.num-grid::after{content:"";position:absolute;width:1.5cqmin;height:1.5cqmin;border:.2cqmin solid var(--neon);background:var(--bg)}
+.num-grid::before{top:-.75cqmin;left:-.75cqmin}
+.num-grid::after{bottom:-.75cqmin;right:-.75cqmin}
+.corner{position:absolute;width:1.5cqmin;height:1.5cqmin;border:.2cqmin solid var(--neon);background:var(--bg)}
+.corner.tr{top:-.75cqmin;right:-.75cqmin}
+.corner.bl{bottom:-.75cqmin;left:-.75cqmin}
+.num{font-size:52cqmin;line-height:.82;font-weight:900;letter-spacing:-.08em;color:var(--neon);font-style:italic;text-shadow:0 0 60px rgba(0,255,136,.5),0 0 100px rgba(0,255,136,.3);font-family:'Inter',sans-serif}
+.num sup{font-size:12cqmin;color:var(--cyan);font-style:normal;vertical-align:top;letter-spacing:0}
+.delta-row{display:flex;gap:1.5cqmin;align-items:center;flex-wrap:wrap;justify-content:center}
+.delta{background:rgba(255,56,100,.1);border:.2cqmin solid var(--pink);color:var(--pink);padding:1.2cqmin 2.4cqmin;font-family:'SF Mono',monospace;font-size:1.8cqmin;letter-spacing:.1em;text-transform:uppercase;font-weight:700;border-radius:100px;display:flex;align-items:center;gap:.8cqmin}
+.delta.good{background:rgba(0,255,136,.1);border-color:var(--neon);color:var(--neon)}
+.desc{font-size:3.2cqmin;line-height:1.3;font-weight:600;letter-spacing:-.005em;max-width:28ch;margin-top:1cqmin;color:var(--ink)}
+.desc code{font-family:'SF Mono',monospace;font-size:2.8cqmin;color:var(--neon);background:rgba(0,255,136,.12);padding:.1cqmin .5cqmin;border-radius:.5cqmin;border:.1cqmin solid rgba(0,255,136,.3)}
+.desc em{font-style:italic;color:var(--pink)}
+.desc strong{color:var(--amber);font-weight:700}
+.source{font-family:'SF Mono',monospace;font-size:1.4cqmin;color:var(--muted);letter-spacing:.15em;text-transform:uppercase}
+.source span{color:var(--cyan)}
+.foot{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.8cqmin 2.8cqmin;display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.5cqmin;color:var(--muted)}
+.foot .h{color:var(--neon)}
+</style></head><body>
+<div class="term-bar"><span>&gt; ./fetch metrics.json</span><span class="tag">live · 10s scrape</span></div>
+<div class="main">
+  <span class="label">&gt; devs.rage() // avg per week</span>
+  <div class="num-block">
+    <span class="num-grid"></span>
+    <span class="corner tr"></span><span class="corner bl"></span>
+    <div class="num">14<sup>h</sup></div>
+  </div>
+  <div class="delta-row">
+    <span class="delta">▲ +3.2 h YoY</span>
+    <span class="delta good">◆ n=4,100 devs</span>
+  </div>
+  <p class="desc">spent <em>arguing</em> with <code>AI autocomplete</code> instead of <strong>writing code</strong>. trending up every quarter. ship it.</p>
+  <p class="source">src · stack overflow dev survey <span>2026</span> · self-reported</p>
+</div>
+<div class="foot"><span><span class="h">@</span>dread.dev</span><span>data · 07/12</span><span>◆ save</span></div>
+</body></html>

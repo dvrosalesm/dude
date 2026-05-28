@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#000;--ink:#fff;--yellow:#ffea00;--red:#ff2d2d;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+}
+.strip{background:var(--yellow);color:var(--bg);padding:1.5cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-bottom:.5cqmin solid var(--bg)}
+.main{padding:4cqmin 3cqmin;display:flex;flex-direction:column;justify-content:center;gap:2.5cqmin;position:relative;overflow:hidden}
+.label{display:inline-flex;align-items:center;gap:1.2cqmin;padding:1.5cqmin 2.5cqmin;background:var(--red);color:var(--bg);border:.4cqmin solid var(--ink);font-size:2cqmin;font-weight:900;letter-spacing:.2em;text-transform:uppercase;width:fit-content;box-shadow:.4cqmin .4cqmin 0 var(--yellow)}
+.num{font-size:54cqmin;line-height:.8;font-weight:900;letter-spacing:-.1em;color:var(--yellow);text-shadow:.8cqmin .8cqmin 0 var(--red),1.6cqmin 1.6cqmin 0 var(--ink);margin:-2cqmin 0;font-style:italic}
+.num sup{font-size:16cqmin;color:var(--ink);vertical-align:top;line-height:1;font-style:normal;text-shadow:.6cqmin .6cqmin 0 var(--yellow);letter-spacing:0}
+.delta{display:inline-flex;align-items:center;gap:1.2cqmin;padding:1.8cqmin 2.8cqmin;background:var(--ink);color:var(--yellow);border:.4cqmin solid var(--yellow);font-size:2.4cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;width:fit-content;transform:rotate(-2deg)}
+.delta .arr{font-size:3cqmin}
+.desc{font-size:3.4cqmin;line-height:1.25;font-weight:900;letter-spacing:.02em;text-transform:uppercase;max-width:24ch;color:var(--ink)}
+.desc em{font-style:italic;background:var(--red);color:var(--bg);padding:0 .4cqmin}
+.desc .u{background:var(--yellow);color:var(--bg);padding:0 .4cqmin}
+.source{background:var(--ink);color:rgba(255,255,255,.6);border-top:.3cqmin solid var(--yellow);padding:1.5cqmin 0;font-size:1.6cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.stamps{position:absolute;top:3cqmin;right:3cqmin;display:flex;flex-direction:column;gap:1cqmin;align-items:flex-end}
+.stamp{background:var(--red);color:var(--bg);padding:1cqmin 1.5cqmin;border:.3cqmin solid var(--yellow);font-size:1.6cqmin;letter-spacing:.1em;text-transform:uppercase;font-weight:900;text-align:center;line-height:1.1;transform:rotate(8deg);box-shadow:.3cqmin .3cqmin 0 var(--yellow)}
+.stamp.y{background:var(--yellow);color:var(--bg);border-color:var(--red);transform:rotate(-6deg);box-shadow:.3cqmin .3cqmin 0 var(--red)}
+.stamp big{display:block;font-size:2.5cqmin}
+.foot-row{background:var(--red);color:var(--bg);padding:2cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-top:.5cqmin solid var(--yellow)}
+.foot-row .pill{background:var(--ink);padding:.5cqmin 1.3cqmin}
+</style></head><body>
+<div class="strip"><span>★ FIG. 09</span><span>★ RECEIPTS ★</span><span>09/11 →</span></div>
+<div class="main">
+  <div class="stamps">
+    <span class="stamp"><big>NOT</big>A TYPO</span>
+    <span class="stamp y"><big>FOR REAL</big>→ 2026</span>
+  </div>
+  <span class="label">★ DAILY · AVG · TEENS 13-18 ★</span>
+  <div class="num">9.2<sup>h</sup></div>
+  <span class="delta">▲ +2.4 H / YEAR →</span>
+  <p class="desc">= <em>more</em> than we spend<br/>SLEEPING.<br/><span class="u">NOT SHOCKING.</span><br/>SHOULD BE.</p>
+</div>
+<div class="source" style="padding:0">
+  <div style="padding:1.5cqmin 3cqmin">SOURCE · COMMON SENSE MEDIA · SURVEY N=2,400 · Q1 2026</div>
+</div>
+<div class="foot-row"><span>★ @BLACKFLAG.ZINE</span><span>★ ★ ★</span><span class="pill">SAVE →</span></div>
+</body></html>

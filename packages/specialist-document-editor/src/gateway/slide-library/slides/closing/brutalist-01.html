@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ffea00;--ink:#000;--red:#ff2d2d;--white:#fff;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+}
+.top{background:var(--ink);color:var(--bg);padding:1.5cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.4cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;border-bottom:.8cqmin solid var(--red)}
+.body{padding:4cqmin;display:grid;grid-template-columns:1.6fr 1fr;gap:3cqmin;align-items:center;position:relative;overflow:hidden}
+.body::after{content:"★ ★ ★ ★ ★ ★ ★ ★ ★ ★";position:absolute;bottom:1cqmin;left:0;right:0;text-align:center;font-size:2cqmin;color:var(--ink);opacity:.2;letter-spacing:.3em}
+h1{font-size:17cqmin;line-height:.85;font-weight:900;letter-spacing:-.04em;text-transform:uppercase}
+h1 .u{background:var(--ink);color:var(--bg);padding:0 1cqmin;display:inline-block}
+h1 .r{color:var(--red);text-decoration:underline var(--ink);text-decoration-thickness:.8cqmin;text-underline-offset:1cqmin}
+.sub{font-size:2.4cqmin;line-height:1.3;text-transform:uppercase;font-weight:900;max-width:34ch;margin-top:2cqmin}
+.sub em{font-style:normal;background:var(--red);color:var(--bg);padding:0 .4cqmin}
+.card{background:var(--ink);color:var(--bg);border:.6cqmin solid var(--ink);padding:3cqmin;display:flex;flex-direction:column;gap:1.5cqmin;transform:rotate(2deg);box-shadow:.8cqmin .8cqmin 0 var(--red),1.6cqmin 1.6cqmin 0 var(--ink)}
+.card .label{font-size:1.3cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;color:var(--yellow);color:#ffea00}
+.card .email{font-size:2.6cqmin;letter-spacing:-.01em;font-weight:900;line-height:1.1}
+.card .email.arrow::before{content:"→ "}
+.card hr{border:none;height:.3cqmin;background:var(--red)}
+.card .line{font-size:1.4cqmin;letter-spacing:.1em;text-transform:uppercase;font-weight:900;display:flex;justify-content:space-between}
+.card .line strong{color:#ffea00}
+.stamp{position:absolute;bottom:8cqmin;right:3cqmin;background:var(--red);color:var(--bg);border:.5cqmin solid var(--ink);padding:1.2cqmin 1.8cqmin;font-size:1.6cqmin;letter-spacing:.15em;text-transform:uppercase;font-weight:900;transform:rotate(-8deg);box-shadow:.4cqmin .4cqmin 0 var(--ink);text-align:center;line-height:1}
+.stamp big{display:block;font-size:2.4cqmin}
+.bottom{background:var(--red);color:var(--bg);padding:1.5cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.4cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;border-top:.8cqmin solid var(--ink)}
+</style></head><body>
+<div class="top"><span>★ FIN ★</span><span>→ END OF TRANSMISSION →</span><span>PAGE 028 / 028</span></div>
+<div class="body">
+  <div>
+    <h1><span class="u">THAT'S</span><br/>IT.<br/>GO <span class="r">BUILD</span><br/>SOMETHING.</h1>
+    <p class="sub">QUESTIONS? <em>FINE.</em> HATE MAIL? <em>ALSO FINE.</em> → ONE ADDRESS HANDLES BOTH.</p>
+  </div>
+  <div class="card">
+    <span class="label">→ ONE EMAIL · ONE HUMAN</span>
+    <span class="email">HELLO@<br/>BLACKFLAG<br/>.STUDIO</span>
+    <hr/>
+    <span class="line">WEB <strong>BLACKFLAG.STUDIO</strong></span>
+    <span class="line">X · TWITTER <strong>@BLACKFLAG_IO</strong></span>
+    <span class="line">ZINE <strong>ZINE/004</strong></span>
+    <span class="line">OFFICE <strong>LISBON · PT</strong></span>
+  </div>
+  <div class="stamp">★ NO<br/><big>NEWSLETTER</big><br/>EITHER</div>
+</div>
+<div class="bottom"><span>BLACKFLAG STUDIOS · MMXXVI</span><span>★ ★ ★ ★ ★ ★ ★</span><span>NO RIGHTS RESERVED · STEAL IT</span></div>
+</body></html>

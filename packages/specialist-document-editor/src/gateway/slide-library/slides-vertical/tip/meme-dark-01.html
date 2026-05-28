@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0a0a;--ink:#fff;--muted:#71767b;--accent:#ff6b9d;--accent2:#fbbf24;--border:#1f1f1f;
+  font-family:-apple-system,'SF Pro Text','Segoe UI',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin 5cqmin;gap:3cqmin;
+}
+.meta{display:flex;justify-content:space-between;align-items:center}
+.handle-pill{display:flex;align-items:center;gap:1.5cqmin;padding:1.5cqmin 2.5cqmin;background:var(--border);border-radius:100px}
+.handle-pill .dp{width:5cqmin;height:5cqmin;border-radius:50%;background:linear-gradient(135deg,#ff6b9d,#a855f7);display:flex;align-items:center;justify-content:center;font-size:2.4cqmin;font-weight:900}
+.handle-pill .nm{font-size:2cqmin;font-weight:700}
+.handle-pill .nm small{display:block;font-size:1.5cqmin;color:var(--muted);font-weight:500}
+.slide-num{font-size:2cqmin;color:var(--muted);font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.main{display:flex;flex-direction:column;justify-content:center;gap:3cqmin;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:1.2cqmin;padding:1.5cqmin 2.5cqmin;background:var(--accent2);color:var(--bg);border-radius:100px;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;width:fit-content;transform:rotate(-1.5deg)}
+h2{font-size:14cqmin;line-height:.9;font-weight:900;letter-spacing:-.035em}
+h2 .dim{color:var(--muted)}
+h2 em{font-style:italic;color:var(--accent)}
+h2 .hl{background:var(--accent);color:var(--bg);padding:0 .6cqmin;display:inline-block;transform:rotate(-1.5deg)}
+.body{font-size:3cqmin;line-height:1.4;color:#c5c5c5;font-weight:500;max-width:32ch}
+.body em{font-style:normal;background:var(--border);padding:0 .5cqmin;border-radius:.5cqmin;color:var(--accent);font-weight:700}
+.body strong{color:#fff;font-weight:700}
+.tiny{font-size:2cqmin;color:var(--muted);font-weight:500;letter-spacing:.01em}
+.tiny em{color:var(--accent2);font-style:normal;font-weight:700}
+.box{background:var(--border);border-radius:3cqmin;padding:3cqmin;display:flex;flex-direction:column;gap:1.2cqmin;border-left:.5cqmin solid var(--accent);margin-top:1cqmin;position:relative;overflow:hidden}
+.box::before{content:"";position:absolute;top:1.5cqmin;right:1.5cqmin;width:4cqmin;height:4cqmin;background:var(--accent);border-radius:50%;filter:blur(1.5cqmin);opacity:.4}
+.box .lbl{font-size:1.8cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.box p{font-size:2.7cqmin;line-height:1.3;font-weight:700}
+.box p span{color:var(--accent2)}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:2cqmin 2.5cqmin;background:var(--border);border-radius:100px;font-size:1.9cqmin;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.foot .save{color:var(--accent)}
+.actions{display:flex;gap:2cqmin;font-size:2.3cqmin}
+.actions span{display:flex;align-items:center;gap:.5cqmin;color:var(--muted)}
+.actions .lk{color:#f91880}
+</style></head><body>
+<div class="meta">
+  <div class="handle-pill"><span class="dp">D</span><span class="nm">dread.dev<small>verified hater</small></span></div>
+  <span class="slide-num">tip 04/06 · keep tapping</span>
+</div>
+<div class="main">
+  <span class="kicker">◈ unsolicited advice</span>
+  <h2>your <span class="dim">junior</span><br/>is <span class="hl">faster</span><br/>than you.<br/><em>and that's ok.</em></h2>
+  <p class="body">they haven't been in enough meetings to be ruined yet. <em>let them ship.</em> you're not here to win keystrokes — <strong>you're here to remove blockers.</strong></p>
+  <p class="tiny">it took me <em>eight years</em> to learn this. writing it down so you don't have to.</p>
+  <div class="box">
+    <span class="lbl">→ steal this</span>
+    <p>next pr review: reply with <span>"lgtm, merge"</span> instead of your 14-comment essay. watch throughput <span>2×</span>.</p>
+  </div>
+</div>
+<div class="foot">
+  <span>6 slides · you're halfway</span>
+  <span class="actions"><span class="lk">♥ 14K</span><span>💬 1.2K</span><span class="save">◈ save</span></span>
+</div>
+</body></html>

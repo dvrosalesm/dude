@@ -1,0 +1,16 @@
+appId: com.dude.desktop
+productName: Dude
+icon: public/assets/dude.icns
+asar: false
+directories:
+  output: desktop-dist
+files:
+  - electron/**/*
+  - dist/**/*
+  - package.json
+extraResources:
+  - from: desktop.env.example
+    to: dude.env.example
+mac:
+  icon: public/assets/dude.icns
+  category: public.app-category.productivity

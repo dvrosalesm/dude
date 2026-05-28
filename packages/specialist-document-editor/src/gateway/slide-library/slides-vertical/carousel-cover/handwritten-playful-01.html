@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5efe0;--ink:#2a2418;--red:#c94f3c;--yellow:#eab73a;--blue:#6a9bc4;--green:#7a9b5c;
+  font-family:'Caveat','Kalam','Patrick Hand',cursive;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2cqmin;position:relative;
+  background-image:
+    radial-gradient(circle 1px at 20% 20%,rgba(42,36,24,.12) 50%,transparent 50%),
+    radial-gradient(circle 1px at 80% 60%,rgba(42,36,24,.1) 50%,transparent 50%),
+    radial-gradient(circle 1px at 40% 80%,rgba(42,36,24,.1) 50%,transparent 50%),
+    radial-gradient(circle 1px at 60% 30%,rgba(42,36,24,.08) 50%,transparent 50%);
+  background-size:8cqmin 8cqmin,10cqmin 10cqmin,12cqmin 12cqmin,9cqmin 9cqmin;
+}
+.ruled{position:absolute;inset:0;background-image:repeating-linear-gradient(180deg,transparent 0,transparent 5cqmin,rgba(106,155,196,.15) 5cqmin,rgba(106,155,196,.15) 5.15cqmin);pointer-events:none;z-index:0}
+.margin{position:absolute;left:8cqmin;top:0;bottom:0;width:.3cqmin;background:rgba(201,79,60,.25);z-index:0}
+.washi-top{position:absolute;top:3cqmin;left:-3cqmin;right:-3cqmin;height:5cqmin;background:repeating-linear-gradient(-90deg,#eab73a 0 3cqmin,#c94f3c 3cqmin 6cqmin,#7a9b5c 6cqmin 9cqmin,#6a9bc4 9cqmin 12cqmin);opacity:.85;transform:rotate(-2deg);z-index:1;box-shadow:0 .3cqmin .5cqmin rgba(0,0,0,.12)}
+.washi-top::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0,transparent 6cqmin,rgba(255,255,255,.3) 6cqmin,rgba(255,255,255,.3) 6.3cqmin)}
+.meta{position:relative;z-index:2;display:flex;justify-content:flex-end;align-items:center;padding-top:8cqmin;font-size:2.4cqmin;color:var(--ink);transform:rotate(-1deg)}
+.meta .date{background:#fff;padding:1cqmin 2cqmin;border:.25cqmin solid var(--ink);box-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2.5cqmin;position:relative;z-index:2;text-align:center}
+.sticker{position:absolute;background:var(--yellow);padding:1.4cqmin 2cqmin;border:.3cqmin solid var(--ink);box-shadow:.4cqmin .4cqmin 0 var(--ink);font-size:2.6cqmin;line-height:1;color:var(--ink);transform:rotate(-8deg);z-index:3}
+.sticker.tr{top:10cqmin;right:4cqmin;background:var(--red);color:#fff;transform:rotate(10deg);font-family:'Caveat',cursive}
+.sticker.tr small{display:block;font-size:1.6cqmin;letter-spacing:.2em;text-transform:uppercase;font-family:sans-serif;opacity:.9;margin-top:.3cqmin}
+.polaroid{background:#fff;padding:2cqmin 2cqmin 6cqmin;border:.25cqmin solid var(--ink);box-shadow:.5cqmin .5cqmin 0 var(--ink),1cqmin 1cqmin 2cqmin rgba(0,0,0,.1);transform:rotate(-3deg);margin-top:3cqmin;position:relative;max-width:60%;display:flex;flex-direction:column;gap:1.5cqmin}
+.polaroid .photo{aspect-ratio:1;background:
+  repeating-linear-gradient(45deg,#f5d88e 0 4cqmin,#eab73a 4cqmin 8cqmin,#c94f3c 8cqmin 12cqmin,#7a9b5c 12cqmin 16cqmin),
+  linear-gradient(135deg,#eab73a,#c94f3c 50%,#7a9b5c);
+  display:flex;align-items:center;justify-content:center;font-size:18cqmin;filter:contrast(1.1) saturate(1.3)}
+.polaroid .cap{font-size:2.8cqmin;letter-spacing:.02em;text-align:center;color:var(--ink)}
+.polaroid .tape{position:absolute;top:-2cqmin;right:-2cqmin;width:10cqmin;height:3cqmin;background:rgba(234,183,58,.7);border:.15cqmin solid rgba(42,36,24,.3);transform:rotate(35deg);z-index:4}
+h1{font-size:18cqmin;line-height:.85;font-weight:400;letter-spacing:-.01em;color:var(--ink);margin-top:1cqmin}
+h1 em{color:var(--red);font-style:italic;display:inline-block;transform:rotate(-2deg)}
+h1 .u{color:var(--green);text-decoration:underline wavy var(--yellow);text-decoration-thickness:.3cqmin;text-underline-offset:1cqmin}
+.arrow-scribble{position:absolute;font-size:6cqmin;color:var(--blue);transform:rotate(-30deg)}
+.arrow-scribble.a1{top:60cqmin;left:2cqmin}
+.arrow-scribble.a1 small{font-size:2.4cqmin;display:block;margin-top:-1cqmin;transform:rotate(30deg);color:var(--ink)}
+.sub{font-size:3cqmin;line-height:1.3;color:var(--ink);max-width:85%}
+.sub em{color:var(--red);font-style:italic}
+.swipe{display:flex;align-items:center;gap:1.5cqmin;font-size:3.2cqmin;color:var(--green);position:relative;z-index:2;padding:1.5cqmin 2.5cqmin;background:#fff;border:.3cqmin solid var(--ink);box-shadow:.4cqmin .4cqmin 0 var(--ink);width:fit-content;transform:rotate(1deg);align-self:center;margin-top:1cqmin}
+.swipe .arr{font-size:4cqmin;color:var(--red)}
+.foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:1.5cqmin 2cqmin;background:rgba(255,255,255,.6);border-top:.25cqmin dashed var(--ink);font-family:'Patrick Hand',cursive;font-size:2.4cqmin;color:var(--ink)}
+.foot .heart{color:var(--red)}
+</style></head><body>
+<div class="ruled"></div>
+<div class="margin"></div>
+<div class="washi-top"></div>
+<div class="meta">
+  <span class="date">sunday · 4.20</span>
+</div>
+<span class="sticker tr">not a pro!<small>just really happy</small></span>
+<div class="main">
+  <div class="polaroid">
+    <span class="tape"></span>
+    <div class="photo">🌻</div>
+    <span class="cap">— my first ever <em>bouquet ♡</em></span>
+  </div>
+  <h1>my <em>first</em><br/>year of <span class="u">growing</span><br/>flowers ✿</h1>
+  <span class="arrow-scribble a1">↗<small>& failing,<br/>mostly</small></span>
+  <p class="sub">7 slides of what <em>bloomed</em>, what died,<br/>and the one thing nobody told me →</p>
+  <div class="swipe">swipe through it all <span class="arr">→</span></div>
+</div>
+<div class="foot">
+  <span>by @millie.plants <span class="heart">♡</span></span>
+  <span>1/7 ★</span>
+</div>
+</body></html>

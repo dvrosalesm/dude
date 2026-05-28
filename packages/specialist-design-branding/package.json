@@ -1,0 +1,49 @@
+{
+  "name": "@dude/specialist-design-branding",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./server": {
+      "types": "./src/server.ts",
+      "import": "./src/server.ts",
+      "default": "./src/server.ts"
+    },
+    "./gateway": {
+      "types": "./src/gateway/manifest.ts",
+      "import": "./src/gateway/manifest.ts",
+      "default": "./src/gateway/manifest.ts"
+    },
+    "./gateway/*": {
+      "types": "./src/gateway/*.ts",
+      "import": "./src/gateway/*.ts",
+      "default": "./src/gateway/*.ts"
+    },
+    "./store": {
+      "types": "./src/store.ts",
+      "import": "./src/store.ts",
+      "default": "./src/store.ts"
+    },
+    "./lib/types": {
+      "types": "./src/lib/types.ts",
+      "import": "./src/lib/types.ts",
+      "default": "./src/lib/types.ts"
+    },
+    "./components/image-export-dialog": {
+      "types": "./src/components/image-export-dialog.tsx",
+      "import": "./src/components/image-export-dialog.tsx",
+      "default": "./src/components/image-export-dialog.tsx"
+    }
+  },
+  "dependencies": {
+    "@dude/sdk": "*",
+    "hono": "^4.7.4",
+    "lucide-react": "^0.474.0",
+    "react": "^19.0.0"
+  }
+}

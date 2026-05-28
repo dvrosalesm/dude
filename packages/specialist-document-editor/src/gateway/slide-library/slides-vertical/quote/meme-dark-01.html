@@ -1,0 +1,86 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#000;--ink:#e7e9ea;--muted:#71767b;--accent:#1d9bf0;--green:#00ba7c;--red:#f91880;--border:#2f3336;
+  font-family:-apple-system,'Chirp','Segoe UI',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 4cqmin;gap:3cqmin;
+}
+.header-bar{display:flex;align-items:center;gap:3cqmin;padding:1.5cqmin 0;border-bottom:.12cqmin solid var(--border);font-size:2.2cqmin;font-weight:900}
+.header-bar .back{font-size:3cqmin}
+.header-bar .title{flex:1}
+.header-bar .title small{display:block;font-size:1.7cqmin;color:var(--muted);font-weight:500}
+.main{display:flex;flex-direction:column;gap:2cqmin}
+.tweet{display:grid;grid-template-columns:auto 1fr;gap:2cqmin;padding-bottom:2cqmin}
+.pfp{width:9cqmin;height:9cqmin;border-radius:50%;background:linear-gradient(135deg,#00ba7c,#1d9bf0);display:flex;align-items:center;justify-content:center;font-size:3.5cqmin;font-weight:900;color:#fff}
+.who{display:flex;flex-direction:column;gap:.2cqmin;line-height:1.2}
+.who .top-row{display:flex;align-items:center;gap:.8cqmin;font-size:2.3cqmin;font-weight:800}
+.who .top-row .vf{color:var(--accent);font-size:2cqmin}
+.who .handle,.who .time{font-size:1.9cqmin;color:var(--muted);font-weight:500}
+.tweet-body{padding:1cqmin 0}
+.tweet-body p{font-size:6cqmin;line-height:1.2;font-weight:500;letter-spacing:-.015em}
+.tweet-body p em{font-style:normal;background:rgba(29,155,240,.18);color:var(--accent);padding:0 .4cqmin;border-radius:.5cqmin}
+.tweet-body p strong{font-weight:800}
+.tweet-body p .hot{color:var(--red)}
+.meta-row{font-size:1.8cqmin;color:var(--muted);padding:1.2cqmin 0;border-top:.12cqmin solid var(--border);border-bottom:.12cqmin solid var(--border);margin-top:1.5cqmin}
+.meta-row strong{color:var(--ink);font-weight:800}
+.stats-row{display:flex;gap:3cqmin;padding:1.2cqmin 0;border-bottom:.12cqmin solid var(--border);font-size:1.9cqmin;color:var(--muted)}
+.stats-row strong{color:var(--ink);font-weight:800}
+.actions{display:flex;justify-content:space-around;padding:2cqmin 0;color:var(--muted);font-size:2.1cqmin;border-bottom:.12cqmin solid var(--border)}
+.actions span{display:flex;align-items:center;gap:.6cqmin}
+.actions .lk{color:var(--red)}
+.actions .rt{color:var(--green)}
+.reply-bar{display:flex;gap:1.5cqmin;align-items:center;padding:1.5cqmin 0}
+.reply-bar .pfp-sm{width:5cqmin;height:5cqmin;border-radius:50%;background:#2a2a2a;display:flex;align-items:center;justify-content:center;font-size:2.2cqmin;color:var(--muted)}
+.reply-bar .inp{flex:1;font-size:2cqmin;color:var(--muted)}
+.reply-bar .tag{padding:.8cqmin 2cqmin;background:#fff;color:#000;border-radius:100px;font-size:1.8cqmin;font-weight:800}
+.sticker{position:absolute;font-family:'Caveat',cursive;font-size:5cqmin;color:var(--red);transform:rotate(-7deg);line-height:1;text-align:center}
+.main{position:relative}
+.sticker.s1{top:28cqmin;right:2cqmin;color:var(--accent)}
+.sticker.s1 small{display:block;font-size:2.5cqmin}
+.foot-note{display:flex;justify-content:space-between;align-items:center;padding:2cqmin 2.5cqmin;background:var(--border);border-radius:100px;font-size:1.8cqmin;color:var(--muted);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.foot-note .tag{color:var(--accent)}
+</style></head><body>
+<div class="header-bar">
+  <span class="back">←</span>
+  <div class="title">Post<small>(screenshot · no context)</small></div>
+  <span>⎯</span>
+</div>
+<div class="main">
+  <div class="tweet">
+    <span class="pfp">K</span>
+    <div class="who">
+      <span class="top-row">ken ☕ <span class="vf">✔</span></span>
+      <span class="handle">@kenwritesbad</span>
+      <span class="time">replying to @everyone</span>
+    </div>
+  </div>
+  <div class="tweet-body">
+    <p>being <em>productive</em> is<br/>a coping mechanism<br/><span class="hot">for the existential</span><br/><span class="hot">dread of being alive</span><br/>and that is<br/><strong>honestly fine</strong>.</p>
+  </div>
+  <span class="sticker s1">screenshotted<br/><small>↙ at 3am</small></span>
+  <div class="meta-row">9:41 PM · Apr 20, 2026 · <strong>2.1M</strong> Views</div>
+  <div class="stats-row">
+    <span><strong>4.2K</strong> Reposts</span>
+    <span><strong>812</strong> Quotes</span>
+    <span><strong>68K</strong> Likes</span>
+  </div>
+  <div class="actions">
+    <span>💬 2.1K</span>
+    <span class="rt">🔁 4.2K</span>
+    <span class="lk">♥ 68K</span>
+    <span>◈ 12K</span>
+    <span>⤴</span>
+  </div>
+  <div class="reply-bar">
+    <span class="pfp-sm">U</span>
+    <span class="inp">Post your reply</span>
+    <span class="tag">Reply</span>
+  </div>
+</div>
+<div class="foot-note"><span>screenshots by @dread.dev</span><span class="tag">◈ save it · delete later</span></div>
+</body></html>

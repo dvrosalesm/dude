@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f3ede3;--ink:#3d2e24;--sage:#8ba585;--peach:#e8b091;--cream:#fcf6ea;--rule:#d8cfbd;
+  font-family:'Cormorant Garamond','Didot',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin;gap:2cqmin;
+  background-image:radial-gradient(ellipse 60% 35% at 50% 0%,rgba(139,165,133,.12),transparent 60%);
+}
+.head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1cqmin;padding-bottom:1cqmin;border-bottom:.1cqmin solid var(--rule)}
+.kicker{font-family:'Inter',sans-serif;font-size:1.8cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--sage);font-weight:500}
+h2{font-size:9cqmin;line-height:1;font-weight:300;letter-spacing:-.01em;max-width:18ch}
+h2 em{font-style:italic;color:var(--peach)}
+h2 .script{font-family:'Allura',cursive;font-size:11cqmin;color:var(--sage);font-style:italic;letter-spacing:-.02em;line-height:.8}
+.sub{font-family:'Inter',sans-serif;font-size:1.9cqmin;color:var(--ink);opacity:.6;max-width:32ch;line-height:1.55;font-weight:400;margin-top:.5cqmin}
+.compare{display:grid;grid-template-rows:1fr auto 1fr;gap:1.5cqmin;align-content:stretch}
+.side{padding:3.5cqmin 3cqmin;border-radius:3cqmin;display:flex;flex-direction:column;gap:1.2cqmin;position:relative}
+.side.before{background:var(--cream);border:.2cqmin dashed var(--rule)}
+.side.after{background:#fbeee4;border:.2cqmin solid var(--peach)}
+.side .tag{display:inline-flex;align-items:center;gap:1cqmin;padding:.7cqmin 2cqmin;background:var(--bg);color:var(--sage);border:.15cqmin solid var(--sage);border-radius:100px;font-family:'Inter',sans-serif;font-size:1.7cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:500;width:fit-content}
+.side.after .tag{background:var(--peach);color:var(--cream);border-color:var(--peach)}
+.side h3{font-size:4.5cqmin;line-height:1.05;font-weight:300;letter-spacing:-.01em;font-style:italic}
+.side h3 em{color:var(--sage)}
+.side.after h3 em{color:var(--peach)}
+.side p{font-family:'Inter',sans-serif;font-size:1.85cqmin;line-height:1.5;color:var(--ink);opacity:.75;font-weight:400}
+.side p em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--sage);font-weight:500}
+.meta-row{display:flex;flex-wrap:wrap;gap:1cqmin;margin-top:.3cqmin;padding-top:1.2cqmin;border-top:.1cqmin solid var(--rule)}
+.side.after .meta-row{border-top-color:rgba(232,176,145,.3)}
+.chip{font-family:'Inter',sans-serif;padding:.6cqmin 1.5cqmin;background:var(--bg);border-radius:100px;font-size:1.6cqmin;color:var(--ink);opacity:.7;font-weight:500;letter-spacing:.08em}
+.vs{display:flex;justify-content:center;align-items:center;padding:.5cqmin 0}
+.vs span{font-family:'Allura',cursive;font-size:4.5cqmin;color:var(--sage);font-style:italic;letter-spacing:.02em}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.5cqmin;border-top:.1cqmin solid var(--rule);font-family:'Inter',sans-serif;font-size:1.7cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);opacity:.55;font-weight:500}
+.foot .script{font-family:'Allura',cursive;font-size:2.6cqmin;color:var(--peach);text-transform:none;letter-spacing:.02em;font-style:italic;opacity:1}
+</style></head><body>
+<div class="head">
+  <span class="kicker">✦ the garden diary ✦</span>
+  <h2>from a <em>window-box</em><br/>to a <span class="script">real garden</span></h2>
+  <p class="sub">two summers. the same patch of earth. a small proof that time is a gardener's best tool.</p>
+</div>
+<div class="compare">
+  <div class="side before">
+    <span class="tag">✦ summer '24</span>
+    <h3>three pots, <em>mostly basil</em></h3>
+    <p>A balcony, a tired hose, a herb I kept forgetting to water. <em>I almost gave up by august.</em></p>
+    <div class="meta-row"><span class="chip">3 plants</span><span class="chip">0 harvested</span><span class="chip">40cm²</span></div>
+  </div>
+  <div class="vs"><span>— vs —</span></div>
+  <div class="side after">
+    <span class="tag">✦ summer '26</span>
+    <h3>a <em>small orchard</em>, at last</h3>
+    <p>Tomatoes up to my shoulder. A fig tree that kept its promise. <em>Sundays now smell of the lemon-balm hedge.</em></p>
+    <div class="meta-row"><span class="chip">42 plants</span><span class="chip">14 harvested</span><span class="chip">18m²</span></div>
+  </div>
+</div>
+<div class="foot"><span>save for spring ✦</span><span class="script">sage &amp; honey</span></div>
+</body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#1a1410;--ink:#f2eee7;--muted:#b8a994;--rule:#4a3c2e;--accent:#c4944b;
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 6cqmin;
+  background-image:radial-gradient(ellipse at 50% 40%,rgba(196,148,75,.08),transparent 60%);
+}
+.masthead{display:flex;justify-content:space-between;align-items:center;padding-bottom:2cqmin;border-bottom:3px double var(--rule);font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2.5cqmin;text-align:center}
+.orn{font-size:2.4cqmin;color:var(--accent);letter-spacing:.5em}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--accent)}
+.fin{font-size:10cqmin;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.deck{font-size:2cqmin;line-height:1.6;color:var(--muted);max-width:40ch;font-style:italic}
+.card{display:grid;grid-template-columns:repeat(3,auto);gap:4cqmin;padding-top:3cqmin;margin-top:1cqmin;border-top:1px solid var(--rule);font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.card strong{display:block;color:var(--accent);font-weight:600;margin-bottom:.5cqmin}
+.foot{display:flex;justify-content:space-between;align-items:end;padding-top:1.6cqmin;border-top:1px solid var(--rule);font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+</style></head><body>
+<div class="masthead"><span>The Ledger</span><span>❦ End of issue ❦</span><span>Vol. XI · No. 04</span></div>
+<div class="main">
+  <div class="orn">❧ ※ ❧</div>
+  <div class="kicker">Colophon</div>
+  <div class="fin">Fin.</div>
+  <p class="deck">Thank you for reading. Correspondence is opened by the editors every morning and, occasionally, answered.</p>
+  <div class="card">
+    <div><strong>Editors</strong>team@example.co</div>
+    <div><strong>Archive</strong>example.co/ledger</div>
+    <div><strong>Letters</strong>letters@example.co</div>
+  </div>
+</div>
+<div class="foot"><span>Set in Georgia & Helvetica Neue</span><span>Printed digitally · April MMXXVI</span><span>p. 54</span></div>
+</body></html>

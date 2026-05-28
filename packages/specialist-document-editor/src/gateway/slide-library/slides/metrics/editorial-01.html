@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f2eee7;--ink:#1a1410;--muted:#6b5e52;--rule:#2a211a;--accent:#7a2e1f;
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 6cqmin;gap:3cqmin;
+}
+.head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px double var(--rule);padding-bottom:2cqmin}
+h2{font-size:4.5cqmin;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);column-gap:4cqmin;align-content:center}
+.fig{border-top:1px solid #c9c0b0;padding-top:2cqmin;display:flex;flex-direction:column;gap:1cqmin}
+.fig h3{font-family:'Helvetica Neue',sans-serif;font-size:1.15cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.fig .num{font-size:10cqmin;line-height:1;font-weight:400;color:var(--ink);letter-spacing:-.04em;font-family:'Georgia',serif}
+.fig .num sup{font-size:3cqmin;vertical-align:top;color:var(--accent);font-style:italic}
+.fig .delta{font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.05em;color:#3a302a}
+.fig p{font-size:1.55cqmin;line-height:1.55;color:#3a302a;font-style:italic;margin-top:.5cqmin}
+.foot{display:flex;justify-content:space-between;border-top:1px solid var(--rule);padding-top:1.6cqmin;font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+</style></head><body>
+<div class="head"><h2>The figures, briefly.</h2><span class="kicker">Ledger · Three entries</span></div>
+<div class="grid">
+  <div class="fig">
+    <h3>Revenue · ARR</h3>
+    <div class="num">$57<sup>M</sup></div>
+    <div class="delta">▲ 31% year on year</div>
+    <p>Growth held through a softer market for mid-market SaaS. Net-new and expansion contributed roughly equally.</p>
+  </div>
+  <div class="fig">
+    <h3>Retention · Net</h3>
+    <div class="num">118<sup>%</sup></div>
+    <div class="delta">▲ 9 points on last year</div>
+    <p>Expansion outpaced churn in every geography. The largest single driver was usage of the new archive tier.</p>
+  </div>
+  <div class="fig">
+    <h3>Margin · Gross</h3>
+    <div class="num">74<sup>%</sup></div>
+    <div class="delta">▲ 2 points, steady upward</div>
+    <p>Infrastructure cost discipline and a renegotiated data vendor contract both landed inside the quarter.</p>
+  </div>
+</div>
+<div class="foot"><span>Annual Report · Figures</span><span>❦</span><span>p. 19</span></div>
+</body></html>

@@ -1,0 +1,108 @@
+{
+  "name": "@dude/data-analyst-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./column-utils": {
+      "types": "./src/column-utils.ts",
+      "import": "./src/column-utils.ts",
+      "default": "./src/column-utils.ts"
+    },
+    "./direct-database": {
+      "types": "./src/direct-database.ts",
+      "import": "./src/direct-database.ts",
+      "default": "./src/direct-database.ts"
+    },
+    "./render/catalog-prompt": {
+      "types": "./src/render/catalog-prompt.ts",
+      "import": "./src/render/catalog-prompt.ts",
+      "default": "./src/render/catalog-prompt.ts"
+    },
+    "./render/catalog": {
+      "types": "./src/render/catalog.ts",
+      "import": "./src/render/catalog.ts",
+      "default": "./src/render/catalog.ts"
+    },
+    "./render/chart-colors-context": {
+      "types": "./src/render/chart-colors-context.tsx",
+      "import": "./src/render/chart-colors-context.tsx",
+      "default": "./src/render/chart-colors-context.tsx"
+    },
+    "./render/components/data-table": {
+      "types": "./src/render/components/data-table.tsx",
+      "import": "./src/render/components/data-table.tsx",
+      "default": "./src/render/components/data-table.tsx"
+    },
+    "./render/components/geo-map-renderer": {
+      "types": "./src/render/components/geo-map-renderer.tsx",
+      "import": "./src/render/components/geo-map-renderer.tsx",
+      "default": "./src/render/components/geo-map-renderer.tsx"
+    },
+    "./render/components/html-block": {
+      "types": "./src/render/components/html-block.tsx",
+      "import": "./src/render/components/html-block.tsx",
+      "default": "./src/render/components/html-block.tsx"
+    },
+    "./render/components/recharts-chart": {
+      "types": "./src/render/components/recharts-chart.tsx",
+      "import": "./src/render/components/recharts-chart.tsx",
+      "default": "./src/render/components/recharts-chart.tsx"
+    },
+    "./render/components/vega-lite-renderer": {
+      "types": "./src/render/components/vega-lite-renderer.tsx",
+      "import": "./src/render/components/vega-lite-renderer.tsx",
+      "default": "./src/render/components/vega-lite-renderer.tsx"
+    },
+    "./render/migration": {
+      "types": "./src/render/migration.ts",
+      "import": "./src/render/migration.ts",
+      "default": "./src/render/migration.ts"
+    },
+    "./render/query-context": {
+      "types": "./src/render/query-context.tsx",
+      "import": "./src/render/query-context.tsx",
+      "default": "./src/render/query-context.tsx"
+    },
+    "./render/registry": {
+      "types": "./src/render/registry.tsx",
+      "import": "./src/render/registry.tsx",
+      "default": "./src/render/registry.tsx"
+    },
+    "./render/utils": {
+      "types": "./src/render/utils.ts",
+      "import": "./src/render/utils.ts",
+      "default": "./src/render/utils.ts"
+    },
+    "./report-utils": {
+      "types": "./src/report-utils.ts",
+      "import": "./src/report-utils.ts",
+      "default": "./src/report-utils.ts"
+    },
+    "./prediction-engine": {
+      "types": "./src/prediction-engine.ts",
+      "import": "./src/prediction-engine.ts",
+      "default": "./src/prediction-engine.ts"
+    },
+    "./workspace-types": {
+      "types": "./src/workspace-types.ts",
+      "import": "./src/workspace-types.ts",
+      "default": "./src/workspace-types.ts"
+    }
+  },
+  "dependencies": {
+    "@dude/chat-types": "*",
+    "react": "^19.0.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

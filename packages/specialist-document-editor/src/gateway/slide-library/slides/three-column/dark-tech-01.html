@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--accent:#00ff88;--accent2:#ff3864;--accent3:#00d9ff;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2.5cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px);
+  background-size:2.5cqmin 2.5cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--border);padding-bottom:1.6cqmin}
+.kicker{font-family:'SF Mono',monospace;font-size:1.15cqmin;color:var(--accent);letter-spacing:.15em}
+.kicker::before{content:"// "}
+h2{font-size:4.8cqmin;font-weight:700;letter-spacing:-.02em;margin-top:.5cqmin}
+h2 .a{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqmin;align-content:start}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:.6cqmin;padding:2.4cqmin;display:flex;flex-direction:column;gap:1.5cqmin;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--clr),transparent);opacity:.7}
+.card.python{--clr:var(--accent3)}
+.card.sql{--clr:var(--accent)}
+.card.shell{--clr:#a855f7}
+.header-row{display:flex;justify-content:space-between;align-items:center}
+.lang{font-family:'SF Mono',monospace;font-size:1.1cqmin;color:var(--clr);letter-spacing:.15em;text-transform:uppercase;font-weight:700}
+.ver{font-family:'SF Mono',monospace;font-size:1cqmin;color:var(--muted)}
+h3{font-size:2.1cqmin;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.code{font-family:'SF Mono',monospace;font-size:1.15cqmin;line-height:1.55;background:#050810;padding:1.6cqmin;border-radius:.4cqmin;border:1px solid var(--border);overflow:hidden;color:#e4e7ef}
+.code .kw{color:#a855f7}.code .fn{color:var(--accent)}.code .str{color:#fbbf24}.code .num{color:var(--accent3)}.code .com{color:#4a4d58;font-style:italic}
+.rules{list-style:none;display:flex;flex-direction:column;gap:.6cqmin}
+.rules li{font-family:'SF Mono',monospace;font-size:1.2cqmin;display:grid;grid-template-columns:auto 1fr;gap:.8cqmin;align-items:start;color:#a8adbb;line-height:1.4}
+.rules li .mark{color:var(--accent);font-weight:700}
+.rules li .mark.no{color:var(--accent2)}
+.foot-card{margin-top:auto;padding-top:1.2cqmin;border-top:1px solid var(--border);font-family:'SF Mono',monospace;font-size:1cqmin;color:var(--muted);display:flex;justify-content:space-between}
+.foot-card span{color:var(--clr)}
+.legend{display:flex;justify-content:space-between;font-family:'SF Mono',monospace;font-size:1.1cqmin;color:var(--muted);padding-top:1.2cqmin;border-top:1px solid var(--border)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">sandbox surface · three guarded interpreters</span>
+    <h2>What your agent <span class="a">can</span> and <span style="color:var(--accent2)">cannot</span> reach.</h2>
+  </div>
+  <span class="kicker" style="color:var(--muted)">security/sandbox.md</span>
+</header>
+<div class="grid">
+  <div class="card python">
+    <div class="header-row"><span class="lang">■ Python runner</span><span class="ver">runner.py · 3.12</span></div>
+    <h3>Restricted interpreter for data work</h3>
+    <pre class="code">
+<span class="kw">import</span> numpy, pandas
+<span class="com"># allowed, pure-data libs</span>
+df = pandas.<span class="fn">read_csv</span>(<span class="fn">query</span>())</pre>
+    <ul class="rules">
+      <li><span class="mark">✓</span><span><b>allow:</b> numpy, pandas, math, json</span></li>
+      <li><span class="mark">✓</span><span><b>allow:</b> scikit-learn, scipy</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> open, exec, eval</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> os, subprocess, sys</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> all network I/O</span></li>
+    </ul>
+    <div class="foot-card"><span>scope · per-run</span><span>timeout 15s</span></div>
+  </div>
+  <div class="card sql">
+    <div class="header-row"><span class="lang">● SQL surface</span><span class="ver">sqlite 3.46</span></div>
+    <h3>Read &amp; write its own workspace only</h3>
+    <pre class="code">
+<span class="kw">SELECT</span> period, revenue
+<span class="kw">FROM</span> ledger
+<span class="kw">WHERE</span> fy = <span class="num">2026</span>
+<span class="kw">ORDER BY</span> period;</pre>
+    <ul class="rules">
+      <li><span class="mark">✓</span><span><b>allow:</b> SELECT / INSERT / UPDATE</span></li>
+      <li><span class="mark">✓</span><span><b>allow:</b> DDL inside own DB</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> ATTACH DATABASE</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> load_extension()</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> readfile, writefile</span></li>
+    </ul>
+    <div class="foot-card"><span>scope · workspace DB</span><span>row-limit 50k</span></div>
+  </div>
+  <div class="card shell">
+    <div class="header-row"><span class="lang">◆ Shell / env</span><span class="ver">unix · minimal</span></div>
+    <h3>No shell, no secrets, no surprises</h3>
+    <pre class="code">
+<span class="com"># env available to child proc</span>
+WORKSPACE_ID=wk_9fA2b
+PORT=<span class="num">42701</span>
+DB_PATH=/tmp/ws/<span class="num">9fA2b</span>.db</pre>
+    <ul class="rules">
+      <li><span class="mark">✓</span><span><b>allow:</b> fs read within workspace tmp</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> sh, bash, spawn()</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> R2 credentials exposure</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> outbound network egress</span></li>
+      <li><span class="mark no">✕</span><span><b>block:</b> Supabase keys</span></li>
+    </ul>
+    <div class="foot-card"><span>scope · child proc</span><span>hardened env</span></div>
+  </div>
+</div>
+<div class="legend">
+  <span>enforced in · src/pi-gateway/tools · src/lib/instance-manager.ts</span>
+  <span>violations audited · sentry.helix.dev</span>
+</div>
+</body></html>

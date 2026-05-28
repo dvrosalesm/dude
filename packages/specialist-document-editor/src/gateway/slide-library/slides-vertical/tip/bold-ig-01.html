@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5f1e8;--ink:#0a0a0a;--accent:#ff3b3b;--muted:#6b6b6b;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:6cqmin;gap:3cqmin;
+}
+.pager{display:flex;justify-content:space-between;align-items:center}
+.pager .count{font-size:6cqmin;font-weight:900;letter-spacing:-.03em;line-height:1}
+.pager .count span{color:var(--muted)}
+.pager .dots{display:flex;gap:1cqmin;align-items:center}
+.pager .dots div{width:1.4cqmin;height:1.4cqmin;background:#d0c9b8;border-radius:50%}
+.pager .dots div.on{background:var(--ink);width:4cqmin;border-radius:100px}
+.kicker{display:inline-flex;align-items:center;gap:1.2cqmin;background:var(--ink);color:var(--bg);padding:2cqmin 3cqmin;border-radius:100px;font-size:2.3cqmin;letter-spacing:.15em;text-transform:uppercase;font-weight:900;width:fit-content}
+.kicker .num{background:var(--accent);color:var(--bg);padding:.3cqmin 1.2cqmin;border-radius:100px;font-size:2.1cqmin}
+.main{display:flex;flex-direction:column;justify-content:center;gap:4cqmin;padding:2cqmin 0}
+h2{font-size:14cqmin;line-height:.9;font-weight:900;letter-spacing:-.04em;text-transform:uppercase}
+h2 em{font-style:normal;background:var(--accent);color:var(--bg);padding:0 1cqmin;display:inline-block;transform:rotate(-1.5deg)}
+h2 .u{text-decoration:underline var(--accent);text-decoration-thickness:1cqmin;text-underline-offset:1.5cqmin}
+.body{font-size:3.2cqmin;line-height:1.45;max-width:32ch;font-weight:500;color:#2a2a2a}
+.body strong{background:var(--ink);color:var(--bg);padding:0 .6cqmin;font-weight:700}
+.body em{font-style:italic;color:var(--accent);font-weight:700}
+.callout{background:var(--ink);color:var(--bg);padding:3cqmin 3.5cqmin;border-radius:3cqmin;display:grid;grid-template-columns:auto 1fr;gap:2.5cqmin;align-items:start;position:relative;overflow:hidden}
+.callout::before{content:"";position:absolute;top:0;left:0;bottom:0;width:1.2cqmin;background:var(--accent)}
+.callout .ex{font-size:4cqmin;font-weight:900;color:var(--accent);line-height:1}
+.callout h4{font-size:2.4cqmin;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.8cqmin;font-weight:900}
+.callout p{font-size:2.4cqmin;line-height:1.5;color:#e0e0e0;font-weight:500}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:2cqmin;border-top:1px solid #d0c9b8}
+.save{display:inline-flex;align-items:center;gap:1.2cqmin;font-size:2.2cqmin;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.save .ic{font-size:3cqmin}
+.handle{font-size:2cqmin;letter-spacing:.2em;color:var(--muted);font-weight:700;text-transform:uppercase}
+.handle b{color:var(--ink)}
+</style></head><body>
+<div class="pager">
+  <span class="count">03<span>/09</span></span>
+  <div class="dots"><div></div><div></div><div class="on"></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<span class="kicker"><span class="num">TIP</span> 03 of 09</span>
+<div class="main">
+  <h2>Stop designing<br/><em>pixel perfect</em><br/>in <span class="u">Figma.</span></h2>
+  <p class="body">The pixel grid is a <strong>lie</strong>. Your users' browsers round differently, your tokens drift, your zoom is off. <em>Design in ratios.</em> Let the system round for you.</p>
+  <div class="callout">
+    <span class="ex">★</span>
+    <div>
+      <h4>Steal this</h4>
+      <p>Swap fixed px values for <b>4pt</b> multiples + <b>rem</b>/<b>cqmin</b>. Your handoff stops breaking at 1.25× zoom.</p>
+    </div>
+  </div>
+</div>
+<div class="foot">
+  <span class="save"><span class="ic">◈</span> save this post</span>
+  <span class="handle">by <b>@method.studio</b></span>
+</div>
+</body></html>

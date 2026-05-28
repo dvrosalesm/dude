@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f3ede3;--ink:#3d2e24;--sage:#8ba585;--peach:#e8b091;--cream:#fcf6ea;--rule:#d8cfbd;
+  font-family:'Cormorant Garamond','Didot',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:8cqmin 6cqmin;
+  background-image:
+    radial-gradient(ellipse 50% 30% at 20% 15%,rgba(139,165,133,.15),transparent 55%),
+    radial-gradient(ellipse 40% 25% at 80% 85%,rgba(232,176,145,.2),transparent 55%);
+  position:relative;
+}
+.frame{position:absolute;inset:3.5cqmin;border:.15cqmin solid var(--rule);border-radius:3cqmin;pointer-events:none}
+.masthead{display:flex;flex-direction:column;align-items:center;gap:2cqmin;text-align:center;position:relative;z-index:1}
+.logo{font-family:'Cormorant Garamond',serif;font-size:3.5cqmin;font-weight:300;font-style:italic;letter-spacing:.3em;color:var(--sage);text-transform:uppercase}
+.logo .amp{color:var(--peach)}
+.orn{font-size:2.5cqmin;color:var(--sage);letter-spacing:.5em}
+.kicker{font-family:'Inter',sans-serif;font-size:1.9cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--ink);opacity:.6;font-weight:500;padding:1cqmin 3cqmin;border-top:.1cqmin solid var(--rule);border-bottom:.1cqmin solid var(--rule)}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:3cqmin;position:relative;z-index:1;padding:3cqmin 0}
+.main::before{content:"";position:absolute;top:2cqmin;left:50%;transform:translateX(-50%);width:10cqmin;height:10cqmin;border:.2cqmin solid var(--peach);border-radius:50%;opacity:.4}
+.stamp{font-family:'Inter',sans-serif;font-size:2cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:500;padding:1.2cqmin 2.5cqmin;border:.2cqmin solid var(--sage);color:var(--sage);border-radius:100px;background:rgba(252,246,234,.6);backdrop-filter:blur(4px);margin-top:8cqmin}
+h1{font-size:14cqmin;line-height:.95;font-weight:300;letter-spacing:-.015em;max-width:13ch}
+h1 em{font-style:italic;color:var(--sage)}
+h1 .script{font-family:'Allura','Dancing Script',cursive;font-size:18cqmin;font-style:italic;color:var(--peach);font-weight:400;letter-spacing:-.03em;line-height:.8;display:block;margin:1cqmin 0}
+.sub{font-family:'Inter',sans-serif;font-size:2.3cqmin;line-height:1.6;color:var(--ink);opacity:.7;max-width:32ch;font-weight:400;letter-spacing:.01em}
+.sub em{font-style:italic;color:var(--sage);font-weight:500}
+.foot{display:flex;flex-direction:column;align-items:center;gap:2cqmin;position:relative;z-index:1;padding-top:2cqmin;border-top:.1cqmin solid var(--rule)}
+.swipe{display:flex;align-items:center;gap:1.5cqmin;font-family:'Inter',sans-serif;font-size:2.2cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--sage);font-weight:500}
+.swipe .arr{animation:sway 2s ease-in-out infinite}
+@keyframes sway{50%{transform:translateX(1cqmin)}}
+.handle{font-family:'Cormorant Garamond',serif;font-size:2.2cqmin;font-style:italic;color:var(--ink);opacity:.5;letter-spacing:.1em}
+</style></head><body>
+<div class="frame"></div>
+<div class="masthead">
+  <div class="logo">Sage <span class="amp">&amp;</span> Honey</div>
+  <div class="orn">✦ · ✦ · ✦</div>
+  <span class="kicker">The slow living field notes · no. 24</span>
+</div>
+<div class="main">
+  <span class="stamp">— Spring Edition · 2026 —</span>
+  <h1>seven <em>gentle</em><span class="script">rituals</span>for a softer life</h1>
+  <p class="sub">a quiet guide to the small things — tending mornings, slow coffee, and the <em>rooms you come home to.</em></p>
+</div>
+<div class="foot">
+  <span class="swipe">swipe <span class="arr">→</span></span>
+  <span class="handle">by sage &amp; honey · saved for spring</span>
+</div>
+</body></html>

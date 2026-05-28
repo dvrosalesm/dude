@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fef6d9;--ink:#0a0a0a;--muted:#6b6b6b;--rule:#e3d9a8;
+  --c1:#ef4444;--c2:#22d3ee;--c3:#a855f7;--c4:#fbbf24;--c5:#10b981;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:1fr 1fr;gap:5cqmin;
+  padding:5cqmin;align-items:center;
+}
+.left{display:flex;flex-direction:column;gap:3cqmin;padding-right:2cqmin}
+.tag{display:inline-flex;align-items:center;gap:.8cqmin;padding:1cqmin 2cqmin;background:var(--ink);color:var(--bg);border-radius:100px;font-size:1.4cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;width:fit-content;transform:rotate(-1.5deg)}
+h2{font-size:8.5cqmin;line-height:.95;font-weight:900;letter-spacing:-.035em}
+h2 em{font-style:italic;color:var(--c1)}
+h2 .u{background:var(--c4);padding:0 .5cqmin;box-shadow:inset 0 -.8cqmin 0 rgba(0,0,0,.15)}
+.sub{font-size:2cqmin;line-height:1.5;color:var(--muted);font-weight:500;max-width:35ch}
+.sub em{color:var(--ink);font-style:italic;font-weight:700}
+.legend{display:grid;gap:1.5cqmin;margin-top:1cqmin}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center;padding:1.6cqmin 2cqmin;background:#fff;border:.3cqmin solid var(--ink);border-radius:1.5cqmin;box-shadow:.4cqmin .4cqmin 0 var(--ink)}
+.sw{width:5cqmin;height:5cqmin;border-radius:50%;border:.3cqmin solid var(--ink)}
+.item .tx{font-size:1.7cqmin;font-weight:700;line-height:1.2}
+.item .tx small{display:block;font-size:1.25cqmin;color:var(--muted);font-weight:500;margin-top:.2cqmin}
+.item .pct{font-size:2.5cqmin;font-weight:900;color:var(--ink);font-style:italic;letter-spacing:-.02em}
+.right{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5cqmin;position:relative}
+.pie-wrap{position:relative;width:70cqmin;max-width:95%;aspect-ratio:1}
+.pie{width:100%;height:100%;border-radius:50%;border:.6cqmin solid var(--ink);box-shadow:.8cqmin .8cqmin 0 var(--ink);
+  background:conic-gradient(
+    var(--c1) 0 42%,
+    var(--c4) 42% 68%,
+    var(--c2) 68% 84%,
+    var(--c3) 84% 95%,
+    var(--c5) 95% 100%
+  );
+  position:relative;overflow:hidden}
+.pie::after{content:"me";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:18cqmin;height:18cqmin;background:var(--bg);border-radius:50%;border:.4cqmin solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:3.8cqmin;font-weight:900;font-style:italic;letter-spacing:-.02em;box-shadow:inset .2cqmin .2cqmin 0 rgba(0,0,0,.05)}
+.cap{position:absolute;font-size:1.4cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);background:#fff;padding:.4cqmin .9cqmin;border:.25cqmin solid var(--ink);border-radius:100px}
+.cap.c1{top:18%;right:-8cqmin;transform:rotate(5deg)}
+.cap.c2{bottom:14%;right:-4cqmin}
+.cap.c3{bottom:2%;left:30%}
+.scribble{position:absolute;font-family:'Caveat',cursive;font-size:3cqmin;color:var(--c1);transform:rotate(-6deg);line-height:1}
+.scribble.s1{top:4cqmin;right:-2cqmin;font-size:3.5cqmin}
+.scribble.s1 small{font-size:1.8cqmin;display:block;color:var(--ink)}
+.note{font-size:1.35cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted);text-align:center}
+</style></head><body>
+<div class="left">
+  <span class="tag">◆ meme format · pie chart</span>
+  <h2>my <em>personality</em><br/>breakdown as a<br/><span class="u">senior designer.</span></h2>
+  <p class="sub">science-grade pie chart, <em>never wrong</em>. all percentages self-reported and lightly exaggerated.</p>
+  <div class="legend">
+    <div class="item"><span class="sw" style="background:var(--c1)"></span><div class="tx">Complaining about <em>Figma updates</em><small>it used to "just work" it never did</small></div><span class="pct">42%</span></div>
+    <div class="item"><span class="sw" style="background:var(--c4)"></span><div class="tx">Nudging things by <em>1 pixel</em><small>and then back to where it was</small></div><span class="pct">26%</span></div>
+    <div class="item"><span class="sw" style="background:var(--c2)"></span><div class="tx">Telling devs "it's in the <em>design system</em>"<small>it is not in the design system</small></div><span class="pct">16%</span></div>
+    <div class="item"><span class="sw" style="background:var(--c3)"></span><div class="tx">Actual design<small>rare. treasured. often a mistake.</small></div><span class="pct">11%</span></div>
+    <div class="item"><span class="sw" style="background:var(--c5)"></span><div class="tx">Snacks<small>critical infrastructure</small></div><span class="pct">5%</span></div>
+  </div>
+</div>
+<div class="right">
+  <div class="pie-wrap">
+    <div class="pie">
+      <span class="cap c1">42% · complaining</span>
+      <span class="cap c2">16% · "it's in the DS"</span>
+      <span class="cap c3">5% snacks</span>
+    </div>
+    <span class="scribble s1">total:<br/><small>literally me</small></span>
+  </div>
+  <p class="note">★ tag your design team ★</p>
+</div>
+</body></html>

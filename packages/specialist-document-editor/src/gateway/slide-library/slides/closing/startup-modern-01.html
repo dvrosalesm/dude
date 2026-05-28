@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0b0d1a;--ink:#f8fafc;--muted:#94a3b8;--accent:#22d3ee;--accent2:#8b5cf6;--border:#1e2138;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  padding:6cqmin;gap:3cqmin;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 60%,rgba(139,92,246,.3),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 20%,rgba(34,211,238,.2),transparent 60%);
+}
+.chip{display:inline-flex;align-items:center;gap:1cqmin;padding:.7cqmin 1.8cqmin;background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);border-radius:100px;font-size:1.25cqmin;letter-spacing:.25em;text-transform:uppercase;color:#a5f3fc;font-weight:600}
+.chip .dot{width:.7cqmin;height:.7cqmin;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent)}
+h1{font-size:12cqmin;line-height:.95;font-weight:800;letter-spacing:-.035em;max-width:16ch}
+h1 .g{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:2cqmin;line-height:1.5;color:var(--muted);max-width:44ch}
+.cta{display:flex;gap:1.5cqmin;margin-top:1cqmin}
+.btn{padding:1.6cqmin 3cqmin;border-radius:1cqmin;font-size:1.7cqmin;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0b0d1a;box-shadow:0 1.5cqmin 3cqmin rgba(34,211,238,.3)}
+.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--ink);box-shadow:none}
+.info{display:flex;gap:4cqmin;margin-top:2cqmin;font-size:1.4cqmin;color:var(--muted)}
+.info strong{color:var(--ink);display:block;margin-bottom:.4cqmin;font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:1.15cqmin}
+</style></head><body>
+<span class="chip"><span class="dot"></span> We're hiring across engineering & GTM</span>
+<h1>Let's build the <span class="g">agent-native internet.</span></h1>
+<p class="sub">Questions, demos, or just want to trade notes on agent infrastructure? We'd love to hear from you.</p>
+<div class="cta">
+  <span class="btn">Book a demo →</span>
+  <span class="btn ghost">example.co/docs</span>
+</div>
+<div class="info">
+  <div><strong>Sales</strong>sales@example.co</div>
+  <div><strong>Support</strong>help@example.co</div>
+  <div><strong>Careers</strong>example.co/jobs</div>
+  <div><strong>Follow</strong>@example_labs</div>
+</div>
+</body></html>

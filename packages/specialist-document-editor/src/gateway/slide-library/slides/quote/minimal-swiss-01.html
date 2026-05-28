@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5f5f2;--ink:#0a0a0a;--muted:#6b6b6b;--rule:#111;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:1fr 4fr 1fr;grid-template-rows:1fr auto;
+  padding:5cqmin 6cqmin;
+}
+.rail-l,.rail-r{display:flex;flex-direction:column;justify-content:space-between;align-items:center;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);padding:2cqmin 0}
+.mark{font-size:28cqmin;line-height:.6;font-weight:300;color:#d8d8d4;font-family:Georgia,serif}
+.mark.close{transform:rotate(180deg)}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 3cqmin}
+blockquote{font-size:5.5cqmin;line-height:1.12;font-weight:400;letter-spacing:-.02em;max-width:22ch}
+blockquote em{font-style:italic}
+cite{font-style:normal;display:block;margin-top:4cqmin;font-size:1.6cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+cite strong{font-weight:500;color:var(--ink);letter-spacing:.15em}
+footer{grid-column:1 / -1;display:flex;justify-content:space-between;padding-top:2cqmin;margin-top:2cqmin;border-top:1px solid var(--rule);font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+</style></head><body>
+<div class="rail-l"><span class="mark">“</span><span>Voices · 06</span></div>
+<div class="main">
+  <blockquote>We stopped shipping features <em>and the customers came back.</em> That was the lesson we didn't want to learn.</blockquote>
+  <cite><strong>Ada Mensah</strong> — VP Product, Orbital Systems</cite>
+</div>
+<div class="rail-r"><span class="mark close">“</span><span>Q1 / 026</span></div>
+<footer><span>Testimonial</span><span>006 / 042</span></footer>
+</body></html>

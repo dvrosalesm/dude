@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--neon:#00ff88;--pink:#ff3864;--cyan:#00d9ff;--purple:#a855f7;--amber:#fbbf24;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:4cqmin;gap:2cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px);
+  background-size:2.5cqmin 2.5cqmin;
+}
+.pager{display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.6cqmin;color:var(--muted)}
+.pager .h{color:var(--neon)}
+.pager .tag{color:var(--pink);border:.15cqmin solid var(--pink);padding:.4cqmin 1cqmin;border-radius:100px;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase}
+.head h2{font-size:13cqmin;line-height:.92;font-weight:800;letter-spacing:-.03em;text-transform:lowercase;max-width:16ch}
+.head h2 code{font-family:'SF Mono',monospace;font-size:10cqmin;background:rgba(0,255,136,.1);border:.3cqmin solid var(--neon);color:var(--neon);padding:0 .5cqmin;border-radius:1cqmin;display:inline-block;text-shadow:0 0 16px rgba(0,255,136,.4)}
+.head h2 em{font-style:italic;color:var(--pink)}
+.head .sub{font-family:'SF Mono',monospace;font-size:1.7cqmin;color:var(--muted);margin-top:1.2cqmin;line-height:1.4}
+.head .sub span{color:var(--cyan)}
+.list{display:grid;align-content:center;gap:1.2cqmin}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center;padding:2.2cqmin 2.5cqmin;background:var(--surface);border:.15cqmin solid var(--border);border-radius:2cqmin;position:relative;overflow:hidden}
+.item.hot{border-color:rgba(0,255,136,.35);box-shadow:0 0 0 1px rgba(0,255,136,.15),inset 0 0 20px rgba(0,255,136,.04)}
+.item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.3cqmin;background:var(--border)}
+.item.hot::before{background:var(--neon)}
+.n{font-family:'SF Mono',monospace;font-size:2.7cqmin;font-weight:800;color:var(--muted);letter-spacing:-.03em;min-width:5cqmin}
+.item.hot .n{color:var(--neon)}
+.txt h3{font-size:2.4cqmin;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.txt h3 code{font-family:'SF Mono',monospace;font-size:1.9cqmin;background:rgba(168,85,247,.15);color:var(--purple);padding:.15cqmin .5cqmin;border-radius:.5cqmin;border:.1cqmin solid rgba(168,85,247,.3);font-weight:500;margin-left:.5cqmin}
+.txt p{font-family:'SF Mono',monospace;font-size:1.5cqmin;color:var(--muted);margin-top:.4cqmin;line-height:1.4}
+.txt p span{color:var(--amber)}
+.arr{font-family:'SF Mono',monospace;font-size:2cqmin;color:var(--neon);font-weight:700}
+.foot{background:var(--surface);border:.15cqmin solid var(--border);border-radius:100px;padding:1.8cqmin 2.8cqmin;display:flex;justify-content:space-between;align-items:center;font-family:'SF Mono',monospace;font-size:1.5cqmin;color:var(--muted)}
+.foot .h{color:var(--neon)}
+.foot .save{color:var(--cyan);display:flex;align-items:center;gap:.5cqmin}
+</style></head><body>
+<div class="pager"><span><span class="h">&gt;</span> post 05/12</span><span class="tag">◆ spicy</span></div>
+<div class="head">
+  <h2>7 <code>config</code><br/>files <em>you</em> <br/>should stop <br/>committing.</h2>
+  <p class="sub"><span>→</span> save before your on-call rotation starts</p>
+</div>
+<div class="list">
+  <div class="item"><span class="n">01.</span><div class="txt"><h3>your editor's autosave <code>.vscode/settings.json</code></h3><p>→ your <span>tabs-vs-spaces</span> crusade is not a team decision</p></div><span class="arr">rm</span></div>
+  <div class="item hot"><span class="n">02.</span><div class="txt"><h3>any <code>.env</code> with a <em>real</em> secret</h3><p>→ <span>yes, even that one</span> you pushed "just once"</p></div><span class="arr">◆ rm</span></div>
+  <div class="item"><span class="n">03.</span><div class="txt"><h3>node_modules · <code>.DS_Store</code> · <code>Thumbs.db</code></h3><p>→ we have been doing this since <span>2009</span></p></div><span class="arr">rm</span></div>
+  <div class="item"><span class="n">04.</span><div class="txt"><h3>local ports in <code>vite.config.ts</code></h3><p>→ port 3000 isn't a preference, it's a <span>personality</span></p></div><span class="arr">rm</span></div>
+  <div class="item"><span class="n">05.</span><div class="txt"><h3>your <code>TODO.md</code> with personal tasks</h3><p>→ nobody else needs to know you must <span>call mom</span></p></div><span class="arr">rm</span></div>
+  <div class="item"><span class="n">06.</span><div class="txt"><h3>tsconfig <code>paths</code> for folders that don't exist</h3><p>→ the alias was for <span>2 files, 3 years ago</span></p></div><span class="arr">rm</span></div>
+  <div class="item"><span class="n">07.</span><div class="txt"><h3>commented-out <code>console.log</code>(everything)</h3><p>→ git has <span>history</span>. you don't need to keep it too</p></div><span class="arr">rm</span></div>
+</div>
+<div class="foot"><span><span class="h">@</span>dread.dev</span><span>swipe · 06/12</span><span class="save">◈ save</span></div>
+</body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f2eee7;--ink:#1a1410;--muted:#6b5e52;--rule:#2a211a;--accent:#7a2e1f;
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:6cqmin 9cqmin;text-align:center;position:relative;
+}
+.ornament-top,.ornament-bottom{font-size:2cqmin;color:var(--accent);letter-spacing:.5em;margin-bottom:3cqmin}
+.ornament-bottom{margin-top:3cqmin;margin-bottom:0}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5cqmin}
+blockquote{font-size:5.2cqmin;line-height:1.22;font-weight:400;font-style:italic;letter-spacing:-.01em;max-width:28ch;margin:0 auto}
+blockquote::before{content:"“";font-size:14cqmin;line-height:.2;color:var(--accent);display:block;margin-bottom:3cqmin}
+cite{font-style:normal;display:block;margin-top:3cqmin;font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+cite strong{color:var(--ink);font-weight:600;letter-spacing:.2em}
+.frame{position:absolute;inset:3cqmin;border:1px solid var(--rule);pointer-events:none}
+</style></head><body>
+<div class="frame"></div>
+<div class="ornament-top">❧   ※   ❧</div>
+<div class="kicker">From the Editor's Desk</div>
+<blockquote>The companies we admire most are the ones that took the next ten years seriously, even when the next ten weeks were loud.</blockquote>
+<cite><strong>Evelyn Marchetti</strong> — Editor-in-Chief, The Ledger</cite>
+<div class="ornament-bottom">❧   ※   ❧</div>
+</body></html>

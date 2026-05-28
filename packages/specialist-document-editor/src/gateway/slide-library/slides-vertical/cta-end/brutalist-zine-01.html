@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ffea00;--ink:#000;--red:#ff2d2d;--white:#fff;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;position:relative;
+}
+.strip{background:var(--ink);color:var(--red);padding:2cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-bottom:.5cqmin solid var(--red)}
+.strip .fin{background:var(--red);color:var(--bg);padding:.5cqmin 1.3cqmin;letter-spacing:.3em}
+.main{padding:4cqmin 3cqmin;display:flex;flex-direction:column;justify-content:center;gap:3cqmin;position:relative;overflow:hidden}
+.main::before{content:"★ ★ ★ ★ ★";position:absolute;top:2cqmin;right:4cqmin;font-size:4cqmin;color:var(--red);letter-spacing:.3em}
+h1{font-size:22cqmin;line-height:.85;font-weight:900;letter-spacing:-.045em;text-transform:uppercase}
+h1 .u{background:var(--ink);color:var(--bg);padding:0 .5cqmin;display:inline-block}
+h1 em{font-style:italic;color:var(--red)}
+h1 .r{display:inline-block;transform:rotate(-3deg);background:var(--red);color:var(--bg);padding:0 .8cqmin;border:.3cqmin solid var(--ink)}
+.sub{font-size:2.8cqmin;line-height:1.3;font-weight:900;letter-spacing:.02em;text-transform:uppercase;max-width:26ch}
+.sub em{font-style:normal;background:var(--ink);color:var(--bg);padding:0 .4cqmin}
+.cta-card{background:var(--ink);color:var(--bg);padding:3cqmin;border:.5cqmin solid var(--ink);display:flex;flex-direction:column;gap:2cqmin;box-shadow:.8cqmin .8cqmin 0 var(--red),1.6cqmin 1.6cqmin 0 var(--ink);transform:rotate(1deg)}
+.cta-card .hdr{font-size:1.8cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--red);font-weight:900;padding-bottom:1cqmin;border-bottom:.3cqmin solid var(--red)}
+.cta-card .rows{display:flex;flex-direction:column;gap:1.5cqmin}
+.cta-card .row{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center;padding:1.8cqmin 0;border-bottom:.2cqmin dashed rgba(255,255,255,.2)}
+.cta-card .row:last-child{border-bottom:none}
+.cta-card .n{background:var(--red);color:var(--bg);padding:.4cqmin 1.2cqmin;font-size:2.2cqmin;font-weight:900;border:.3cqmin solid var(--bg);letter-spacing:-.02em}
+.cta-card h3{font-size:2.4cqmin;line-height:1.1;font-weight:900;letter-spacing:-.005em;text-transform:uppercase}
+.cta-card h3 em{font-style:italic;color:var(--red)}
+.cta-card p{font-size:1.7cqmin;color:var(--bg);opacity:.7;text-transform:uppercase;letter-spacing:.1em;margin-top:.3cqmin;font-weight:700}
+.cta-card .arr{font-size:3cqmin;color:var(--red);font-weight:900}
+.stamp{position:absolute;bottom:8cqmin;left:3cqmin;background:var(--red);color:var(--bg);padding:1.5cqmin 2cqmin;border:.4cqmin solid var(--ink);font-size:1.8cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;line-height:1.1;text-align:center;transform:rotate(-10deg);box-shadow:.4cqmin .4cqmin 0 var(--ink);z-index:2}
+.stamp big{display:block;font-size:3cqmin}
+.foot{background:var(--red);color:var(--bg);padding:2cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-top:.5cqmin solid var(--ink)}
+.foot .email{background:var(--ink);padding:.5cqmin 1.3cqmin;letter-spacing:.05em}
+</style></head><body>
+<div class="strip"><span>★ ISSUE 007 · 11/11</span><span class="fin">END</span></div>
+<div class="main">
+  <h1>THAT'S<br/><em>IT.</em><br/>NOW <span class="u">PUT</span><br/>THE <span class="r">DAMN</span><br/>PHONE DOWN.</h1>
+  <p class="sub">→ OR DON'T. <em>FREE COUNTRY.</em> BUT DO 3 THINGS FIRST →</p>
+  <div class="cta-card">
+    <span class="hdr">★ BEFORE YOU CLOSE THIS ★</span>
+    <div class="rows">
+      <div class="row"><span class="n">01</span><div><h3>DOUBLE TAP IT.</h3><p>→ ALGO GETS FED</p></div><span class="arr">→</span></div>
+      <div class="row"><span class="n">02</span><div><h3>SAVE. IT. <em>NOW.</em></h3><p>→ RE-READ MONDAY</p></div><span class="arr">→</span></div>
+      <div class="row"><span class="n">03</span><div><h3>SEND TO 1 FRIEND.</h3><p>→ THE ONE WHO NEEDS IT</p></div><span class="arr">→</span></div>
+    </div>
+  </div>
+  <span class="stamp">NO<br/><big>NEWSLETTER</big>EITHER.</span>
+</div>
+<div class="foot"><span>★ @BLACKFLAG.ZINE</span><span class="email">BLACKFLAG.STUDIO</span><span>FIN ★</span></div>
+</body></html>

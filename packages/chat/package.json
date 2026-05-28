@@ -1,0 +1,217 @@
+{
+  "name": "@dude/chat",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./types": {
+      "types": "./src/specialists/types.ts",
+      "import": "./src/specialists/types.ts",
+      "default": "./src/specialists/types.ts"
+    },
+    "./components/chat/chat-markdown": {
+      "types": "./src/components/chat/chat-markdown.tsx",
+      "import": "./src/components/chat/chat-markdown.tsx",
+      "default": "./src/components/chat/chat-markdown.tsx"
+    },
+    "./components/chat/chat-messages": {
+      "types": "./src/components/chat/chat-messages.tsx",
+      "import": "./src/components/chat/chat-messages.tsx",
+      "default": "./src/components/chat/chat-messages.tsx"
+    },
+    "./components/chat/chat-tool-invocation": {
+      "types": "./src/components/chat/chat-tool-invocation.tsx",
+      "import": "./src/components/chat/chat-tool-invocation.tsx",
+      "default": "./src/components/chat/chat-tool-invocation.tsx"
+    },
+    "./components/chat/copilot-message": {
+      "types": "./src/components/chat/copilot-message.tsx",
+      "import": "./src/components/chat/copilot-message.tsx",
+      "default": "./src/components/chat/copilot-message.tsx"
+    },
+    "./components/chat/copilot-textarea-mock": {
+      "types": "./src/components/chat/copilot-textarea-mock.tsx",
+      "import": "./src/components/chat/copilot-textarea-mock.tsx",
+      "default": "./src/components/chat/copilot-textarea-mock.tsx"
+    },
+    "./components/chat/custom-link-renderer": {
+      "types": "./src/components/chat/custom-link-renderer.tsx",
+      "import": "./src/components/chat/custom-link-renderer.tsx",
+      "default": "./src/components/chat/custom-link-renderer.tsx"
+    },
+    "./components/chat/dream-stage-view": {
+      "types": "./src/components/chat/dream-stage-view.tsx",
+      "import": "./src/components/chat/dream-stage-view.tsx",
+      "default": "./src/components/chat/dream-stage-view.tsx"
+    },
+    "./components/chat/html-in-canvas-shell": {
+      "types": "./src/components/chat/html-in-canvas-shell.tsx",
+      "import": "./src/components/chat/html-in-canvas-shell.tsx",
+      "default": "./src/components/chat/html-in-canvas-shell.tsx"
+    },
+    "./components/common/copilot-textarea": {
+      "types": "./src/components/common/copilot-textarea.tsx",
+      "import": "./src/components/common/copilot-textarea.tsx",
+      "default": "./src/components/common/copilot-textarea.tsx"
+    },
+    "./lib/chat/flatten-stage-markdown": {
+      "types": "./src/lib/chat/flatten-stage-markdown.ts",
+      "import": "./src/lib/chat/flatten-stage-markdown.ts",
+      "default": "./src/lib/chat/flatten-stage-markdown.ts"
+    },
+    "./lib/chat/markdown-summary": {
+      "types": "./src/lib/chat/markdown-summary.ts",
+      "import": "./src/lib/chat/markdown-summary.ts",
+      "default": "./src/lib/chat/markdown-summary.ts"
+    },
+    "./lib/gateway-session": {
+      "types": "./src/lib/gateway-session.ts",
+      "import": "./src/lib/gateway-session.ts",
+      "default": "./src/lib/gateway-session.ts"
+    },
+    "./lib/html-in-canvas/effects": {
+      "types": "./src/lib/html-in-canvas/effects.ts",
+      "import": "./src/lib/html-in-canvas/effects.ts",
+      "default": "./src/lib/html-in-canvas/effects.ts"
+    },
+    "./lib/html-in-canvas/support": {
+      "types": "./src/lib/html-in-canvas/support.ts",
+      "import": "./src/lib/html-in-canvas/support.ts",
+      "default": "./src/lib/html-in-canvas/support.ts"
+    },
+    "./lib/html-in-canvas/types": {
+      "types": "./src/lib/html-in-canvas/types.ts",
+      "import": "./src/lib/html-in-canvas/types.ts",
+      "default": "./src/lib/html-in-canvas/types.ts"
+    },
+    "./specialists/floating-chat-panel": {
+      "types": "./src/specialists/floating-chat-panel.tsx",
+      "import": "./src/specialists/floating-chat-panel.tsx",
+      "default": "./src/specialists/floating-chat-panel.tsx"
+    },
+    "./specialists/hooks/upload-chat-images": {
+      "types": "./src/specialists/hooks/upload-chat-images.ts",
+      "import": "./src/specialists/hooks/upload-chat-images.ts",
+      "default": "./src/specialists/hooks/upload-chat-images.ts"
+    },
+    "./specialists/hooks/use-assistant-loop": {
+      "types": "./src/specialists/hooks/use-assistant-loop.ts",
+      "import": "./src/specialists/hooks/use-assistant-loop.ts",
+      "default": "./src/specialists/hooks/use-assistant-loop.ts"
+    },
+    "./specialists/hooks/use-gateway-session": {
+      "types": "./src/specialists/hooks/use-gateway-session.ts",
+      "import": "./src/specialists/hooks/use-gateway-session.ts",
+      "default": "./src/specialists/hooks/use-gateway-session.ts"
+    },
+    "./specialists/hooks/use-specialist-chat": {
+      "types": "./src/specialists/hooks/use-specialist-chat.ts",
+      "import": "./src/specialists/hooks/use-specialist-chat.ts",
+      "default": "./src/specialists/hooks/use-specialist-chat.ts"
+    },
+    "./specialists/hooks/use-specialist-workspace-loader": {
+      "types": "./src/specialists/hooks/use-specialist-workspace-loader.ts",
+      "import": "./src/specialists/hooks/use-specialist-workspace-loader.ts",
+      "default": "./src/specialists/hooks/use-specialist-workspace-loader.ts"
+    },
+    "./specialists/inline-render-spec": {
+      "types": "./src/specialists/inline-render-spec.tsx",
+      "import": "./src/specialists/inline-render-spec.tsx",
+      "default": "./src/specialists/inline-render-spec.tsx"
+    },
+    "./specialists/lava-lamp-pattern": {
+      "types": "./src/specialists/lava-lamp-pattern.tsx",
+      "import": "./src/specialists/lava-lamp-pattern.tsx",
+      "default": "./src/specialists/lava-lamp-pattern.tsx"
+    },
+    "./specialists/main-assistant-stage": {
+      "types": "./src/specialists/main-assistant-stage.tsx",
+      "import": "./src/specialists/main-assistant-stage.tsx",
+      "default": "./src/specialists/main-assistant-stage.tsx"
+    },
+    "./specialists/main-assistant-workspace": {
+      "types": "./src/specialists/main-assistant-workspace.tsx",
+      "import": "./src/specialists/main-assistant-workspace.tsx",
+      "default": "./src/specialists/main-assistant-workspace.tsx"
+    },
+    "./specialists/project-hub-panel": {
+      "types": "./src/specialists/project-hub-panel.tsx",
+      "import": "./src/specialists/project-hub-panel.tsx",
+      "default": "./src/specialists/project-hub-panel.tsx"
+    },
+    "./specialists/specialist-chat": {
+      "types": "./src/specialists/specialist-chat.tsx",
+      "import": "./src/specialists/specialist-chat.tsx",
+      "default": "./src/specialists/specialist-chat.tsx"
+    },
+    "./specialists/specialist-message-bubble": {
+      "types": "./src/specialists/specialist-message-bubble.tsx",
+      "import": "./src/specialists/specialist-message-bubble.tsx",
+      "default": "./src/specialists/specialist-message-bubble.tsx"
+    },
+    "./specialists/specialist-meta": {
+      "types": "./src/specialists/specialist-meta.ts",
+      "import": "./src/specialists/specialist-meta.ts",
+      "default": "./src/specialists/specialist-meta.ts"
+    },
+    "./specialists/specialist-workspace-layout": {
+      "types": "./src/specialists/specialist-workspace-layout.tsx",
+      "import": "./src/specialists/specialist-workspace-layout.tsx",
+      "default": "./src/specialists/specialist-workspace-layout.tsx"
+    },
+    "./specialists/specialist-workspace-list": {
+      "types": "./src/specialists/specialist-workspace-list.tsx",
+      "import": "./src/specialists/specialist-workspace-list.tsx",
+      "default": "./src/specialists/specialist-workspace-list.tsx"
+    },
+    "./specialists/types": {
+      "types": "./src/specialists/types.ts",
+      "import": "./src/specialists/types.ts",
+      "default": "./src/specialists/types.ts"
+    },
+    "./specialists/ui-input-prompt": {
+      "types": "./src/specialists/ui-input-prompt.tsx",
+      "import": "./src/specialists/ui-input-prompt.tsx",
+      "default": "./src/specialists/ui-input-prompt.tsx"
+    },
+    "./specialists/workspace-header-bar": {
+      "types": "./src/specialists/workspace-header-bar.tsx",
+      "import": "./src/specialists/workspace-header-bar.tsx",
+      "default": "./src/specialists/workspace-header-bar.tsx"
+    },
+    "./specialists/workspace-layout-icon": {
+      "types": "./src/specialists/workspace-layout-icon.tsx",
+      "import": "./src/specialists/workspace-layout-icon.tsx",
+      "default": "./src/specialists/workspace-layout-icon.tsx"
+    }
+  },
+  "dependencies": {
+    "@dude/app-navigation": "*",
+    "@dude/chat-types": "*",
+    "@dude/client-types": "*",
+    "@dude/data-analyst-core": "*",
+    "@dude/inline-render": "*",
+    "@dude/gateway-shared": "*",
+    "@dude/specialist-params": "*",
+    "@dude/ui": "*",
+    "@dude/workspaces": "*",
+    "@json-render/core": "^0.6.0",
+    "@json-render/react": "^0.9.1",
+    "lucide-react": "^0.474.0",
+    "react": "^19.0.0",
+    "react-markdown": "^9.0.1",
+    "zustand": "^5.0.3"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

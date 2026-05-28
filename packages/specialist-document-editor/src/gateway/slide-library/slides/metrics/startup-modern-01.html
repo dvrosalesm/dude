@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0b0d1a;--surface:#111327;--ink:#f8fafc;--muted:#94a3b8;--accent:#22d3ee;--accent2:#8b5cf6;--border:#1e2138;--pos:#34d399;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin 6cqmin;gap:4cqmin;
+  background-image:
+    radial-gradient(ellipse 50% 40% at 10% 100%,rgba(34,211,238,.2),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 100% 0%,rgba(139,92,246,.18),transparent 60%);
+}
+header{display:flex;justify-content:space-between;align-items:flex-end}
+h2{font-size:5.5cqmin;line-height:1.02;font-weight:700;letter-spacing:-.03em;max-width:20ch}
+.kicker{font-size:1.25cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2cqmin}
+.card{background:linear-gradient(180deg,rgba(17,19,39,.9),rgba(11,13,26,.9));border:1px solid var(--border);border-radius:1.5cqmin;padding:3cqmin;display:flex;flex-direction:column;gap:1.2cqmin;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.card.lead{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(139,92,246,.12));border-color:rgba(34,211,238,.35);grid-row:span 2}
+.label{font-size:1.2cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:1cqmin}
+.label .pill{padding:.25cqmin .9cqmin;border-radius:100px;background:rgba(52,211,153,.15);color:var(--pos);font-size:1cqmin;border:1px solid rgba(52,211,153,.3)}
+.num{font-size:14cqmin;line-height:.85;font-weight:800;letter-spacing:-.05em;background:linear-gradient(135deg,#22d3ee,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.num.sm{font-size:8cqmin}
+.num sup{font-size:3.5cqmin;vertical-align:top;font-weight:600}
+.delta{font-size:1.4cqmin;color:var(--pos);display:flex;align-items:center;gap:.6cqmin}
+.sparkline{display:flex;align-items:flex-end;height:6cqmin;gap:.4cqmin;margin-top:auto}
+.sparkline div{flex:1;background:linear-gradient(180deg,var(--accent),rgba(34,211,238,.2));border-radius:.4cqmin}
+.note{font-size:1.4cqmin;color:var(--muted);line-height:1.5;margin-top:1cqmin}
+.foot{display:flex;justify-content:space-between;font-size:1.25cqmin;color:var(--muted);padding-top:1.5cqmin;border-top:1px solid var(--border)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">Traction · Last 90 days</span>
+    <h2 style="margin-top:1cqmin">The numbers that made the round obvious.</h2>
+  </div>
+  <span class="kicker">Q1 2026</span>
+</header>
+<div class="grid">
+  <div class="card lead">
+    <span class="label">Annualized Revenue <span class="pill">▲ live</span></span>
+    <div class="num">$8.4<sup>M</sup></div>
+    <div class="delta">▲ 4.2× year over year</div>
+    <div class="sparkline">
+      <div style="height:22%"></div><div style="height:28%"></div><div style="height:31%"></div><div style="height:35%"></div>
+      <div style="height:39%"></div><div style="height:42%"></div><div style="height:48%"></div><div style="height:55%"></div>
+      <div style="height:62%"></div><div style="height:68%"></div><div style="height:77%"></div><div style="height:92%"></div>
+    </div>
+    <p class="note">Hit the $8M ARR mark in March, 14 months faster than plan. Twelve-month forward bookings now fully cover the next hire.</p>
+  </div>
+  <div class="card">
+    <span class="label">Net Retention</span>
+    <div class="num sm">142<sup>%</sup></div>
+    <div class="delta">▲ 18 pts QoQ</div>
+  </div>
+  <div class="card">
+    <span class="label">Active workspaces</span>
+    <div class="num sm">12.4<sup>k</sup></div>
+    <div class="delta">▲ 3.1× since Jan</div>
+  </div>
+  <div class="card">
+    <span class="label">Gross margin</span>
+    <div class="num sm">81<sup>%</sup></div>
+    <div class="delta">▲ 7 pts</div>
+  </div>
+  <div class="card">
+    <span class="label">P95 latency</span>
+    <div class="num sm">284<sup>ms</sup></div>
+    <div class="delta">▼ 38% improvement</div>
+  </div>
+</div>
+<div class="foot"><span>Source · internal metrics, unaudited</span><span>Figures in USD unless noted · 04/2026</span></div>
+</body></html>

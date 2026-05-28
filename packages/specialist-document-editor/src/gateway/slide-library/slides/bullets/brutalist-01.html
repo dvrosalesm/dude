@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fff;--ink:#000;--yellow:#ffea00;--red:#ff2d2d;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+  background-image:repeating-linear-gradient(0deg,transparent 0,transparent 4cqmin,rgba(0,0,0,.04) 4cqmin,rgba(0,0,0,.04) 4.1cqmin);
+}
+.top{background:var(--ink);color:var(--yellow);padding:1.5cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.4cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900}
+.body{padding:3cqmin;display:grid;grid-template-rows:auto 1fr;gap:2cqmin}
+.head{display:flex;justify-content:space-between;align-items:end;border-bottom:.6cqmin solid var(--ink);padding-bottom:1.5cqmin}
+h2{font-size:7cqmin;line-height:.95;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;max-width:22ch}
+h2 .y{background:var(--yellow);padding:0 .4cqmin}
+h2 .r{color:var(--red)}
+.count{font-size:1.5cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;text-align:right;line-height:1.2}
+.count big{font-size:6cqmin;display:block;line-height:.9;color:var(--red)}
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5cqmin;align-content:center}
+.rule{display:grid;grid-template-columns:8cqmin 1fr;gap:1.5cqmin;padding:2cqmin;border:.5cqmin solid var(--ink);background:var(--bg);position:relative}
+.rule.alt{background:var(--ink);color:var(--bg)}
+.rule.alt .no{background:var(--yellow);color:var(--ink)}
+.rule.alt .rt{color:var(--yellow)}
+.no{background:var(--red);color:var(--bg);font-size:5cqmin;line-height:1;font-weight:900;display:flex;align-items:center;justify-content:center;border:.3cqmin solid var(--ink);letter-spacing:-.05em}
+.rt h3{font-size:2cqmin;line-height:1.1;text-transform:uppercase;font-weight:900;letter-spacing:-.005em;margin-bottom:.6cqmin}
+.rt h3 em{font-style:normal;background:var(--red);color:var(--bg);padding:0 .3cqmin}
+.rt p{font-size:1.35cqmin;line-height:1.4;text-transform:uppercase;letter-spacing:.05em;font-weight:900}
+.stamp{position:absolute;top:-.8cqmin;right:1cqmin;background:var(--yellow);border:.3cqmin solid var(--ink);padding:.3cqmin .8cqmin;font-size:1cqmin;letter-spacing:.15em;transform:rotate(4deg);font-weight:900}
+.rule.alt .stamp{background:var(--red);color:var(--bg)}
+.bottom{background:var(--red);color:var(--bg);padding:1.2cqmin 3cqmin;display:flex;justify-content:space-between;font-size:1.3cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900}
+</style></head><body>
+<div class="top"><span>→ CHAPTER THREE / PART TWO</span><span>★ DO NOT SKIP THIS PAGE ★</span><span>P. 12</span></div>
+<div class="body">
+  <div class="head">
+    <h2>SIX <span class="y">RULES</span>.<br/>NO <span class="r">EXCEPTIONS.</span></h2>
+    <span class="count">RULES<br/><big>006</big></span>
+  </div>
+  <div class="rules">
+    <div class="rule">
+      <div class="no">01</div>
+      <div class="rt"><h3>NO MEETINGS <em>WITHOUT AN AGENDA</em></h3><p>→ IF THERE'S NO AGENDA, THERE'S NO MEETING. SEND A DOC.</p></div>
+      <span class="stamp">ENFORCED</span>
+    </div>
+    <div class="rule alt">
+      <div class="no">02</div>
+      <div class="rt"><h3>WRITE THE <em>MEMO</em> FIRST</h3><p>→ IF YOU CAN'T WRITE IT DOWN, YOU HAVEN'T THOUGHT IT THROUGH.</p></div>
+      <span class="stamp">→ ALWAYS</span>
+    </div>
+    <div class="rule alt">
+      <div class="no">03</div>
+      <div class="rt"><h3>KILL <em>EVERY</em> PROJECT OLDER THAN 6 WEEKS</h3><p>→ IF IT'S NOT SHIPPING, IT'S DRAG.</p></div>
+      <span class="stamp">NO MERCY</span>
+    </div>
+    <div class="rule">
+      <div class="no">04</div>
+      <div class="rt"><h3>ONE DIRECT PAGER <em>PER TEAM</em></h3><p>→ NOT FOUR. ONE. THE REST IS SLACK AT 10 AM.</p></div>
+      <span class="stamp">FR REAL</span>
+    </div>
+    <div class="rule">
+      <div class="no">05</div>
+      <div class="rt"><h3>NO <em>ROADMAPS</em> BEYOND 90 DAYS</h3><p>→ IF YOU CAN SEE A YEAR OUT YOU'RE NOT WORKING ON SOMETHING INTERESTING.</p></div>
+      <span class="stamp">OPINIONS</span>
+    </div>
+    <div class="rule alt">
+      <div class="no">06</div>
+      <div class="rt"><h3>IF YOU HATE THE WORK → <em>CHANGE THE WORK</em></h3><p>→ LIFE IS SHORT. YOU DON'T OWE THE SPREADSHEET ANYTHING.</p></div>
+      <span class="stamp">TRUE</span>
+    </div>
+  </div>
+</div>
+<div class="bottom"><span>★ HOUSE RULES ★</span><span>→ POSTED BY THE COFFEE MACHINE</span><span>BLACKFLAG.STUDIO</span></div>
+</body></html>

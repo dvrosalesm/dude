@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#ffea00;--ink:#000;--red:#ff2d2d;--white:#fff;
+  font-family:'Arial Black','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:0;position:relative;
+}
+.body-texture{position:absolute;inset:0;pointer-events:none;background-image:
+  repeating-linear-gradient(45deg,transparent 0,transparent 12cqmin,rgba(0,0,0,.04) 12cqmin,rgba(0,0,0,.04) 12.2cqmin)}
+.strip{background:var(--ink);color:var(--bg);padding:1.5cqmin 3cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.8cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;border-bottom:.5cqmin solid var(--red);position:relative;z-index:1}
+.strip.red{background:var(--red);color:#fff;border-bottom-color:var(--ink)}
+.strip .barcode{display:flex;gap:.2cqmin;align-items:center;height:3cqmin}
+.strip .barcode div{width:.3cqmin;height:100%;background:var(--bg)}
+.strip .barcode div:nth-child(3n){width:.5cqmin}
+.strip .barcode div:nth-child(even){height:70%}
+.strip.red .barcode div{background:#fff}
+.main{padding:4cqmin;display:flex;flex-direction:column;gap:2cqmin;position:relative;z-index:1;justify-content:center}
+.stamp{position:absolute;background:var(--red);color:var(--bg);padding:1.5cqmin 2cqmin;border:.4cqmin solid var(--ink);font-size:2cqmin;font-weight:900;letter-spacing:.2em;text-transform:uppercase;line-height:1.1;text-align:center;box-shadow:.4cqmin .4cqmin 0 var(--ink);transform:rotate(-8deg);z-index:2}
+.stamp.s1{top:2cqmin;right:3cqmin;transform:rotate(8deg)}
+.stamp big{display:block;font-size:3.2cqmin}
+h1{font-size:22cqmin;line-height:.85;font-weight:900;letter-spacing:-.045em;text-transform:uppercase}
+h1 .yel{color:var(--bg);background:var(--ink);padding:0 .5cqmin;display:inline-block}
+h1 .rot{display:inline-block;transform:rotate(-3deg);background:var(--red);color:var(--bg);padding:0 .8cqmin;border:.3cqmin solid var(--ink)}
+h1 .strike{position:relative;display:inline-block}
+h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:48%;height:1.5cqmin;background:var(--red);transform:rotate(-4deg)}
+h1 em{font-style:italic;color:var(--red)}
+.note{background:var(--ink);color:var(--bg);padding:2.5cqmin 3cqmin;font-size:2.6cqmin;font-weight:900;letter-spacing:.02em;line-height:1.25;text-transform:uppercase;border:.4cqmin solid var(--ink);position:relative}
+.note::before{content:"⚠";position:absolute;top:-1.5cqmin;left:2cqmin;background:var(--red);color:var(--ink);padding:.5cqmin 1cqmin;font-size:2.5cqmin;border:.3cqmin solid var(--ink)}
+.note em{font-style:normal;background:var(--red);color:var(--ink);padding:0 .4cqmin}
+.note .u{background:var(--bg);color:var(--ink);padding:0 .4cqmin}
+.scribble{position:absolute;font-family:'Caveat','Kalam',cursive;font-size:6cqmin;color:var(--red);line-height:.8;text-align:center}
+.scribble.s1{bottom:8cqmin;left:2cqmin;transform:rotate(-10deg)}
+.scribble.s1 small{display:block;font-size:3cqmin}
+.foot-row{background:var(--red);color:var(--bg);padding:2cqmin 3cqmin;border-top:.5cqmin solid var(--ink);display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;position:relative;z-index:1}
+.foot-row .pill{background:var(--ink);color:var(--red);padding:.5cqmin 1.2cqmin}
+</style></head><body>
+<div class="body-texture"></div>
+<div class="strip">
+  <span>★ ISSUE 007</span>
+  <div class="barcode"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  <span>→ DO NOT FOLD</span>
+</div>
+<div class="strip red">
+  <span>⚠ ATTENTION</span>
+  <span>★ VOL. I · SWIPE ★</span>
+  <span>01/11 →</span>
+</div>
+<div class="main">
+  <span class="stamp s1">★<br/><big>FOR REAL</big></span>
+  <h1>PUT<br/>YOUR<br/><span class="strike">PHONE</span><br/>
+  <span class="rot">DOWN</span><br/><span class="yel">NOW.</span></h1>
+  <div class="note">→ 14 REASONS <em>THIS APP</em><br/>IS EATING YOUR <span class="u">BRAIN</span>.<br/>NONE OF THEM <em>SHOCKING</em>.</div>
+  <span class="scribble s1">↑ yes<small>you</small></span>
+</div>
+<div class="foot-row"><span>★ @BLACKFLAG.ZINE</span><span class="pill">SAVE IT</span><span>SWIPE →</span></div>
+</body></html>

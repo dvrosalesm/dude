@@ -1,0 +1,89 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--surface:#f8fafc;--border:#e2e8f0;
+  font-family:'Source Sans Pro','Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2.5cqmin;
+}
+.bar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--accent);padding-bottom:1.4cqmin}
+h2{font-size:4cqmin;font-weight:700;letter-spacing:-.01em}
+.kicker{font-size:1.2cqmin;letter-spacing:.2em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:2cqmin;align-content:start}
+.card{border:1px solid var(--border);border-radius:.6cqmin;padding:2.2cqmin;display:flex;flex-direction:column;gap:1cqmin;background:var(--bg)}
+.card.lead{background:var(--surface);border-color:var(--accent)}
+.ph{width:100%;aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#dbeafe,#e0e7ff);display:flex;align-items:center;justify-content:center;font-size:5cqmin;font-weight:600;color:var(--accent);margin-bottom:.6cqmin;border:1px solid var(--border)}
+.name{font-size:2cqmin;font-weight:700;letter-spacing:-.01em}
+.role{font-size:1.35cqmin;color:var(--accent);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.bio{font-size:1.3cqmin;line-height:1.5;color:#334155;margin-top:.3cqmin}
+.bio strong{color:var(--ink);font-weight:600}
+.tags{display:flex;gap:.5cqmin;flex-wrap:wrap;margin-top:auto;padding-top:.8cqmin}
+.tags span{font-size:1.05cqmin;letter-spacing:.1em;text-transform:uppercase;background:var(--surface);color:var(--muted);padding:.25cqmin .7cqmin;border-radius:.3cqmin;font-weight:600}
+.card.lead .tags span{background:#dbeafe;color:var(--accent)}
+.foot{display:flex;justify-content:space-between;font-size:1.15cqmin;color:var(--muted);padding-top:1cqmin;border-top:1px solid var(--border)}
+</style></head><body>
+<div class="bar"><h2>Engagement team · the people on your account</h2><span class="kicker">Exhibit 8 · Page 40 of 42</span></div>
+<div class="team">
+  <div class="card lead">
+    <div class="ph">RA</div>
+    <span class="name">Rebecca Albright</span>
+    <span class="role">Managing Partner · Lead</span>
+    <p class="bio"><strong>22 years</strong> in operations advisory. Led transformations at three Fortune 500s. Former VP at a global industrials firm.</p>
+    <div class="tags"><span>Ops strategy</span><span>Board advisory</span></div>
+  </div>
+  <div class="card">
+    <div class="ph">MC</div>
+    <span class="name">Miguel Cervantes</span>
+    <span class="role">Engagement Manager</span>
+    <p class="bio"><strong>9 years</strong> advisory, specializing in shared services and process standardization. MBA · Wharton.</p>
+    <div class="tags"><span>Finance ops</span><span>SSC design</span></div>
+  </div>
+  <div class="card">
+    <div class="ph">SO</div>
+    <span class="name">Samuel Okonkwo</span>
+    <span class="role">Associate Partner</span>
+    <p class="bio">Organization design expert with <strong>14 prior engagements</strong> in consumer and industrial sectors. Ex-McKinsey.</p>
+    <div class="tags"><span>Org design</span><span>People & change</span></div>
+  </div>
+  <div class="card">
+    <div class="ph">PH</div>
+    <span class="name">Priya Hartman</span>
+    <span class="role">Senior Analyst</span>
+    <p class="bio">Financial modeling lead. Built the bottom-up business case; responsible for benefit tracking. <strong>CFA.</strong></p>
+    <div class="tags"><span>Modeling</span><span>Benefits case</span></div>
+  </div>
+  <div class="card">
+    <div class="ph">JK</div>
+    <span class="name">Jae-Won Kim</span>
+    <span class="role">Tech Advisor</span>
+    <p class="bio">ERP and finance systems specialist. <strong>18 years</strong> in enterprise technology. Lead on our technology blueprint.</p>
+    <div class="tags"><span>ERP · SAP</span><span>Tech stack</span></div>
+  </div>
+  <div class="card">
+    <div class="ph">EF</div>
+    <span class="name">Elena Fiorelli</span>
+    <span class="role">Change Lead</span>
+    <p class="bio">Leads our people and communications workstream. <strong>Prior experience</strong> in three global SSC rollouts.</p>
+    <div class="tags"><span>Comms</span><span>Change mgmt</span></div>
+  </div>
+  <div class="card">
+    <div class="ph">DN</div>
+    <span class="name">David Nwosu</span>
+    <span class="role">Operations Analyst</span>
+    <p class="bio">Process mapping lead; facilitated 28 interviews in weeks 1–3. <strong>Six Sigma Black Belt</strong>.</p>
+    <div class="tags"><span>Process</span><span>Lean</span></div>
+  </div>
+  <div class="card">
+    <div class="ph">LT</div>
+    <span class="name">Liora Tessler</span>
+    <span class="role">Data Analyst</span>
+    <p class="bio">Built the diagnostic data model. <strong>Spend analytics</strong> and benchmarking specialist. MSc Analytics.</p>
+    <div class="tags"><span>Analytics</span><span>Spend cube</span></div>
+  </div>
+</div>
+<div class="foot"><span>Meridian Advisory · Engagement 0194</span><span>Page 40 of 42</span></div>
+</body></html>

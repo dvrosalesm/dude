@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f3ede3;--ink:#3d2e24;--sage:#8ba585;--peach:#e8b091;--cream:#fcf6ea;--rule:#d8cfbd;
+  font-family:'Cormorant Garamond','Didot',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin;gap:3cqmin;
+  background-image:radial-gradient(ellipse 60% 40% at 50% 20%,rgba(232,176,145,.15),transparent 60%);
+}
+.pager{display:flex;justify-content:space-between;align-items:center;font-family:'Inter',sans-serif;font-size:1.9cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--ink);opacity:.6;font-weight:500;padding-bottom:1.5cqmin;border-bottom:.1cqmin solid var(--rule)}
+.pager .roman{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.6cqmin;letter-spacing:.1em;opacity:1;color:var(--sage)}
+.main{display:flex;flex-direction:column;justify-content:center;gap:3cqmin;padding:2cqmin 0}
+.n-badge{display:flex;align-items:center;gap:2cqmin}
+.n{width:15cqmin;height:15cqmin;border-radius:50%;background:var(--cream);border:.3cqmin solid var(--sage);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;padding:1cqmin}
+.n .ord{font-family:'Inter',sans-serif;font-size:1.4cqmin;letter-spacing:.3em;color:var(--sage);font-weight:500;text-transform:uppercase}
+.n .num{font-size:8cqmin;font-weight:300;font-style:italic;color:var(--peach);margin-top:-.5cqmin}
+.n-badge .label{font-family:'Inter',sans-serif;font-size:2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);font-weight:500}
+.n-badge .label small{display:block;font-family:'Cormorant Garamond',serif;font-size:2.4cqmin;color:var(--ink);font-style:italic;letter-spacing:.05em;margin-top:.5cqmin;opacity:.7;text-transform:none;font-weight:400}
+h2{font-size:11cqmin;line-height:1;font-weight:300;letter-spacing:-.01em;margin-top:1cqmin}
+h2 em{font-style:italic;color:var(--sage)}
+h2 .script{font-family:'Allura',cursive;font-size:13cqmin;color:var(--peach);font-style:italic;line-height:.85;display:inline-block;letter-spacing:-.02em}
+.body{font-family:'Inter',sans-serif;font-size:2.4cqmin;line-height:1.65;color:var(--ink);opacity:.8;max-width:34ch;font-weight:400}
+.body em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2.7cqmin;color:var(--sage);font-weight:500}
+.body strong{color:var(--peach);font-weight:600}
+.card{background:var(--cream);border-radius:2cqmin;padding:3cqmin;border-left:.4cqmin solid var(--sage);display:flex;flex-direction:column;gap:1.2cqmin;margin-top:1cqmin}
+.card .label{font-family:'Inter',sans-serif;font-size:1.7cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);font-weight:500}
+.card p{font-family:'Cormorant Garamond',serif;font-size:3cqmin;line-height:1.3;font-style:italic;color:var(--ink)}
+.card p strong{font-style:normal;color:var(--peach);font-weight:500}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.8cqmin;border-top:.1cqmin solid var(--rule);font-family:'Inter',sans-serif;font-size:1.9cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--ink);opacity:.55;font-weight:500}
+.foot .script{font-family:'Allura',cursive;font-size:3cqmin;color:var(--peach);text-transform:none;letter-spacing:.02em;opacity:1;font-style:italic}
+</style></head><body>
+<div class="pager"><span>sage &amp; honey</span><span class="roman">Ritual <em>iii.</em> of vii.</span></div>
+<div class="main">
+  <div class="n-badge">
+    <div class="n"><span class="ord">No.</span><span class="num">03</span></div>
+    <span class="label">Ritual iii<small>For the bath-hour</small></span>
+  </div>
+  <h2>A bath, <em>drawn</em><br/>with <span class="script">intention.</span></h2>
+  <p class="body">Pour the water slowly. Light one candle — <em>no more</em>. Add a spoonful of honey and a sprig of rosemary from the kitchen. <strong>No phone, no music.</strong> This hour is nobody's but yours.</p>
+  <div class="card">
+    <span class="label">— You'll need</span>
+    <p>honey · rosemary · one <strong>cotton cloth</strong> · a candle that smells of <strong>something nearly forgotten</strong></p>
+  </div>
+</div>
+<div class="foot"><span>save for sunday ✦</span><span class="script">sage &amp; honey</span></div>
+</body></html>

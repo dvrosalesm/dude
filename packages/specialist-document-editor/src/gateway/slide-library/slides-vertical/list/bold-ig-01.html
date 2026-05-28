@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5f1e8;--ink:#0a0a0a;--accent:#ff3b3b;--muted:#6b6b6b;--mark:#fff27a;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:6cqmin;gap:3cqmin;
+}
+.pager{display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.head h2{font-size:11cqmin;line-height:.9;font-weight:900;letter-spacing:-.04em;text-transform:uppercase}
+.head h2 em{font-style:normal;background:var(--mark);color:var(--ink);padding:0 1cqmin;box-shadow:inset 0 -.8cqmin 0 rgba(0,0,0,.15)}
+.head h2 .r{color:var(--accent)}
+.sub{font-size:2.6cqmin;color:var(--muted);margin-top:1.5cqmin;font-weight:500;letter-spacing:.02em}
+.list{display:grid;align-content:center;gap:2cqmin}
+.item{display:grid;grid-template-columns:8cqmin 1fr auto;gap:2.5cqmin;align-items:center;padding:3cqmin;background:#fff;border:.4cqmin solid var(--ink);border-radius:3cqmin;box-shadow:.6cqmin .6cqmin 0 var(--ink)}
+.item.hot{background:var(--ink);color:var(--bg)}
+.item.hot .n{background:var(--accent);color:var(--bg)}
+.item.hot .arr{color:var(--accent)}
+.n{width:8cqmin;height:8cqmin;background:var(--ink);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3cqmin;font-weight:900;letter-spacing:-.02em}
+.txt h3{font-size:3cqmin;font-weight:900;letter-spacing:-.01em;line-height:1.1;margin-bottom:.5cqmin;text-transform:uppercase}
+.txt p{font-size:2.2cqmin;line-height:1.4;color:inherit;opacity:.75;font-weight:500}
+.arr{font-size:4cqmin;font-weight:900;color:var(--accent)}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:2cqmin;border-top:1px solid #d0c9b8;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.foot .handle{color:var(--ink)}
+.foot .swipe{color:var(--accent);font-weight:900;display:flex;align-items:center;gap:1.2cqmin}
+.foot .swipe .a{font-size:2.8cqmin}
+</style></head><body>
+<div class="pager"><span>@method.studio</span><span>post · 04/09</span></div>
+<div class="head">
+  <h2>5 fonts <em>top studios</em> <br/>quietly use <span class="r">(→ steal)</span></h2>
+  <p class="sub">ranked by how often they show up in fashion week decks this season.</p>
+</div>
+<div class="list">
+  <div class="item"><span class="n">01</span><div class="txt"><h3>ABC Diatype Mono</h3><p>Dieter Castro's bureau wouldn't ship without it.</p></div><span class="arr">→</span></div>
+  <div class="item"><span class="n">02</span><div class="txt"><h3>GT Alpina Standard</h3><p>Every luxury ecomm brand in SS26 — you've seen it.</p></div><span class="arr">→</span></div>
+  <div class="item hot"><span class="n">03</span><div class="txt"><h3>Editorial New</h3><p>Pangram's sleeper hit. Italic does 80% of the work.</p></div><span class="arr">★</span></div>
+  <div class="item"><span class="n">04</span><div class="txt"><h3>Söhne Breit</h3><p>It's everywhere now. That's not a reason to stop.</p></div><span class="arr">→</span></div>
+  <div class="item"><span class="n">05</span><div class="txt"><h3>JUNGKA Serif</h3><p>Underpriced, over-featured. Buy before the fee change.</p></div><span class="arr">→</span></div>
+</div>
+<div class="foot">
+  <span class="handle">save · share · steal</span>
+  <span class="swipe">next <span class="a">→</span></span>
+</div>
+</body></html>

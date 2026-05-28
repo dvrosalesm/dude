@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0a0a;--ink:#f5f1e8;--accent:#00ff85;--red:#ff3b3b;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin;
+  background-image:
+    radial-gradient(ellipse 60% 30% at 50% 40%,rgba(0,255,133,.15),transparent 60%),
+    linear-gradient(180deg,transparent 60%,rgba(255,59,59,.08));
+}
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#8a8a8a}
+.meta strong{color:var(--accent)}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3cqmin;text-align:center;position:relative}
+.main::before{content:"";position:absolute;inset:5cqmin;border:.3cqmin dashed rgba(0,255,133,.2);border-radius:4cqmin;pointer-events:none}
+.kicker{display:inline-flex;align-items:center;gap:1.5cqmin;background:var(--accent);color:var(--bg);padding:2cqmin 3.5cqmin;border-radius:100px;font-size:2.4cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;box-shadow:0 0 40px rgba(0,255,133,.4)}
+.kicker .dot{width:1.2cqmin;height:1.2cqmin;background:var(--bg);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.label{font-size:3cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);font-weight:700;margin-top:2cqmin}
+.num{font-size:42cqmin;line-height:.8;font-weight:900;letter-spacing:-.08em;color:var(--accent);text-shadow:0 0 60px rgba(0,255,133,.4);font-style:italic}
+.num sup{font-size:12cqmin;vertical-align:top;color:var(--ink);font-style:normal;letter-spacing:0}
+.delta-row{display:flex;align-items:center;gap:2cqmin;justify-content:center;margin-top:1cqmin}
+.delta{background:var(--bg);border:.3cqmin solid var(--accent);color:var(--accent);padding:1.5cqmin 2.5cqmin;font-size:2.2cqmin;letter-spacing:.15em;text-transform:uppercase;font-weight:900;border-radius:100px;display:flex;align-items:center;gap:1cqmin}
+.period{font-size:2cqmin;color:#8a8a8a;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.desc{font-size:3.4cqmin;line-height:1.3;max-width:28ch;font-weight:700;margin-top:2cqmin}
+.desc em{font-style:normal;background:var(--accent);color:var(--bg);padding:0 .6cqmin}
+.source{font-size:1.8cqmin;color:#5a5a5a;letter-spacing:.2em;text-transform:uppercase;margin-top:1cqmin;font-weight:500}
+.foot{display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#8a8a8a}
+.foot .handle strong{color:var(--ink)}
+.foot .cta{color:var(--accent);display:flex;align-items:center;gap:1cqmin}
+</style></head><body>
+<div class="meta"><span><strong>●</strong> data drop · q1 2026</span><span>@method.studio</span></div>
+<div class="main">
+  <span class="kicker"><span class="dot"></span> breaking numbers</span>
+  <span class="label">the new average in tech</span>
+  <div class="num">87<sup>%</sup></div>
+  <div class="delta-row">
+    <span class="delta">▲ +31 pts YoY</span>
+    <span class="period">ages 22–29</span>
+  </div>
+  <p class="desc">of designers say they'd leave their job <em>next month</em> for a 4-day week.</p>
+  <span class="source">survey · n=2,400 · verified respondents</span>
+</div>
+<div class="foot"><span class="handle">report by <strong>@method.studio</strong></span><span class="cta">swipe for the breakdown →</span></div>
+</body></html>

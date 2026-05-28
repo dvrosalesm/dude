@@ -1,0 +1,71 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--accent:#00ff88;--accent2:#ff3864;--border:#1a1d26;
+  font-family:'SF Mono',Menlo,'Fira Code',monospace;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px),
+    radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,255,136,.08),transparent 60%);
+  background-size:2.5cqmin 2.5cqmin,2.5cqmin 2.5cqmin,100% 100%;
+}
+.term-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:1.2cqmin 2.5cqmin;display:flex;align-items:center;gap:1.2cqmin;font-size:1.1cqmin;color:var(--muted)}
+.term-bar .dots{display:flex;gap:.6cqmin}
+.term-bar .dots div{width:.9cqmin;height:.9cqmin;border-radius:50%;background:#333}
+.term-bar .dots div:nth-child(1){background:var(--accent2)}
+.term-bar .dots div:nth-child(2){background:#fbbf24}
+.term-bar .dots div:nth-child(3){background:var(--accent)}
+.main{padding:6cqmin;display:flex;flex-direction:column;justify-content:center;gap:3cqmin;position:relative;z-index:1}
+.prompt{font-size:1.3cqmin;color:var(--muted);line-height:1.8}
+.prompt .arrow{color:var(--accent)}
+.prompt .ok{color:var(--accent);font-weight:700}
+.prompt .cmd{color:var(--ink)}
+.prompt .com{color:#4a4d58;font-style:italic}
+.ascii{font-size:1.4cqmin;color:var(--accent);line-height:1;white-space:pre;text-shadow:0 0 8px rgba(0,255,136,.3);font-weight:700;margin:1cqmin 0}
+h1{font-size:8cqmin;font-weight:700;letter-spacing:-.025em;line-height:1;font-family:'Inter',system-ui,sans-serif;color:var(--ink);max-width:24ch}
+h1 .a{color:var(--accent)}
+.sub{font-size:1.8cqmin;line-height:1.6;color:#a8adbb;max-width:54ch;font-family:'Inter',system-ui,sans-serif}
+.grid{display:grid;grid-template-columns:repeat(4,auto);gap:2cqmin;margin-top:2cqmin}
+.kv{background:var(--surface);border:1px solid var(--border);border-radius:.4cqmin;padding:1.3cqmin 1.8cqmin}
+.kv .k{font-size:1.05cqmin;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.3cqmin}
+.kv .v{font-size:1.4cqmin;color:var(--ink)}
+.kv .v .a{color:var(--accent)}
+.foot{background:var(--surface);border-top:1px solid var(--border);padding:1.2cqmin 2.5cqmin;display:flex;justify-content:space-between;font-size:1.1cqmin;color:var(--muted)}
+.foot .led{width:.8cqmin;height:.8cqmin;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);display:inline-block;margin-right:.5cqmin}
+</style></head><body>
+<div class="term-bar">
+  <div class="dots"><div></div><div></div><div></div></div>
+  <span>helix-gateway · zsh · thanks.sh</span>
+  <span style="margin-left:auto;color:var(--accent)">exit 0</span>
+</div>
+<div class="main">
+  <div class="prompt">
+    <span class="arrow">$</span> <span class="cmd">./deck finish --questions</span><br/>
+    <span class="com"># deck complete · 24 slides rendered · build </span><span class="ok">OK</span><br/>
+    <span class="arrow">›</span> <span class="com">opening Q&amp;A channel...</span> <span class="ok">ready</span>
+  </div>
+  <div class="ascii">
+  ╔════════════════════════════════════════╗
+  ║          thank you · questions         ║
+  ╚════════════════════════════════════════╝
+  </div>
+  <h1>What would <span class="a">break</span> this for you?</h1>
+  <p class="sub">Fire the hard questions first. We'd rather fix the design now than discover the edge case on a customer on-call page at 3am.</p>
+  <div class="grid">
+    <div class="kv"><span class="k">docs</span><span class="v"><span class="a">→</span> helix.dev/docs</span></div>
+    <div class="kv"><span class="k">github</span><span class="v"><span class="a">→</span> github.com/helix-labs</span></div>
+    <div class="kv"><span class="k">discord</span><span class="v"><span class="a">→</span> discord.gg/helix</span></div>
+    <div class="kv"><span class="k">email</span><span class="v"><span class="a">→</span> team@helix.dev</span></div>
+  </div>
+</div>
+<div class="foot">
+  <span><span class="led"></span>status · 99.99% up · 284ms p95</span>
+  <span>helix-gateway · Launch Week 04 · fin · 24/24</span>
+</div>
+</body></html>

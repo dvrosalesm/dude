@@ -1,0 +1,44 @@
+{
+  "name": "@dude/specialist-prospect",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./server": {
+      "types": "./src/server.ts",
+      "import": "./src/server.ts",
+      "default": "./src/server.ts"
+    },
+    "./gateway": {
+      "types": "./src/gateway/manifest.ts",
+      "import": "./src/gateway/manifest.ts",
+      "default": "./src/gateway/manifest.ts"
+    },
+    "./gateway/*": {
+      "types": "./src/gateway/*.ts",
+      "import": "./src/gateway/*.ts",
+      "default": "./src/gateway/*.ts"
+    },
+    "./lib/config": {
+      "types": "./src/lib/config.ts",
+      "import": "./src/lib/config.ts",
+      "default": "./src/lib/config.ts"
+    },
+    "./lib/sanitize-html": {
+      "types": "./src/lib/sanitize-html.ts",
+      "import": "./src/lib/sanitize-html.ts",
+      "default": "./src/lib/sanitize-html.ts"
+    }
+  },
+  "dependencies": {
+    "@dude/sdk": "*",
+    "hono": "^4.7.4",
+    "lucide-react": "^0.474.0",
+    "react": "^19.0.0"
+  }
+}

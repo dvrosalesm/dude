@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--gold2:#d4b478;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:4cqmin 5cqmin;gap:2cqmin;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 100%,rgba(201,169,97,.08),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 0% 0%,rgba(201,169,97,.05),transparent 60%);
+  position:relative;
+}
+.frame{position:absolute;inset:2cqmin;border:1px solid var(--rule);pointer-events:none}
+.frame::before{content:"";position:absolute;inset:.8cqmin;border:1px solid rgba(201,169,97,.2);pointer-events:none}
+.masthead{display:flex;justify-content:space-between;align-items:center;padding:1.5cqmin 0;border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.masthead .side{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
+.logo{display:flex;flex-direction:column;align-items:center;gap:.2cqmin;text-align:center}
+.logo .mark{font-size:2.8cqmin;font-weight:400;letter-spacing:.15em;color:var(--gold);font-style:italic}
+.logo .crest{font-size:1.5cqmin;color:var(--gold);letter-spacing:.4em}
+.main{display:grid;grid-template-rows:auto 1fr auto;align-items:center;justify-items:center;gap:2cqmin;padding:2cqmin 0;text-align:center;position:relative;z-index:1}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);padding:.8cqmin 2cqmin;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.ornament{font-size:2.5cqmin;color:var(--gold);letter-spacing:.3em;line-height:1}
+h1{font-size:11cqmin;line-height:1;font-weight:400;letter-spacing:-.02em;max-width:20ch}
+h1 em{font-style:italic;color:var(--gold);font-weight:400}
+h1 .small{display:block;font-size:3cqmin;font-style:italic;color:var(--ink);letter-spacing:.05em;margin-top:2cqmin;font-weight:400;opacity:.9}
+.roman{font-family:'Helvetica Neue',sans-serif;font-size:1.4cqmin;letter-spacing:.35em;color:var(--gold);font-weight:600}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.8cqmin;border-top:1px solid var(--rule);font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);position:relative;z-index:1}
+.foot .center{color:var(--gold);letter-spacing:.5em}
+</style></head><body>
+<div class="frame"></div>
+<div class="masthead">
+  <span class="side">Collection No. XIV</span>
+  <div class="logo"><span class="mark">Aurelia</span><span class="crest">— ※ —</span></div>
+  <span class="side">MMXXVI</span>
+</div>
+<div class="main">
+  <div class="ornament">❦ ※ ❦</div>
+  <span class="kicker">Spring Collection · Private View</span>
+  <h1>On the <em>quiet</em><br/>geometry of <em>time.</em><span class="small">A year in the making.<br/>An evening in your company.</span></h1>
+  <span class="roman">XIV · MMXXVI</span>
+  <div class="ornament">❦ ※ ❦</div>
+</div>
+<div class="foot">
+  <span>Maison Aurelia · Paris · London · Kyoto</span>
+  <span class="center">— Private Preview —</span>
+  <span>Invitation No. 0042</span>
+</div>
+</body></html>

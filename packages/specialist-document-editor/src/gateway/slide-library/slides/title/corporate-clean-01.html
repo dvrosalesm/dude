@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--surface:#f1f5f9;--border:#e2e8f0;
+  font-family:'Source Sans Pro','Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+}
+.bar{background:var(--accent);color:#fff;padding:2cqmin 5cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.3cqmin;letter-spacing:.15em;text-transform:uppercase}
+.bar .logo{font-weight:700;letter-spacing:.2em;font-size:1.5cqmin}
+.main{padding:6cqmin 5cqmin;display:grid;grid-template-columns:1fr auto;gap:5cqmin;align-items:end;position:relative;overflow:hidden}
+.main::before{content:"";position:absolute;right:-10cqmin;top:-10cqmin;width:40cqmin;height:40cqmin;background:radial-gradient(circle,rgba(30,64,175,.08),transparent 70%);border-radius:50%;pointer-events:none}
+.left{position:relative;z-index:1}
+.classification{display:inline-block;padding:.5cqmin 1.2cqmin;background:#fef3c7;color:#92400e;font-size:1.1cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:600;border-radius:.3cqmin;margin-bottom:2.5cqmin}
+h1{font-size:8.5cqmin;line-height:1;font-weight:700;letter-spacing:-.02em;max-width:22ch;color:var(--ink)}
+.sub{font-size:2.4cqmin;line-height:1.4;color:var(--muted);max-width:42ch;margin-top:2cqmin;font-weight:300}
+.rule{width:8cqmin;height:.5cqmin;background:var(--accent);margin-top:3cqmin}
+.right{display:flex;flex-direction:column;gap:1.8cqmin;padding:3cqmin;background:var(--surface);border-left:3px solid var(--accent);min-width:26cqmin}
+.right .k{font-size:1.1cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.3cqmin}
+.right .v{font-size:1.8cqmin;font-weight:600;color:var(--ink)}
+.foot{background:#0f172a;color:#cbd5e1;padding:2cqmin 5cqmin;display:flex;justify-content:space-between;font-size:1.2cqmin;letter-spacing:.1em}
+.foot .logo{font-weight:700;color:#fff}
+</style></head><body>
+<div class="bar"><span class="logo">MERIDIAN ADVISORY</span><span>Confidential · For Internal Review</span></div>
+<div class="main">
+  <div class="left">
+    <span class="classification">Client Confidential</span>
+    <h1>Operating Model Transformation</h1>
+    <p class="sub">A 90-day roadmap to consolidate regional operations, unlock $42M in annual run-rate savings, and prepare the organization for 2027 growth.</p>
+    <div class="rule"></div>
+  </div>
+  <div class="right">
+    <div><div class="k">Prepared for</div><div class="v">Acme Industries · Board Review</div></div>
+    <div><div class="k">Prepared by</div><div class="v">Meridian Engagement Team 0194</div></div>
+    <div><div class="k">Engagement lead</div><div class="v">R. Albright · Managing Partner</div></div>
+    <div><div class="k">Date</div><div class="v">18 April 2026</div></div>
+  </div>
+</div>
+<div class="foot"><span class="logo">MERIDIAN ADVISORY</span><span>© 2026 Meridian Advisory Group · All rights reserved</span><span>Page 1 of 42</span></div>
+</body></html>

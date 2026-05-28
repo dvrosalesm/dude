@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fbeee4;--ink:#3d2e24;--sage:#8ba585;--peach:#e8b091;--cream:#fcf6ea;
+  font-family:'Cormorant Garamond','Didot',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:8cqmin 7cqmin;position:relative;text-align:center;
+  background-image:radial-gradient(ellipse 50% 40% at 50% 50%,rgba(252,246,234,.6),transparent 60%);
+}
+.frame{position:absolute;inset:4cqmin;border:.15cqmin solid var(--peach);border-radius:4cqmin;pointer-events:none}
+.frame::before{content:"";position:absolute;inset:.8cqmin;border:.1cqmin solid rgba(232,176,145,.3);border-radius:3.5cqmin;pointer-events:none}
+.head{font-family:'Inter',sans-serif;font-size:1.9cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--sage);font-weight:500;padding:1cqmin 0;border-bottom:.1cqmin solid rgba(232,176,145,.3);position:relative;z-index:1;display:flex;justify-content:center;gap:2cqmin;align-items:center}
+.main{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5cqmin;position:relative;z-index:1}
+.mark{font-family:'Cormorant Garamond',serif;font-size:32cqmin;line-height:.5;color:var(--peach);font-style:italic;font-weight:300;margin-bottom:1cqmin;opacity:.85}
+blockquote{font-size:7cqmin;line-height:1.1;font-weight:300;letter-spacing:-.005em;font-style:italic;max-width:18ch;color:var(--ink)}
+blockquote em{font-family:'Allura',cursive;font-size:9.5cqmin;color:var(--sage);letter-spacing:-.02em;font-style:italic;display:inline-block;line-height:.75}
+blockquote strong{font-weight:400;color:var(--peach);font-style:normal}
+.orn{font-size:2.2cqmin;color:var(--peach);letter-spacing:.5em;margin-top:1cqmin}
+.cite{display:flex;flex-direction:column;align-items:center;gap:.4cqmin;margin-top:1cqmin}
+.cite .nm{font-size:2.8cqmin;font-style:italic;color:var(--sage)}
+.cite .rl{font-family:'Inter',sans-serif;font-size:1.6cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);opacity:.55;font-weight:500}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.5cqmin;border-top:.1cqmin solid rgba(232,176,145,.3);position:relative;z-index:1;font-family:'Inter',sans-serif;font-size:1.7cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);opacity:.5;font-weight:500}
+.foot .script{font-family:'Allura',cursive;font-size:2.8cqmin;color:var(--peach);text-transform:none;letter-spacing:.02em;font-style:italic;opacity:1}
+</style></head><body>
+<div class="frame"></div>
+<div class="head"><span>✦</span> from the notebooks <span>✦</span> vol. vii <span>✦</span></div>
+<div class="main">
+  <div class="mark">&ldquo;</div>
+  <blockquote>you are allowed<br/>to <em>outgrow</em><br/><strong>the person</strong><br/>who used to<br/>calm you.</blockquote>
+  <div class="orn">✦ · ✦ · ✦</div>
+  <div class="cite">
+    <span class="nm">— Marguerite Holloway</span>
+    <span class="rl">journal · spring '26</span>
+  </div>
+</div>
+<div class="foot"><span>save this ✦</span><span class="script">sage &amp; honey</span></div>
+</body></html>

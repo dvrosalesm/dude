@@ -1,0 +1,62 @@
+{
+  "name": "@dude/sdk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./gateway": {
+      "types": "./dist/gateway.d.ts",
+      "import": "./dist/gateway.js",
+      "default": "./dist/gateway.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js",
+      "default": "./dist/client.js"
+    },
+    "./api": {
+      "types": "./dist/api.d.ts",
+      "import": "./dist/api.js",
+      "default": "./dist/api.js"
+    },
+    "./runner": {
+      "types": "./dist/runner.d.ts",
+      "import": "./dist/runner.js",
+      "default": "./dist/runner.js"
+    },
+    "./gateway-runtime": {
+      "types": "./dist/gateway-runtime.d.ts",
+      "import": "./dist/gateway-runtime.js",
+      "default": "./dist/gateway-runtime.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "peerDependencies": {
+    "elysia": "^1.0.0",
+    "react": "^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "elysia": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "elysia": "^1.4.28",
+    "react": "^19.0.0",
+    "tsup": "^8.4.0",
+    "typescript": "5.9.3"
+  }
+}

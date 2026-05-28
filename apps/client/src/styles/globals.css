@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dude-desktop-chrome-height: 0px;
+  --dude-app-height: 100dvh;
+  --dude-bg: #FAFCFE;
+  --dude-surface: #FFFFFF;
+  --dude-surface-2: #F2F6FA;
+  --dude-line: #E2EAF2;
+  --dude-text: #1A1A1A;
+  --dude-muted: #6B7280;
+  --dude-accent: #4F7394;
+  --dude-accent-soft: rgb(79 115 148 / 0.08);
+  --dude-glow: #B8D4EB;
+  --dude-success: #3D8B63;
+  --dude-danger: #C45C4D;
+  --dude-pattern:
+    radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--dude-line) 8%, transparent) 1px, transparent 0),
+    linear-gradient(135deg, color-mix(in srgb, var(--dude-line) 4%, transparent) 1px, transparent 1px);
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --background: 210 40% 99%;
+  --foreground: 220 15% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 15% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 15% 12%;
+  --primary: 210 35% 28%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 35% 96%;
+  --secondary-foreground: 220 15% 12%;
+  --muted: 210 30% 98%;
+  --muted-foreground: 220 8% 46%;
+  --accent: 210 35% 96%;
+  --accent-foreground: 220 15% 12%;
+  --destructive: 8 48% 54%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 22% 90%;
+  --input: 210 22% 90%;
+  --ring: 210 35% 28%;
+  --radius: 0.875rem;
+}
+
+[data-dude-desktop-app] {
+  --dude-desktop-chrome-height: 2.25rem;
+  --dude-app-height: calc(100dvh - var(--dude-desktop-chrome-height));
+}
+
+.h-dude-app {
+  height: 100%;
+}
+
+.min-h-dude-app {
+  min-height: 100%;
+}
+
+.h-dude-screen {
+  height: var(--dude-app-height);
+}
+
+.min-h-dude-screen {
+  min-height: var(--dude-app-height);
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--dude-bg);
+  color: var(--dude-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dude-dream-bg {
+  background-color: var(--dude-bg);
+  background-image: var(--dude-pattern);
+  background-size: 28px 28px, 44px 44px;
+  background-position: 0 0, 12px 8px;
+}
+
+.html-in-canvas-shell,
+.html-in-canvas-desktop,
+.html-in-canvas-fallback {
+  background: transparent;
+}
+
+/* Full-viewport ambient glow — lives on the page, not the content canvas */
+.dude-dream-bg::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 32%,
+      color-mix(in srgb, var(--dude-glow) 14%, transparent),
+      transparent 68%
+    );
+}
+
+.dude-dream-bg > main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Handwritten Caveat font (input + thinking question) ── */
+.dude-open-input-text {
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+
+.dude-think-question-text {
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: var(--dude-text);
+}
+
+.dude-input-scribble {
+  color: color-mix(in srgb, var(--dude-muted) 72%, transparent);
+  transform: rotate(-4deg);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.dude-input-scribble__line {
+  display: inline-block;
+  padding-bottom: 0.08em;
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--dude-muted) 35%, transparent),
+    color-mix(in srgb, var(--dude-muted) 20%, transparent)
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+}
+
+/* Stage answer markdown — no list markers */
+.chat-markdown-stage,
+.chat-markdown-stage *,
+.chat-markdown-dream,
+.chat-markdown-dream * {
+  list-style: none !important;
+}
+
+.chat-markdown-stage ul,
+.chat-markdown-stage ol,
+.chat-markdown-dream ul,
+.chat-markdown-dream ol {
+  margin: 0;
+  padding: 0;
+}
+
+.chat-markdown-stage li,
+.chat-markdown-dream li {
+  display: block;
+}
+
+.chat-markdown-stage li::marker,
+.chat-markdown-dream li::marker {
+  content: none !important;
+}
+
+/* Fallback: kill bullets if remark still emits ul/ol in stage/dream */
+.chat-markdown-stage :is(ul, ol),
+.chat-markdown-dream :is(ul, ol),
+.chat-markdown-list {
+  list-style: none !important;
+  margin-inline: 0;
+  padding-inline: 0;
+  text-align: center;
+}
+
+.chat-markdown-stage :is(ul, ol) > li,
+.chat-markdown-dream :is(ul, ol) > li,
+.chat-markdown-list-item {
+  display: block;
+  list-style: none !important;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.chat-markdown-stage :is(ul, ol) > li::marker,
+.chat-markdown-dream :is(ul, ol) > li::marker,
+.chat-markdown-list-item::marker {
+  content: none !important;
+}
+
+/* Dreamy caption markdown — soft, centered, no boxes */
+.chat-markdown-dream {
+  color: color-mix(in srgb, var(--dude-muted) 86%, var(--dude-text));
+  font-size: clamp(0.9rem, 2.1vw, 1rem);
+  letter-spacing: 0.025em;
+  line-height: 1.75;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.chat-markdown-dream p:first-child {
+  margin-top: 0;
+}
+
+.chat-markdown-dream p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-markdown-dream .dream-markdown-em,
+.chat-markdown-dream em {
+  color: color-mix(in srgb, var(--dude-muted) 72%, var(--dude-accent));
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.035em;
+}
+
+.chat-markdown-dream .dream-markdown-quote {
+  border: none;
+  color: color-mix(in srgb, var(--dude-muted) 78%, var(--dude-text));
+  font-size: 0.95em;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.chat-dream-summary {
+  margin-inline: auto;
+  max-width: 36rem;
+  padding-inline: clamp(1.5rem, 5vw, 2.5rem);
+  padding-block: 0.25rem 0.5rem;
+  position: relative;
+  text-align: center;
+}
+
+.chat-dream-summary::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--dude-glow) 55%, transparent),
+    transparent
+  );
+  content: "";
+  display: block;
+  height: 1px;
+  margin: 0 auto 1rem;
+  width: min(4rem, 28vw);
+}
+
+/* Sticky "Earlier" divider — frosted blur with opaque top lip (no seam bleed) */
+.chat-stage-earlier {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: color-mix(in srgb, var(--dude-bg) 88%, transparent);
+  isolation: isolate;
+}
+
+.chat-stage-earlier::before {
+  background-color: var(--dude-bg);
+  content: "";
+  height: 12px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: -12px;
+}
+
+/* ── Dream stage: soft cool ambient + gentle reveal ── */
+.dream-answer-stage--revealing {
+  animation: dream-answer-fade-in 0.9s ease-out forwards;
+}
+
+.dude-dream-bg:has([data-dream-phase="thinking"])::before {
+  animation: dream-ambient-breathe 4s ease-in-out infinite;
+}
+
+[data-dream-phase="thinking"] .html-in-canvas-fallback__glow,
+.html-in-canvas-fallback--thinking .html-in-canvas-fallback__glow {
+  opacity: 1;
+  animation: dream-ambient-breathe 4s ease-in-out infinite;
+}
+
+@keyframes dream-answer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dream-ambient-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dream-answer-stage--revealing,
+  .html-in-canvas-fallback--thinking .html-in-canvas-fallback__glow,
+  .dude-dream-bg:has([data-dream-phase="thinking"])::before {
+    animation: none;
+  }
+}
+
+/* CSS fallback when HTML-in-Canvas API is unavailable */
+.html-in-canvas-fallback__glow {
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 38%,
+      color-mix(in srgb, var(--dude-glow) 18%, transparent),
+      transparent 72%
+    );
+  opacity: 0.55;
+  transition: opacity 300ms ease;
+}
+
+.html-in-canvas-fallback--active .html-in-canvas-fallback__glow {
+  opacity: 0.95;
+  animation: dream-ambient-breathe 4s ease-in-out infinite;
+}
+
+.html-in-canvas-fallback--dream {
+  isolation: isolate;
+}
+
+@keyframes html-in-canvas-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .html-in-canvas-fallback--active .html-in-canvas-fallback__glow {
+    animation: none;
+  }
+}

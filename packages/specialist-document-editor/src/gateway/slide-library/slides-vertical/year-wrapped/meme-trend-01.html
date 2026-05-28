@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#1a0033;--ink:#fff;--lime:#c6ff00;--pink:#ff3eb5;--orange:#ff7a29;--cyan:#00e4ff;
+  font-family:'Inter',system-ui,'Helvetica Neue',sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 4cqmin;gap:2.5cqmin;position:relative;
+  background-image:
+    radial-gradient(ellipse 70% 40% at 20% 20%,var(--pink),transparent 55%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,var(--cyan),transparent 55%),
+    radial-gradient(ellipse 50% 30% at 50% 60%,var(--lime),transparent 50%),
+    linear-gradient(180deg,#1a0033 0%,#3d0066 50%,#0d001a 100%);
+}
+.head{display:flex;justify-content:space-between;align-items:center;font-size:1.9cqmin;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);padding:1.5cqmin 2.5cqmin;background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:.15cqmin solid rgba(255,255,255,.2);border-radius:100px}
+.head .live{background:var(--lime);color:#1a0033;padding:.4cqmin 1.2cqmin;border-radius:100px}
+.main{display:flex;flex-direction:column;justify-content:center;gap:2.5cqmin;position:relative;z-index:1}
+.year-badge{background:var(--ink);color:#1a0033;padding:1.2cqmin 2.5cqmin;border-radius:100px;font-size:2.2cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:900;width:fit-content;display:inline-flex;align-items:center;gap:1.2cqmin;transform:rotate(-2deg);box-shadow:.5cqmin .5cqmin 0 rgba(0,0,0,.3)}
+.year-badge .orb{width:1.4cqmin;height:1.4cqmin;background:var(--pink);border-radius:50%;box-shadow:0 0 8px var(--pink)}
+h1{font-size:15cqmin;line-height:.88;font-weight:900;letter-spacing:-.045em;text-transform:uppercase}
+h1 em{font-style:italic;color:var(--lime)}
+h1 .pink{color:var(--pink)}
+h1 .script{font-family:'Caveat',cursive;font-size:20cqmin;font-style:italic;color:var(--lime);font-weight:700;letter-spacing:-.02em;line-height:.75;display:inline-block}
+.sub{font-size:2.3cqmin;line-height:1.5;color:rgba(255,255,255,.85);font-weight:500;max-width:30ch}
+.sub em{color:var(--lime);font-style:italic;font-weight:700}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:2cqmin;margin-top:1cqmin}
+.stat{background:rgba(255,255,255,.1);backdrop-filter:blur(16px);border:.15cqmin solid rgba(255,255,255,.25);border-radius:2.5cqmin;padding:3cqmin;display:flex;flex-direction:column;gap:.7cqmin;position:relative;overflow:hidden;transform:rotate(-.5deg)}
+.stat:nth-child(2n){transform:rotate(1deg)}
+.stat.big{grid-column:span 2;background:var(--lime);color:#1a0033;border-color:var(--lime);transform:rotate(-1deg);box-shadow:.8cqmin .8cqmin 0 rgba(0,0,0,.3)}
+.stat .lbl{font-size:1.4cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;color:var(--lime)}
+.stat.big .lbl{color:#1a0033;opacity:.65}
+.stat .val{font-size:9cqmin;line-height:.85;font-weight:900;letter-spacing:-.04em;font-style:italic}
+.stat.big .val{font-size:13cqmin;color:#1a0033}
+.stat .val sup{font-size:3cqmin;color:var(--pink);vertical-align:top;font-style:normal;font-weight:700;letter-spacing:0}
+.stat.big .val sup{color:var(--pink)}
+.stat p{font-size:1.5cqmin;line-height:1.4;color:rgba(255,255,255,.75);font-weight:500;margin-top:auto}
+.stat.big p{color:#1a0033;opacity:.75}
+.stat .rank-pill{display:inline-flex;align-items:center;gap:.5cqmin;padding:.4cqmin 1cqmin;background:var(--pink);color:#1a0033;border-radius:100px;font-size:1.1cqmin;letter-spacing:.15em;text-transform:uppercase;font-weight:900;width:fit-content;margin-top:.3cqmin}
+.scribble{position:absolute;font-family:'Caveat',cursive;font-size:4cqmin;color:var(--orange);transform:rotate(-8deg);line-height:1;z-index:2}
+.scribble.s1{top:35cqmin;right:-2cqmin;color:var(--pink);font-size:4.5cqmin}
+.scribble.s1 small{font-size:2.2cqmin;display:block}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:1.5cqmin 2.5cqmin;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:.15cqmin solid rgba(255,255,255,.2);border-radius:100px;font-size:1.6cqmin;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:700}
+.foot .share{background:var(--lime);color:#1a0033;padding:.5cqmin 1.3cqmin;border-radius:100px;font-weight:900}
+</style></head><body>
+<div class="head"><span>★ wrapped 2026</span><span class="live">● live · your year</span></div>
+<div class="main">
+  <span class="year-badge"><span class="orb"></span> your year ·  in numbers</span>
+  <h1>you were <em>so</em><br/><span class="script">niche</span><br/>this year <span class="pink">✦</span></h1>
+  <p class="sub">only <em>0.03%</em> of users listened to as much <em>slovenian jazzcore</em> as you did. <em>your taste is pristine</em>. the algo is scared.</p>
+  <div class="stats-grid">
+    <div class="stat big">
+      <span class="lbl">★ top artist · 2026</span>
+      <div class="val">Magdalena<br/>Vrba Trio</div>
+      <p>You listened <strong>14,208 minutes</strong>. That's roughly <em>one full week</em>. The artist's mom has not listened this much.</p>
+    </div>
+    <div class="stat">
+      <span class="lbl">top genre</span>
+      <div class="val">jazz<sup>core</sup></div>
+      <p>slavic experimental</p>
+      <span class="rank-pill">#1 · top 0.1%</span>
+    </div>
+    <div class="stat">
+      <span class="lbl">minutes</span>
+      <div class="val">42,194<sup>m</sup></div>
+      <p>= 29 full days</p>
+      <span class="rank-pill">top 3% worldwide</span>
+    </div>
+  </div>
+  <span class="scribble s1">unhinged!<br/><small>↙ log off king</small></span>
+</div>
+<div class="foot"><span>@vibe.founder · wrapped '26</span><span class="share">◈ share your wrapped</span></div>
+</body></html>

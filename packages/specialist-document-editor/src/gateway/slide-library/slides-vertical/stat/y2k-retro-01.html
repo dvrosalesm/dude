@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#1a0a2a;--ink:#fff;--accent:#ff2a68;--lime:#c6ff00;--cyan:#1affff;--pink:#ff80c0;
+  font-family:'Arial Black','Impact','Helvetica Neue',sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:3cqmin;position:relative;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 50% 40%,rgba(26,255,255,.3),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 90%,rgba(255,42,104,.25),transparent 60%),
+    linear-gradient(180deg,#1a0a2a 0%,#2a0a4a 100%);
+}
+.scanlines{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(255,255,255,.03) 3px,rgba(255,255,255,.03) 4px);z-index:0}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:
+  radial-gradient(circle 2px at 15% 10%,var(--cyan),transparent),
+  radial-gradient(circle 2px at 85% 25%,var(--lime),transparent),
+  radial-gradient(circle 1.5px at 30% 90%,var(--pink),transparent),
+  radial-gradient(circle 2px at 70% 70%,#fff,transparent),
+  radial-gradient(circle 1.5px at 90% 95%,var(--cyan),transparent),
+  radial-gradient(circle 2px at 5% 70%,#fff,transparent),
+  radial-gradient(circle 1.5px at 55% 8%,var(--pink),transparent),
+  radial-gradient(circle 1.5px at 95% 55%,var(--lime),transparent)}
+.top{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--bg);padding:1.5cqmin 2.5cqmin;border:.3cqmin solid var(--cyan);border-radius:100px;font-size:1.9cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;position:relative;z-index:1;box-shadow:0 0 20px rgba(26,255,255,.4)}
+.top .blink{color:var(--accent);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2.5cqmin;position:relative;z-index:1;text-align:center}
+.label{display:inline-flex;align-items:center;gap:1.2cqmin;padding:1.2cqmin 2.5cqmin;background:linear-gradient(180deg,#fff,#e8e8ff);color:var(--bg);border:.3cqmin solid var(--ink);border-radius:100px;font-size:1.9cqmin;font-weight:900;letter-spacing:.2em;text-transform:uppercase;box-shadow:.3cqmin .3cqmin 0 var(--cyan)}
+.num-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+.num{font-size:46cqmin;line-height:.82;font-weight:900;letter-spacing:-.08em;font-style:italic;color:transparent;background:linear-gradient(180deg,#fff 0%,#c0ffff 40%,#1affff 55%,#3a80ff 80%,#1a1a80 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.6cqmin var(--ink);filter:drop-shadow(.5cqmin .5cqmin 0 var(--accent)) drop-shadow(0 0 30px rgba(26,255,255,.4))}
+.num sup{font-size:12cqmin;color:transparent;-webkit-text-stroke:.5cqmin var(--ink);background:linear-gradient(180deg,#fff,#ffd0e8,#ff2a68);-webkit-background-clip:text;background-clip:text;vertical-align:top;line-height:1;letter-spacing:0}
+.sparkle{position:absolute;font-size:6cqmin;filter:drop-shadow(0 0 8px currentColor)}
+.sparkle.s1{top:-2cqmin;left:2cqmin;color:var(--lime);transform:rotate(-15deg)}
+.sparkle.s2{top:10cqmin;right:0;color:var(--pink);transform:rotate(20deg)}
+.sparkle.s3{bottom:4cqmin;left:10cqmin;color:var(--cyan)}
+.delta{background:var(--lime);color:var(--bg);border:.3cqmin solid var(--ink);border-radius:100px;padding:1.2cqmin 2.5cqmin;font-size:2.2cqmin;font-weight:900;letter-spacing:.1em;text-transform:uppercase;box-shadow:.3cqmin .3cqmin 0 var(--ink);transform:rotate(-2deg)}
+.desc{background:#fff;color:var(--bg);border:.3cqmin solid var(--ink);border-radius:3cqmin;padding:2.5cqmin 3cqmin;font-size:2.4cqmin;font-weight:800;letter-spacing:.01em;line-height:1.3;max-width:32ch;box-shadow:.5cqmin .5cqmin 0 var(--ink)}
+.desc em{color:var(--accent);font-style:italic}
+.desc strong{background:var(--cyan);padding:0 .3cqmin}
+.source{font-size:1.6cqmin;color:rgba(255,255,255,.5);letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-top:-.5cqmin}
+.foot{display:flex;justify-content:space-between;align-items:center;background:var(--accent);border:.3cqmin solid var(--ink);border-radius:100px;padding:1.8cqmin 2.8cqmin;font-size:1.9cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:#fff;position:relative;z-index:1;box-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.foot .save{background:var(--ink);padding:.5cqmin 1.2cqmin;border-radius:100px}
+</style></head><body>
+<div class="scanlines"></div>
+<div class="stars"></div>
+<div class="top"><span>📡 DATA DROP</span><span class="blink">● LIVE NOW</span><span>04/11 →</span></div>
+<div class="main">
+  <span class="label">✦ 1 IN 3 ✦ gen z</span>
+  <div class="num-wrap">
+    <span class="sparkle s1">✦</span>
+    <span class="sparkle s2">★</span>
+    <span class="sparkle s3">✿</span>
+    <div class="num">38<sup>%</sup></div>
+  </div>
+  <span class="delta">▲ +22pts since '23</span>
+  <div class="desc">→ of <em>gen z</em> say they'd rather use <strong>a flip phone</strong> for a week than <em>lose tiktok</em>.</div>
+  <span class="source">survey · n=4,200 · youth &amp; tech 2026</span>
+</div>
+<div class="foot"><span>📼 @cybergal.jpg</span><span>★ save ★</span><span class="save">swipe →</span></div>
+</body></html>

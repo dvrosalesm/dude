@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0b0d1a;--ink:#f8fafc;--muted:#94a3b8;--accent:#22d3ee;--border:#1e2138;--danger:#f87171;--good:#34d399;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr;
+  padding:6cqmin 6cqmin;gap:3cqmin;
+  background-image:radial-gradient(ellipse 40% 30% at 0% 100%,rgba(34,211,238,.15),transparent 60%);
+}
+header{display:flex;justify-content:space-between;align-items:flex-end}
+h2{font-size:5.2cqmin;line-height:1;font-weight:700;letter-spacing:-.03em}
+h2 em{font-style:normal;color:var(--accent)}
+.kicker{font-size:1.25cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:2cqmin;align-items:stretch}
+.col{background:linear-gradient(180deg,rgba(17,19,39,.7),rgba(11,13,26,.7));border:1px solid var(--border);border-radius:1.5cqmin;padding:3cqmin;display:flex;flex-direction:column;gap:1.8cqmin;backdrop-filter:blur(10px)}
+.col.problem{border-color:rgba(248,113,113,.25)}
+.col.solution{border-color:rgba(52,211,153,.25)}
+.col h3{font-size:2.6cqmin;font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:1.4cqmin}
+.col h3 .badge{font-size:1.1cqmin;letter-spacing:.25em;text-transform:uppercase;font-weight:700;padding:.4cqmin 1.2cqmin;border-radius:100px}
+.problem h3 .badge{background:rgba(248,113,113,.15);color:var(--danger);border:1px solid rgba(248,113,113,.3)}
+.solution h3 .badge{background:rgba(52,211,153,.15);color:var(--good);border:1px solid rgba(52,211,153,.3)}
+.ul{list-style:none;display:flex;flex-direction:column;gap:1.2cqmin}
+.ul li{font-size:1.6cqmin;line-height:1.5;padding-left:2.6cqmin;position:relative;color:#cbd5e1}
+.problem .ul li::before{content:"✕";position:absolute;left:.2cqmin;top:0;color:var(--danger);font-weight:700;font-size:1.7cqmin}
+.solution .ul li::before{content:"✓";position:absolute;left:.2cqmin;top:0;color:var(--good);font-weight:700;font-size:1.7cqmin}
+.ul li strong{color:#f8fafc;font-weight:600}
+.stat{display:grid;grid-template-columns:1fr 1fr;gap:1.5cqmin;margin-top:auto;padding-top:2cqmin;border-top:1px solid var(--border)}
+.stat .v{font-size:4cqmin;font-weight:800;letter-spacing:-.03em;line-height:1}
+.problem .stat .v{color:var(--danger)}.solution .stat .v{color:var(--good)}
+.stat .l{font-size:1.15cqmin;color:var(--muted);letter-spacing:.1em;margin-top:.5cqmin;display:block}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">The problem · The answer</span>
+    <h2 style="margin-top:1cqmin">Building agents yourself <em>costs a team.</em></h2>
+  </div>
+</header>
+<div class="cols">
+  <div class="col problem">
+    <h3>Today, in-house <span class="badge">Before</span></h3>
+    <ul class="ul">
+      <li><strong>Three engineers, four months</strong> to stand up per-tenant process isolation, rate limits, and health checks.</li>
+      <li>Another two months to debug <strong>noisy-neighbor crashes</strong> under load.</li>
+      <li>A new on-call rotation for <strong>cold-start timeouts</strong> and orphaned child processes.</li>
+      <li>Re-inventing the <strong>idle reaping</strong> logic every time a new tenant needs a sandbox.</li>
+    </ul>
+    <div class="stat">
+      <div><span class="v">~$480k</span><span class="l">Year-one cost</span></div>
+      <div><span class="v">4.2 mo</span><span class="l">Time to first prod deploy</span></div>
+    </div>
+  </div>
+  <div class="col solution">
+    <h3>With Helix <span class="badge">After</span></h3>
+    <ul class="ul">
+      <li>One API call per agent — <strong>no process management on your side.</strong></li>
+      <li>Strict Python builtins, blocked SQL extensions, <strong>sandboxing baked in.</strong></li>
+      <li>Encrypted SQLite per workspace, <strong>auto-synced to R2</strong> on idle reap.</li>
+      <li>One on-call rotation: <strong>ours.</strong> 99.95% SLA, audit log, support chat.</li>
+    </ul>
+    <div class="stat">
+      <div><span class="v">$0.48 / hr</span><span class="l">Typical workspace cost</span></div>
+      <div><span class="v">&lt; 1 day</span><span class="l">From docs to prod</span></div>
+    </div>
+  </div>
+</div>
+</body></html>

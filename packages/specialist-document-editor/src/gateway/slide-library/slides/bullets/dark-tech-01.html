@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#05060a;--surface:#0a0c12;--ink:#e4e7ef;--muted:#6b7280;--accent:#00ff88;--accent2:#ff3864;--accent3:#00d9ff;--border:#1a1d26;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:3cqmin;
+  background-image:
+    linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px);
+  background-size:2.5cqmin 2.5cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--border);padding-bottom:2cqmin}
+.kicker{font-family:'SF Mono',monospace;font-size:1.2cqmin;color:var(--accent);letter-spacing:.15em}
+.kicker::before{content:"// "}
+h2{font-size:5.5cqmin;font-weight:700;letter-spacing:-.025em;line-height:1;margin-top:1cqmin}
+h2 .a{color:var(--accent)}.h2 .b{color:var(--accent2)}
+.count{font-family:'SF Mono',monospace;font-size:1.3cqmin;color:var(--muted)}
+.count span{color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2cqmin;align-content:start}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:.8cqmin;padding:2.4cqmin;display:grid;grid-template-columns:5cqmin 1fr;gap:2cqmin;position:relative;overflow:hidden;transition:border-color .2s}
+.card::before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .2s}
+.card.hot{border-color:rgba(0,255,136,.35)}
+.card.hot::before{opacity:1}
+.rune{width:5cqmin;height:5cqmin;border:1px solid var(--border);border-radius:.4cqmin;display:flex;align-items:center;justify-content:center;font-family:'SF Mono',monospace;font-size:2cqmin;font-weight:700;background:#050610}
+.card:nth-child(1) .rune{color:var(--accent);border-color:rgba(0,255,136,.4)}
+.card:nth-child(2) .rune{color:var(--accent3);border-color:rgba(0,217,255,.4)}
+.card:nth-child(3) .rune{color:var(--accent2);border-color:rgba(255,56,100,.4)}
+.card:nth-child(4) .rune{color:#fbbf24;border-color:rgba(251,191,36,.4)}
+.body h3{font-size:1.9cqmin;font-weight:700;letter-spacing:-.01em;margin-bottom:.5cqmin}
+.body h3 code{font-family:'SF Mono',monospace;font-size:1.4cqmin;color:var(--accent);background:rgba(0,255,136,.1);padding:.2cqmin .6cqmin;border-radius:.2cqmin;margin-left:.8cqmin;font-weight:500}
+.body p{font-size:1.45cqmin;line-height:1.55;color:#a8adbb}
+.body .tag{display:inline-block;font-family:'SF Mono',monospace;font-size:1.05cqmin;margin-top:1cqmin;color:var(--muted)}
+.body .tag span{color:var(--accent)}
+.foot{display:flex;justify-content:space-between;font-family:'SF Mono',monospace;font-size:1.1cqmin;color:var(--muted);padding-top:1cqmin;border-top:1px solid var(--border)}
+</style></head><body>
+<header>
+  <div>
+    <span class="kicker">feature flags · opt-in</span>
+    <h2>Four reasons <span class="a">devs ship</span> on Helix.</h2>
+  </div>
+  <span class="count">flags/ <span>4</span> · surface /4</span>
+</header>
+<div class="grid">
+  <div class="card hot">
+    <div class="rune">λ</div>
+    <div class="body">
+      <h3>Fork &amp; stream <code>--stream sse</code></h3>
+      <p>Every agent process streams tokens over plain SSE. Back-pressure handled by the runtime; your client just keeps reading until <code>[DONE]</code>.</p>
+      <span class="tag"><span>p95:</span> 42ms first token · <span>retry:</span> exponential</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="rune">⎔</div>
+    <div class="body">
+      <h3>Isolated DB per workspace <code>wk_*.db</code></h3>
+      <p>Each agent gets its own SQLite, downloaded from R2, decrypted at boot, sync'd back on idle reap. Zero shared state.</p>
+      <span class="tag"><span>encrypt:</span> AES-256-GCM · <span>sync:</span> on-stop</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="rune">☣</div>
+    <div class="body">
+      <h3>Sandboxed tools <code>runner.py</code></h3>
+      <p>Restricted <code>__builtins__</code>, import whitelist, SQL <code>ATTACH</code>/<code>readfile</code>/<code>writefile</code> blocked. No <code>exec</code>, no <code>open</code>, no footguns.</p>
+      <span class="tag"><span>cve:</span> 0 open · <span>scan:</span> nightly</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="rune">⟳</div>
+    <div class="body">
+      <h3>Idle reaping <code>TTL=5m</code></h3>
+      <p>Orphan agents auto-stop, flush state, release the port. Next request warm-starts from the snapshot in R2 in <code>~280ms</code>.</p>
+      <span class="tag"><span>billed:</span> active-seconds · <span>cost:</span> $0.00012/s</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>$ man helix · features(7)</span><span>slide 04 of 24 · helix-gateway 2.4.0</span></div>
+</body></html>

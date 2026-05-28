@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fff;--ink:#0f172a;--muted:#64748b;--accent:#1e40af;--surface:#f8fafc;--border:#e2e8f0;
+  font-family:'Source Sans Pro','Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:0;
+}
+.bar{background:var(--accent);color:#fff;padding:2cqmin 5cqmin;display:flex;justify-content:space-between;align-items:center;font-size:1.3cqmin;letter-spacing:.15em;text-transform:uppercase}
+.bar .logo{font-weight:700;letter-spacing:.2em;font-size:1.5cqmin}
+.main{padding:6cqmin 5cqmin;display:grid;grid-template-columns:1.4fr 1fr;gap:4cqmin;align-items:start}
+h2{font-size:7cqmin;line-height:1.02;font-weight:700;letter-spacing:-.015em;color:var(--ink)}
+.lede{font-size:2cqmin;line-height:1.55;color:#334155;margin-top:2cqmin;max-width:46ch}
+.decisions{margin-top:3cqmin;display:flex;flex-direction:column;gap:1.4cqmin}
+.decision{padding:1.6cqmin 1.8cqmin;background:var(--surface);border-left:.4cqmin solid var(--accent);display:grid;grid-template-columns:4cqmin 1fr;gap:1.5cqmin;align-items:center}
+.decision .n{font-size:2.4cqmin;font-weight:700;color:var(--accent);line-height:1}
+.decision h3{font-size:1.7cqmin;font-weight:700;letter-spacing:-.005em}
+.decision p{font-size:1.35cqmin;line-height:1.5;color:var(--muted);margin-top:.3cqmin}
+.contact{background:var(--surface);padding:3cqmin;border:1px solid var(--border)}
+.contact h3{font-size:1.4cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:1.6cqmin;padding-bottom:1cqmin;border-bottom:1px solid var(--border)}
+.contact-item{display:flex;flex-direction:column;gap:.2cqmin;margin-bottom:1.6cqmin}
+.contact-item .k{font-size:1.1cqmin;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.contact-item .v{font-size:1.6cqmin;font-weight:600;color:var(--ink)}
+.contact-item .sub{font-size:1.35cqmin;color:var(--muted)}
+.thanks{font-size:1.5cqmin;color:#334155;line-height:1.55;padding-top:2cqmin;margin-top:1cqmin;border-top:1px solid var(--border);font-style:italic}
+.foot{background:#0f172a;color:#cbd5e1;padding:2cqmin 5cqmin;display:flex;justify-content:space-between;font-size:1.2cqmin;letter-spacing:.1em}
+</style></head><body>
+<div class="bar"><span class="logo">MERIDIAN ADVISORY</span><span>Client Confidential · Final Page</span></div>
+<div class="main">
+  <div>
+    <h2>Three decisions, today.</h2>
+    <p class="lede">We would ask the board to endorse the following on this call, to keep the 90-day activation plan on track and lock in the first wave of savings.</p>
+    <div class="decisions">
+      <div class="decision"><span class="n">01</span><div><h3>Endorse Option C · Shared services</h3><p>Confirm the direction; delegate detailed design to the steering committee.</p></div></div>
+      <div class="decision"><span class="n">02</span><div><h3>Authorize $14M investment envelope</h3><p>Phased release against gates; $6M in Phase 1 and 2, balance contingent on go/no-go.</p></div></div>
+      <div class="decision"><span class="n">03</span><div><h3>Appoint program sponsor and lead</h3><p>Recommended: CFO as sponsor, COO to chair the steering committee.</p></div></div>
+    </div>
+  </div>
+  <aside class="contact">
+    <h3>Thank you · questions welcome</h3>
+    <div class="contact-item"><span class="k">Engagement lead</span><span class="v">Rebecca Albright</span><span class="sub">Managing Partner</span></div>
+    <div class="contact-item"><span class="k">Email</span><span class="v">r.albright@meridian.com</span></div>
+    <div class="contact-item"><span class="k">Direct</span><span class="v">+44 20 7946 0022</span></div>
+    <div class="contact-item"><span class="k">Engagement room</span><span class="v">meridian.com/acme/0194</span></div>
+    <p class="thanks">On behalf of the engagement team, thank you for the trust and the access. We look forward to the next phase of the work.</p>
+  </aside>
+</div>
+<div class="foot"><span>© 2026 Meridian Advisory Group</span><span>Prepared under engagement 0194 · All rights reserved</span><span>Page 42 of 42</span></div>
+</body></html>

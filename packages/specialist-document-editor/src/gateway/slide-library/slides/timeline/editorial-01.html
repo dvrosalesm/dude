@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f2eee7;--ink:#1a1410;--muted:#6b5e52;--rule:#2a211a;--accent:#7a2e1f;
+  font-family:'Georgia','Times New Roman',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-columns:auto 1fr;
+  padding:5cqmin 6cqmin;gap:5cqmin;
+}
+.left{display:flex;flex-direction:column;justify-content:space-between;padding-right:3cqmin;border-right:1px solid var(--rule);min-width:18cqmin}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:1cqmin}
+h2{font-size:5cqmin;line-height:1.02;font-weight:400;letter-spacing:-.01em;font-style:italic}
+.lede{font-size:1.5cqmin;line-height:1.6;color:#3a302a;margin-top:2cqmin;font-style:italic}
+.page{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.stack{display:grid;grid-template-rows:repeat(5,1fr);align-items:center}
+.row{display:grid;grid-template-columns:8cqmin 1fr;gap:2.5cqmin;align-items:start;border-bottom:1px dotted #bcb3a4;padding:1.4cqmin 0}
+.row:last-child{border-bottom:none}
+.yr{font-size:2.4cqmin;font-style:italic;color:var(--accent);font-weight:400}
+.event h3{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.5cqmin}
+.event p{font-size:1.8cqmin;line-height:1.45}
+.event p em{font-style:italic}
+</style></head><body>
+<div class="left">
+  <div>
+    <div class="kicker">Feature · A brief history</div>
+    <h2>Eleven years, in five moments.</h2>
+    <p class="lede">A history of the archive told through the decisions that still echo.</p>
+  </div>
+  <div class="page">pp. 08 — 09</div>
+</div>
+<div class="stack">
+  <div class="row"><div class="yr">2015</div><div class="event"><h3>Founded</h3><p>Three engineers in a Lisbon co-working space with <em>one customer</em> and a weekend to prove the idea could hold weight.</p></div></div>
+  <div class="row"><div class="yr">2017</div><div class="event"><h3>The first rewrite</h3><p>The only time we've ever thrown away the core. It cost a year. It bought the next five.</p></div></div>
+  <div class="row"><div class="yr">2020</div><div class="event"><h3>The pivot that wasn't</h3><p>We almost sold to become a plug-in. The deal fell apart on a comma. We kept the company. <em>A kindness, in hindsight.</em></p></div></div>
+  <div class="row"><div class="yr">2023</div><div class="event"><h3>The first profitable month</h3><p>A small one — $28K of profit — but the team printed the bank statement and pinned it above the coffee machine.</p></div></div>
+  <div class="row"><div class="yr">2026</div><div class="event"><h3>Today</h3><p>Seventy-three people. Eleven countries. One archive that has, improbably, <em>outlived every rewrite we planned for it.</em></p></div></div>
+</div>
+</body></html>

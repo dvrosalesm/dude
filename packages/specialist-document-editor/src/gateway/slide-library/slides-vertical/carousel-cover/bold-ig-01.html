@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#111;--ink:#fff;--accent:#00ff85;--muted:#8a8a8a;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin;
+  background-image:
+    radial-gradient(ellipse 60% 30% at 30% 20%,rgba(0,255,133,.12),transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%,rgba(0,255,133,.08),transparent 60%);
+}
+.meta{display:flex;justify-content:space-between;align-items:center;padding:2cqmin 3cqmin;border:1px solid #2a2a2a;border-radius:100px;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.meta strong{color:var(--accent)}
+.meta .count{display:flex;gap:.6cqmin}
+.meta .count div{width:1.8cqmin;height:1.8cqmin;border:.3cqmin solid #2a2a2a;border-radius:50%}
+.meta .count div.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 8px var(--accent)}
+.main{display:flex;flex-direction:column;justify-content:center;gap:5cqmin;position:relative;padding:4cqmin 0}
+.badge{display:inline-flex;align-items:center;gap:1.2cqmin;padding:2cqmin 3.5cqmin;background:var(--accent);color:var(--bg);border-radius:100px;font-size:2.4cqmin;font-weight:900;letter-spacing:.1em;text-transform:uppercase;width:fit-content;box-shadow:0 0 30px rgba(0,255,133,.3)}
+.badge .tag{width:1.4cqmin;height:1.4cqmin;background:var(--bg);border-radius:50%}
+h1{font-size:17cqmin;line-height:.88;font-weight:900;letter-spacing:-.045em}
+h1 .big{font-size:24cqmin;line-height:.85;display:block;color:var(--accent);font-style:italic;letter-spacing:-.06em}
+h1 .out{color:transparent;-webkit-text-stroke:.5cqmin var(--ink);display:inline-block}
+.sub{font-size:3.2cqmin;line-height:1.4;color:#c5c5c5;max-width:28ch;font-weight:500;padding-top:1cqmin;border-top:1px solid #2a2a2a}
+.sub strong{color:var(--accent);font-weight:700}
+.foot{display:flex;flex-direction:column;gap:3cqmin;align-items:center;padding-top:2cqmin}
+.swipe-row{display:flex;align-items:center;gap:2cqmin;font-size:2.8cqmin;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.swipe-row .arr{font-size:4cqmin;animation:slide 1.5s infinite}
+@keyframes slide{50%{transform:translateX(1cqmin)}}
+.handle{font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.handle b{color:var(--ink)}
+</style></head><body>
+<div class="meta">
+  <span><strong>❏</strong>  carousel · 8 slides</span>
+  <div class="count"><div class="on"></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="main">
+  <span class="badge"><span class="tag"></span> new series · 2026</span>
+  <h1><span class="out">the</span><br/><span class="big">9 tools</span><br/>every designer<br/>should <span style="background:var(--accent);color:var(--bg);padding:0 1cqmin">steal</span><br/>this year.</h1>
+  <p class="sub">→ <strong>swipe through all 9</strong> — the last one changed how I work entirely. save this for later.</p>
+</div>
+<div class="foot">
+  <div class="swipe-row">swipe <span class="arr">→</span></div>
+  <span class="handle">by <b>@method.studio</b> · follow for more</span>
+</div>
+</body></html>

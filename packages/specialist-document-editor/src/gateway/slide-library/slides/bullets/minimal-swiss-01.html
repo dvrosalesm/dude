@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafafa;--ink:#0a0a0a;--muted:#6b6b6b;--rule:#111;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 7cqmin;gap:3cqmin;
+}
+header{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:1.8cqmin;border-bottom:1px solid var(--rule)}
+.title{font-size:4.5cqmin;font-weight:500;letter-spacing:-.02em}
+.kicker{font-size:1.3cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+ol{list-style:none;counter-reset:it;display:grid;grid-template-columns:1fr 1fr;column-gap:6cqmin;row-gap:3cqmin;align-content:center}
+ol li{counter-increment:it;display:grid;grid-template-columns:auto 1fr;gap:2cqmin;border-top:1px solid #ddd;padding-top:2cqmin}
+ol li::before{content:counter(it,decimal-leading-zero);font-size:1.5cqmin;letter-spacing:.15em;color:var(--muted)}
+.lh{font-size:2.4cqmin;font-weight:500;letter-spacing:-.01em;margin-bottom:.6cqmin}
+.body{font-size:1.6cqmin;line-height:1.55;color:#4a4a4a;max-width:42ch}
+footer{display:flex;justify-content:space-between;font-size:1.3cqmin;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--rule);padding-top:1.8cqmin}
+</style></head><body>
+<header>
+  <span class="title">Six things we learned this quarter.</span>
+  <span class="kicker">Field Notes · 003</span>
+</header>
+<ol>
+  <li><div><div class="lh">Customer acquisition costs rose 18%.</div><div class="body">Paid channels softened in late February. Organic pickup partially offset the gap.</div></div></li>
+  <li><div><div class="lh">Retention is our most durable lever.</div><div class="body">Cohorts from Q3 are still compounding revenue at 9% month over month.</div></div></li>
+  <li><div><div class="lh">Pricing held firm in the mid-tier.</div><div class="body">No discount pressure across 142 renewals. Discounted deals converted 12% worse.</div></div></li>
+  <li><div><div class="lh">Self-serve outpaced sales-led.</div><div class="body">Self-serve crossed 54% of new logos for the first time since 2024.</div></div></li>
+  <li><div><div class="lh">Support volume dropped 22%.</div><div class="body">Shipping the new onboarding in January removed the top three ticket types.</div></div></li>
+  <li><div><div class="lh">Engineering velocity normalized.</div><div class="body">Cycle time returned to pre-rewrite baseline. Reliability improved in parallel.</div></div></li>
+</ol>
+<footer><span>Learnings</span><span>003 / 042</span></footer>
+</body></html>

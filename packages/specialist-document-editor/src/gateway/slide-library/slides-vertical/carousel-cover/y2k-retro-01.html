@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#b0d8ff;--ink:#1a1a4a;--accent:#ff2a68;--lime:#c6ff00;--cyan:#1affff;--pink:#ff80c0;
+  font-family:'Arial Black','Impact','Helvetica Neue',sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin;gap:2cqmin;position:relative;
+  background-image:
+    linear-gradient(135deg,rgba(255,255,255,.3) 0%,transparent 40%),
+    linear-gradient(180deg,#b0d8ff 0%,#f0b0ff 60%,#ffc0e0 100%);
+}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:
+  radial-gradient(circle 2px at 15% 10%,#fff,transparent),
+  radial-gradient(circle 2px at 85% 25%,#fff,transparent),
+  radial-gradient(circle 1.5px at 30% 90%,#fff,transparent),
+  radial-gradient(circle 2px at 70% 70%,#fff,transparent),
+  radial-gradient(circle 1.5px at 90% 95%,#fff,transparent),
+  radial-gradient(circle 1.5px at 20% 50%,#fff,transparent),
+  radial-gradient(circle 2px at 5% 70%,#fff,transparent),
+  radial-gradient(circle 1.5px at 55% 8%,#fff,transparent)}
+.top-ribbon{background:repeating-linear-gradient(90deg,#ff2a68 0 4cqmin,#c6ff00 4cqmin 8cqmin,#1affff 8cqmin 12cqmin,#ff80c0 12cqmin 16cqmin);border:.3cqmin solid var(--ink);border-radius:100px;padding:.6cqmin;position:relative;z-index:1;box-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.top-ribbon-inner{background:#fff;border-radius:100px;padding:1.5cqmin 2.5cqmin;display:flex;justify-content:space-between;font-size:1.8cqmin;font-weight:900;color:var(--ink);letter-spacing:.15em;text-transform:uppercase}
+.top-ribbon-inner .glow{color:var(--accent)}
+.main{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3cqmin;position:relative;z-index:1;text-align:center}
+.cd{width:38cqmin;height:38cqmin;border-radius:50%;background:
+  radial-gradient(circle at 50% 50%,#333 0%,#333 20%,transparent 20%),
+  repeating-conic-gradient(from 0deg,#d0d0ff 0deg,#ffd0f0 30deg,#d0ffff 60deg,#ffd0d0 90deg,#d0d0ff 120deg),
+  #fff;
+  border:.4cqmin solid var(--ink);box-shadow:inset 0 0 3cqmin rgba(0,0,0,.3),.6cqmin .6cqmin 0 var(--ink),1.2cqmin 1.2cqmin 0 var(--accent);position:absolute;top:4cqmin;right:-6cqmin;transform:rotate(18deg);display:flex;align-items:center;justify-content:center}
+.cd::after{content:"";width:5cqmin;height:5cqmin;border-radius:50%;background:#333;border:.3cqmin solid #fff}
+.badge{display:inline-flex;align-items:center;gap:1.2cqmin;padding:1.5cqmin 2.5cqmin;background:var(--lime);border:.3cqmin solid var(--ink);border-radius:100px;font-size:2cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);box-shadow:.3cqmin .3cqmin 0 var(--ink);transform:rotate(-3deg)}
+h1{font-size:20cqmin;line-height:.85;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;color:transparent;background:linear-gradient(180deg,#fff 0%,#c5d7ff 40%,#8080d0 50%,#c0c0e0 60%,#3a3a80 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.5cqmin var(--ink);filter:drop-shadow(.4cqmin .4cqmin 0 var(--accent))}
+h1 em{color:transparent;background:linear-gradient(180deg,#fff,#ffd0e8,#ff2a68);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.4cqmin var(--ink);font-style:italic;display:inline-block;transform:rotate(-2deg)}
+h1 .lime{color:transparent;background:linear-gradient(180deg,#fff,#e8ff80,#c6ff00);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.4cqmin var(--ink)}
+.chat{background:#fff;padding:2cqmin 3cqmin;border:.3cqmin solid var(--ink);border-radius:3cqmin;font-size:2.2cqmin;font-weight:800;color:var(--ink);box-shadow:.4cqmin .4cqmin 0 var(--ink);max-width:70%;letter-spacing:.01em;line-height:1.3}
+.chat em{color:var(--accent);font-style:italic}
+.chat strong{background:var(--cyan);padding:0 .3cqmin}
+.button-row{display:flex;gap:2cqmin;align-items:center;justify-content:center;margin-top:1cqmin}
+.pill{background:linear-gradient(180deg,#fff,#e8e8ff);border:.3cqmin solid var(--ink);border-radius:100px;padding:1.8cqmin 3cqmin;font-size:2.2cqmin;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);box-shadow:.4cqmin .4cqmin 0 var(--ink);display:flex;align-items:center;gap:1cqmin}
+.pill.accent{background:var(--accent);color:#fff}
+.pill .arr{font-size:2.5cqmin}
+.bottom-ribbon{background:repeating-linear-gradient(90deg,var(--accent) 0 4cqmin,var(--lime) 4cqmin 8cqmin,var(--cyan) 8cqmin 12cqmin,var(--pink) 12cqmin 16cqmin);border:.3cqmin solid var(--ink);border-radius:100px;padding:.6cqmin;position:relative;z-index:1;box-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.bottom-ribbon-inner{background:var(--ink);color:#fff;border-radius:100px;padding:1.5cqmin 2.5cqmin;display:flex;justify-content:space-between;font-size:1.8cqmin;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+.bottom-ribbon-inner .glow{color:var(--lime)}
+</style></head><body>
+<div class="stars"></div>
+<div class="top-ribbon"><div class="top-ribbon-inner"><span>◈ y2k zine</span><span class="glow">★ vol. 7 ★</span><span>1/11 →</span></div></div>
+<div class="main">
+  <div class="cd"></div>
+  <span class="badge">✦ hot new drop ✦</span>
+  <h1>the <em>good</em><br/>old<br/><span class="lime">web</span><br/>is <em>back</em>.</h1>
+  <div class="chat">→ a <strong>9-slide</strong> tour of the <em>coolest sites</em> reviving the '99 internet.</div>
+  <div class="button-row">
+    <span class="pill accent">swipe <span class="arr">→</span></span>
+    <span class="pill">◈ save</span>
+  </div>
+</div>
+<div class="bottom-ribbon"><div class="bottom-ribbon-inner"><span>★ 📡 @cybergal.jpg</span><span class="glow">•• follow ••</span><span>★ swipe →</span></div></div>
+</body></html>

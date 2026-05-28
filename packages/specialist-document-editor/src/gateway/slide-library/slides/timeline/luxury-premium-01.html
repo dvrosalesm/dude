@@ -1,0 +1,76 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0e1a;--ink:#f5e6c8;--muted:#8a7a56;--gold:#c9a961;--rule:#3a3020;
+  font-family:'Didot','Bodoni 72','Playfair Display',serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 6cqmin;gap:3cqmin;
+  background-image:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,169,97,.08),transparent 60%);
+  position:relative;
+}
+.frame{position:absolute;inset:2.5cqmin;border:1px solid var(--rule);pointer-events:none}
+.head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1cqmin;position:relative;z-index:1}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.2cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);padding-bottom:1cqmin;border-bottom:1px solid var(--rule);width:100%;text-align:center}
+h2{font-size:5.5cqmin;line-height:1.1;font-weight:400;letter-spacing:-.01em;font-style:italic;color:var(--ink)}
+h2 em{color:var(--gold)}
+.lede{font-size:1.5cqmin;line-height:1.5;color:#c5b590;font-style:italic;max-width:48ch}
+.timeline{display:grid;grid-template-rows:auto 1fr;gap:2cqmin;position:relative;z-index:1}
+.line{position:relative;height:.15cqmin;background:linear-gradient(90deg,transparent,var(--gold),var(--gold),transparent);margin:3cqmin 4cqmin 0}
+.dot{position:absolute;top:50%;width:1.4cqmin;height:1.4cqmin;background:var(--gold);border:.3cqmin solid var(--bg);border-radius:50%;transform:translateY(-50%);box-shadow:0 0 0 .15cqmin var(--gold),0 0 10px var(--gold)}
+.dot:nth-child(1){left:5%}.dot:nth-child(2){left:25%}.dot:nth-child(3){left:50%}.dot:nth-child(4){left:75%}.dot:nth-child(5){left:95%}
+.cols{display:grid;grid-template-columns:repeat(5,1fr);gap:1cqmin;padding:0 1cqmin}
+.col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1cqmin;padding:0 .8cqmin}
+.yr{font-size:3.2cqmin;color:var(--gold);font-style:italic;line-height:1;font-weight:400}
+.roman{font-family:'Helvetica Neue',sans-serif;font-size:1cqmin;letter-spacing:.4em;color:var(--muted);text-transform:uppercase}
+.ttl{font-size:1.8cqmin;font-weight:400;color:var(--ink);line-height:1.2;font-style:italic}
+.desc{font-size:1.3cqmin;line-height:1.5;color:#c5b590;font-style:italic;max-width:22ch}
+.foot{display:flex;justify-content:space-between;align-items:center;font-family:'Helvetica Neue',sans-serif;font-size:1.1cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);padding-top:1.2cqmin;border-top:1px solid var(--rule);position:relative;z-index:1}
+.foot .center{color:var(--gold);letter-spacing:.5em}
+</style></head><body>
+<div class="frame"></div>
+<div class="head">
+  <span class="kicker">Chronologie de la Maison</span>
+  <h2>One hundred &amp; forty years, in <em>five moments.</em></h2>
+  <p class="lede">A ledger of the hours that mattered most to an atelier that has, as it always has, made no particular haste about any of them.</p>
+</div>
+<div class="timeline">
+  <div class="line"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+  <div class="cols">
+    <div class="col">
+      <span class="yr">1886</span>
+      <span class="roman">An I</span>
+      <span class="ttl">The first bench.</span>
+      <span class="desc">Léon Aurelia opens a single workshop on the rue de Turenne with two benches and an apprentice.</span>
+    </div>
+    <div class="col">
+      <span class="yr">1924</span>
+      <span class="roman">An XXXVIII</span>
+      <span class="ttl">The first exhibition.</span>
+      <span class="desc">A piece by the maison is acquired for the collection of the Musée des Arts Décoratifs.</span>
+    </div>
+    <div class="col">
+      <span class="yr">1968</span>
+      <span class="roman">An LXXXII</span>
+      <span class="ttl">The long winter.</span>
+      <span class="desc">The atelier closes to outside orders for five years. The house uses the time to train seven apprentices.</span>
+    </div>
+    <div class="col">
+      <span class="yr">2002</span>
+      <span class="roman">An CXVI</span>
+      <span class="ttl">The fifth generation.</span>
+      <span class="desc">Hélène Aurelia-Sorel takes the desk her great-great-grandfather occupied. The ledger does not change hands.</span>
+    </div>
+    <div class="col">
+      <span class="yr">2026</span>
+      <span class="roman">An CXL</span>
+      <span class="ttl">The present hour.</span>
+      <span class="desc">Seven benches. Twelve makers. One ledger — now in its 43rd volume, kept in longhand.</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>Archives de la Maison</span><span class="center">— ❦ ※ ❦ —</span><span>Folio XVIII</span></div>
+</body></html>

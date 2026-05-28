@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fef6d9;--ink:#0a0a0a;--muted:#6b6b6b;
+  --c1:#ef4444;--c2:#22d3ee;--c3:#a855f7;--c4:#fbbf24;--c5:#10b981;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:5cqmin 4cqmin;gap:2cqmin;
+}
+.head{display:flex;justify-content:space-between;align-items:center;padding:1.2cqmin 2cqmin;border:.2cqmin solid var(--ink);border-radius:100px;font-size:1.7cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;color:var(--ink);background:#fff}
+.head .tag{background:var(--c1);color:#fff;padding:.4cqmin 1.2cqmin;border-radius:100px;box-shadow:.2cqmin .2cqmin 0 var(--ink)}
+.main{display:flex;flex-direction:column;justify-content:center;gap:2cqmin}
+h2{font-size:10cqmin;line-height:.92;font-weight:900;letter-spacing:-.035em}
+h2 em{font-style:italic;color:var(--c1)}
+h2 .u{background:var(--c4);padding:0 .4cqmin;box-shadow:inset 0 -.8cqmin 0 rgba(0,0,0,.15)}
+.sub{font-size:2.2cqmin;color:var(--muted);line-height:1.45;font-weight:500}
+.sub em{color:var(--ink);font-style:italic;font-weight:700}
+.pie-wrap{position:relative;aspect-ratio:1;width:80%;margin:1cqmin auto}
+.pie{width:100%;height:100%;border-radius:50%;border:.5cqmin solid var(--ink);box-shadow:.8cqmin .8cqmin 0 var(--ink);
+  background:conic-gradient(
+    var(--c1) 0 51%,
+    var(--c4) 51% 77%,
+    var(--c2) 77% 90%,
+    var(--c3) 90% 97%,
+    var(--c5) 97% 100%
+  );position:relative}
+.pie::after{content:"me";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22cqmin;height:22cqmin;background:var(--bg);border-radius:50%;border:.4cqmin solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:4.5cqmin;font-weight:900;font-style:italic;letter-spacing:-.02em}
+.cap{position:absolute;font-size:1.8cqmin;font-weight:900;letter-spacing:.05em;text-transform:uppercase;background:#fff;padding:.5cqmin 1cqmin;border:.25cqmin solid var(--ink);border-radius:100px;white-space:nowrap;box-shadow:.3cqmin .3cqmin 0 var(--ink)}
+.cap.c1{top:12%;left:-2cqmin;transform:rotate(-4deg)}
+.cap.c2{top:55%;right:-2cqmin;transform:rotate(5deg)}
+.cap.c3{bottom:4%;left:25%;transform:rotate(-2deg)}
+.scribble{position:absolute;font-family:'Caveat',cursive;font-size:4cqmin;color:var(--c1);transform:rotate(-8deg);line-height:1;z-index:2}
+.scribble.s1{bottom:8cqmin;right:-2cqmin;font-size:4.5cqmin}
+.scribble.s1 small{font-size:2.4cqmin;display:block;color:var(--ink);transform:rotate(8deg)}
+.legend{display:flex;flex-wrap:wrap;gap:1cqmin;justify-content:center;margin-top:1cqmin}
+.chip{display:flex;align-items:center;gap:.8cqmin;background:#fff;border:.2cqmin solid var(--ink);border-radius:100px;padding:.8cqmin 1.4cqmin;font-size:1.55cqmin;font-weight:700;line-height:1}
+.chip .sw{width:1.8cqmin;height:1.8cqmin;border-radius:50%;border:.15cqmin solid var(--ink)}
+.chip .pct{font-style:italic;font-weight:900;color:var(--ink);margin-right:.4cqmin}
+.chip em{font-style:italic;color:var(--muted);font-weight:600}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:1.2cqmin 2cqmin;background:var(--ink);color:var(--bg);border-radius:100px;font-size:1.5cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900}
+.foot .tag{color:var(--c4)}
+</style></head><body>
+<div class="head"><span>★ pie chart meme</span><span class="tag">real data, honestly.</span></div>
+<div class="main">
+  <h2>pie chart :<br/><em>how i</em> spend<br/>my <span class="u">saturday</span>.</h2>
+  <p class="sub">100% scientifically accurate. <em>I did the math</em> on a napkin. the napkin is gone now.</p>
+  <div class="pie-wrap">
+    <div class="pie">
+      <span class="cap c1">51% · doomscrolling</span>
+      <span class="cap c2">13% · leaving the house</span>
+      <span class="cap c3">3% · "productive"</span>
+    </div>
+    <span class="scribble s1">this slice is<br/><small>completely fake</small></span>
+  </div>
+  <div class="legend">
+    <span class="chip"><span class="sw" style="background:var(--c1)"></span><span class="pct">51%</span>doomscrolling</span>
+    <span class="chip"><span class="sw" style="background:var(--c4)"></span><span class="pct">26%</span><em>"thinking about<br/>going to the gym"</em></span>
+    <span class="chip"><span class="sw" style="background:var(--c2)"></span><span class="pct">13%</span>actually outside</span>
+    <span class="chip"><span class="sw" style="background:var(--c3)"></span><span class="pct">7%</span>eating cereal</span>
+    <span class="chip"><span class="sw" style="background:var(--c5)"></span><span class="pct">3%</span>"productive"</span>
+  </div>
+</div>
+<div class="foot"><span>★ tag the one friend</span><span class="tag">@vibe.founder · pie #04</span></div>
+</body></html>

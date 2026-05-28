@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0a0a;--ink:#fff;--muted:#6b7280;--accent:#ff6b9d;--border:#1a1a1a;
+  font-family:-apple-system,'SF Pro Text','Segoe UI',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin 4cqmin;gap:3cqmin;
+}
+.status{display:flex;justify-content:space-between;align-items:center;padding:0 2cqmin;font-size:2cqmin;font-weight:700;color:var(--ink);letter-spacing:.01em}
+.status .left{letter-spacing:-.02em}
+.status .right{display:flex;gap:1.5cqmin;align-items:center;opacity:.9}
+.status .right svg{width:3cqmin;height:3cqmin;fill:var(--ink)}
+.status .bat{width:5cqmin;height:2.2cqmin;border:.2cqmin solid var(--ink);border-radius:.4cqmin;padding:.2cqmin;position:relative}
+.status .bat::after{content:"";position:absolute;right:-.4cqmin;top:25%;width:.3cqmin;height:50%;background:var(--ink)}
+.status .bat span{display:block;height:100%;width:78%;background:var(--ink);border-radius:.1cqmin}
+.main{display:flex;flex-direction:column;justify-content:center;gap:3cqmin;position:relative}
+.hook{font-size:16cqmin;line-height:.95;font-weight:900;letter-spacing:-.04em;max-width:14ch}
+.hook em{font-style:normal;background:var(--accent);color:var(--bg);padding:0 .6cqmin;display:inline-block;transform:rotate(-1deg)}
+.hook .typing{background:var(--border);padding:0 .6cqmin;border-radius:1cqmin;color:var(--muted);position:relative}
+.hook .typing::after{content:"|";color:var(--accent);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.hook strike{color:var(--muted)}
+.hook .small{font-size:8cqmin;font-weight:700;color:var(--muted);display:block;margin-top:2cqmin;line-height:1.1;letter-spacing:-.02em}
+.hook .small em{background:var(--ink);color:var(--bg);padding:0 .4cqmin}
+.reactions{display:flex;gap:1.5cqmin;align-items:center;padding:2cqmin;background:var(--border);border-radius:100px;width:fit-content;margin-top:2cqmin}
+.reactions .emoji{font-size:3cqmin;padding:.4cqmin .8cqmin;background:#2a1a2a;border-radius:100px;display:flex;align-items:center;gap:.6cqmin;font-size:2cqmin;font-weight:700;color:#fff}
+.reactions .emoji .c{color:var(--accent)}
+.scribble{position:absolute;top:-1cqmin;right:3cqmin;font-family:'Caveat',cursive;font-size:4.5cqmin;color:var(--accent);transform:rotate(-8deg);line-height:.9}
+.scribble .arrow{font-size:5cqmin;display:inline-block;transform:rotate(60deg);margin-left:1cqmin}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:2cqmin 2.5cqmin;background:var(--border);border-radius:3cqmin}
+.handle{display:flex;align-items:center;gap:1.5cqmin;font-size:2.2cqmin;font-weight:700}
+.handle .dp{width:6cqmin;height:6cqmin;background:linear-gradient(135deg,#ff6b9d,#a855f7);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5cqmin;font-weight:900}
+.handle .nm{display:flex;flex-direction:column;line-height:1.1}
+.handle .nm strong{font-size:2.4cqmin}
+.handle .nm small{font-size:1.7cqmin;color:var(--muted);font-weight:500}
+.nav{display:flex;gap:2cqmin;font-size:2.4cqmin;color:var(--muted)}
+</style></head><body>
+<div class="status">
+  <span class="left">9:41</span>
+  <span class="right"><span>•••</span><span class="bat"><span></span></span></span>
+</div>
+<div class="main">
+  <h1 class="hook"><strike>senior</strike><br/><em>unemployed</em><br/>software<br/>engineer.<br/><span class="small">sent from my <em>couch</em><br/>since tuesday.</span></h1>
+  <span class="scribble">pov: u opened linkedin <span class="arrow">↗</span></span>
+  <div class="reactions">
+    <span class="emoji">💀 <span class="c">14.2K</span></span>
+    <span class="emoji">😭 <span class="c">8.1K</span></span>
+    <span class="emoji">🫠 <span class="c">3.4K</span></span>
+  </div>
+</div>
+<div class="foot">
+  <div class="handle">
+    <span class="dp">D</span>
+    <span class="nm"><strong>@dev.dread</strong><small>posted · 4h ago</small></span>
+  </div>
+  <div class="nav">← → ◈ ⎯</div>
+</div>
+</body></html>

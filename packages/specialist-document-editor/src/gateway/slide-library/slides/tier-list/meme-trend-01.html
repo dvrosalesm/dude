@@ -1,0 +1,103 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0a0a0a;--ink:#fff;--surface:#181818;--muted:#8a8a8a;--border:#2a2a2a;
+  --s:#ff3b3b;--a:#ff9500;--b:#fbbf24;--c:#22d3ee;--d:#a855f7;--f:#6b6b6b;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:4cqmin;gap:2.5cqmin;
+  background-image:radial-gradient(ellipse 40% 30% at 90% 10%,rgba(255,59,59,.1),transparent 60%);
+}
+.head{display:flex;justify-content:space-between;align-items:end;border-bottom:.2cqmin solid var(--border);padding-bottom:1.5cqmin}
+.head h2{font-size:5.5cqmin;line-height:.95;font-weight:900;letter-spacing:-.03em;max-width:20ch}
+.head h2 em{font-style:italic;color:var(--s)}
+.head h2 .u{background:var(--s);color:var(--bg);padding:0 .5cqmin;display:inline-block;transform:rotate(-1deg)}
+.head .meta{text-align:right;display:flex;flex-direction:column;gap:.5cqmin;align-items:flex-end}
+.head .meta .tag{font-size:1.3cqmin;letter-spacing:.3em;text-transform:uppercase;font-weight:900;color:var(--muted);padding:.5cqmin 1.2cqmin;border:.15cqmin solid var(--border);border-radius:100px}
+.head .meta .handle{font-size:1.5cqmin;font-weight:900;color:var(--ink)}
+.tier-grid{display:grid;grid-template-columns:9cqmin 1fr;gap:0;border:.3cqmin solid var(--border);border-radius:1.5cqmin;overflow:hidden}
+.row{display:contents}
+.label{display:flex;align-items:center;justify-content:center;font-size:6cqmin;font-weight:900;letter-spacing:-.02em;color:var(--bg);border-bottom:.2cqmin solid var(--border);border-right:.2cqmin solid var(--border);font-style:italic}
+.tier-s .label{background:var(--s)}
+.tier-a .label{background:var(--a)}
+.tier-b .label{background:var(--b)}
+.tier-c .label{background:var(--c)}
+.tier-d .label{background:var(--d)}
+.tier-f .label{background:var(--f)}
+.row:last-child .label,.row:last-child .items{border-bottom:none}
+.items{background:var(--surface);padding:1.4cqmin;display:flex;gap:1cqmin;flex-wrap:wrap;align-items:center;border-bottom:.2cqmin solid var(--border);overflow:hidden}
+.item{padding:1.4cqmin 1.8cqmin;background:#262626;border-radius:1cqmin;display:flex;align-items:center;gap:1cqmin;font-size:1.75cqmin;font-weight:700;letter-spacing:-.005em;line-height:1;border:.15cqmin solid #363636;white-space:nowrap}
+.item.hot{background:var(--s);color:var(--bg);border-color:var(--s);box-shadow:0 0 0 .2cqmin rgba(255,59,59,.2)}
+.item em{font-style:italic;opacity:.75}
+.item .mini{display:inline-flex;align-items:center;gap:.4cqmin;padding:.3cqmin .8cqmin;background:rgba(255,255,255,.1);border-radius:100px;font-size:1.2cqmin;letter-spacing:.1em;text-transform:uppercase;font-weight:900;margin-left:.4cqmin}
+.item.hot .mini{background:rgba(0,0,0,.2);color:var(--bg)}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:1.2cqmin;border-top:.2cqmin solid var(--border);font-size:1.3cqmin;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.foot .center{color:var(--s)}
+.foot .save{background:var(--s);color:var(--bg);padding:.5cqmin 1.2cqmin;border-radius:100px;font-weight:900;letter-spacing:.15em}
+</style></head><body>
+<div class="head">
+  <h2>my official <em>2026</em><br/><span class="u">productivity app</span> tier list.</h2>
+  <div class="meta">
+    <span class="tag">◆ tier list</span>
+    <span class="handle">@vibe.engineer</span>
+  </div>
+</div>
+<div class="tier-grid">
+  <div class="row tier-s">
+    <span class="label">S</span>
+    <div class="items">
+      <span class="item hot">paper notebook <span class="mini">★ goat</span></span>
+      <span class="item">Bear <span class="mini">mac only</span></span>
+      <span class="item">iMessage → self</span>
+      <span class="item">Things 3</span>
+    </div>
+  </div>
+  <div class="row tier-a">
+    <span class="label">A</span>
+    <div class="items">
+      <span class="item">Todoist</span>
+      <span class="item">Linear</span>
+      <span class="item">Obsidian <em>(barely)</em></span>
+      <span class="item">Google Calendar</span>
+      <span class="item">Craft</span>
+    </div>
+  </div>
+  <div class="row tier-b">
+    <span class="label">B</span>
+    <div class="items">
+      <span class="item">Apple Notes</span>
+      <span class="item">Notion <em>(still)</em></span>
+      <span class="item">Superhuman</span>
+      <span class="item">Trello</span>
+    </div>
+  </div>
+  <div class="row tier-c">
+    <span class="label">C</span>
+    <div class="items">
+      <span class="item">Slack huddles</span>
+      <span class="item">Google Docs comments</span>
+      <span class="item">Any "AI inbox"</span>
+    </div>
+  </div>
+  <div class="row tier-d">
+    <span class="label">D</span>
+    <div class="items">
+      <span class="item">Asana</span>
+      <span class="item">Jira <em>(sorry)</em></span>
+      <span class="item">Mon​day.com</span>
+    </div>
+  </div>
+  <div class="row tier-f">
+    <span class="label">F</span>
+    <div class="items">
+      <span class="item">"Life OS" Notion templates</span>
+      <span class="item">Any app that replaced "text" with "message stream"</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>share your tier list →</span><span class="center">★ you can fight me in the comments ★</span><span class="save">◈ save it</span></div>
+</body></html>

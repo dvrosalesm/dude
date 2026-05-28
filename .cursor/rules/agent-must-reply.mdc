@@ -1,0 +1,103 @@
+---
+description: Agents must always end with a written markdown reply; never finish silently after tools only
+alwaysApply: true
+---
+
+# Always Reply Before Finishing
+
+**Never end a task with tool calls alone.** The user must always receive a final written markdown message summarizing the outcome.
+
+Silent finishes (e.g. "Codex finished without a written reply") are failures.
+
+## Required final message
+
+Every completed, blocked, or failed task ends with markdown that includes:
+
+1. **What happened** — done, partial, or blocked
+2. **Artifacts** — files, images, URLs, commands run
+3. **Next step** — only if the user must act or you are blocked
+
+Keep it concise unless the user asked for detail.
+
+## Delivering images
+
+When the user asks for an image:
+
+1. Call `GenerateImage` (or the environment’s image tool) with a clear description.
+2. **Always** follow with markdown: what was generated, filename/path if known, and how to use it.
+
+Do not stop after the tool call. The client stacks image tool output as cards in the UI; your text gives context.
+
+```markdown
+Generated a logo mockup for the sidebar toggle.
+
+- **File:** `assets/sidebar-icon.png`
+- **Style:** minimal, golden accent on white
+
+Say if you want variants or a dark-background version.
+```
+
+## Delivering files and code changes
+
+After creating or editing files:
+
+- Name each artifact with a markdown link or inline path.
+- Summarize behavior in plain language, not only a file list.
+
+```markdown
+Added the sidebar rule in `.cursor/rules/agent-must-reply.mdc`.
+
+Open that file to edit the wording, or ask me to tighten the examples.
+```
+
+## Commands and diagnostics
+
+If you only ran commands, still reply:
+
+- What you ran and why (brief)
+- Pass/fail and the important output
+- What you changed or recommend next
+
+## When blocked
+
+Explain the blocker, what you tried, and the smallest thing the user can do to unblock you. Do not exit without that message.
+
+## Anti-patterns
+
+- ❌ Last action is a tool call; no user-facing text
+- ❌ Empty or placeholder-only reply ("Done." with no detail)
+- ❌ Assuming the user saw tool output in the trace — they may not
+- ❌ **Skill-selection narration as the final reply** — e.g. "I'm using the imagegen skill because…" then stopping. Picking a skill is internal prep, not a deliverable.
+- ❌ Announcing which tool/skill you will use without actually running it and reporting results
+
+## Image requests (Codex / imagegen / GenerateImage)
+
+When the user asks for an image:
+
+1. **Do the work** — call `image_gen`, `GenerateImage`, or the project's image tool. Do not stop at skill selection.
+2. **Stream progress** — use `send_progress` (Pi/hosted runners) for interim updates like "Generating the bear image…".
+3. **Finish explicitly** — call `finish_turn` with the final markdown answer when done (paths, artifacts, next step).
+4. **Deliver the asset** — save to the workspace when project-bound; include the final path(s).
+
+Bad (never finish like this):
+
+```markdown
+I'm using the imagegen skill because this is a direct bitmap image request.
+```
+
+Good:
+
+```markdown
+Generated the sidebar icon mockup.
+
+- **File:** `assets/sidebar-icon.png`
+- **Style:** minimal line icon, golden accent on white
+
+Want a dark-background variant?
+```
+
+The UI stacks image tool output as cards; your markdown gives context. **Both are required.**
+
+## Pattern
+
+**Tools do work → final markdown explains the result for the user.**

@@ -1,0 +1,25 @@
+{
+  "name": "@dude/app-navigation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./link": {
+      "types": "./src/link.tsx",
+      "import": "./src/link.tsx",
+      "default": "./src/link.tsx"
+    },
+    "./router": {
+      "types": "./src/router.ts",
+      "import": "./src/router.ts",
+      "default": "./src/router.ts"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

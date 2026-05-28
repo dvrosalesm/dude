@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#1a0f1a;--ink:#f0e8d8;--muted:#a8957a;--gold:#c9a961;--velvet:#3d1a35;--rule:#3a2d2a;
+  font-family:'Didot','Bodoni 72','Playfair Display',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:6cqmin 5cqmin;gap:3cqmin;position:relative;text-align:center;
+  background-image:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(201,169,97,.15),transparent 60%);
+}
+.frame{position:absolute;inset:3.5cqmin;border:.15cqmin solid var(--gold);pointer-events:none;opacity:.5}
+.frame::before{content:"";position:absolute;inset:.8cqmin;border:.1cqmin solid rgba(201,169,97,.2);pointer-events:none}
+.corner{position:absolute;width:5cqmin;height:5cqmin;border:.2cqmin solid var(--gold);opacity:.9}
+.corner.tl{top:3cqmin;left:3cqmin;border-right:none;border-bottom:none}
+.corner.tr{top:3cqmin;right:3cqmin;border-left:none;border-bottom:none}
+.corner.bl{bottom:3cqmin;left:3cqmin;border-right:none;border-top:none}
+.corner.br{bottom:3cqmin;right:3cqmin;border-left:none;border-top:none}
+.masthead{position:relative;z-index:1;font-family:'Helvetica Neue',sans-serif;font-size:1.5cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);font-weight:500;padding:1.2cqmin 0;border-top:.12cqmin solid var(--gold);border-bottom:.12cqmin solid var(--gold);display:flex;justify-content:center;gap:3cqmin;align-items:center}
+.main{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5cqmin}
+.orn-top{font-size:3cqmin;color:var(--gold);letter-spacing:.5em}
+.kicker{font-family:'Helvetica Neue',sans-serif;font-size:1.5cqmin;letter-spacing:.55em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.mark{font-size:28cqmin;line-height:.5;color:var(--gold);font-style:italic;font-weight:300;margin-bottom:-1cqmin;opacity:.9;font-family:'Didot',serif}
+blockquote{font-size:8.5cqmin;line-height:1.1;font-weight:300;letter-spacing:-.005em;font-style:italic;max-width:18ch;color:var(--ink)}
+blockquote em{font-style:normal;color:var(--gold);font-weight:400}
+blockquote .script{font-family:'Didot',serif;font-size:10.5cqmin;color:var(--gold);letter-spacing:-.02em;font-style:italic;display:inline-block;line-height:.8;font-weight:300}
+.divider{display:flex;align-items:center;gap:1.5cqmin;color:var(--gold);font-size:2cqmin;letter-spacing:.5em;width:50%;margin-top:1.5cqmin}
+.divider::before,.divider::after{content:"";flex:1;height:.1cqmin;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.cite{display:flex;flex-direction:column;align-items:center;gap:.3cqmin;margin-top:1.5cqmin}
+.cite .nm{font-size:3.4cqmin;font-style:italic;color:var(--ink);font-weight:400}
+.cite .rl{font-family:'Helvetica Neue',sans-serif;font-size:1.5cqmin;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.cite .ctx{font-family:'Helvetica Neue',sans-serif;font-size:1.3cqmin;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-top:.6cqmin}
+.orn-bot{font-size:2.5cqmin;color:var(--gold);letter-spacing:.5em;margin-top:1cqmin}
+.foot-bar{position:relative;z-index:1;font-family:'Helvetica Neue',sans-serif;font-size:1.4cqmin;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);font-weight:500;padding-top:1.2cqmin;border-top:.12cqmin solid var(--gold);display:flex;justify-content:space-between;align-items:center}
+.foot-bar .script{font-family:'Didot',serif;font-style:italic;color:var(--gold);font-size:2cqmin;letter-spacing:.05em;text-transform:none;font-weight:300}
+</style></head><body>
+<div class="frame"></div>
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<div class="masthead"><span>❦</span><span>Maison Côte &amp; Ciel · Parole no. 03</span><span>❦</span></div>
+<div class="main">
+  <span class="orn-top">❦ · ※ · ❦</span>
+  <span class="kicker">From the Atelier</span>
+  <div class="mark">&ldquo;</div>
+  <blockquote>the <em>quality</em> of an evening<br/>depends entirely on the <span class="script">silence</span>that precedes it.</blockquote>
+  <div class="divider">❦</div>
+  <div class="cite">
+    <span class="nm">— Élise Côte-Roussel</span>
+    <span class="rl">Directrice · Sixième Génération</span>
+    <span class="ctx">Paris · on the eve of Vol. IX · MMXXVI</span>
+  </div>
+  <span class="orn-bot">❦ · ※ · ❦</span>
+</div>
+<div class="foot-bar"><span>Carnet de la Maison</span><span class="script">— Vol. IX —</span><span>Page 5 of 9</span></div>
+</body></html>

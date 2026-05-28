@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5f1e8;--ink:#0a0a0a;--accent:#ff3b3b;--mark:#fff27a;--muted:#6b6b6b;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin;gap:3cqmin;
+}
+.pager{display:flex;justify-content:space-between;align-items:center;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.pager .final{background:var(--accent);color:var(--bg);padding:.5cqmin 1.2cqmin;border-radius:100px;font-weight:900}
+.main{display:flex;flex-direction:column;justify-content:center;gap:3.5cqmin;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:1.2cqmin;padding:1.8cqmin 3cqmin;background:var(--ink);color:var(--bg);border-radius:100px;font-size:2.3cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:900;width:fit-content}
+h2{font-size:17cqmin;line-height:.88;font-weight:900;letter-spacing:-.045em;text-transform:uppercase}
+h2 em{font-style:normal;background:var(--mark);padding:0 1cqmin;box-shadow:inset 0 -.8cqmin 0 rgba(0,0,0,.15);display:inline-block;transform:rotate(-1.5deg)}
+h2 .r{color:var(--accent)}
+.sub{font-size:3cqmin;line-height:1.4;max-width:28ch;font-weight:500;color:#333}
+.sub strong{background:var(--ink);color:var(--bg);padding:0 .4cqmin;font-weight:700}
+.cta-stack{display:grid;gap:1.8cqmin;margin-top:1cqmin}
+.cta-btn{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center;padding:3cqmin 3.5cqmin;background:var(--ink);color:var(--bg);border-radius:4cqmin;box-shadow:.6cqmin .6cqmin 0 var(--accent);position:relative;overflow:hidden}
+.cta-btn.inv{background:var(--bg);color:var(--ink);border:.4cqmin solid var(--ink);box-shadow:.6cqmin .6cqmin 0 var(--ink)}
+.cta-btn .ic{width:6cqmin;height:6cqmin;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3cqmin;font-weight:900}
+.cta-btn.inv .ic{background:var(--ink);color:var(--bg)}
+.cta-btn h3{font-size:3cqmin;font-weight:900;letter-spacing:-.01em;text-transform:uppercase;line-height:1.1}
+.cta-btn p{font-size:1.9cqmin;letter-spacing:.1em;text-transform:uppercase;opacity:.7;font-weight:500;margin-top:.3cqmin}
+.cta-btn .arr{font-size:4cqmin;color:var(--accent);font-weight:900}
+.cta-btn.inv .arr{color:var(--accent)}
+.foot{display:flex;justify-content:space-between;align-items:center;padding-top:2cqmin;border-top:1px solid #d0c9b8;font-size:2cqmin;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.foot .handle{color:var(--ink);font-weight:900}
+</style></head><body>
+<div class="pager"><span>09/09 · last slide</span><span class="final">★ the end</span></div>
+<div class="main">
+  <span class="kicker">◈ liked this?</span>
+  <h2>Do these <em>3 things</em><br/>before you keep<br/><span class="r">scrolling.</span></h2>
+  <p class="sub">Takes 4 seconds. <strong>Supports the algo</strong> way more than you'd think. Thanks for reading.</p>
+  <div class="cta-stack">
+    <div class="cta-btn">
+      <span class="ic">♥</span>
+      <div><h3>Double-tap</h3><p>to tell the algo this helped</p></div>
+      <span class="arr">→</span>
+    </div>
+    <div class="cta-btn inv">
+      <span class="ic">◈</span>
+      <div><h3>Save this post</h3><p>you'll need it later · promise</p></div>
+      <span class="arr">→</span>
+    </div>
+    <div class="cta-btn">
+      <span class="ic">+</span>
+      <div><h3>Follow for part 2</h3><p>dropping friday · same place</p></div>
+      <span class="arr">→</span>
+    </div>
+  </div>
+</div>
+<div class="foot"><span>thanks for reading ★</span><span class="handle">@method.studio</span></div>
+</body></html>

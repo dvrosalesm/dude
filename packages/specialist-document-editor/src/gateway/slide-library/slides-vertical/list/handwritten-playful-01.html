@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f5efe0;--ink:#2a2418;--red:#c94f3c;--yellow:#eab73a;--blue:#6a9bc4;--green:#7a9b5c;--cream:#fff9e8;
+  font-family:'Caveat','Kalam','Patrick Hand',cursive;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto auto 1fr auto;
+  padding:5cqmin;gap:2cqmin;position:relative;
+}
+.paper-lines{position:absolute;inset:0;background-image:repeating-linear-gradient(180deg,transparent 0,transparent 5cqmin,rgba(106,155,196,.15) 5cqmin,rgba(106,155,196,.15) 5.15cqmin);pointer-events:none;z-index:0}
+.top-washi{position:absolute;top:-1cqmin;left:-2cqmin;right:-2cqmin;height:5cqmin;background:repeating-linear-gradient(90deg,var(--blue) 0 4cqmin,var(--cream) 4cqmin 8cqmin,var(--red) 8cqmin 12cqmin,var(--yellow) 12cqmin 16cqmin);opacity:.8;transform:rotate(-1deg);box-shadow:0 .3cqmin .5cqmin rgba(0,0,0,.1);z-index:1}
+.pager{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding-top:5cqmin;font-size:2.2cqmin;color:var(--ink)}
+.pager .pill{background:var(--red);color:#fff;padding:.6cqmin 1.4cqmin;border:.25cqmin solid var(--ink);box-shadow:.3cqmin .3cqmin 0 var(--ink);transform:rotate(-1deg)}
+.head{position:relative;z-index:2;display:flex;flex-direction:column;gap:1cqmin}
+.head h2{font-size:11cqmin;line-height:.95;font-weight:400;letter-spacing:-.01em;color:var(--ink)}
+.head h2 em{color:var(--red);font-style:italic}
+.head h2 .u{color:var(--green);text-decoration:underline wavy var(--yellow);text-decoration-thickness:.3cqmin;text-underline-offset:1cqmin}
+.head .sub{font-size:2.4cqmin;color:var(--ink);opacity:.8}
+.head .sub em{color:var(--red);font-style:italic}
+.checklist{position:relative;z-index:2;display:grid;align-content:center;gap:1.5cqmin}
+.task{display:grid;grid-template-columns:auto 1fr auto;gap:2cqmin;align-items:center;padding:2cqmin 2.5cqmin;background:var(--cream);border:.25cqmin solid var(--ink);box-shadow:.4cqmin .4cqmin 0 var(--ink);position:relative}
+.task:nth-child(1){transform:rotate(-1deg)}
+.task:nth-child(2){transform:rotate(1deg)}
+.task:nth-child(3){transform:rotate(-.5deg);background:var(--yellow)}
+.task:nth-child(4){transform:rotate(.5deg)}
+.task:nth-child(5){transform:rotate(-1deg)}
+.check{width:6cqmin;height:6cqmin;border:.3cqmin solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:4cqmin;color:var(--red);font-family:'Caveat',cursive;line-height:1;background:#fff}
+.check.done{background:var(--green);color:#fff}
+.task h3{font-size:3cqmin;line-height:1.1;color:var(--ink)}
+.task.done h3{text-decoration:line-through var(--red);text-decoration-thickness:.25cqmin}
+.task h3 em{color:var(--red);font-style:italic}
+.task p{font-size:2cqmin;color:var(--ink);opacity:.75;font-family:'Patrick Hand',cursive;margin-top:.3cqmin}
+.task .note{font-size:2.2cqmin;color:var(--blue);transform:rotate(-4deg);white-space:nowrap;text-align:right}
+.task .note em{color:var(--red);font-style:italic}
+.doodle{position:absolute;color:var(--red);font-size:5cqmin;z-index:3;pointer-events:none}
+.doodle.d1{bottom:12cqmin;right:2cqmin;transform:rotate(25deg)}
+.doodle.d1 small{display:block;font-size:2.3cqmin;color:var(--ink);transform:rotate(-25deg);margin-top:-.5cqmin}
+.foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:1.5cqmin 2cqmin;font-family:'Patrick Hand',cursive;font-size:2.4cqmin;color:var(--ink);border-top:.25cqmin dashed var(--ink)}
+.foot .heart{color:var(--red)}
+</style></head><body>
+<div class="paper-lines"></div>
+<div class="top-washi"></div>
+<div class="pager"><span>page 3 of 7 · saturday list</span><span class="pill">★ 5 things ★</span></div>
+<div class="head">
+  <h2>the little<br/><em>saturday list</em><br/>i keep on the <span class="u">fridge</span></h2>
+  <p class="sub">not a productivity hack. just a list. <em>the only one that worked.</em></p>
+</div>
+<div class="checklist">
+  <div class="task"><span class="check done">✓</span><div><h3><em>open</em> the windows, every window</h3><p>even the bathroom. especially the bathroom.</p></div><span class="note">done ↗<br/><em>1st thing</em></span></div>
+  <div class="task"><span class="check done">✓</span><div><h3>make the <em>real coffee</em></h3><p>not the machine one. the slow one. with the pot.</p></div><span class="note">done ♡</span></div>
+  <div class="task"><span class="check">○</span><div><h3>write <em>one real letter</em></h3><p>on paper. pen. stamp. the whole thing.</p></div><span class="note">next week!</span></div>
+  <div class="task"><span class="check done">✓</span><div><h3>cut flowers from the <em>garden</em></h3><p>or the neighbour's, if permission granted.</p></div><span class="note">✿ ✿ ✿</span></div>
+  <div class="task"><span class="check">○</span><div><h3>walk the <em>long</em> way home</h3><p>past the blue door. no podcast. no phone.</p></div><span class="note">today!!</span></div>
+</div>
+<span class="doodle d1">➥<small>← my favourite</small></span>
+<div class="foot"><span>@millie.plants <span class="heart">♡</span></span><span>swipe → 4/7</span></div>
+</body></html>

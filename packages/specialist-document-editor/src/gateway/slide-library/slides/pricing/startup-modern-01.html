@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#fafbff;--surface:#fff;--ink:#0b0d1a;--muted:#64748b;--accent:#6366f1;--accent2:#8b5cf6;--border:#e5e7ef;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin 6cqmin;gap:3cqmin;
+}
+header{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1cqmin}
+.kicker{font-size:1.2cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h2{font-size:5cqmin;line-height:1.05;font-weight:700;letter-spacing:-.025em}
+h2 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:1.7cqmin;color:var(--muted);max-width:55ch;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqmin;align-items:stretch}
+.tier{background:var(--surface);border:1px solid var(--border);border-radius:1.4cqmin;padding:3cqmin;display:flex;flex-direction:column;gap:1.4cqmin;box-shadow:0 1cqmin 2cqmin rgba(15,23,42,.04);position:relative}
+.tier.featured{background:linear-gradient(180deg,#1a1d33,#0b0d1a);color:#f8fafc;border:1px solid transparent;background-clip:padding-box;box-shadow:0 2cqmin 5cqmin rgba(139,92,246,.25)}
+.tier.featured::before{content:"";position:absolute;inset:0;border-radius:1.4cqmin;padding:1px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.tier .badge{position:absolute;top:-1.2cqmin;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1cqmin;letter-spacing:.25em;text-transform:uppercase;padding:.5cqmin 1.4cqmin;border-radius:100px;font-weight:700}
+.name{font-size:1.4cqmin;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.tier.featured .name{color:#c4b5fd}
+.price{display:flex;align-items:baseline;gap:.5cqmin;margin-top:.5cqmin}
+.price .big{font-size:7cqmin;line-height:.9;font-weight:800;letter-spacing:-.04em}
+.price .per{font-size:1.4cqmin;color:var(--muted)}
+.tier.featured .price .per{color:#94a3b8}
+.price .ex{font-size:1.4cqmin;color:var(--muted);text-decoration:line-through}
+.tag-line{font-size:1.45cqmin;color:var(--muted);line-height:1.5;min-height:4cqmin}
+.tier.featured .tag-line{color:#cbd5e1}
+.ul{list-style:none;display:flex;flex-direction:column;gap:1cqmin;margin-top:.5cqmin}
+.ul li{font-size:1.45cqmin;line-height:1.45;padding-left:2.4cqmin;position:relative}
+.ul li::before{content:"✓";position:absolute;left:0;top:.1cqmin;color:var(--accent);font-weight:700}
+.tier.featured .ul li::before{color:#22d3ee}
+.cta{margin-top:auto;padding:1.4cqmin 0;text-align:center;border-radius:.9cqmin;font-size:1.5cqmin;font-weight:600;background:#eef1ff;color:var(--accent)}
+.tier.featured .cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.foot{text-align:center;font-size:1.25cqmin;color:var(--muted)}
+</style></head><body>
+<header>
+  <span class="kicker">Pricing · Pay for seconds, not slots</span>
+  <h2>Simple tiers. <em>No surprises.</em></h2>
+  <p class="sub">Every plan includes strict per-workspace isolation, encrypted SQLite, and streaming chat. You only pay for active agent seconds.</p>
+</header>
+<div class="grid">
+  <div class="tier">
+    <span class="name">Starter</span>
+    <div class="price"><span class="big">$49</span><span class="per">/ month</span></div>
+    <p class="tag-line">For individual builders running a handful of agents in development.</p>
+    <ul class="ul"><li>Up to 10 concurrent workspaces</li><li>100 agent-hours included</li><li>Community Slack</li><li>Fair-use rate limits</li></ul>
+    <span class="cta">Start for free</span>
+  </div>
+  <div class="tier featured">
+    <span class="badge">Most popular</span>
+    <span class="name">Growth</span>
+    <div class="price"><span class="big">$399</span><span class="per">/ month</span></div>
+    <p class="tag-line">For teams shipping agents to real customers, with a real on-call rotation.</p>
+    <ul class="ul"><li>Up to 500 concurrent workspaces</li><li>2,000 agent-hours included</li><li>Private VPC peering</li><li>99.95% SLA · 4-hour response</li><li>Usage metering webhook</li></ul>
+    <span class="cta">Talk to sales</span>
+  </div>
+  <div class="tier">
+    <span class="name">Enterprise</span>
+    <div class="price"><span class="big">Custom</span></div>
+    <p class="tag-line">For teams with procurement, compliance, or air-gapped deployment needs.</p>
+    <ul class="ul"><li>Unlimited workspaces</li><li>Dedicated region</li><li>SOC 2 · HIPAA BAA · DPA</li><li>99.99% SLA · 1-hour response</li><li>Named solutions engineer</li></ul>
+    <span class="cta">Request a quote</span>
+  </div>
+</div>
+<p class="foot">All plans billed in USD. Non-profit and academic discounts available · pricing@example.co</p>
+</body></html>

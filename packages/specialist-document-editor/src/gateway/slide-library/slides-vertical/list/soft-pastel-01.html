@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#f3ede3;--ink:#3d2e24;--sage:#8ba585;--peach:#e8b091;--cream:#fcf6ea;--rule:#d8cfbd;
+  font-family:'Cormorant Garamond','Didot',Georgia,serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:grid;grid-template-rows:auto 1fr auto;
+  padding:6cqmin;gap:3cqmin;position:relative;
+  background-image:radial-gradient(ellipse 50% 30% at 100% 100%,rgba(139,165,133,.15),transparent 60%);
+}
+.frame{position:absolute;inset:3cqmin;border:.15cqmin solid var(--rule);border-radius:3cqmin;pointer-events:none}
+.head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5cqmin;position:relative;z-index:1;padding:2cqmin 0}
+.logo{font-family:'Cormorant Garamond',serif;font-size:2.4cqmin;font-style:italic;color:var(--sage);letter-spacing:.3em;text-transform:uppercase;font-weight:300}
+.orn{font-size:2cqmin;color:var(--peach);letter-spacing:.4em}
+h2{font-size:10cqmin;line-height:1;font-weight:300;letter-spacing:-.01em;max-width:14ch}
+h2 em{font-style:italic;color:var(--sage)}
+h2 .script{font-family:'Allura',cursive;font-size:12cqmin;color:var(--peach);font-style:italic;letter-spacing:-.03em}
+.sub{font-family:'Inter',sans-serif;font-size:2cqmin;color:var(--ink);opacity:.6;max-width:30ch;font-weight:400;line-height:1.5;letter-spacing:.01em;margin-top:.5cqmin}
+.list{display:grid;align-content:center;gap:1.5cqmin;position:relative;z-index:1}
+.item{display:grid;grid-template-columns:7cqmin 1fr;gap:2.5cqmin;align-items:center;padding:2.5cqmin 3cqmin;background:var(--cream);border-radius:2cqmin;border:.15cqmin solid var(--rule)}
+.item.accent{background:#fbeee4;border-color:var(--peach)}
+.item .n{width:7cqmin;height:7cqmin;border-radius:50%;background:var(--bg);border:.2cqmin solid var(--sage);display:flex;align-items:center;justify-content:center;font-style:italic;font-size:3cqmin;color:var(--sage);font-weight:400;line-height:1}
+.item.accent .n{background:var(--peach);color:var(--cream);border-color:var(--peach)}
+.item h3{font-size:2.7cqmin;line-height:1.2;font-weight:400;font-style:italic;letter-spacing:-.005em}
+.item h3 em{font-family:'Allura',cursive;font-size:3.4cqmin;color:var(--peach);font-style:italic;letter-spacing:-.01em}
+.item p{font-family:'Inter',sans-serif;font-size:1.85cqmin;line-height:1.5;color:var(--ink);opacity:.7;font-weight:400;margin-top:.3cqmin}
+.foot{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;padding-top:1.5cqmin;border-top:.1cqmin solid var(--rule);font-family:'Inter',sans-serif;font-size:1.8cqmin;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);opacity:.55;font-weight:500}
+.foot .save{color:var(--sage);display:flex;align-items:center;gap:1cqmin}
+</style></head><body>
+<div class="frame"></div>
+<div class="head">
+  <span class="logo">Field Notes · vii</span>
+  <span class="orn">✦ · ✦ · ✦</span>
+  <h2>five <em>slow</em><br/>things to do on <span class="script">sundays</span></h2>
+  <p class="sub">for the days when nothing is urgent. a list kept in the kitchen notebook since spring 2024.</p>
+</div>
+<div class="list">
+  <div class="item"><span class="n">i.</span><div><h3>Bake something that takes <em>all afternoon</em></h3><p>A sourdough if you have the flour. A pot of beans if you don't. It's about the <em>hours</em>, not the dish.</p></div></div>
+  <div class="item accent"><span class="n">ii.</span><div><h3>Write one <em>short letter</em></h3><p>On paper — to someone you haven't spoken to since last year. Don't edit it. Just mail it.</p></div></div>
+  <div class="item"><span class="n">iii.</span><div><h3>Cut flowers from <em>your own garden</em></h3><p>Or a neighbour's, with permission. Put them in the kitchen. Change the water before bed.</p></div></div>
+  <div class="item"><span class="n">iv.</span><div><h3>Walk the <em>long way</em> home</h3><p>The one that passes the small park and the house with the blue door. No podcast. No headphones.</p></div></div>
+  <div class="item"><span class="n">v.</span><div><h3>Re-read the <em>book of the season</em></h3><p>The one that's always on the nightstand. Start from any page; it'll find where you need to be.</p></div></div>
+</div>
+<div class="foot"><span>save for sunday</span><span class="save">sage &amp; honey ✦</span></div>
+</body></html>

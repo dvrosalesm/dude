@@ -1,0 +1,36 @@
+{
+  "name": "@dude/workspaces",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./routes": {
+      "types": "./src/routes.ts",
+      "import": "./src/routes.ts",
+      "default": "./src/routes.ts"
+    },
+    "./runtime-binding": {
+      "types": "./src/runtime-binding.ts",
+      "import": "./src/runtime-binding.ts",
+      "default": "./src/runtime-binding.ts"
+    },
+    "./config-hydrator-binding": {
+      "types": "./src/config-hydrator-binding.ts",
+      "import": "./src/config-hydrator-binding.ts",
+      "default": "./src/config-hydrator-binding.ts"
+    }
+  },
+  "dependencies": {
+    "@dude/client-types": "*",
+    "@dude/data-analyst-core": "*",
+    "@dude/gateway-shared": "*"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

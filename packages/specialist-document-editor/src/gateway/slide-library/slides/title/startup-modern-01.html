@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{
+  --bg:#0b0d1a;--ink:#f8fafc;--muted:#94a3b8;--accent:#8b5cf6;--accent2:#22d3ee;
+  font-family:'Inter','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100vh;overflow:hidden;
+  container-type:size;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:7cqmin;position:relative;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 20% 30%,rgba(139,92,246,.4),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 70%,rgba(34,211,238,.3),transparent 60%),
+    linear-gradient(180deg,#0b0d1a,#0b0d1a);
+}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:4cqmin 4cqmin;pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:1cqmin;padding:.8cqmin 1.8cqmin;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.4);border-radius:100px;font-size:1.3cqmin;letter-spacing:.15em;text-transform:uppercase;color:#c4b5fd;width:fit-content;margin-bottom:3cqmin;backdrop-filter:blur(10px);position:relative;z-index:1}
+.badge .dot{width:.8cqmin;height:.8cqmin;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent)}
+h1{font-size:11cqmin;line-height:.95;font-weight:700;letter-spacing:-.035em;max-width:20ch;position:relative;z-index:1}
+.gradient{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:2.2cqmin;line-height:1.5;color:var(--muted);max-width:52ch;margin-top:3cqmin;position:relative;z-index:1}
+.meta{display:flex;gap:3cqmin;margin-top:5cqmin;font-size:1.4cqmin;color:var(--muted);position:relative;z-index:1;align-items:center}
+.meta .chip{padding:.8cqmin 1.6cqmin;border:1px solid #1e293b;border-radius:8px;background:rgba(15,23,42,.6);backdrop-filter:blur(8px)}
+.meta .chip strong{color:var(--ink);font-weight:600}
+</style></head><body>
+<div class="grid"></div>
+<div class="badge"><span class="dot"></span> Series B · Confidential</div>
+<h1>The <span class="gradient">infrastructure layer</span> for autonomous agents.</h1>
+<p class="sub">We run isolated AI workers at scale — so your product team can ship agentic features without building the reliability, sandboxing, and observability stack from scratch.</p>
+<div class="meta">
+  <div class="chip"><strong>Company</strong> · Helix Labs</div>
+  <div class="chip"><strong>Round</strong> · $22M Series B</div>
+  <div class="chip"><strong>Date</strong> · April 2026</div>
+</div>
+</body></html>
